@@ -31,6 +31,26 @@ public class PlayerMovement : MonoBehaviour
         inputDir = contex.ReadValue<Vector2>();
     }
 
+    public void testTrigger(InputAction.CallbackContext context) 
+    {
+        
+        if (context.performed) 
+        {
+            Debug.Log("oke" + context.phase);
+        }
+       
+    }
+
+    public void diskonek() 
+    {
+        Debug.Log("copopt");
+    }
+
+    public void koneku() 
+    {
+        Debug.Log("konek");
+    }
+
     void playerBreak()
     {
         if(isBreaking)
