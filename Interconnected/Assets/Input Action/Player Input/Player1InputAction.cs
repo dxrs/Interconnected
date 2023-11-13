@@ -57,7 +57,7 @@ public partial class @Player1InputAction: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""2D Vector"",
+                    ""name"": ""WASD"",
                     ""id"": ""76560a7d-6124-4849-bf00-a2b7aa5df7bf"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -112,7 +112,7 @@ public partial class @Player1InputAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""2D Vector"",
+                    ""name"": ""Arrow Key"",
                     ""id"": ""38954095-89ea-4367-90c8-829420582aaf"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
