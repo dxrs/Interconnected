@@ -89,6 +89,15 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Change Link"",
+                    ""type"": ""Button"",
+                    ""id"": ""a9a444fa-beb5-47e7-a00f-295983c6397f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -267,6 +276,17 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""action"": ""Interact Press"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c2e3ea9-b5e6-4bb8-84c1-f7dffc0e8953"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard Scheme"",
+                    ""action"": ""Change Link"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -332,6 +352,15 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""name"": ""Give Health"",
                     ""type"": ""Button"",
                     ""id"": ""7da49372-5dfe-43b4-84e2-4bbc8ec74f8f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Change Link"",
+                    ""type"": ""Button"",
+                    ""id"": ""c473713c-8497-4e8c-99a7-835e0d925607"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -415,6 +444,17 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""action"": ""Interact Press"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d6c5153-cb0e-42fb-8477-94aa3ff390cb"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad Scheme"",
+                    ""action"": ""Change Link"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -464,6 +504,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         m_InputPlayer1_GiveHealth = m_InputPlayer1.FindAction("Give Health", throwIfNotFound: true);
         m_InputPlayer1_Ability = m_InputPlayer1.FindAction("Ability", throwIfNotFound: true);
         m_InputPlayer1_BasicSkill = m_InputPlayer1.FindAction("Basic Skill", throwIfNotFound: true);
+        m_InputPlayer1_ChangeLink = m_InputPlayer1.FindAction("Change Link", throwIfNotFound: true);
         // Input Player 2
         m_InputPlayer2 = asset.FindActionMap("Input Player 2", throwIfNotFound: true);
         m_InputPlayer2_Movement = m_InputPlayer2.FindAction("Movement", throwIfNotFound: true);
@@ -473,6 +514,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         m_InputPlayer2_BasicSkill = m_InputPlayer2.FindAction("Basic Skill", throwIfNotFound: true);
         m_InputPlayer2_Ability = m_InputPlayer2.FindAction("Ability", throwIfNotFound: true);
         m_InputPlayer2_GiveHealth = m_InputPlayer2.FindAction("Give Health", throwIfNotFound: true);
+        m_InputPlayer2_ChangeLink = m_InputPlayer2.FindAction("Change Link", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -541,6 +583,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_InputPlayer1_GiveHealth;
     private readonly InputAction m_InputPlayer1_Ability;
     private readonly InputAction m_InputPlayer1_BasicSkill;
+    private readonly InputAction m_InputPlayer1_ChangeLink;
     public struct InputPlayer1Actions
     {
         private @InputControl m_Wrapper;
@@ -552,6 +595,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         public InputAction @GiveHealth => m_Wrapper.m_InputPlayer1_GiveHealth;
         public InputAction @Ability => m_Wrapper.m_InputPlayer1_Ability;
         public InputAction @BasicSkill => m_Wrapper.m_InputPlayer1_BasicSkill;
+        public InputAction @ChangeLink => m_Wrapper.m_InputPlayer1_ChangeLink;
         public InputActionMap Get() { return m_Wrapper.m_InputPlayer1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -582,6 +626,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @BasicSkill.started += instance.OnBasicSkill;
             @BasicSkill.performed += instance.OnBasicSkill;
             @BasicSkill.canceled += instance.OnBasicSkill;
+            @ChangeLink.started += instance.OnChangeLink;
+            @ChangeLink.performed += instance.OnChangeLink;
+            @ChangeLink.canceled += instance.OnChangeLink;
         }
 
         private void UnregisterCallbacks(IInputPlayer1Actions instance)
@@ -607,6 +654,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @BasicSkill.started -= instance.OnBasicSkill;
             @BasicSkill.performed -= instance.OnBasicSkill;
             @BasicSkill.canceled -= instance.OnBasicSkill;
+            @ChangeLink.started -= instance.OnChangeLink;
+            @ChangeLink.performed -= instance.OnChangeLink;
+            @ChangeLink.canceled -= instance.OnChangeLink;
         }
 
         public void RemoveCallbacks(IInputPlayer1Actions instance)
@@ -635,6 +685,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_InputPlayer2_BasicSkill;
     private readonly InputAction m_InputPlayer2_Ability;
     private readonly InputAction m_InputPlayer2_GiveHealth;
+    private readonly InputAction m_InputPlayer2_ChangeLink;
     public struct InputPlayer2Actions
     {
         private @InputControl m_Wrapper;
@@ -646,6 +697,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         public InputAction @BasicSkill => m_Wrapper.m_InputPlayer2_BasicSkill;
         public InputAction @Ability => m_Wrapper.m_InputPlayer2_Ability;
         public InputAction @GiveHealth => m_Wrapper.m_InputPlayer2_GiveHealth;
+        public InputAction @ChangeLink => m_Wrapper.m_InputPlayer2_ChangeLink;
         public InputActionMap Get() { return m_Wrapper.m_InputPlayer2; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -676,6 +728,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @GiveHealth.started += instance.OnGiveHealth;
             @GiveHealth.performed += instance.OnGiveHealth;
             @GiveHealth.canceled += instance.OnGiveHealth;
+            @ChangeLink.started += instance.OnChangeLink;
+            @ChangeLink.performed += instance.OnChangeLink;
+            @ChangeLink.canceled += instance.OnChangeLink;
         }
 
         private void UnregisterCallbacks(IInputPlayer2Actions instance)
@@ -701,6 +756,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @GiveHealth.started -= instance.OnGiveHealth;
             @GiveHealth.performed -= instance.OnGiveHealth;
             @GiveHealth.canceled -= instance.OnGiveHealth;
+            @ChangeLink.started -= instance.OnChangeLink;
+            @ChangeLink.performed -= instance.OnChangeLink;
+            @ChangeLink.canceled -= instance.OnChangeLink;
         }
 
         public void RemoveCallbacks(IInputPlayer2Actions instance)
@@ -754,6 +812,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         void OnGiveHealth(InputAction.CallbackContext context);
         void OnAbility(InputAction.CallbackContext context);
         void OnBasicSkill(InputAction.CallbackContext context);
+        void OnChangeLink(InputAction.CallbackContext context);
     }
     public interface IInputPlayer2Actions
     {
@@ -764,5 +823,6 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         void OnBasicSkill(InputAction.CallbackContext context);
         void OnAbility(InputAction.CallbackContext context);
         void OnGiveHealth(InputAction.CallbackContext context);
+        void OnChangeLink(InputAction.CallbackContext context);
     }
 }

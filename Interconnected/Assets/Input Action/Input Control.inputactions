@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Change Link",
+                    "type": "Button",
+                    "id": "a9a444fa-beb5-47e7-a00f-295983c6397f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -245,6 +254,17 @@
                     "action": "Interact Press",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c2e3ea9-b5e6-4bb8-84c1-f7dffc0e8953",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard Scheme",
+                    "action": "Change Link",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -310,6 +330,15 @@
                     "name": "Give Health",
                     "type": "Button",
                     "id": "7da49372-5dfe-43b4-84e2-4bbc8ec74f8f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Change Link",
+                    "type": "Button",
+                    "id": "c473713c-8497-4e8c-99a7-835e0d925607",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -391,6 +420,17 @@
                     "processors": "",
                     "groups": "Gamepad Scheme",
                     "action": "Interact Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d6c5153-cb0e-42fb-8477-94aa3ff390cb",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad Scheme",
+                    "action": "Change Link",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
