@@ -51,18 +51,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ability",
+                    "name": "Basic Skill Dash",
                     "type": "Button",
-                    "id": "4e692894-4634-47e2-a0a7-0fdfbfd0bd56",
+                    "id": "008bd728-9221-4d3a-8ab1-845449e9e387",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Basic Skill",
+                    "name": "Basic Skill Ghost",
                     "type": "Button",
-                    "id": "008bd728-9221-4d3a-8ab1-845449e9e387",
+                    "id": "250bb9b5-4e5e-4e86-a2fc-4c8982f1f65f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -202,23 +202,12 @@
                 },
                 {
                     "name": "",
-                    "id": "d0fb2561-910d-4b51-9f77-73fb62f19776",
-                    "path": "<Keyboard>/space",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "Keyboard Scheme",
-                    "action": "Ability",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "8a5e7c01-edf9-4278-af5d-fee1fa3bd93c",
                     "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard Scheme",
-                    "action": "Basic Skill",
+                    "action": "Basic Skill Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -237,7 +226,7 @@
                     "name": "",
                     "id": "8ed3dd44-ee5f-4a89-83bd-d1ac18dfae2a",
                     "path": "",
-                    "interactions": "",
+                    "interactions": "MultiTap(tapCount=3)",
                     "processors": "",
                     "groups": "",
                     "action": "Interact Tap",
@@ -258,11 +247,22 @@
                 {
                     "name": "",
                     "id": "2c2e3ea9-b5e6-4bb8-84c1-f7dffc0e8953",
-                    "path": "",
+                    "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard Scheme",
                     "action": "Change Link",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b774218d-1c96-410e-8efd-5cb3699e0c23",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Basic Skill Ghost",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -309,7 +309,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Basic Skill",
+                    "name": "Basic Skill Dash",
                     "type": "Button",
                     "id": "52f730c5-86c0-4178-86ef-38534a3e8046",
                     "expectedControlType": "Button",
@@ -318,9 +318,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ability",
+                    "name": "Basic Skill Ghost",
                     "type": "Button",
-                    "id": "348c9f1c-c1fa-48a4-945c-e95bf7eb022a",
+                    "id": "4af3bff8-8a64-4d2f-9bd0-9ea63d615ebb",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -370,23 +370,12 @@
                 },
                 {
                     "name": "",
-                    "id": "69e8c927-55b2-477f-8b9b-19405566106d",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "Gamepad Scheme",
-                    "action": "Ability",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "100370a0-11bd-41ad-997d-95854f7d601e",
                     "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad Scheme",
-                    "action": "Basic Skill",
+                    "action": "Basic Skill Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -394,7 +383,7 @@
                     "name": "",
                     "id": "fad1625f-8865-462d-9df5-83242fd08559",
                     "path": "",
-                    "interactions": "",
+                    "interactions": "MultiTap(tapCount=3)",
                     "processors": "",
                     "groups": "Gamepad Scheme",
                     "action": "Interact Tap",
@@ -431,6 +420,157 @@
                     "processors": "",
                     "groups": "Gamepad Scheme",
                     "action": "Change Link",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "78d08b0f-d2f5-4f51-8a68-ae5bc40f6123",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Basic Skill Ghost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Input Main Menu",
+            "id": "7faa0509-803b-4b91-bfab-6342471aa9c4",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "7e1d956e-a07b-435b-ade5-61307944c8a6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6ab44e65-b12e-443a-9dad-67c30b99d210",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Input Select Level",
+            "id": "76f10b55-a4d6-40aa-95af-77f29357d281",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "0d0455cf-579b-4d16-961e-41f135daee55",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1f2863e4-de94-4204-a22a-079a52eb665e",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Input Select Player",
+            "id": "7ee50518-cddd-4671-8101-a12dfd706a4d",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "13729b59-fe6d-4663-928d-61c56f7f80e9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5462bc1c-7ca5-406f-a590-5b7fe41b8da4",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Input Game Pause",
+            "id": "e25006ec-ec45-406f-b5c1-63646196d0a4",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "7ae3b5f4-a387-4307-90a5-19d262ab2517",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "fa4d1ce1-9420-46f3-b019-027d6456e051",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Input Game Finish",
+            "id": "eb414efe-3adc-4c25-839b-9fa05c7afb3c",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "ba1addda-4e5d-4fc9-9cca-a32652316810",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6c82e1de-49f5-4822-a5db-fffe6080c1f5",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

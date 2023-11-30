@@ -8,6 +8,7 @@ public class Player1Input : MonoBehaviour
 {
     [SerializeField] float curSpeed;
     [SerializeField] float maxSpeed;
+    [SerializeField] float dashSpeed;
 
     bool isBreaking;
 

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Obstacle
+  - Obstacle P1
+  - Obstacle P2
   layers:
   - Default
   - TransparentFX
@@ -13,8 +15,8 @@ TagManager:
   - Water
   - UI
   - Obstacle
-  - 
-  - 
+  - Obstacle P1
+  - Obstacle P2
   - 
   - 
   - 
