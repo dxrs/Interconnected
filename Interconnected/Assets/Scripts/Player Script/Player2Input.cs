@@ -6,6 +6,8 @@ using Unity.Mathematics;
 
 public class Player2Input : MonoBehaviour
 {
+    [SerializeField] LinkRay linkRay;
+
     [SerializeField] float curSpeed;
     [SerializeField] float maxSpeed;
     [SerializeField] float dashSpeed;
@@ -26,6 +28,22 @@ public class Player2Input : MonoBehaviour
         rb.AddForce(inputDir * curSpeed);
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
         player2IsBreaking();
+    }
+    private void Update()
+    {
+        p2ChangeLayer();
+    }
+
+    private void p2ChangeLayer()
+    {
+        if (linkRay.isChangeLinkMethod)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Default");
+        }
+        else
+        {
+            gameObject.layer = LayerMask.NameToLayer("Obstacle");
+        }
     }
 
     #region player 2 movement function
@@ -76,6 +94,9 @@ public class Player2Input : MonoBehaviour
         }
     }
     #endregion
+
+
+   
 
     //gamepad disconnect
     public void gamepadDiconnected() 

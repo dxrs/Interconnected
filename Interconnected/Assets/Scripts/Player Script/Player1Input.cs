@@ -6,6 +6,8 @@ using Unity.Mathematics;
 
 public class Player1Input : MonoBehaviour
 {
+    [SerializeField] LinkRay linkRay;
+
     [SerializeField] float curSpeed;
     [SerializeField] float maxSpeed;
     [SerializeField] float dashSpeed;
@@ -16,9 +18,16 @@ public class Player1Input : MonoBehaviour
 
     Rigidbody2D rb;
 
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        
     }
 
     private void FixedUpdate()
@@ -27,6 +36,8 @@ public class Player1Input : MonoBehaviour
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
         player1IsBreaking();
     }
+
+    
 
     #region player 1 movement function
     public void p1Move(InputAction.CallbackContext context) 
@@ -75,4 +86,20 @@ public class Player1Input : MonoBehaviour
         }
     }
     #endregion
+
+    public void changeLinkMethod(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+
+            if (!linkRay.isChangeLinkMethod)
+            {
+                linkRay.isChangeLinkMethod = true;
+            }
+            else
+            {
+                linkRay.isChangeLinkMethod = false;
+            }
+        }
+    }
 }
