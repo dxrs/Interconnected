@@ -225,7 +225,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8a5e7c01-edf9-4278-af5d-fee1fa3bd93c"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard Scheme"",

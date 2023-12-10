@@ -10,7 +10,16 @@ public class Player1Input : MonoBehaviour
 
     [SerializeField] float curSpeed;
     [SerializeField] float maxSpeed;
+    
+
+    //Basic Ability
+    [Header("Player 1 Basic Ability")]
     [SerializeField] float dashSpeed;
+    [SerializeField] float dashDuration;
+    [SerializeField] float dashCooldown;
+    bool isDashing;
+    bool canDash;
+
 
     bool isBreaking;
 
@@ -23,6 +32,8 @@ public class Player1Input : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        isBreaking = true;
+        canDash = true;
     }
 
     private void Update()
@@ -32,9 +43,15 @@ public class Player1Input : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDashing) 
+        {
+            return;
+        }
         rb.AddForce(inputDir * curSpeed);
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
+        
         player1IsBreaking();
+        
     }
 
     
@@ -85,6 +102,33 @@ public class Player1Input : MonoBehaviour
             rb.drag = 0;
         }
     }
+    #endregion
+
+    #region player 1 basic ability
+
+    public void player1dashing(InputAction.CallbackContext context) 
+    {
+        
+        if (context.performed) 
+        {
+            StartCoroutine(dashing());
+
+        }
+        
+       
+    }
+
+    IEnumerator dashing()
+    {
+        //canDash = false;
+        isDashing = true;
+        rb.velocity = new Vector2(inputDir.x * dashSpeed, inputDir.y * dashSpeed);
+        yield return new WaitForSeconds(dashDuration);
+        isDashing = false;
+       // yield return new WaitForSeconds(dashCooldown);
+        //canDash = true;
+    }
+
     #endregion
 
     public void changeLinkMethod(InputAction.CallbackContext context)

@@ -21,6 +21,7 @@ public class Player2Input : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        isBreaking = true;
     }
 
     private void FixedUpdate()
