@@ -612,7 +612,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 757900986}
         m_TargetAssemblyTypeName: Player1Input, Assembly-CSharp
-        m_MethodName: player1dashing
+        m_MethodName: player1Dashing
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -722,13 +722,13 @@ MonoBehaviour:
     m_ActionName: Input Game Finish/New action
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 757900980}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 757900986}
+        m_TargetAssemblyTypeName: Player1Input, Assembly-CSharp
+        m_MethodName: player1Ghosting
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -851,7 +851,8 @@ MonoBehaviour:
   maxSpeed: 5
   dashSpeed: 12
   dashDuration: 0.2
-  dashCooldown: 1
+  ghostDuration: 10
+  curPlayerTransparentColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!58 &757900987
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1712,7 +1713,6 @@ MonoBehaviour:
   linkRay: {fileID: 1167290736}
   curSpeed: 5
   maxSpeed: 5
-  dashSpeed: 0
 --- !u!212 &2041230174
 SpriteRenderer:
   m_ObjectHideFlags: 0

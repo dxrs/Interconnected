@@ -10,15 +10,22 @@ public class Player1Input : MonoBehaviour
 
     [SerializeField] float curSpeed;
     [SerializeField] float maxSpeed;
-    
 
-    //Basic Ability
-    [Header("Player 1 Basic Ability")]
+
+    #region basic ability variable
+    [Header("Player 1 Basic Ability Dash")]
     [SerializeField] float dashSpeed;
     [SerializeField] float dashDuration;
-    [SerializeField] float dashCooldown;
     bool isDashing;
-    bool canDash;
+    [Header("Player 1 Basic Ability Ghost")]
+    [SerializeField] float ghostDuration;
+    [SerializeField] Color curPlayerTransparentColor;
+    float colorGhostA = 0.4f;
+    float curColorA = 1f;
+    SpriteRenderer spriteRenderer;
+    bool isGhosting;
+    #endregion
+
 
 
     bool isBreaking;
@@ -31,14 +38,17 @@ public class Player1Input : MonoBehaviour
 
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         isBreaking = true;
-        canDash = true;
+        curPlayerTransparentColor.a = curColorA;
+        spriteRenderer.color = curPlayerTransparentColor;
+        
     }
 
     private void Update()
     {
-        
+        Ghosting();
     }
 
     private void FixedUpdate()
@@ -49,14 +59,12 @@ public class Player1Input : MonoBehaviour
         }
         rb.AddForce(inputDir * curSpeed);
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
-        
         player1IsBreaking();
-        
     }
 
     
 
-    #region player 1 movement function
+    #region player 1 movement 
     public void p1Move(InputAction.CallbackContext context) 
     {
         if (context.performed) 
@@ -72,7 +80,7 @@ public class Player1Input : MonoBehaviour
     }
     #endregion
 
-    #region player 1 give health function & ability trigger
+    #region player 1 give health function
     public void p1GiveHealth(InputAction.CallbackContext context) 
     {
         if (context.performed) 
@@ -90,7 +98,7 @@ public class Player1Input : MonoBehaviour
     }
     #endregion
 
-    #region player 1 breaking function
+    #region player 1 breaking 
     void player1IsBreaking() 
     {
         if (isBreaking)
@@ -106,36 +114,62 @@ public class Player1Input : MonoBehaviour
 
     #region player 1 basic ability
 
-    public void player1dashing(InputAction.CallbackContext context) 
+    public void player1Dashing(InputAction.CallbackContext context) 
     {
-        
-        if (context.performed) 
+        if (context.performed && !isBreaking) 
         {
             StartCoroutine(dashing());
-
         }
-        
-       
+    }
+
+    public void player1Ghosting(InputAction.CallbackContext context) 
+    {
+        if(context.performed && !isGhosting) 
+        {
+            isGhosting = true;
+        }
     }
 
     IEnumerator dashing()
     {
-        //canDash = false;
         isDashing = true;
         rb.velocity = new Vector2(inputDir.x * dashSpeed, inputDir.y * dashSpeed);
         yield return new WaitForSeconds(dashDuration);
         isDashing = false;
-       // yield return new WaitForSeconds(dashCooldown);
-        //canDash = true;
+    }
+
+    private void Ghosting() 
+    {
+        if (isGhosting) 
+        {
+            curColorA = math.lerp(curColorA, colorGhostA, 1.5f * Time.deltaTime);
+            curPlayerTransparentColor.a = curColorA;
+            spriteRenderer.color = curPlayerTransparentColor;
+            if (ghostDuration > 0) 
+            {
+                ghostDuration -= 1 * Time.deltaTime;
+            }
+        }
+        if(isGhosting && ghostDuration <= 0) 
+        {
+            isGhosting = false;
+            ghostDuration = 10;
+        }
+        if (!isGhosting) 
+        {
+            curColorA = math.lerp(curColorA, 1, 1.5f * Time.deltaTime);
+            curPlayerTransparentColor.a = curColorA;
+            spriteRenderer.color = curPlayerTransparentColor;
+        }
     }
 
     #endregion
 
+    #region change link
     public void changeLinkMethod(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !isGhosting)
         {
-
             if (!linkRay.isChangeLinkMethod)
             {
                 linkRay.isChangeLinkMethod = true;
@@ -146,4 +180,5 @@ public class Player1Input : MonoBehaviour
             }
         }
     }
+    #endregion
 }

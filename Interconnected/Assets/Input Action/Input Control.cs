@@ -280,10 +280,10 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b774218d-1c96-410e-8efd-5cb3699e0c23"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard Scheme"",
                     ""action"": ""Basic Skill Ghost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
