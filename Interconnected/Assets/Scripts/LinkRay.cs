@@ -86,8 +86,8 @@ public class LinkRay : MonoBehaviour
     {
         float nearestDistance = float.MaxValue;
         GameObject nearestObstacle = null;
+        player1LinkedToObstacle = false;
 
-     
         float distanceBetweenPlayers = Vector2.Distance(player[1].transform.position, player[0].transform.position);
         for (int i = 0; i < obstacleP1.Length; i++)
         {
@@ -112,7 +112,6 @@ public class LinkRay : MonoBehaviour
                 }
              
             }
-            else { player1LinkedToObstacle = false; }
         }
       
         if (nearestObstacle != null && !Player1.player1.isGhosting)
@@ -125,6 +124,7 @@ public class LinkRay : MonoBehaviour
     {
         float nearestDistance = float.MaxValue;
         GameObject nearestObstacle = null;
+        player2LinkedToObstacle = false;
 
         //periksa apakah player 1 berada di antara player 2 dan obstacleP2
         float distanceBetweenPlayers = Vector2.Distance(player[1].transform.position, player[0].transform.position);
@@ -149,7 +149,6 @@ public class LinkRay : MonoBehaviour
                 }
 
             }
-            else { player2LinkedToObstacle = false; }
         }
 
         // trigger sesuatu dengan objek penghalang terdekat
