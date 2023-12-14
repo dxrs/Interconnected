@@ -73,6 +73,15 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Change Link"",
+                    ""type"": ""Button"",
+                    ""id"": ""a9a444fa-beb5-47e7-a00f-295983c6397f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Basic Skill Dash"",
                     ""type"": ""Button"",
                     ""id"": ""008bd728-9221-4d3a-8ab1-845449e9e387"",
@@ -85,15 +94,6 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""name"": ""Basic Skill Ghost"",
                     ""type"": ""Button"",
                     ""id"": ""250bb9b5-4e5e-4e86-a2fc-4c8982f1f65f"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Change Link"",
-                    ""type"": ""Button"",
-                    ""id"": ""a9a444fa-beb5-47e7-a00f-295983c6397f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -214,7 +214,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8f897e8f-0d7e-4f6b-ab30-54bf62a0259c"",
-                    ""path"": ""<Keyboard>/g"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": ""Keyboard Scheme"",
@@ -257,11 +257,22 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5dfb62fa-2918-40e2-82ed-1c71c2d761d1"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": ""Press"",
+                    ""id"": ""b774218d-1c96-410e-8efd-5cb3699e0c23"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard Scheme"",
+                    ""action"": ""Basic Skill Ghost"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1955c86-45ea-4472-94d1-c65d0cbbc2c3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Interact Press"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -269,22 +280,11 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2c2e3ea9-b5e6-4bb8-84c1-f7dffc0e8953"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard Scheme"",
                     ""action"": ""Change Link"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b774218d-1c96-410e-8efd-5cb3699e0c23"",
-                    ""path"": ""<Keyboard>/g"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard Scheme"",
-                    ""action"": ""Basic Skill Ghost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -313,15 +313,6 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Interact Hold"",
-                    ""type"": ""Button"",
-                    ""id"": ""0ef49c3e-5618-428d-a2b8-6f821fba5ba2"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Interact Tap"",
                     ""type"": ""Button"",
                     ""id"": ""7e9757a9-c4fb-4ff6-b915-79e9d9e8ca7a"",
@@ -331,18 +322,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Basic Skill Dash"",
+                    ""name"": ""Interact Hold"",
                     ""type"": ""Button"",
-                    ""id"": ""52f730c5-86c0-4178-86ef-38534a3e8046"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Basic Skill Ghost"",
-                    ""type"": ""Button"",
-                    ""id"": ""4af3bff8-8a64-4d2f-9bd0-9ea63d615ebb"",
+                    ""id"": ""0ef49c3e-5618-428d-a2b8-6f821fba5ba2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -365,6 +347,24 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Basic Skill Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""52f730c5-86c0-4178-86ef-38534a3e8046"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Basic Skill Ghost"",
+                    ""type"": ""Button"",
+                    ""id"": ""4af3bff8-8a64-4d2f-9bd0-9ea63d615ebb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -381,34 +381,12 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f79acedc-2964-4044-9339-366ad1170018"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": ""Hold"",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad Scheme"",
-                    ""action"": ""Give Health"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""100370a0-11bd-41ad-997d-95854f7d601e"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad Scheme"",
                     ""action"": ""Basic Skill Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fad1625f-8865-462d-9df5-83242fd08559"",
-                    ""path"": """",
-                    ""interactions"": ""MultiTap(tapCount=3)"",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad Scheme"",
-                    ""action"": ""Interact Tap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -425,19 +403,30 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""90488185-bc79-4037-b665-d01ebddf1633"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": ""Press"",
+                    ""id"": ""78d08b0f-d2f5-4f51-8a68-ae5bc40f6123"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad Scheme"",
-                    ""action"": ""Interact Press"",
+                    ""action"": ""Basic Skill Ghost"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f79acedc-2964-4044-9339-366ad1170018"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad Scheme"",
+                    ""action"": ""Give Health"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""7d6c5153-cb0e-42fb-8477-94aa3ff390cb"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad Scheme"",
@@ -447,12 +436,23 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""78d08b0f-d2f5-4f51-8a68-ae5bc40f6123"",
+                    ""id"": ""9c242eb3-6fb0-4342-b54d-bd658226a76a"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Basic Skill Ghost"",
+                    ""action"": ""Interact Press"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fad1625f-8865-462d-9df5-83242fd08559"",
+                    ""path"": """",
+                    ""interactions"": ""MultiTap(tapCount=3)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad Scheme"",
+                    ""action"": ""Interact Tap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -642,19 +642,19 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         m_InputPlayer1_InteractTap = m_InputPlayer1.FindAction("Interact Tap", throwIfNotFound: true);
         m_InputPlayer1_InteractHold = m_InputPlayer1.FindAction("Interact Hold", throwIfNotFound: true);
         m_InputPlayer1_GiveHealth = m_InputPlayer1.FindAction("Give Health", throwIfNotFound: true);
+        m_InputPlayer1_ChangeLink = m_InputPlayer1.FindAction("Change Link", throwIfNotFound: true);
         m_InputPlayer1_BasicSkillDash = m_InputPlayer1.FindAction("Basic Skill Dash", throwIfNotFound: true);
         m_InputPlayer1_BasicSkillGhost = m_InputPlayer1.FindAction("Basic Skill Ghost", throwIfNotFound: true);
-        m_InputPlayer1_ChangeLink = m_InputPlayer1.FindAction("Change Link", throwIfNotFound: true);
         // Input Player 2
         m_InputPlayer2 = asset.FindActionMap("Input Player 2", throwIfNotFound: true);
         m_InputPlayer2_Movement = m_InputPlayer2.FindAction("Movement", throwIfNotFound: true);
         m_InputPlayer2_InteractPress = m_InputPlayer2.FindAction("Interact Press", throwIfNotFound: true);
-        m_InputPlayer2_InteractHold = m_InputPlayer2.FindAction("Interact Hold", throwIfNotFound: true);
         m_InputPlayer2_InteractTap = m_InputPlayer2.FindAction("Interact Tap", throwIfNotFound: true);
-        m_InputPlayer2_BasicSkillDash = m_InputPlayer2.FindAction("Basic Skill Dash", throwIfNotFound: true);
-        m_InputPlayer2_BasicSkillGhost = m_InputPlayer2.FindAction("Basic Skill Ghost", throwIfNotFound: true);
+        m_InputPlayer2_InteractHold = m_InputPlayer2.FindAction("Interact Hold", throwIfNotFound: true);
         m_InputPlayer2_GiveHealth = m_InputPlayer2.FindAction("Give Health", throwIfNotFound: true);
         m_InputPlayer2_ChangeLink = m_InputPlayer2.FindAction("Change Link", throwIfNotFound: true);
+        m_InputPlayer2_BasicSkillDash = m_InputPlayer2.FindAction("Basic Skill Dash", throwIfNotFound: true);
+        m_InputPlayer2_BasicSkillGhost = m_InputPlayer2.FindAction("Basic Skill Ghost", throwIfNotFound: true);
         // Input Main Menu
         m_InputMainMenu = asset.FindActionMap("Input Main Menu", throwIfNotFound: true);
         m_InputMainMenu_Newaction = m_InputMainMenu.FindAction("New action", throwIfNotFound: true);
@@ -736,9 +736,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_InputPlayer1_InteractTap;
     private readonly InputAction m_InputPlayer1_InteractHold;
     private readonly InputAction m_InputPlayer1_GiveHealth;
+    private readonly InputAction m_InputPlayer1_ChangeLink;
     private readonly InputAction m_InputPlayer1_BasicSkillDash;
     private readonly InputAction m_InputPlayer1_BasicSkillGhost;
-    private readonly InputAction m_InputPlayer1_ChangeLink;
     public struct InputPlayer1Actions
     {
         private @InputControl m_Wrapper;
@@ -748,9 +748,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         public InputAction @InteractTap => m_Wrapper.m_InputPlayer1_InteractTap;
         public InputAction @InteractHold => m_Wrapper.m_InputPlayer1_InteractHold;
         public InputAction @GiveHealth => m_Wrapper.m_InputPlayer1_GiveHealth;
+        public InputAction @ChangeLink => m_Wrapper.m_InputPlayer1_ChangeLink;
         public InputAction @BasicSkillDash => m_Wrapper.m_InputPlayer1_BasicSkillDash;
         public InputAction @BasicSkillGhost => m_Wrapper.m_InputPlayer1_BasicSkillGhost;
-        public InputAction @ChangeLink => m_Wrapper.m_InputPlayer1_ChangeLink;
         public InputActionMap Get() { return m_Wrapper.m_InputPlayer1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -775,15 +775,15 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @GiveHealth.started += instance.OnGiveHealth;
             @GiveHealth.performed += instance.OnGiveHealth;
             @GiveHealth.canceled += instance.OnGiveHealth;
+            @ChangeLink.started += instance.OnChangeLink;
+            @ChangeLink.performed += instance.OnChangeLink;
+            @ChangeLink.canceled += instance.OnChangeLink;
             @BasicSkillDash.started += instance.OnBasicSkillDash;
             @BasicSkillDash.performed += instance.OnBasicSkillDash;
             @BasicSkillDash.canceled += instance.OnBasicSkillDash;
             @BasicSkillGhost.started += instance.OnBasicSkillGhost;
             @BasicSkillGhost.performed += instance.OnBasicSkillGhost;
             @BasicSkillGhost.canceled += instance.OnBasicSkillGhost;
-            @ChangeLink.started += instance.OnChangeLink;
-            @ChangeLink.performed += instance.OnChangeLink;
-            @ChangeLink.canceled += instance.OnChangeLink;
         }
 
         private void UnregisterCallbacks(IInputPlayer1Actions instance)
@@ -803,15 +803,15 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @GiveHealth.started -= instance.OnGiveHealth;
             @GiveHealth.performed -= instance.OnGiveHealth;
             @GiveHealth.canceled -= instance.OnGiveHealth;
+            @ChangeLink.started -= instance.OnChangeLink;
+            @ChangeLink.performed -= instance.OnChangeLink;
+            @ChangeLink.canceled -= instance.OnChangeLink;
             @BasicSkillDash.started -= instance.OnBasicSkillDash;
             @BasicSkillDash.performed -= instance.OnBasicSkillDash;
             @BasicSkillDash.canceled -= instance.OnBasicSkillDash;
             @BasicSkillGhost.started -= instance.OnBasicSkillGhost;
             @BasicSkillGhost.performed -= instance.OnBasicSkillGhost;
             @BasicSkillGhost.canceled -= instance.OnBasicSkillGhost;
-            @ChangeLink.started -= instance.OnChangeLink;
-            @ChangeLink.performed -= instance.OnChangeLink;
-            @ChangeLink.canceled -= instance.OnChangeLink;
         }
 
         public void RemoveCallbacks(IInputPlayer1Actions instance)
@@ -835,24 +835,24 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     private List<IInputPlayer2Actions> m_InputPlayer2ActionsCallbackInterfaces = new List<IInputPlayer2Actions>();
     private readonly InputAction m_InputPlayer2_Movement;
     private readonly InputAction m_InputPlayer2_InteractPress;
-    private readonly InputAction m_InputPlayer2_InteractHold;
     private readonly InputAction m_InputPlayer2_InteractTap;
-    private readonly InputAction m_InputPlayer2_BasicSkillDash;
-    private readonly InputAction m_InputPlayer2_BasicSkillGhost;
+    private readonly InputAction m_InputPlayer2_InteractHold;
     private readonly InputAction m_InputPlayer2_GiveHealth;
     private readonly InputAction m_InputPlayer2_ChangeLink;
+    private readonly InputAction m_InputPlayer2_BasicSkillDash;
+    private readonly InputAction m_InputPlayer2_BasicSkillGhost;
     public struct InputPlayer2Actions
     {
         private @InputControl m_Wrapper;
         public InputPlayer2Actions(@InputControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_InputPlayer2_Movement;
         public InputAction @InteractPress => m_Wrapper.m_InputPlayer2_InteractPress;
-        public InputAction @InteractHold => m_Wrapper.m_InputPlayer2_InteractHold;
         public InputAction @InteractTap => m_Wrapper.m_InputPlayer2_InteractTap;
-        public InputAction @BasicSkillDash => m_Wrapper.m_InputPlayer2_BasicSkillDash;
-        public InputAction @BasicSkillGhost => m_Wrapper.m_InputPlayer2_BasicSkillGhost;
+        public InputAction @InteractHold => m_Wrapper.m_InputPlayer2_InteractHold;
         public InputAction @GiveHealth => m_Wrapper.m_InputPlayer2_GiveHealth;
         public InputAction @ChangeLink => m_Wrapper.m_InputPlayer2_ChangeLink;
+        public InputAction @BasicSkillDash => m_Wrapper.m_InputPlayer2_BasicSkillDash;
+        public InputAction @BasicSkillGhost => m_Wrapper.m_InputPlayer2_BasicSkillGhost;
         public InputActionMap Get() { return m_Wrapper.m_InputPlayer2; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -868,24 +868,24 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @InteractPress.started += instance.OnInteractPress;
             @InteractPress.performed += instance.OnInteractPress;
             @InteractPress.canceled += instance.OnInteractPress;
-            @InteractHold.started += instance.OnInteractHold;
-            @InteractHold.performed += instance.OnInteractHold;
-            @InteractHold.canceled += instance.OnInteractHold;
             @InteractTap.started += instance.OnInteractTap;
             @InteractTap.performed += instance.OnInteractTap;
             @InteractTap.canceled += instance.OnInteractTap;
-            @BasicSkillDash.started += instance.OnBasicSkillDash;
-            @BasicSkillDash.performed += instance.OnBasicSkillDash;
-            @BasicSkillDash.canceled += instance.OnBasicSkillDash;
-            @BasicSkillGhost.started += instance.OnBasicSkillGhost;
-            @BasicSkillGhost.performed += instance.OnBasicSkillGhost;
-            @BasicSkillGhost.canceled += instance.OnBasicSkillGhost;
+            @InteractHold.started += instance.OnInteractHold;
+            @InteractHold.performed += instance.OnInteractHold;
+            @InteractHold.canceled += instance.OnInteractHold;
             @GiveHealth.started += instance.OnGiveHealth;
             @GiveHealth.performed += instance.OnGiveHealth;
             @GiveHealth.canceled += instance.OnGiveHealth;
             @ChangeLink.started += instance.OnChangeLink;
             @ChangeLink.performed += instance.OnChangeLink;
             @ChangeLink.canceled += instance.OnChangeLink;
+            @BasicSkillDash.started += instance.OnBasicSkillDash;
+            @BasicSkillDash.performed += instance.OnBasicSkillDash;
+            @BasicSkillDash.canceled += instance.OnBasicSkillDash;
+            @BasicSkillGhost.started += instance.OnBasicSkillGhost;
+            @BasicSkillGhost.performed += instance.OnBasicSkillGhost;
+            @BasicSkillGhost.canceled += instance.OnBasicSkillGhost;
         }
 
         private void UnregisterCallbacks(IInputPlayer2Actions instance)
@@ -896,24 +896,24 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @InteractPress.started -= instance.OnInteractPress;
             @InteractPress.performed -= instance.OnInteractPress;
             @InteractPress.canceled -= instance.OnInteractPress;
-            @InteractHold.started -= instance.OnInteractHold;
-            @InteractHold.performed -= instance.OnInteractHold;
-            @InteractHold.canceled -= instance.OnInteractHold;
             @InteractTap.started -= instance.OnInteractTap;
             @InteractTap.performed -= instance.OnInteractTap;
             @InteractTap.canceled -= instance.OnInteractTap;
-            @BasicSkillDash.started -= instance.OnBasicSkillDash;
-            @BasicSkillDash.performed -= instance.OnBasicSkillDash;
-            @BasicSkillDash.canceled -= instance.OnBasicSkillDash;
-            @BasicSkillGhost.started -= instance.OnBasicSkillGhost;
-            @BasicSkillGhost.performed -= instance.OnBasicSkillGhost;
-            @BasicSkillGhost.canceled -= instance.OnBasicSkillGhost;
+            @InteractHold.started -= instance.OnInteractHold;
+            @InteractHold.performed -= instance.OnInteractHold;
+            @InteractHold.canceled -= instance.OnInteractHold;
             @GiveHealth.started -= instance.OnGiveHealth;
             @GiveHealth.performed -= instance.OnGiveHealth;
             @GiveHealth.canceled -= instance.OnGiveHealth;
             @ChangeLink.started -= instance.OnChangeLink;
             @ChangeLink.performed -= instance.OnChangeLink;
             @ChangeLink.canceled -= instance.OnChangeLink;
+            @BasicSkillDash.started -= instance.OnBasicSkillDash;
+            @BasicSkillDash.performed -= instance.OnBasicSkillDash;
+            @BasicSkillDash.canceled -= instance.OnBasicSkillDash;
+            @BasicSkillGhost.started -= instance.OnBasicSkillGhost;
+            @BasicSkillGhost.performed -= instance.OnBasicSkillGhost;
+            @BasicSkillGhost.canceled -= instance.OnBasicSkillGhost;
         }
 
         public void RemoveCallbacks(IInputPlayer2Actions instance)
@@ -1195,20 +1195,20 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         void OnInteractTap(InputAction.CallbackContext context);
         void OnInteractHold(InputAction.CallbackContext context);
         void OnGiveHealth(InputAction.CallbackContext context);
+        void OnChangeLink(InputAction.CallbackContext context);
         void OnBasicSkillDash(InputAction.CallbackContext context);
         void OnBasicSkillGhost(InputAction.CallbackContext context);
-        void OnChangeLink(InputAction.CallbackContext context);
     }
     public interface IInputPlayer2Actions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnInteractPress(InputAction.CallbackContext context);
-        void OnInteractHold(InputAction.CallbackContext context);
         void OnInteractTap(InputAction.CallbackContext context);
-        void OnBasicSkillDash(InputAction.CallbackContext context);
-        void OnBasicSkillGhost(InputAction.CallbackContext context);
+        void OnInteractHold(InputAction.CallbackContext context);
         void OnGiveHealth(InputAction.CallbackContext context);
         void OnChangeLink(InputAction.CallbackContext context);
+        void OnBasicSkillDash(InputAction.CallbackContext context);
+        void OnBasicSkillGhost(InputAction.CallbackContext context);
     }
     public interface IInputMainMenuActions
     {

@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using Unity.Mathematics;
 
 public class Player1Input : MonoBehaviour
 {
+    public static Player1Input player1Input;
+
     [SerializeField] LinkRay linkRay;
 
     [SerializeField] float curSpeed;
     [SerializeField] float maxSpeed;
 
-
-    #region basic ability variable
+    #region  variable basic ability
     [Header("Player 1 Basic Ability Dash")]
     [SerializeField] float dashSpeed;
     [SerializeField] float dashDuration;
@@ -26,7 +28,23 @@ public class Player1Input : MonoBehaviour
     bool isGhosting;
     #endregion
 
+    #region variable stamina
+    [Header("Player 1 Stamina")]
+    [SerializeField] Image staminaImg;
+    [SerializeField] float maxStamina;
+    [SerializeField] float curStamina;
+    [SerializeField] float dashStaminaCost;
+    [SerializeField] float ghostStaminaCost;
+    [SerializeField] float staminaRegenRate;
+    Coroutine staminaRegen;
+    #endregion
 
+    #region variable share lives
+    [Header("Player 1 Share Lives")]
+    public int curPlayer1Health;
+    [SerializeField] Image[] playerHealthImg;
+    int maxPlayerHealth = 4;
+    #endregion
 
     bool isBreaking;
 
@@ -34,13 +52,17 @@ public class Player1Input : MonoBehaviour
 
     Rigidbody2D rb;
 
-
+    private void Awake()
+    {
+        if (player1Input != null) { player1Input = this; }
+    }
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         isBreaking = true;
+        curPlayer1Health = maxPlayerHealth;
         curPlayerTransparentColor.a = curColorA;
         spriteRenderer.color = curPlayerTransparentColor;
         
@@ -49,6 +71,19 @@ public class Player1Input : MonoBehaviour
     private void Update()
     {
         Ghosting();
+    }
+
+    IEnumerator staminaRegenerating() 
+    {
+        yield return new WaitForSeconds(1f); //tunggu 1 detik untuk regenerate stamina
+
+        do
+        {
+            curStamina += staminaRegenRate / 10;
+            if (curStamina > maxStamina) { curStamina = maxStamina; }
+            staminaImg.fillAmount = curStamina / maxStamina;
+            yield return new WaitForSeconds(.1f); //rate regenate x/ms
+        } while (curStamina < maxStamina);
     }
 
     private void FixedUpdate()
@@ -86,15 +121,9 @@ public class Player1Input : MonoBehaviour
         if (context.performed) 
         {
             Debug.Log("give health to p2!!!" + context.phase);
+            
         }
 
-    }
-    public void p1Ability(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            Debug.Log("p1 ability" + context.phase);
-        }
     }
     #endregion
 
@@ -118,7 +147,17 @@ public class Player1Input : MonoBehaviour
     {
         if (context.performed && !isBreaking) 
         {
-            StartCoroutine(dashing());
+            if (curStamina > 0) 
+            {
+                StartCoroutine(dashing());
+            }
+            curStamina -= dashStaminaCost;
+            if (curStamina < 0) { curStamina = 0; }
+            staminaImg.fillAmount = curStamina / maxStamina;
+
+            if (staminaRegen != null) { StopCoroutine(staminaRegen); }
+            staminaRegen = StartCoroutine(staminaRegenerating());
+            
         }
     }
 
@@ -126,7 +165,17 @@ public class Player1Input : MonoBehaviour
     {
         if(context.performed && !isGhosting) 
         {
-            isGhosting = true;
+            if (curStamina > 0) 
+            {
+                isGhosting = true;
+            }
+
+            curStamina -= ghostStaminaCost; //-> nanti di perbaiki
+            if (curStamina < 0) { curStamina = 0; }
+            staminaImg.fillAmount = curStamina / maxStamina;
+
+            if (staminaRegen != null) { StopCoroutine(staminaRegen); }
+            staminaRegen = StartCoroutine(staminaRegenerating());
         }
     }
 
@@ -170,13 +219,13 @@ public class Player1Input : MonoBehaviour
     {
         if (context.performed && !isGhosting)
         {
-            if (!linkRay.isChangeLinkMethod)
+            if (!linkRay.isLinkedToPlayer)
             {
-                linkRay.isChangeLinkMethod = true;
+                linkRay.isLinkedToPlayer = true;
             }
             else
             {
-                linkRay.isChangeLinkMethod = false;
+                linkRay.isLinkedToPlayer = false;
             }
         }
     }
