@@ -5,8 +5,10 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Unity.Mathematics;
 
-public class Player2Input : MonoBehaviour
+public class Player2 : MonoBehaviour
 {
+    public static Player2 player2;
+
     [SerializeField] LinkRay linkRay;
 
     [SerializeField] float curSpeed;
@@ -16,14 +18,14 @@ public class Player2Input : MonoBehaviour
     [Header("Player 2 Basic Ability Dash")]
     [SerializeField] float dashSpeed;
     [SerializeField] float dashDuration;
-    bool isDashing;
     [Header("Player 2 Basic Ability Ghost")]
+    public bool isGhosting;
     [SerializeField] float ghostDuration;
     [SerializeField] Color curPlayerTransparentColor;
     float colorGhostA = 0.4f;
     float curColorA = 1f;
     SpriteRenderer spriteRenderer;
-    bool isGhosting;
+    bool isDashing;
     #endregion
 
     #region variable stamina
@@ -37,17 +39,30 @@ public class Player2Input : MonoBehaviour
     Coroutine staminaRegen;
     #endregion
 
+    #region variable share lives
+    [Header("Player 2 Share Lives")]
+    public int curPlayer2Health;
+    [SerializeField] Image[] playerHealthImg;
+    int maxPlayerHealth = 4;
+    #endregion
+
     bool isBreaking;
 
     Vector2 inputDir;
 
     Rigidbody2D rb;
 
+    private void Awake()
+    {
+        if (player2 == null) { player2 = this; }
+    }
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         isBreaking = true;
+        curPlayer2Health = maxPlayerHealth;
         curPlayerTransparentColor.a = curColorA;
         spriteRenderer.color = curPlayerTransparentColor;
     }
@@ -55,6 +70,7 @@ public class Player2Input : MonoBehaviour
     {
         Ghosting();
         changeLayer();
+        shareLives();
     }
     private void FixedUpdate()
     {
@@ -66,7 +82,54 @@ public class Player2Input : MonoBehaviour
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
         player2IsBreaking();
     }
-    
+
+    IEnumerator staminaRegenerating()
+    {
+        yield return new WaitForSeconds(1f); //tunggu 1 detik untuk regenerate stamina
+
+        do
+        {
+            curStamina += staminaRegenRate / 10;
+            if (curStamina > maxStamina) { curStamina = maxStamina; }
+            staminaImg.fillAmount = curStamina / maxStamina;
+            yield return new WaitForSeconds(.1f); //rate regenate x/ms
+        } while (curStamina < maxStamina);
+    }
+
+    #region player 2 share lives
+    public void p2ShareLives(InputAction.CallbackContext context)
+    {
+        if (context.started) { Debug.Log(context.phase); }
+        if (context.performed && linkRay.playerLinkedEachOther)
+        {
+            Debug.Log("share lives to p1!!!" + context.phase);
+            if (curPlayer2Health > 1 && Player1.player1.curPlayer1Health < maxPlayerHealth)
+            {
+                curPlayer2Health--;
+                if (Player1.player1.curPlayer1Health < maxPlayerHealth && Player1.player1 != null)
+                {
+                    Player1.player1.curPlayer1Health++;
+                }
+            }
+
+        }
+        if (context.canceled) { Debug.Log(context.phase); }
+    }
+
+    private void shareLives()
+    {
+        for (int i = 0; i < playerHealthImg.Length; i++)
+        {
+
+            int clampedIndex = Mathf.Max(0, Mathf.Min(i, maxPlayerHealth - 1)); //hitung indeks yang dibatasi dalam rentang 0 hingga maxHealth - 1
+
+            bool shouldEnable = curPlayer2Health >= i + 1;
+            playerHealthImg[clampedIndex].enabled = shouldEnable;
+        }
+    }
+
+
+    #endregion
 
     #region player 2 movement function
     public void p2Move(InputAction.CallbackContext context)
@@ -83,18 +146,6 @@ public class Player2Input : MonoBehaviour
 
         inputDir = context.ReadValue<Vector2>();
     }
-    #endregion
-
-    #region player 2 give health function & ability trigger
-    public void p2GiveHealth(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            Debug.Log("give health to p1!!!" + context.phase);
-        }
-    }
-
-   
     #endregion
 
     #region player 2 breaking function
@@ -117,7 +168,16 @@ public class Player2Input : MonoBehaviour
     {
         if (context.performed && !isBreaking)
         {
-            StartCoroutine(dashing());
+            if (curStamina > 0)
+            {
+                StartCoroutine(dashing());
+            }
+            curStamina -= dashStaminaCost;
+            if (curStamina < 0) { curStamina = 0; }
+            staminaImg.fillAmount = curStamina / maxStamina;
+
+            if (staminaRegen != null) { StopCoroutine(staminaRegen); }
+            staminaRegen = StartCoroutine(staminaRegenerating());
         }
     }
 
@@ -125,7 +185,18 @@ public class Player2Input : MonoBehaviour
     {
         if (context.performed && !isGhosting)
         {
-            isGhosting = true;
+            if (curStamina > 0)
+            {
+                isGhosting = true;
+                linkRay.player2LinkedToObstacle = false;
+            }
+
+            curStamina -= ghostStaminaCost; //-> nanti di perbaiki
+            if (curStamina < 0) { curStamina = 0; }
+            staminaImg.fillAmount = curStamina / maxStamina;
+
+            if (staminaRegen != null) { StopCoroutine(staminaRegen); }
+            staminaRegen = StartCoroutine(staminaRegenerating());
         }
     }
 
@@ -188,6 +259,7 @@ public class Player2Input : MonoBehaviour
             }
             else
             {
+                linkRay.playerLinkedEachOther = false;
                 linkRay.isLinkedToPlayer = false;
             }
         }

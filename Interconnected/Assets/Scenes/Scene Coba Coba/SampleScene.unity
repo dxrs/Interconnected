@@ -872,8 +872,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 757900986}
-        m_TargetAssemblyTypeName: Player1Input, Assembly-CSharp
-        m_MethodName: p1GiveHealth
+        m_TargetAssemblyTypeName: Player1, Assembly-CSharp
+        m_MethodName: p1ShareLives
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1128,6 +1128,7 @@ MonoBehaviour:
   maxSpeed: 5
   dashSpeed: 12
   dashDuration: 0.2
+  isGhosting: 0
   ghostDuration: 10
   curPlayerTransparentColor: {r: 0, g: 1, b: 0.7, a: 1}
   staminaImg: {fileID: 1813991711}
@@ -1136,8 +1137,12 @@ MonoBehaviour:
   dashStaminaCost: 30
   ghostStaminaCost: 70
   staminaRegenRate: 17
-  playerMaxHealth: 1
-  playerHealthImg: []
+  curPlayer1Health: 2
+  playerHealthImg:
+  - {fileID: 1920743760}
+  - {fileID: 991185468}
+  - {fileID: 1034084168}
+  - {fileID: 415796726}
 --- !u!58 &757900987
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1591,8 +1596,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTouchObstacle: 0
+  playerLinkedEachOther: 0
+  player1LinkedToObstacle: 0
+  player2LinkedToObstacle: 0
   isLinkedToPlayer: 0
-  linkDistance: 7.5
+  linkDistance: 6.5
   player:
   - {fileID: 1836006075}
   - {fileID: 1750681155}
@@ -2546,8 +2554,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2041230173}
-        m_TargetAssemblyTypeName: Player2Input, Assembly-CSharp
-        m_MethodName: p2GiveHealth
+        m_TargetAssemblyTypeName: Player2, Assembly-CSharp
+        m_MethodName: p2ShareLives
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2641,14 +2649,21 @@ MonoBehaviour:
   maxSpeed: 5
   dashSpeed: 12
   dashDuration: 0.2
+  isGhosting: 0
   ghostDuration: 10
   curPlayerTransparentColor: {r: 1, g: 0.4, b: 0, a: 1}
   staminaImg: {fileID: 979399414}
-  maxStamina: 0
-  curStamina: 0
-  dashStaminaCost: 0
-  ghostStaminaCost: 0
-  staminaRegenRate: 0
+  maxStamina: 100
+  curStamina: 100
+  dashStaminaCost: 30
+  ghostStaminaCost: 70
+  staminaRegenRate: 17
+  curPlayer2Health: 2
+  playerHealthImg:
+  - {fileID: 683956393}
+  - {fileID: 909208382}
+  - {fileID: 1292808487}
+  - {fileID: 1877012381}
 --- !u!212 &2041230174
 SpriteRenderer:
   m_ObjectHideFlags: 0
