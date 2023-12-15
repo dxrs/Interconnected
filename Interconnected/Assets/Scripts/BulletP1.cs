@@ -4,60 +4,68 @@ using UnityEngine;
 
 public class BulletP1 : MonoBehaviour
 {
-    
+
+    [SerializeField] float bulletSpeed;
 
     GameObject targetToPlayer2;
     GameObject[] targetToObstacleP1;
+
+    [SerializeField] Color defaultBulletColor;
+    [SerializeField] Color obstacleBulletColor;
+
+    SpriteRenderer sr;
 
     CircleCollider2D cc;
 
     private void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
         targetToPlayer2 = GameObject.FindGameObjectWithTag("Player 2");
         targetToObstacleP1 = GameObject.FindGameObjectsWithTag("Obstacle P1");
+        //StartCoroutine(bulletScaleUp());
     }
 
     private void Update()
     {
-
-        
         if (LinkRay.linkRay.isLinkedToPlayer) 
         {
-            transform.position = Vector2.MoveTowards(transform.position, targetToPlayer2.transform.position, 10 * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, targetToPlayer2.transform.position, bulletSpeed * Time.deltaTime);
+            sr.color = defaultBulletColor;
         }
         else 
         {
-            // Tentukan jarak maksimum yang dianggap sebagai "terdekat"
-            float maxDistance = 7.5f;
-
-            // Tentukan variabel untuk menyimpan obstacle terdekat
+            sr.color = obstacleBulletColor;
+            float maxDistance = 6.5f;
             GameObject nearestObstacle = null;
-
-            // Tentukan variabel untuk menyimpan jarak terdekat
             float nearestDistance = float.MaxValue;
 
-            // Loop melalui semua targetToObstacleP1
             for (int j = 0; j < targetToObstacleP1.Length; j++)
             {
-                // Hitung jarak antara objek saat ini dan targetToObstacleP1[j]
                 float distance = Vector2.Distance(transform.position, targetToObstacleP1[j].transform.position);
 
-                // Periksa apakah jaraknya lebih kecil dari jarak terdekat yang saat ini diketahui
                 if (distance < nearestDistance)
                 {
-                    // Jika ya, perbarui obstacle terdekat dan jarak terdekat
                     nearestObstacle = targetToObstacleP1[j];
                     nearestDistance = distance;
+                    
                 }
             }
 
-            // Periksa apakah ada obstacle terdekat dan apakah jaraknya kurang dari maksimum yang diizinkan
             if (nearestObstacle != null && nearestDistance < maxDistance)
             {
-                // Gerakkan objek menuju obstacle terdekat
-                transform.position = Vector2.MoveTowards(transform.position, nearestObstacle.transform.position, 10 * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, nearestObstacle.transform.position, bulletSpeed * Time.deltaTime);
             }
+            else { Destroy(gameObject); }
+        }
+    }
 
+    private IEnumerator bulletScaleUp() 
+    {
+       
+        while (true) 
+        {
+            transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0.2f, 0.2f), 1 * Time.deltaTime);
+            yield return new WaitForSeconds(1f);
         }
     }
 
@@ -65,10 +73,17 @@ public class BulletP1 : MonoBehaviour
     {
         if(collision.gameObject.tag=="Obstacle"||
             collision.gameObject.tag=="Obstacle P1"||
-            collision.gameObject.tag == "Obstacle P2"||
-            collision.gameObject.tag=="Player 2") 
+            collision.gameObject.tag == "Obstacle P2") 
         {
             Destroy(gameObject);
+        }
+        if (LinkRay.linkRay.isLinkedToPlayer) 
+        {
+            if(collision.gameObject.tag=="Player 2") 
+            {
+                Destroy(gameObject);
+            }
+            
         }
     }
 }

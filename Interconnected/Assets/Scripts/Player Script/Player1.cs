@@ -60,6 +60,7 @@ public class Player1 : MonoBehaviour
 
     private void Start()
     {
+        
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         isBreaking = true;

@@ -25,22 +25,18 @@ public class Player1ShootPoint : MonoBehaviour
     {
         while (true) 
         {
-            if (linkRay.isLinkedToPlayer) 
+            if (!Player1.player1.isGhosting) 
             {
-                if (Vector2.Distance(transform.position, targetBulletToP2.transform.position) < 7.5f) 
+                if (linkRay.isLinkedToPlayer)
                 {
                     if (linkRay.playerLinkedEachOther)
                     {
                         Instantiate(player1Bullet, shootPoint.transform.position, Quaternion.identity);
                     }
                 }
-
-            }
-            else 
-            {
-                for(int j = 0; j < targetToObstacleP1.Length; j++) 
+                else
                 {
-                    if (Vector2.Distance(transform.position, targetToObstacleP1[j].transform.position) < 7.5f)
+                    for (int j = 0; j < targetToObstacleP1.Length; j++)
                     {
                         if (linkRay.player1LinkedToObstacle)
                         {
@@ -49,6 +45,7 @@ public class Player1ShootPoint : MonoBehaviour
                     }
                 }
             }
+            
             yield return new WaitForSeconds(waitToSpawn);
         }
 
