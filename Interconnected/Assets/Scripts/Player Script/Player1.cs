@@ -42,6 +42,7 @@ public class Player1 : MonoBehaviour
     #region variable share lives
     [Header("Player 1 Share Lives")]
     public int curPlayer1Health;
+    public bool isSharingLivesToP2;
     [SerializeField] Image[] playerHealthImg;
     int maxPlayerHealth = 4;
     #endregion
@@ -102,8 +103,18 @@ public class Player1 : MonoBehaviour
 
     public void p1ShareLives(InputAction.CallbackContext context)
     {
-        if (context.started) { Debug.Log(context.phase); }
-        if (context.performed && linkRay.playerLinkedEachOther)
+        if (context.started && !Player2.player2.isSharingLivesToP1 && linkRay.playerLinkedEachOther) 
+        { 
+           
+            if (curPlayer1Health > 1 && Player2.player2.curPlayer2Health < maxPlayerHealth)
+            {
+                Debug.Log(context.phase);
+                isSharingLivesToP2 = true;
+            }
+            
+            
+        }
+        if (context.performed && linkRay.playerLinkedEachOther && isSharingLivesToP2)
         {
             Debug.Log("share lives to p2!!!" + context.phase);
             if (curPlayer1Health > 1 && Player2.player2.curPlayer2Health < maxPlayerHealth) 
@@ -116,7 +127,11 @@ public class Player1 : MonoBehaviour
             }
 
         }
-        if (context.canceled) { Debug.Log(context.phase); }
+        if (context.canceled && isSharingLivesToP2) 
+        { 
+            Debug.Log(context.phase);
+            isSharingLivesToP2 = false;
+        }
 
     }
     private void shareLives() 
@@ -168,16 +183,17 @@ public class Player1 : MonoBehaviour
     {
         if (context.performed && !isBreaking) 
         {
-            if (curStamina > 0) 
+            if (curStamina > dashStaminaCost) 
             {
                 StartCoroutine(dashing());
-            }
-            curStamina -= dashStaminaCost;
-            if (curStamina < 0) { curStamina = 0; }
-            staminaImg.fillAmount = curStamina / maxStamina;
+                curStamina -= dashStaminaCost; // laporan
+                if (curStamina < 0) { curStamina = 0; }
+                staminaImg.fillAmount = curStamina / maxStamina;
 
-            if (staminaRegen != null) { StopCoroutine(staminaRegen); }
-            staminaRegen = StartCoroutine(staminaRegenerating());
+                if (staminaRegen != null) { StopCoroutine(staminaRegen); }
+                staminaRegen = StartCoroutine(staminaRegenerating());
+            }
+            
             
         }
     }
@@ -186,18 +202,20 @@ public class Player1 : MonoBehaviour
     {
         if(context.performed && !isGhosting) 
         {
-            if (curStamina > 0) 
+            if (curStamina > ghostStaminaCost) 
             {
                 isGhosting = true;
                 linkRay.player1LinkedToObstacle = false;
+                curStamina -= ghostStaminaCost; //-> nanti di perbaiki //laporan
+                if (curStamina < 0) { curStamina = 0; }
+                staminaImg.fillAmount = curStamina / maxStamina;
+
+                if (staminaRegen != null) { StopCoroutine(staminaRegen); }
+                staminaRegen = StartCoroutine(staminaRegenerating());
             }
 
-            curStamina -= ghostStaminaCost; //-> nanti di perbaiki
-            if (curStamina < 0) { curStamina = 0; }
-            staminaImg.fillAmount = curStamina / maxStamina;
-
-            if (staminaRegen != null) { StopCoroutine(staminaRegen); }
-            staminaRegen = StartCoroutine(staminaRegenerating());
+            
+           
         }
     }
 
@@ -241,6 +259,7 @@ public class Player1 : MonoBehaviour
     {
         if (context.performed && !isGhosting)
         {
+            
             if (!linkRay.isLinkedToPlayer)
             {
                 linkRay.isLinkedToPlayer = true;

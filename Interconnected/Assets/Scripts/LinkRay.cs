@@ -6,6 +6,8 @@ public class LinkRay : MonoBehaviour
 {
     // this script contains link point for each player only
 
+    public static LinkRay linkRay;
+
     public bool isTouchObstacle;
     public bool playerLinkedEachOther;
     public bool player1LinkedToObstacle, player2LinkedToObstacle;
@@ -23,6 +25,10 @@ public class LinkRay : MonoBehaviour
     private GameObject[] obstacleP1;
     private GameObject[] obstacleP2;
 
+    private void Awake()
+    {
+        linkRay = this;
+    }
     private void Start()
     {
         isLinkedToPlayer = true;

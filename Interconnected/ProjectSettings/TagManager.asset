@@ -9,6 +9,7 @@ TagManager:
   - Obstacle P2
   - Player 1
   - Player 2
+  - Bullet P1
   layers:
   - Default
   - TransparentFX
