@@ -6,10 +6,14 @@ public class Player1ShootPoint : MonoBehaviour
 {
     [SerializeField] LinkRay linkRay;
 
+    [SerializeField] LayerMask layerMask;
+
+    [SerializeField] bool isRaycastingToPlayer2;
+
     [SerializeField] GameObject player1Bullet;
     [SerializeField] GameObject shootPoint;
-
     [SerializeField] GameObject targetBulletToP2;
+    [SerializeField] GameObject player;
 
     [SerializeField] float waitToSpawn;
 
@@ -20,6 +24,46 @@ public class Player1ShootPoint : MonoBehaviour
     {
         targetToObstacleP1 = GameObject.FindGameObjectsWithTag("Obstacle P1");
         StartCoroutine(bulletP1Spawn());
+    }
+
+    private void Update()
+    {
+        rayToPlayer2();
+    }
+
+    private void rayToPlayer2() 
+    {
+        bool test = false;
+        if (!linkRay.isLinkedToPlayer) 
+        {
+            for(int k = 0; k < targetToObstacleP1.Length; k++) 
+            {
+
+                RaycastHit2D rayToPlayer2 = Physics2D.Linecast(player.transform.position,
+                    targetToObstacleP1[k].transform.position, layerMask);
+                if (rayToPlayer2.collider != null) 
+                {
+                    if(rayToPlayer2.collider.tag=="Player 2") 
+                    {
+                        Debug.Log("terhalang");
+                        test = true;
+                        break;
+                    }
+                    else 
+                    {
+                        //Debug.Log("tidak terhalang");
+                    }
+
+                }
+                //else { //Debug.Log("tidak terhalang"); }
+            }
+
+            if (!test) 
+            {
+                Debug.Log("tidak terhalang");
+
+            }
+        }
     }
     IEnumerator bulletP1Spawn() 
     {

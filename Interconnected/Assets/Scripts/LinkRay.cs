@@ -94,7 +94,6 @@ public class LinkRay : MonoBehaviour
         GameObject nearestObstacle = null;
         player1LinkedToObstacle = false;
 
-        float distanceBetweenPlayers = Vector2.Distance(player[1].transform.position, player[0].transform.position);
         for (int i = 0; i < obstacleP1.Length; i++)
         {
 

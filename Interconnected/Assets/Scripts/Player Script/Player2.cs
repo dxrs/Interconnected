@@ -256,7 +256,7 @@ public class Player2 : MonoBehaviour
     {
         if (!linkRay.isLinkedToPlayer)
         {
-            gameObject.layer = LayerMask.NameToLayer("Default");
+            gameObject.layer = LayerMask.NameToLayer("Player 2");
         }
         else
         {

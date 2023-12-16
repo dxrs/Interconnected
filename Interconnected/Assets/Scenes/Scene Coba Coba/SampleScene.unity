@@ -2872,9 +2872,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkRay: {fileID: 1167290736}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  isRaycastingToPlayer2: 0
   player1Bullet: {fileID: 6718829098404625899, guid: c7170928d839ecc44982ee265e190742, type: 3}
   shootPoint: {fileID: 1836006075}
   targetBulletToP2: {fileID: 2041230170}
+  player: {fileID: 757900980}
   waitToSpawn: 0.07
 --- !u!1 &1877012379
 GameObject:
