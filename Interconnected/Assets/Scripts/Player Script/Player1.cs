@@ -74,6 +74,7 @@ public class Player1 : MonoBehaviour
     {
         Ghosting();
         shareLives();
+        changeLayer();
     }
 
     private void FixedUpdate()
@@ -255,7 +256,18 @@ public class Player1 : MonoBehaviour
 
     #endregion
 
-    #region change link
+    #region change link and change layer player 1
+    private void changeLayer()
+    {
+        if (!linkRay.isLinkedToPlayer)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player 1");
+        }
+        else
+        {
+            gameObject.layer = LayerMask.NameToLayer("Default");
+        }
+    }
     public void changeLinkMethod(InputAction.CallbackContext context)
     {
         if (context.performed && !isGhosting)
@@ -273,4 +285,20 @@ public class Player1 : MonoBehaviour
         }
     }
     #endregion
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!linkRay.isLinkedToPlayer && !isGhosting) 
+        {
+            if(collision.gameObject.tag=="Bullet P2") 
+            {
+                curStamina -= .5f; //-> nanti di perbaiki //laporan
+                if (curStamina < 0) { curStamina = 0; }
+                staminaImg.fillAmount = curStamina / maxStamina;
+
+                if (staminaRegen != null) { StopCoroutine(staminaRegen); }
+                staminaRegen = StartCoroutine(staminaRegenerating());
+            }
+        }
+    }
 }

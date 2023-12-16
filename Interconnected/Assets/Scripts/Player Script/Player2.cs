@@ -250,7 +250,7 @@ public class Player2 : MonoBehaviour
 
     #endregion
 
-    #region change link dan change layer player 2
+    #region change link and change layer player 2
 
     private void changeLayer()
     {
@@ -280,6 +280,22 @@ public class Player2 : MonoBehaviour
         }
     }
     #endregion
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!linkRay.isLinkedToPlayer && !isGhosting)
+        {
+            if (collision.gameObject.tag == "Bullet P1")
+            {
+                curStamina -= .5f; //-> nanti di perbaiki //laporan
+                if (curStamina < 0) { curStamina = 0; }
+                staminaImg.fillAmount = curStamina / maxStamina;
+
+                if (staminaRegen != null) { StopCoroutine(staminaRegen); }
+                staminaRegen = StartCoroutine(staminaRegenerating());
+            }
+        }
+    }
 
     //gamepad disconnect
     public void gamepadDiconnected() 
