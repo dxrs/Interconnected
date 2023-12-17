@@ -300,5 +300,11 @@ public class Player1 : MonoBehaviour
                 staminaRegen = StartCoroutine(staminaRegenerating());
             }
         }
+
+        if (collision.gameObject.tag == "Enemy") 
+        {
+            curPlayer1Health--;
+            if (curPlayer1Health <= 0) { curPlayer1Health = 0; }
+        }
     }
 }

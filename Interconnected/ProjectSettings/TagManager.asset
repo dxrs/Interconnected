@@ -11,6 +11,7 @@ TagManager:
   - Player 2
   - Bullet P1
   - Bullet P2
+  - Enemy
   layers:
   - Default
   - TransparentFX

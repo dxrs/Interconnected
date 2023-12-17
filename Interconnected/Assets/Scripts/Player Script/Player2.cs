@@ -295,6 +295,11 @@ public class Player2 : MonoBehaviour
                 staminaRegen = StartCoroutine(staminaRegenerating());
             }
         }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            curPlayer2Health--;
+            if (curPlayer2Health <= 0) { curPlayer2Health = 0; }
+        }
     }
 
     //gamepad disconnect
