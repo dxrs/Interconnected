@@ -137,5 +137,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 8.5
-  defaultBulletColor: {r: 1, g: 1, b: 1, a: 1}
+  defaultBulletColor: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
   obstacleBulletColor: {r: 0.2202741, g: 0.4716981, b: 0.39577794, a: 1}
