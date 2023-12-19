@@ -306,5 +306,19 @@ public class Player1 : MonoBehaviour
             curPlayer1Health--;
             if (curPlayer1Health <= 0) { curPlayer1Health = 0; }
         }
+
+        /*
+        if(collision.gameObject.tag=="Enemy Trigger") 
+        {
+            if (EnemyTrigger.enemyTrigger.id == 1) 
+            {
+                Debug.Log("ini id = " + EnemyTrigger.enemyTrigger.id);
+            }
+            if (EnemyTrigger.enemyTrigger.id == 2)
+            {
+                Debug.Log("ini id = " + EnemyTrigger.enemyTrigger.id);
+            }
+        }
+        */
     }
 }

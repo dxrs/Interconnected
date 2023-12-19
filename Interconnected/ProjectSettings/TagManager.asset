@@ -12,6 +12,7 @@ TagManager:
   - Bullet P1
   - Bullet P2
   - Enemy
+  - Enemy Trigger
   layers:
   - Default
   - TransparentFX
