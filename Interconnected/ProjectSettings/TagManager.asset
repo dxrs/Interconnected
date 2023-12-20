@@ -13,6 +13,8 @@ TagManager:
   - Bullet P2
   - Enemy
   - Enemy Trigger
+  - Hexagon P1
+  - Hexagon P2
   layers:
   - Default
   - TransparentFX

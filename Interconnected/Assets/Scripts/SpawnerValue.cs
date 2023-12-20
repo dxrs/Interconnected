@@ -7,9 +7,6 @@ public class SpawnerValue : MonoBehaviour
 
     public static SpawnerValue spawnerValue;
 
-    //public int spawnerValueId;
-    // public int maxSpawnerId;
-
     public int[] spawnerValuerIndex;
 
     private void Awake()
