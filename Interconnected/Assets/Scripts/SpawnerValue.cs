@@ -9,6 +9,9 @@ public class SpawnerValue : MonoBehaviour
 
     public int[] spawnerValuerIndex;
 
+    public int spawnerTriggerMaxValueEnter;
+    public int spawnerTriggerMaxValueExit;
+
     private void Awake()
     {
         spawnerValue = this;

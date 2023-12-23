@@ -9,6 +9,10 @@ public class Player2 : MonoBehaviour
 {
     public static Player2 player2;
 
+    public int player2DoorValue;
+
+    public bool isKnockedOut;
+
     [SerializeField] LinkRay linkRay;
 
     [SerializeField] float curSpeed;
@@ -69,9 +73,19 @@ public class Player2 : MonoBehaviour
     }
     private void Update()
     {
+        if (player2DoorValue == 1 || isKnockedOut)
+        {
+            maxSpeed = 0;
+        }
+        else
+        {
+            maxSpeed = curSpeed;
+        }
+
         Ghosting();
         changeLayer();
         shareLives();
+        player2KnockedOut();
     }
     private void FixedUpdate()
     {
@@ -96,6 +110,16 @@ public class Player2 : MonoBehaviour
             yield return new WaitForSeconds(.1f); //rate regenate x/ms
         } while (curStamina < maxStamina);
     }
+
+    #region player 2 health and destroy
+    private void player2KnockedOut()
+    {
+        if (curPlayer2Health <= 0 && GlobalVariable.globalVariable.isEnteringSurvivalArea)
+        {
+            isKnockedOut = true;
+        }
+    }
+    #endregion
 
     #region player 2 share lives
     public void p2ShareLives(InputAction.CallbackContext context)
@@ -299,6 +323,17 @@ public class Player2 : MonoBehaviour
         {
             curPlayer2Health--;
             if (curPlayer2Health <= 0) { curPlayer2Health = 0; }
+        }
+        if (collision.gameObject.tag == "Object Trigger")
+        {
+            player2DoorValue = 1;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Object Trigger")
+        {
+            player2DoorValue = 0;
         }
     }
 

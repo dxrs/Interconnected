@@ -15,6 +15,7 @@ TagManager:
   - Enemy Trigger
   - Hexagon P1
   - Hexagon P2
+  - Object Trigger
   layers:
   - Default
   - TransparentFX

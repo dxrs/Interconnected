@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMovementSpeed: 3
-  enemyHealth: 70
+  enemyHealth: 1
   flashMaterial: {fileID: 0}
   duration: 0
 --- !u!50 &9081289969987927945

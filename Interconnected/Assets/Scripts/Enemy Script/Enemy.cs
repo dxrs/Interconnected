@@ -56,13 +56,21 @@ public class Enemy : MonoBehaviour
     {
         if (player1 != null && player1 != null) 
         {
-            if (indexPlayer == 0) 
+            if (indexPlayer == 0 && !Player1.player1.isKnockedOut) 
             {
                 dir = player1.transform.position - transform.position;
             }
-            if (indexPlayer == 1) 
+            else if(Player1.player1.isKnockedOut)
             {
                 dir = player2.transform.position - transform.position;
+            }
+            if (indexPlayer == 1 && !Player2.player2.isKnockedOut) 
+            {
+                dir = player2.transform.position - transform.position;
+            }
+            else if(Player2.player2.isKnockedOut) 
+            {
+                dir = player1.transform.position - transform.position;
             }
         }
         else { return; }

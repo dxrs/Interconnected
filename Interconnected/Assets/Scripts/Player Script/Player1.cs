@@ -4,10 +4,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 
 public class Player1 : MonoBehaviour
 {
     public static Player1 player1;
+
+    public int player1DoorValue;
+
+    public bool isKnockedOut;
 
     [SerializeField] LinkRay linkRay;
 
@@ -72,9 +77,19 @@ public class Player1 : MonoBehaviour
 
     private void Update()
     {
+        if (player1DoorValue == 1 || isKnockedOut)
+        {
+            maxSpeed = 0;
+        }
+        else
+        {
+            maxSpeed = curSpeed;
+        }
+
         Ghosting();
         shareLives();
         changeLayer();
+        player1KnockedOut();
     }
 
     private void FixedUpdate()
@@ -100,6 +115,16 @@ public class Player1 : MonoBehaviour
             yield return new WaitForSeconds(.1f); //rate regenate x/ms
         } while (curStamina < maxStamina);
     }
+
+    #region player 1 health and destroy
+    private void player1KnockedOut() 
+    {
+        if (curPlayer1Health <= 0 && GlobalVariable.globalVariable.isEnteringSurvivalArea) 
+        {
+            isKnockedOut = true;
+        }
+    }
+    #endregion
 
     #region player 1 share lives
 
@@ -152,16 +177,20 @@ public class Player1 : MonoBehaviour
     #region player 1 movement 
     public void p1Move(InputAction.CallbackContext context) 
     {
-        if (context.performed) 
+        if (!isKnockedOut) 
         {
-            isBreaking = false;
-        }
-        else 
-        {
-            isBreaking = true;
-        }
+            if (context.performed)
+            {
+                isBreaking = false;
+            }
+            else
+            {
+                isBreaking = true;
+            }
 
-        inputDir = context.ReadValue<Vector2>();
+            inputDir = context.ReadValue<Vector2>();
+        }
+        
     }
     #endregion
 
@@ -183,21 +212,25 @@ public class Player1 : MonoBehaviour
 
     public void player1Dashing(InputAction.CallbackContext context) 
     {
-        if (context.performed && !isBreaking) 
+        if (!isKnockedOut) 
         {
-            if (curStamina > dashStaminaCost) 
+            if (context.performed && !isBreaking)
             {
-                StartCoroutine(dashing());
-                curStamina -= dashStaminaCost; // laporan
-                if (curStamina < 0) { curStamina = 0; }
-                staminaImg.fillAmount = curStamina / maxStamina;
+                if (curStamina > dashStaminaCost)
+                {
+                    StartCoroutine(dashing());
+                    curStamina -= dashStaminaCost; // laporan
+                    if (curStamina < 0) { curStamina = 0; }
+                    staminaImg.fillAmount = curStamina / maxStamina;
 
-                if (staminaRegen != null) { StopCoroutine(staminaRegen); }
-                staminaRegen = StartCoroutine(staminaRegenerating());
+                    if (staminaRegen != null) { StopCoroutine(staminaRegen); }
+                    staminaRegen = StartCoroutine(staminaRegenerating());
+                }
+
+
             }
-            
-            
         }
+        
     }
 
     public void player1Ghosting(InputAction.CallbackContext context) 
@@ -231,27 +264,31 @@ public class Player1 : MonoBehaviour
 
     private void Ghosting() 
     {
-        if (isGhosting) 
+        if (!isKnockedOut) 
         {
-            curColorA = math.lerp(curColorA, colorGhostA, 1.5f * Time.deltaTime);
-            curPlayerTransparentColor.a = curColorA;
-            spriteRenderer.color = curPlayerTransparentColor;
-            if (ghostDuration > 0) 
+            if (isGhosting)
             {
-                ghostDuration -= 1 * Time.deltaTime;
+                curColorA = math.lerp(curColorA, colorGhostA, 1.5f * Time.deltaTime);
+                curPlayerTransparentColor.a = curColorA;
+                spriteRenderer.color = curPlayerTransparentColor;
+                if (ghostDuration > 0)
+                {
+                    ghostDuration -= 1 * Time.deltaTime;
+                }
+            }
+            if (isGhosting && ghostDuration <= 0)
+            {
+                isGhosting = false;
+                ghostDuration = 10;
+            }
+            if (!isGhosting)
+            {
+                curColorA = math.lerp(curColorA, 1, 1.5f * Time.deltaTime);
+                curPlayerTransparentColor.a = curColorA;
+                spriteRenderer.color = curPlayerTransparentColor;
             }
         }
-        if(isGhosting && ghostDuration <= 0) 
-        {
-            isGhosting = false;
-            ghostDuration = 10;
-        }
-        if (!isGhosting) 
-        {
-            curColorA = math.lerp(curColorA, 1, 1.5f * Time.deltaTime);
-            curPlayerTransparentColor.a = curColorA;
-            spriteRenderer.color = curPlayerTransparentColor;
-        }
+       
     }
 
     #endregion
@@ -307,18 +344,19 @@ public class Player1 : MonoBehaviour
             if (curPlayer1Health <= 0) { curPlayer1Health = 0; }
         }
 
-        /*
-        if(collision.gameObject.tag=="Enemy Trigger") 
+       
+        if(collision.gameObject.tag=="Object Trigger") 
         {
-            if (EnemyTrigger.enemyTrigger.id == 1) 
-            {
-                Debug.Log("ini id = " + EnemyTrigger.enemyTrigger.id);
-            }
-            if (EnemyTrigger.enemyTrigger.id == 2)
-            {
-                Debug.Log("ini id = " + EnemyTrigger.enemyTrigger.id);
-            }
+            player1DoorValue = 1;
         }
-        */
+       
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Object Trigger")
+        {
+            player1DoorValue = 0;
+        }
     }
 }

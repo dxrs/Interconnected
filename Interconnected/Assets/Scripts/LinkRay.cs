@@ -38,7 +38,11 @@ public class LinkRay : MonoBehaviour
     {
         obstacleP1 = GameObject.FindGameObjectsWithTag(playerObstacleTag[0]);
         obstacleP2 = GameObject.FindGameObjectsWithTag(playerObstacleTag[1]);
-        linkPointPlayerDetection();
+        if (player[0] != null && player[1] != null) 
+        {
+            linkPointPlayerDetection();
+        }
+       
     }
 
     private void linkPointPlayerDetection() 

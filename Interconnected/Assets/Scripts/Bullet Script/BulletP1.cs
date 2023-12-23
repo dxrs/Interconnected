@@ -29,7 +29,10 @@ public class BulletP1 : MonoBehaviour
     {
         if (LinkRay.linkRay.isLinkedToPlayer) 
         {
-            transform.position = Vector2.MoveTowards(transform.position, targetToPlayer2.transform.position, bulletSpeed * Time.deltaTime);
+            if (targetToPlayer2 != null) 
+            {
+                transform.position = Vector2.MoveTowards(transform.position, targetToPlayer2.transform.position, bulletSpeed * Time.deltaTime);
+            }
             sr.color = defaultBulletColor;
         }
         else 
