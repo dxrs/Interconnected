@@ -12,12 +12,21 @@ public class Player1 : MonoBehaviour
 
     public int player1DoorValue;
 
-    public bool isKnockedOut;
-
     [SerializeField] LinkRay linkRay;
+    [SerializeField] GlobalVariable globalVariable;
 
     [SerializeField] float curSpeed;
     [SerializeField] float maxSpeed;
+
+    [SerializeField] bool isMovePosition;
+
+    #region variable knocked out
+    [Header("Player 1 Knocked Out")]
+    public bool isKnockedOut;
+    public int reviveCountValue;
+    [SerializeField] float knockTimer;
+    float curKnockTimer;
+    #endregion
 
     #region  variable basic ability
     [Header("Player 1 Basic Ability Dash")]
@@ -58,6 +67,8 @@ public class Player1 : MonoBehaviour
 
     Rigidbody2D rb;
 
+    CircleCollider2D cc;
+
     private void Awake()
     {
         if (player1 == null) { player1 = this; }
@@ -65,13 +76,14 @@ public class Player1 : MonoBehaviour
 
     private void Start()
     {
-        
+        cc = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         isBreaking = true;
         curPlayer1Health = maxPlayerHealth;
         curPlayerTransparentColor.a = curColorA;
         spriteRenderer.color = curPlayerTransparentColor;
+        curKnockTimer = knockTimer;
         
     }
 
@@ -86,10 +98,24 @@ public class Player1 : MonoBehaviour
             maxSpeed = curSpeed;
         }
 
+        if (isMovePosition) 
+        {
+            for (int i = 0; i < SpawnerValue.spawnerValue.spawnerValuerIndex.Length; i++)
+            {
+                if (SpawnerValue.spawnerValue.spawnerValuerIndex[i] == 1)
+                {
+                    transform.position = SpawnerValue.spawnerValue.player1SpawnPos[i];
+                    break;  // Keluar dari loop setelah menemukan indeks yang sesuai
+                }
+            }
+        }
+
+        isMovePosition = globalVariable.isTriggeredWithObstacle;
         Ghosting();
         shareLives();
         changeLayer();
         player1KnockedOut();
+        player1Destroy();
     }
 
     private void FixedUpdate()
@@ -119,58 +145,87 @@ public class Player1 : MonoBehaviour
     #region player 1 health and destroy
     private void player1KnockedOut() 
     {
-        if (curPlayer1Health <= 0 && GlobalVariable.globalVariable.isEnteringSurvivalArea) 
+        if (curPlayer1Health <= 0 && globalVariable.isEnteringSurvivalArea) 
         {
             isKnockedOut = true;
         }
+        if (isKnockedOut) 
+        {
+            cc.isTrigger = true;
+            if (knockTimer > 0)
+            {
+                knockTimer -= 1 * Time.deltaTime;
+            }
+            if (knockTimer <= 0) { Destroy(gameObject); }
+        }
+        else 
+        {
+            reviveCountValue = 3;
+            knockTimer = curKnockTimer;
+            cc.isTrigger = false;
+        }
     }
+
+    private void player1Destroy() 
+    {
+        if (curPlayer1Health <= 0 && !globalVariable.isEnteringSurvivalArea) 
+        {
+            Destroy(gameObject);
+        }
+    }
+
     #endregion
 
     #region player 1 share lives
 
     public void p1ShareLives(InputAction.CallbackContext context)
     {
-        if (context.started && !Player2.player2.isSharingLivesToP1 && linkRay.playerLinkedEachOther) 
-        { 
-           
-            if (curPlayer1Health > 1 && Player2.player2.curPlayer2Health < maxPlayerHealth)
+        if (!isKnockedOut)
+        {
+            if (context.started && !Player2.player2.isSharingLivesToP1 && linkRay.playerLinkedEachOther)
+            {
+
+                if (curPlayer1Health > 1 && Player2.player2.curPlayer2Health < maxPlayerHealth)
+                {
+                    Debug.Log(context.phase);
+                    isSharingLivesToP2 = true;
+                }
+
+
+            }
+            if (context.performed && linkRay.playerLinkedEachOther && isSharingLivesToP2)
+            {
+                Debug.Log("share lives to p2!!!" + context.phase);
+                if (curPlayer1Health > 1 && Player2.player2.curPlayer2Health < maxPlayerHealth)
+                {
+                    curPlayer1Health--;
+                    if (Player2.player2.curPlayer2Health < maxPlayerHealth && Player2.player2 != null)
+                    {
+                        Player2.player2.curPlayer2Health++;
+                    }
+                }
+
+            }
+            if (context.canceled && isSharingLivesToP2)
             {
                 Debug.Log(context.phase);
-                isSharingLivesToP2 = true;
+                isSharingLivesToP2 = false;
             }
-            
-            
         }
-        if (context.performed && linkRay.playerLinkedEachOther && isSharingLivesToP2)
-        {
-            Debug.Log("share lives to p2!!!" + context.phase);
-            if (curPlayer1Health > 1 && Player2.player2.curPlayer2Health < maxPlayerHealth) 
-            {
-                curPlayer1Health--;
-                if (Player2.player2.curPlayer2Health < maxPlayerHealth && Player2.player2 != null) 
-                {
-                    Player2.player2.curPlayer2Health++;
-                }
-            }
-
-        }
-        if (context.canceled && isSharingLivesToP2) 
-        { 
-            Debug.Log(context.phase);
-            isSharingLivesToP2 = false;
-        }
+        
 
     }
     private void shareLives() 
     {
         for (int i = 0; i < playerHealthImg.Length; i++)
         {
-            
+
             int clampedIndex = Mathf.Max(0, Mathf.Min(i, maxPlayerHealth - 1)); //hitung indeks yang dibatasi dalam rentang 0 hingga maxHealth - 1
 
             bool shouldEnable = curPlayer1Health >= i + 1;
             playerHealthImg[clampedIndex].enabled = shouldEnable;
         }
+       
     }
     #endregion
 
@@ -235,23 +290,27 @@ public class Player1 : MonoBehaviour
 
     public void player1Ghosting(InputAction.CallbackContext context) 
     {
-        if(context.performed && !isGhosting) 
+        if (!isKnockedOut) 
         {
-            if (curStamina > ghostStaminaCost) 
+            if (context.performed && !isGhosting)
             {
-                isGhosting = true;
-                linkRay.player1LinkedToObstacle = false;
-                curStamina -= ghostStaminaCost; //-> nanti di perbaiki //laporan
-                if (curStamina < 0) { curStamina = 0; }
-                staminaImg.fillAmount = curStamina / maxStamina;
+                if (curStamina > ghostStaminaCost)
+                {
+                    isGhosting = true;
+                    linkRay.player1LinkedToObstacle = false;
+                    curStamina -= ghostStaminaCost; //-> nanti di perbaiki //laporan
+                    if (curStamina < 0) { curStamina = 0; }
+                    staminaImg.fillAmount = curStamina / maxStamina;
 
-                if (staminaRegen != null) { StopCoroutine(staminaRegen); }
-                staminaRegen = StartCoroutine(staminaRegenerating());
+                    if (staminaRegen != null) { StopCoroutine(staminaRegen); }
+                    staminaRegen = StartCoroutine(staminaRegenerating());
+                }
+
+
+
             }
-
-            
-           
         }
+       
     }
 
     IEnumerator dashing()
@@ -264,30 +323,30 @@ public class Player1 : MonoBehaviour
 
     private void Ghosting() 
     {
-        if (!isKnockedOut) 
+        if (isGhosting)
         {
-            if (isGhosting)
+            cc.enabled = false;
+            curColorA = math.lerp(curColorA, colorGhostA, 1.5f * Time.deltaTime);
+            curPlayerTransparentColor.a = curColorA;
+            spriteRenderer.color = curPlayerTransparentColor;
+            if (ghostDuration > 0)
             {
-                curColorA = math.lerp(curColorA, colorGhostA, 1.5f * Time.deltaTime);
-                curPlayerTransparentColor.a = curColorA;
-                spriteRenderer.color = curPlayerTransparentColor;
-                if (ghostDuration > 0)
-                {
-                    ghostDuration -= 1 * Time.deltaTime;
-                }
-            }
-            if (isGhosting && ghostDuration <= 0)
-            {
-                isGhosting = false;
-                ghostDuration = 10;
-            }
-            if (!isGhosting)
-            {
-                curColorA = math.lerp(curColorA, 1, 1.5f * Time.deltaTime);
-                curPlayerTransparentColor.a = curColorA;
-                spriteRenderer.color = curPlayerTransparentColor;
+                ghostDuration -= 1 * Time.deltaTime;
             }
         }
+        if (isGhosting && ghostDuration <= 0)
+        {
+            isGhosting = false;
+            ghostDuration = 10;
+        }
+        if (!isGhosting)
+        {
+            cc.enabled = true;
+            curColorA = math.lerp(curColorA, 1, 1.5f * Time.deltaTime);
+            curPlayerTransparentColor.a = curColorA;
+            spriteRenderer.color = curPlayerTransparentColor;
+        }
+     
        
     }
 
@@ -307,24 +366,51 @@ public class Player1 : MonoBehaviour
     }
     public void changeLinkMethod(InputAction.CallbackContext context)
     {
-        if (context.performed && !isGhosting)
+        if (!isKnockedOut) 
         {
-            
-            if (!linkRay.isLinkedToPlayer)
+            if (context.performed && !isGhosting)
             {
-                linkRay.isLinkedToPlayer = true;
-            }
-            else
-            {
-                linkRay.playerLinkedEachOther = false;
-                linkRay.isLinkedToPlayer = false;
+
+                if (!linkRay.isLinkedToPlayer)
+                {
+                    linkRay.isLinkedToPlayer = true;
+                }
+                else
+                {
+                    linkRay.playerLinkedEachOther = false;
+                    linkRay.isLinkedToPlayer = false;
+                }
             }
         }
+       
     }
     #endregion
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.gameObject.tag=="Obstacle Spike" || collision.gameObject.tag=="Obstacle Trap") 
+        {
+            curPlayer1Health--;
+            globalVariable.isTriggeredWithObstacle = true;
+            StartCoroutine(backToFalse());
+        }
+
+        if(collision.gameObject.tag=="Player 2") 
+        {
+            if (Player2.player2.isKnockedOut) 
+            {
+                if (Player2.player2.reviveCountValue > 0) 
+                {
+                    Player2.player2.reviveCountValue--;
+                }
+                if (Player2.player2.reviveCountValue <= 0) 
+                {
+                    Player2.player2.curPlayer2Health += 1;
+                    Player2.player2.isKnockedOut = false;
+                }
+            }
+        }
+
         if (!linkRay.isLinkedToPlayer && !isGhosting) 
         {
             if(collision.gameObject.tag=="Bullet P2") 
@@ -358,5 +444,11 @@ public class Player1 : MonoBehaviour
         {
             player1DoorValue = 0;
         }
+    }
+
+    IEnumerator backToFalse() 
+    {
+        yield return new WaitForSeconds(1);
+        globalVariable.isTriggeredWithObstacle = false;
     }
 }

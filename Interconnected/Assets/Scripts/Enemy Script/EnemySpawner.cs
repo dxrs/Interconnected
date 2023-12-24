@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] int id;
-
     [SerializeField] float waitTimeToSpawn;
     [SerializeField] float delayTimerSpawn;
     [SerializeField] float enemyRadiusValue;
@@ -24,8 +22,9 @@ public class EnemySpawner : MonoBehaviour
         
     }
 
-    IEnumerator spawneEnemy() 
+    IEnumerator spawneEnemy()
     {
+        yield return new WaitForSeconds(1);
         while (true)
         {
             enemySpawnPos = enemySpawnRadius.transform.position;

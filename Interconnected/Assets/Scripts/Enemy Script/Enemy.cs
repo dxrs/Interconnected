@@ -54,24 +54,57 @@ public class Enemy : MonoBehaviour
 
     private void enemyChassingPlayer() 
     {
-        if (player1 != null && player1 != null) 
+        if (GlobalVariable.globalVariable.isGameOver) 
         {
-            if (indexPlayer == 0 && !Player1.player1.isKnockedOut) 
+            Destroy(gameObject);
+        }
+        
+        if (player1 != null) 
+        {
+            if (!Player1.player1.isGhosting) 
             {
-                dir = player1.transform.position - transform.position;
+                if (indexPlayer == 0)
+                {
+                    if (!Player1.player1.isKnockedOut)
+                    {
+                        dir = player1.transform.position - transform.position;
+                    }
+                    else
+                    {
+                        indexPlayer = 1;
+                    }
+                }
             }
-            else if(Player1.player1.isKnockedOut)
+            else if(Player1.player1.isGhosting && !Player2.player2.isGhosting) 
             {
                 dir = player2.transform.position - transform.position;
+                indexPlayer = 1;
             }
-            if (indexPlayer == 1 && !Player2.player2.isKnockedOut) 
+            
+        }
+
+        if (player2 != null) 
+        {
+            if (!Player2.player2.isGhosting) 
             {
-                dir = player2.transform.position - transform.position;
+                if (indexPlayer == 1)
+                {
+                    if (!Player2.player2.isKnockedOut)
+                    {
+                        dir = player2.transform.position - transform.position;
+                    }
+                    else
+                    {
+                        indexPlayer = 0;
+                    }
+                }
             }
-            else if(Player2.player2.isKnockedOut) 
+            else if (!Player1.player1.isGhosting && Player2.player2.isGhosting)
             {
                 dir = player1.transform.position - transform.position;
+                indexPlayer = 0;
             }
+
         }
         else { return; }
 

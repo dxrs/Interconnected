@@ -11,12 +11,21 @@ public class Player2 : MonoBehaviour
 
     public int player2DoorValue;
 
-    public bool isKnockedOut;
-
     [SerializeField] LinkRay linkRay;
+    [SerializeField] GlobalVariable globalVariable;
 
     [SerializeField] float curSpeed;
     [SerializeField] float maxSpeed;
+
+    [SerializeField] bool isMovePosition;
+
+    #region variable knocked out
+    [Header("Player 2 Knocked Out")]
+    public bool isKnockedOut;
+    public int reviveCountValue;
+    [SerializeField] float knockTimer;
+    float curKnockTimer;
+    #endregion
 
     #region basic ability variable
     [Header("Player 2 Basic Ability Dash")]
@@ -57,6 +66,8 @@ public class Player2 : MonoBehaviour
 
     Rigidbody2D rb;
 
+    CircleCollider2D cc;
+
     private void Awake()
     {
         if (player2 == null) { player2 = this; }
@@ -64,6 +75,7 @@ public class Player2 : MonoBehaviour
 
     private void Start()
     {
+        cc = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         isBreaking = true;
@@ -82,10 +94,24 @@ public class Player2 : MonoBehaviour
             maxSpeed = curSpeed;
         }
 
+        if (isMovePosition)
+        {
+            for (int i = 0; i < SpawnerValue.spawnerValue.spawnerValuerIndex.Length; i++)
+            {
+                if (SpawnerValue.spawnerValue.spawnerValuerIndex[i] == 1)
+                {
+                    transform.position = SpawnerValue.spawnerValue.player1SpawnPos[i];
+                    break;  // Keluar dari loop setelah menemukan indeks yang sesuai
+                }
+            }
+        }
+
+        isMovePosition = globalVariable.isTriggeredWithObstacle;
         Ghosting();
         changeLayer();
         shareLives();
         player2KnockedOut();
+        player2Destroy();
     }
     private void FixedUpdate()
     {
@@ -114,43 +140,71 @@ public class Player2 : MonoBehaviour
     #region player 2 health and destroy
     private void player2KnockedOut()
     {
-        if (curPlayer2Health <= 0 && GlobalVariable.globalVariable.isEnteringSurvivalArea)
+        if (curPlayer2Health <= 0 && globalVariable.isEnteringSurvivalArea)
         {
             isKnockedOut = true;
         }
+        if (isKnockedOut)
+        {
+            cc.isTrigger = true;
+            if (knockTimer > 0)
+            {
+                knockTimer -= 1 * Time.deltaTime;
+            }
+            if (knockTimer <= 0) { Destroy(gameObject); }
+        }
+        else
+        {
+            reviveCountValue = 3;
+            knockTimer = curKnockTimer;
+            cc.isTrigger = false;
+        }
     }
+
+    private void player2Destroy() 
+    {
+        if (curPlayer2Health <= 0 && !globalVariable.isEnteringSurvivalArea) 
+        {
+            Destroy(gameObject);
+        }
+    }
+
     #endregion
 
     #region player 2 share lives
     public void p2ShareLives(InputAction.CallbackContext context)
     {
-        if (context.started && !Player1.player1.isSharingLivesToP2 && linkRay.playerLinkedEachOther) 
+        if (!isKnockedOut) 
         {
-            if (curPlayer2Health > 1 && Player1.player1.curPlayer1Health < maxPlayerHealth)
+            if (context.started && !Player1.player1.isSharingLivesToP2 && linkRay.playerLinkedEachOther)
+            {
+                if (curPlayer2Health > 1 && Player1.player1.curPlayer1Health < maxPlayerHealth)
+                {
+                    Debug.Log(context.phase);
+                    isSharingLivesToP1 = true;
+                }
+
+            }
+            if (context.performed && linkRay.playerLinkedEachOther && isSharingLivesToP1)
+            {
+                Debug.Log("share lives to p1!!!" + context.phase);
+                if (curPlayer2Health > 1 && Player1.player1.curPlayer1Health < maxPlayerHealth)
+                {
+                    curPlayer2Health--;
+                    if (Player1.player1.curPlayer1Health < maxPlayerHealth && Player1.player1 != null)
+                    {
+                        Player1.player1.curPlayer1Health++;
+                    }
+                }
+
+            }
+            if (context.canceled && isSharingLivesToP1)
             {
                 Debug.Log(context.phase);
-                isSharingLivesToP1 = true;
+                isSharingLivesToP1 = false;
             }
-            
         }
-        if (context.performed && linkRay.playerLinkedEachOther && isSharingLivesToP1)
-        {
-            Debug.Log("share lives to p1!!!" + context.phase);
-            if (curPlayer2Health > 1 && Player1.player1.curPlayer1Health < maxPlayerHealth)
-            {
-                curPlayer2Health--;
-                if (Player1.player1.curPlayer1Health < maxPlayerHealth && Player1.player1 != null)
-                {
-                    Player1.player1.curPlayer1Health++;
-                }
-            }
-
-        }
-        if (context.canceled && isSharingLivesToP1) 
-        { 
-            Debug.Log(context.phase);
-            isSharingLivesToP1 = false;
-        }
+        
     }
 
     private void shareLives()
@@ -171,17 +225,21 @@ public class Player2 : MonoBehaviour
     #region player 2 movement function
     public void p2Move(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (!isKnockedOut) 
         {
-            isBreaking = false;
-            
-        }
-        else
-        {
-            isBreaking = true;
-        }
+            if (context.performed)
+            {
+                isBreaking = false;
 
-        inputDir = context.ReadValue<Vector2>();
+            }
+            else
+            {
+                isBreaking = true;
+            }
+
+            inputDir = context.ReadValue<Vector2>();
+        }
+       
     }
     #endregion
 
@@ -203,40 +261,48 @@ public class Player2 : MonoBehaviour
 
     public void player1Dashing(InputAction.CallbackContext context)
     {
-        if (context.performed && !isBreaking)
+        if (!isKnockedOut) 
         {
-            if (curStamina > dashStaminaCost)
+            if (context.performed && !isBreaking)
             {
-                StartCoroutine(dashing());
-                curStamina -= dashStaminaCost;
-                if (curStamina < 0) { curStamina = 0; }
-                staminaImg.fillAmount = curStamina / maxStamina;
+                if (curStamina > dashStaminaCost)
+                {
+                    StartCoroutine(dashing());
+                    curStamina -= dashStaminaCost;
+                    if (curStamina < 0) { curStamina = 0; }
+                    staminaImg.fillAmount = curStamina / maxStamina;
 
-                if (staminaRegen != null) { StopCoroutine(staminaRegen); }
-                staminaRegen = StartCoroutine(staminaRegenerating());
+                    if (staminaRegen != null) { StopCoroutine(staminaRegen); }
+                    staminaRegen = StartCoroutine(staminaRegenerating());
+                }
+
             }
-            
         }
+        
     }
 
     public void player1Ghosting(InputAction.CallbackContext context)
     {
-        if (context.performed && !isGhosting)
+        if (!isKnockedOut) 
         {
-            if (curStamina > ghostStaminaCost)
+            if (context.performed && !isGhosting)
             {
-                isGhosting = true;
-                linkRay.player2LinkedToObstacle = false;
-                curStamina -= ghostStaminaCost; //-> nanti di perbaiki
-                if (curStamina < 0) { curStamina = 0; }
-                staminaImg.fillAmount = curStamina / maxStamina;
+                if (curStamina > ghostStaminaCost)
+                {
+                    isGhosting = true;
+                    linkRay.player2LinkedToObstacle = false;
+                    curStamina -= ghostStaminaCost; //-> nanti di perbaiki
+                    if (curStamina < 0) { curStamina = 0; }
+                    staminaImg.fillAmount = curStamina / maxStamina;
 
-                if (staminaRegen != null) { StopCoroutine(staminaRegen); }
-                staminaRegen = StartCoroutine(staminaRegenerating());
+                    if (staminaRegen != null) { StopCoroutine(staminaRegen); }
+                    staminaRegen = StartCoroutine(staminaRegenerating());
+                }
+
+
             }
-
-            
         }
+        
     }
 
     IEnumerator dashing()
@@ -251,6 +317,7 @@ public class Player2 : MonoBehaviour
     {
         if (isGhosting)
         {
+            cc.enabled = false;
             curColorA = math.lerp(curColorA, colorGhostA, 1.5f * Time.deltaTime);
             curPlayerTransparentColor.a = curColorA;
             spriteRenderer.color = curPlayerTransparentColor;
@@ -266,6 +333,7 @@ public class Player2 : MonoBehaviour
         }
         if (!isGhosting)
         {
+            cc.enabled = true;
             curColorA = math.lerp(curColorA, 1, 1.5f * Time.deltaTime);
             curPlayerTransparentColor.a = curColorA;
             spriteRenderer.color = curPlayerTransparentColor;
@@ -290,23 +358,50 @@ public class Player2 : MonoBehaviour
 
     public void changeLinkMethod(InputAction.CallbackContext context)
     {
-        if (context.performed && !isGhosting)
+        if (!isKnockedOut) 
         {
-            if (!linkRay.isLinkedToPlayer)
+            if (context.performed && !isGhosting)
             {
-                linkRay.isLinkedToPlayer = true;
-            }
-            else
-            {
-                linkRay.playerLinkedEachOther = false;
-                linkRay.isLinkedToPlayer = false;
+                if (!linkRay.isLinkedToPlayer)
+                {
+                    linkRay.isLinkedToPlayer = true;
+                }
+                else
+                {
+                    linkRay.playerLinkedEachOther = false;
+                    linkRay.isLinkedToPlayer = false;
+                }
             }
         }
+       
     }
     #endregion
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "Obstacle Spike" || collision.gameObject.tag == "Obstacle Trap")
+        {
+            curPlayer2Health--;
+            globalVariable.isTriggeredWithObstacle = true;
+            StartCoroutine(backToFalse());
+        }
+
+        if (collision.gameObject.tag == "Player 1")
+        {
+            if (Player1.player1.isKnockedOut)
+            {
+                if (Player1.player1.reviveCountValue > 0)
+                {
+                    Player1.player1.reviveCountValue--;
+                }
+                if (Player1.player1.reviveCountValue <= 0)
+                {
+                    Player1.player1.curPlayer1Health += 1;
+                    Player1.player1.isKnockedOut = false;
+                }
+
+            }
+        }
         if (!linkRay.isLinkedToPlayer && !isGhosting)
         {
             if (collision.gameObject.tag == "Bullet P1")
@@ -335,6 +430,12 @@ public class Player2 : MonoBehaviour
         {
             player2DoorValue = 0;
         }
+    }
+
+    IEnumerator backToFalse()
+    {
+        yield return new WaitForSeconds(1);
+        globalVariable.isTriggeredWithObstacle = false;
     }
 
     //gamepad disconnect

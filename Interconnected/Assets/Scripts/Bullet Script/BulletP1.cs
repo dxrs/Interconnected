@@ -29,10 +29,11 @@ public class BulletP1 : MonoBehaviour
     {
         if (LinkRay.linkRay.isLinkedToPlayer) 
         {
-            if (targetToPlayer2 != null) 
+            if (targetToPlayer2 != null && !GlobalVariable.globalVariable.isTriggeredWithObstacle) 
             {
                 transform.position = Vector2.MoveTowards(transform.position, targetToPlayer2.transform.position, bulletSpeed * Time.deltaTime);
             }
+            else { Destroy(gameObject); }
             sr.color = defaultBulletColor;
         }
         else 

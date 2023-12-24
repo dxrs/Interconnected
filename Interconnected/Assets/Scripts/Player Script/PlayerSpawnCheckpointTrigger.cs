@@ -10,22 +10,27 @@ public class PlayerSpawnCheckpointTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (checkpointValue == 1) 
+        int index = checkpointValue - 1;
+
+        if (index >= 0 && index < SpawnerValue.spawnerValue.spawnerValuerIndex.Length)
         {
-            if(collision.gameObject.tag=="Player 1" || collision.gameObject.tag=="Player 2") 
+            if (collision.CompareTag("Player 1") || collision.CompareTag("Player 2"))
             {
-                SpawnerValue.spawnerValue.spawnerValuerIndex[0] = 1;
+                SpawnerValue.spawnerValue.spawnerValuerIndex[index] = 1;
             }
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (checkpointValue == 1)
+        int index = checkpointValue - 1;
+
+        if (index >= 0 && index < SpawnerValue.spawnerValue.spawnerValuerIndex.Length)
         {
-            if (collision.gameObject.tag == "Player 1" || collision.gameObject.tag == "Player 2")
+            if (collision.CompareTag("Player 1") || collision.CompareTag("Player 2"))
             {
-                SpawnerValue.spawnerValue.spawnerValuerIndex[0] = 0;
+                SpawnerValue.spawnerValue.spawnerValuerIndex[index] = 0;
             }
         }
     }

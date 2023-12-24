@@ -12,10 +12,11 @@ TagManager:
   - Bullet P1
   - Bullet P2
   - Enemy
-  - Enemy Trigger
   - Hexagon P1
   - Hexagon P2
   - Object Trigger
+  - Obstacle Spike
+  - Obstacle Trap
   layers:
   - Default
   - TransparentFX
