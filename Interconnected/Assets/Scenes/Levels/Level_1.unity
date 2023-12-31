@@ -2148,7 +2148,7 @@ Transform:
   m_GameObject: {fileID: 1605676024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.21, y: -8.82, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1804266576}
@@ -2170,7 +2170,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.78
 --- !u!50 &1605676027
 Rigidbody2D:
   serializedVersion: 4
@@ -2445,7 +2445,7 @@ MonoBehaviour:
   dashDuration: 0.2
   isGhosting: 0
   ghostDuration: 10
-  curPlayerTransparentColor: {r: 0.745283, g: 0.30166847, b: 0.010546438, a: 1}
+  curPlayerTransparentColor: {r: 1, g: 1, b: 1, a: 1}
   staminaImg: {fileID: 2146196869}
   maxStamina: 100
   curStamina: 100
@@ -2500,8 +2500,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.6792453, g: 0.27692306, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 18f67b39f15bef94abc6909beffb32d8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2663,7 +2663,7 @@ Transform:
   m_GameObject: {fileID: 1667292373}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.47000027, y: -6.77, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1285633505}
@@ -2685,7 +2685,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.78
 --- !u!50 &1667292376
 Rigidbody2D:
   serializedVersion: 4
@@ -2972,7 +2972,7 @@ MonoBehaviour:
   dashDuration: 0.2
   isGhosting: 0
   ghostDuration: 10
-  curPlayerTransparentColor: {r: 0, g: 0.6320754, b: 0.551385, a: 1}
+  curPlayerTransparentColor: {r: 1, g: 1, b: 1, a: 1}
   staminaImg: {fileID: 2132018686}
   maxStamina: 100
   curStamina: 100
@@ -3027,8 +3027,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.014907437, g: 0.6320754, b: 0.5086418, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 634f8575942d3ad48a4a6ff5f7210f84, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
