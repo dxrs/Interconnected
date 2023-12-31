@@ -100,7 +100,7 @@ public class Player2 : MonoBehaviour
             {
                 if (SpawnerValue.spawnerValue.spawnerValuerIndex[i] == 1)
                 {
-                    transform.position = SpawnerValue.spawnerValue.player1SpawnPos[i];
+                    transform.position = SpawnerValue.spawnerValue.player2SpawnPos[i];
                     break;  // Keluar dari loop setelah menemukan indeks yang sesuai
                 }
             }

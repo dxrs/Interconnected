@@ -68,6 +68,7 @@ public class LinkRay : MonoBehaviour
                     Debug.DrawLine(player[0].transform.position,
                         player[1].transform.position,
                         Color.red);
+                    Destroy(GameObject.FindGameObjectWithTag("Bullet P1"));
                 }
                 else
                 {

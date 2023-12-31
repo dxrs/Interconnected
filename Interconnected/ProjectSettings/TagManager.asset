@@ -17,6 +17,7 @@ TagManager:
   - Object Trigger
   - Obstacle Spike
   - Obstacle Trap
+  - Camera Trigger
   layers:
   - Default
   - TransparentFX

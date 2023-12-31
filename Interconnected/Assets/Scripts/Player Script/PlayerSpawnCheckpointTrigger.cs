@@ -6,7 +6,7 @@ public class PlayerSpawnCheckpointTrigger : MonoBehaviour
 {
     public static PlayerSpawnCheckpointTrigger playerSpawn;
 
-    public int checkpointValue;
+    [SerializeField] int checkpointValue;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,6 +17,7 @@ public class PlayerSpawnCheckpointTrigger : MonoBehaviour
             if (collision.CompareTag("Player 1") || collision.CompareTag("Player 2"))
             {
                 SpawnerValue.spawnerValue.spawnerValuerIndex[index] = 1;
+                GlobalVariable.globalVariable.isEnteringTrapArea = true;
             }
         }
 
@@ -31,6 +32,7 @@ public class PlayerSpawnCheckpointTrigger : MonoBehaviour
             if (collision.CompareTag("Player 1") || collision.CompareTag("Player 2"))
             {
                 SpawnerValue.spawnerValue.spawnerValuerIndex[index] = 0;
+                GlobalVariable.globalVariable.isEnteringTrapArea = false;
             }
         }
     }

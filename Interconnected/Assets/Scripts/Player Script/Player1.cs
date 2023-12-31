@@ -391,8 +391,11 @@ public class Player1 : MonoBehaviour
         if(collision.gameObject.tag=="Obstacle Spike" || collision.gameObject.tag=="Obstacle Trap") 
         {
             curPlayer1Health--;
-            globalVariable.isTriggeredWithObstacle = true;
-            StartCoroutine(backToFalse());
+            if (GlobalVariable.globalVariable.isEnteringTrapArea) 
+            {
+                globalVariable.isTriggeredWithObstacle = true;
+                StartCoroutine(backToFalse());
+            }
         }
 
         if(collision.gameObject.tag=="Player 2") 
@@ -435,7 +438,6 @@ public class Player1 : MonoBehaviour
         {
             player1DoorValue = 1;
         }
-       
     }
 
     private void OnTriggerExit2D(Collider2D collision)

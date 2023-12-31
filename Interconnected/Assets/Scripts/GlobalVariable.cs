@@ -7,6 +7,7 @@ public class GlobalVariable : MonoBehaviour
     public static GlobalVariable globalVariable;
 
     public bool isEnteringSurvivalArea;
+    public bool isEnteringTrapArea;
 
     public bool isGameOver;
 

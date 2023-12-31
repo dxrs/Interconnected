@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9081289969987928055}
   - component: {fileID: 9081289969987928054}
   - component: {fileID: 9081289969987927944}
+  - component: {fileID: 5121257545381358979}
   - component: {fileID: 9081289969987927945}
   - component: {fileID: 9081289969987927946}
   m_Layer: 0
@@ -99,10 +100,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e9369e4a825de418d7a9d41ae42062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHitEffect1: {fileID: 0}
   enemyMovementSpeed: 3
   enemyHealth: 1
-  flashMaterial: {fileID: 0}
-  duration: 0
+--- !u!114 &5121257545381358979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9081289969987928053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a493e9d26c1cb854285e40da08525406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitEffectMat: {fileID: 2100000, guid: ff462ad4030fd6c40973f1a8449330e0, type: 2}
+  durationEffect: 1
 --- !u!50 &9081289969987927945
 Rigidbody2D:
   serializedVersion: 4

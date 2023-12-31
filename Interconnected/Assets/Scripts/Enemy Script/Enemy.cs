@@ -4,20 +4,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] EnemyHitEffect enemyHitEffect1;
+
     [Header("Enemy Movement")]
     [SerializeField] float enemyMovementSpeed;
 
     [Header("Enemy Status")]
     [SerializeField] float enemyHealth;
-
-    #region enemy hit effect
-    [Header("Enemy Hit Effect")]
-    [SerializeField] private Material flashMaterial;
-    [SerializeField] private float duration;
-    private SpriteRenderer spriteRenderer;
-    private Material originalMaterial;
-    private Coroutine flashRoutine;
-    #endregion
 
     Rigidbody2D rb;
 
@@ -124,10 +117,22 @@ public class Enemy : MonoBehaviour
         if(collision.gameObject.tag=="Bullet P1" || collision.gameObject.tag=="Bullet P2") 
         {
             enemyHealth -= 1;
+            EnemyHitEffect enemyHitEffect = gameObject.GetComponent<EnemyHitEffect>();
+           
         }
-        if(collision.gameObject.tag=="Player 1"||collision.gameObject.tag=="Player 2") 
+        if(collision.gameObject.tag=="Player 1") 
         {
-            Destroy(gameObject);
+            if (!Player1.player1.isKnockedOut) 
+            {
+                Destroy(gameObject);
+            }
+        }
+        if(collision.gameObject.tag=="Player 2") 
+        {
+            if (!Player2.player2.isKnockedOut) 
+            {
+                Destroy(gameObject);
+            }
         }
         
     }
