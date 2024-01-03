@@ -18,6 +18,8 @@ TagManager:
   - Obstacle Spike
   - Obstacle Trap
   - Camera Trigger
+  - Moving Circle
+  - Circle Target
   layers:
   - Default
   - TransparentFX
@@ -26,11 +28,11 @@ TagManager:
   - Water
   - UI
   - Obstacle
-  - 
+  - Moving Circle
   - 
   - Player 1
   - Player 2
-  - BG
+  - Background
   - 
   - 
   - 

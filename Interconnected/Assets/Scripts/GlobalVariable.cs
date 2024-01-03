@@ -13,6 +13,8 @@ public class GlobalVariable : MonoBehaviour
 
     public bool isTriggeredWithObstacle;
 
+    public bool[] circleIsMoving;
+
     GameObject player1, player2;
 
     private void Awake()

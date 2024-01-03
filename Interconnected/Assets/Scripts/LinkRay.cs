@@ -73,24 +73,29 @@ public class LinkRay : MonoBehaviour
                 else
                 {
                     playerLinkedEachOther = true;
-                    
-                    
                     Debug.DrawLine(player[0].transform.position,
                         player[1].transform.position,
                         Color.green);
-
                 }
 
+                if (hit.collider != null && hit.collider.tag == "Moving Circle")
+                {
+                    int circleIndex = MovingCircle.movingCircle.id - 1;
+
+                    GlobalVariable.globalVariable.circleIsMoving[circleIndex] = true;
+                }
+                else
+                {
+                    int circleIndex = MovingCircle.movingCircle.id - 1;
+                    GlobalVariable.globalVariable.circleIsMoving[circleIndex] = false;
+                }
             }
         }
         if (!isLinkedToPlayer) 
         {
-
             linkObstacleP1();
             linkObstacleP2();
         }
-
-
     }
 
     private void linkObstacleP1()
