@@ -12,6 +12,7 @@ public class SpawnEnterTrigger : MonoBehaviour
 
     private void Update()
     {
+        /*
         for (int i = 1; i <= SpawnerValue.spawnerValue.spawnerTriggerMaxValueEnter; i++)
         {
             if (isTriggered)
@@ -26,10 +27,12 @@ public class SpawnEnterTrigger : MonoBehaviour
             }
 
         }
+        */
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         if (collision.gameObject.CompareTag("Player 1") || collision.gameObject.CompareTag("Player 2"))
         {
             for (int i = 1; i <= SpawnerValue.spawnerValue.spawnerTriggerMaxValueEnter; i++)
@@ -43,5 +46,6 @@ public class SpawnEnterTrigger : MonoBehaviour
                 }
             }
         }
+        */
     }
 }

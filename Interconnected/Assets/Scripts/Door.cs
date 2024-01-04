@@ -23,15 +23,10 @@ public class Door : MonoBehaviour
                 {
                     transform.position = Vector2.MoveTowards(transform.position,
                         doorMoveTarget, doorMoveSpeed * Time.deltaTime);
-                    Destroy(circleDoorStop,1);
+                    circleDoorStop.SetActive(false);
+                    Destroy(circleDoorStop, 60);
                 }
             }
         }
-        if (id == 1) 
-        {
-           
-        }
-
-        
     }
 }

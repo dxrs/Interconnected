@@ -3953,6 +3953,7 @@ MonoBehaviour:
   curSpeed: 5
   maxSpeed: 5
   isMovePosition: 0
+  playerRespawnPos: {x: -7.18, y: -9.34}
   isKnockedOut: 0
   reviveCountValue: 0
   knockTimer: 0
@@ -5322,7 +5323,7 @@ GameObject:
   - component: {fileID: 1188427495}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Circle Door Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5358,7 +5359,7 @@ MonoBehaviour:
   doorButton:
   - {fileID: 844832527}
   - {fileID: 10359076}
-  circleDoorStop: {fileID: 0}
+  circleDoorStop: {fileID: 844832527}
   doorMoveSpeed: 0
   doorMoveTarget: {x: 0, y: 0}
 --- !u!1 &1205459309
@@ -7389,6 +7390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1508640966}
   - component: {fileID: 1508640967}
+  - component: {fileID: 1508640968}
   m_Layer: 0
   m_Name: Circle Door Trigger
   m_TagString: Circle Door Trigger
@@ -7404,7 +7406,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508640965}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.71, y: 6.65, z: 0}
+  m_LocalPosition: {x: 22.68, y: 6.44, z: 0}
   m_LocalScale: {x: 9.95, y: 4.6962504, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7437,6 +7439,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &1508640968
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508640965}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1553979020
 GameObject:
   m_ObjectHideFlags: 0
@@ -8211,7 +8234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1785029592
 Transform:
   m_ObjectHideFlags: 0
@@ -9727,6 +9750,7 @@ MonoBehaviour:
   curSpeed: 5
   maxSpeed: 5
   isMovePosition: 0
+  playerRespawnPos: {x: -6.85, y: -5.71}
   isKnockedOut: 0
   reviveCountValue: 0
   knockTimer: 30

@@ -14,8 +14,6 @@ TagManager:
   - Enemy
   - Hexagon P1
   - Hexagon P2
-  - Obstacle Spike
-  - Obstacle Trap
   - Camera Trigger
   - Moving Circle
   - Circle Target
@@ -23,6 +21,8 @@ TagManager:
   - Circle Door Trigger
   - Door Button P1
   - Door Button P2
+  - Gear
+  - Spike
   layers:
   - Default
   - TransparentFX

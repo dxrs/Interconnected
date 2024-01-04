@@ -11,7 +11,7 @@ public class SpawnExitTrigger : MonoBehaviour
     [SerializeField] bool isTriggered;
 
     private void Update()
-    {
+    {/*
         for (int i = 1; i <= SpawnerValue.spawnerValue.spawnerTriggerMaxValueExit; i++)
         {
             if (isTriggered)
@@ -25,9 +25,11 @@ public class SpawnExitTrigger : MonoBehaviour
             }
 
         }
+        */
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         if (collision.gameObject.CompareTag("Player 1") || collision.gameObject.CompareTag("Player 2"))
         {
             for (int i = 1; i <= SpawnerValue.spawnerValue.spawnerTriggerMaxValueExit; i++)
@@ -40,5 +42,6 @@ public class SpawnExitTrigger : MonoBehaviour
                 }
             }
         }
+        */
     }
 }

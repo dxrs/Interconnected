@@ -19,6 +19,8 @@ public class Player2 : MonoBehaviour
 
     [SerializeField] bool isMovePosition;
 
+    [SerializeField] Vector2 playerRespawnPos;
+
     #region variable knocked out
     [Header("Player 2 Knocked Out")]
     public bool isKnockedOut;
@@ -85,7 +87,7 @@ public class Player2 : MonoBehaviour
     }
     private void Update()
     {
-        if (player2DoorValue == 1 || isKnockedOut)
+        if (isKnockedOut)
         {
             maxSpeed = 0;
         }
@@ -96,14 +98,7 @@ public class Player2 : MonoBehaviour
 
         if (isMovePosition)
         {
-            for (int i = 0; i < SpawnerValue.spawnerValue.spawnerValuerIndex.Length; i++)
-            {
-                if (SpawnerValue.spawnerValue.spawnerValuerIndex[i] == 1)
-                {
-                    transform.position = SpawnerValue.spawnerValue.player2SpawnPos[i];
-                    break;  // Keluar dari loop setelah menemukan indeks yang sesuai
-                }
-            }
+            transform.position = playerRespawnPos;
         }
 
         isMovePosition = globalVariable.isTriggeredWithObstacle;
@@ -379,7 +374,7 @@ public class Player2 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Obstacle Spike" || collision.gameObject.tag == "Obstacle Trap")
+        if (collision.gameObject.tag == "Spike" || collision.gameObject.tag == "Gear")
         {
             curPlayer2Health--;
             globalVariable.isTriggeredWithObstacle = true;

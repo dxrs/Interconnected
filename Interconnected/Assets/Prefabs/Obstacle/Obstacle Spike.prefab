@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5616543311535979693}
   - component: {fileID: 5738183617969686273}
   - component: {fileID: 8069421570548549292}
+  - component: {fileID: 3542241301928958598}
   m_Layer: 0
   m_Name: Obstacle Spike
-  m_TagString: Untagged
+  m_TagString: Spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +96,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -113,3 +114,24 @@ PolygonCollider2D:
     - - {x: -0.00446558, y: 3.225504}
       - {x: -3.6965823, y: -3.203275}
       - {x: 3.7537932, y: -3.2329948}
+--- !u!50 &3542241301928958598
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527953740836492593}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

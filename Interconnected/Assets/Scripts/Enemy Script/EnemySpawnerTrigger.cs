@@ -14,6 +14,7 @@ public class EnemySpawnerTrigger : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (doorType == "Enter")
         {
             for (int i = 1; i <= SpawnerValue.spawnerValue.spawnerTriggerMaxValueEnter; i++)
@@ -81,7 +82,8 @@ public class EnemySpawnerTrigger : MonoBehaviour
             }
         }
         
-       
-       
+       */
+
     }
+
 }

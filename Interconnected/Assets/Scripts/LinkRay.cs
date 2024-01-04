@@ -96,7 +96,6 @@ public class LinkRay : MonoBehaviour
                     MovingCircle.movingCircle.isMoving = false;
                 }
             }
-            else { Debug.Log("test"); }
         }
         if (!isLinkedToPlayer) 
         {

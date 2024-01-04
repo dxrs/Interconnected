@@ -34,6 +34,7 @@ public class Circle : MonoBehaviour
         if (collision.gameObject.tag == "Circle Door Trigger")
         {
             MovingCircle.movingCircle.circleTriggertWithDoor = false;
+            
         }
     }
 }

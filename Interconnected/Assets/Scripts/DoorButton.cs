@@ -11,43 +11,52 @@ public class DoorButton : MonoBehaviour
     [SerializeField] bool isPlayer1SetPosToDoor;
     [SerializeField] bool isPlayer2SetPosToDoor;
 
+
     private void Update()
     {
-        for (int i = 1; i <= GlobalVariable.globalVariable.maxDoor; ++i)
+        if (!GlobalVariable.globalVariable.isTriggeredWithObstacle) 
         {
-            if (id == i)
+            for (int i = 1; i <= GlobalVariable.globalVariable.maxDoor; i++)
             {
-                if (doorPlayer == "Player 1")
+                if (id == i)
                 {
-                    if (isPlayer1SetPosToDoor)
-                    {
-                        GameObject gP1;
-                        gP1 = GameObject.FindGameObjectWithTag("Player 1");
-                        gP1.transform.position = transform.position;
-                        Destroy(gameObject, 3);
-                    }
-                }
 
-                if (doorPlayer == "Player 2")
-                {
-                    if (isPlayer2SetPosToDoor)
+                    if (doorPlayer == "Player 1")
                     {
-                        GameObject gP2;
-                        gP2 = GameObject.FindGameObjectWithTag("Player 2");
-                        gP2.transform.position = transform.position;
-                        Destroy(gameObject, 3);
+                        if (isPlayer1SetPosToDoor)
+                        {
+                            GameObject gP1;
+                            gP1 = GameObject.FindGameObjectWithTag("Player 1");
+                            gP1.transform.position = transform.position;
+                            Destroy(gameObject, 2);
+                        }
                     }
+
+                    if (doorPlayer == "Player 2")
+                    {
+                        if (isPlayer2SetPosToDoor)
+                        {
+                            GameObject gP2;
+                            gP2 = GameObject.FindGameObjectWithTag("Player 2");
+                            gP2.transform.position = transform.position;
+                            Destroy(gameObject, 2);
+                        }
+                    }
+
+                    break;
                 }
-                break;
             }
         }
+        
+
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (doorPlayer == "Player 1") 
+        if (doorPlayer == "Player 1")
         {
-            if(collision.gameObject.tag=="Player 1") 
+            if (collision.gameObject.tag == "Player 1")
             {
                 isPlayer1SetPosToDoor = true;
                 
@@ -58,8 +67,9 @@ public class DoorButton : MonoBehaviour
             if (collision.gameObject.tag == "Player 2")
             {
                 isPlayer2SetPosToDoor = true;
-              
+
             }
         }
+       
     }
 }

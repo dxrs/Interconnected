@@ -20,6 +20,8 @@ public class Player1 : MonoBehaviour
 
     [SerializeField] bool isMovePosition;
 
+    [SerializeField] Vector2 playerRespawnPos;
+
     #region variable knocked out
     [Header("Player 1 Knocked Out")]
     public bool isKnockedOut;
@@ -89,7 +91,7 @@ public class Player1 : MonoBehaviour
 
     private void Update()
     {
-        if (player1DoorValue == 1 || isKnockedOut)
+        if (isKnockedOut)
         {
             maxSpeed = 0;
         }
@@ -100,6 +102,9 @@ public class Player1 : MonoBehaviour
 
         if (isMovePosition) 
         {
+
+            transform.position = playerRespawnPos;
+            /*
             for (int i = 0; i < SpawnerValue.spawnerValue.spawnerValuerIndex.Length; i++)
             {
                 if (SpawnerValue.spawnerValue.spawnerValuerIndex[i] == 1)
@@ -108,6 +113,7 @@ public class Player1 : MonoBehaviour
                     break;  // Keluar dari loop setelah menemukan indeks yang sesuai
                 }
             }
+            */
         }
 
         isMovePosition = globalVariable.isTriggeredWithObstacle;
@@ -388,13 +394,14 @@ public class Player1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag=="Obstacle Spike" || collision.gameObject.tag=="Obstacle Trap") 
+        if(collision.gameObject.tag=="Spike" || collision.gameObject.tag=="Gear") 
         {
             curPlayer1Health--;
+            globalVariable.isTriggeredWithObstacle = true;
+            StartCoroutine(backToFalse());
             if (GlobalVariable.globalVariable.isEnteringTrapArea) 
             {
-                globalVariable.isTriggeredWithObstacle = true;
-                StartCoroutine(backToFalse());
+                
             }
         }
 
