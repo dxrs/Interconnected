@@ -14,12 +14,13 @@ TagManager:
   - Enemy
   - Hexagon P1
   - Hexagon P2
-  - Object Trigger
   - Obstacle Spike
   - Obstacle Trap
   - Camera Trigger
   - Moving Circle
   - Circle Target
+  - Wall
+  - Circle Door Trigger
   layers:
   - Default
   - TransparentFX

@@ -22,7 +22,6 @@ public class BulletP1 : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         targetToPlayer2 = GameObject.FindGameObjectWithTag("Player 2");
         targetToObstacleP1 = GameObject.FindGameObjectsWithTag("Obstacle P1");
-        //StartCoroutine(bulletScaleUp());
     }
 
     private void Update()
@@ -60,16 +59,6 @@ public class BulletP1 : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, nearestObstacle.transform.position, bulletSpeed * Time.deltaTime);
             }
             else { Destroy(gameObject); }
-        }
-    }
-
-    private IEnumerator bulletScaleUp() 
-    {
-       
-        while (true) 
-        {
-            transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0.2f, 0.2f), 1 * Time.deltaTime);
-            yield return new WaitForSeconds(1f);
         }
     }
 

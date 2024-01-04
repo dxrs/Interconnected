@@ -13,14 +13,15 @@ public class LinkRay : MonoBehaviour
     public bool player1LinkedToObstacle, player2LinkedToObstacle;
     public bool isLinkedToPlayer;
 
-    [SerializeField] float linkDistance;
+    [SerializeField] float linkDistanceToPlayer;
+    [SerializeField] float linkDistanceToCircle;
 
     [SerializeField] GameObject[] player; // array for link point player 1 and player 2
 
     [SerializeField] LayerMask layerMask;
 
     [SerializeField] string[] playerObstacleTag;
-
+    [SerializeField] string[] obstacleTag;
  
     private GameObject[] obstacleP1;
     private GameObject[] obstacleP2;
@@ -56,38 +57,42 @@ public class LinkRay : MonoBehaviour
 
             if (hit.collider != null)
             {
-                if (hit.collider.gameObject.tag == "Obstacle" || 
-                    hit.collider.gameObject.tag=="Obstacle P1"||
-                    hit.collider.gameObject.tag=="Obstacle P2"||
+                for(int x = 0; x < obstacleTag.Length; x++) 
+                {
+                    if (hit.collider.gameObject.tag == obstacleTag[x] ||
                     Player1.player1.isGhosting ||
                     Player2.player2.isGhosting ||
                     Vector2.Distance(player[0].transform.position,
-                    player[1].transform.position) >= linkDistance)
+                    player[1].transform.position) >= linkDistanceToPlayer)
+                    {
+                        playerLinkedEachOther = false;
+                        Debug.DrawLine(player[0].transform.position,
+                            player[1].transform.position,
+                            Color.red);
+                        Destroy(GameObject.FindGameObjectWithTag("Bullet P1"));
+                    }
+                    else
+                    {
+                        playerLinkedEachOther = true;
+                        Debug.DrawLine(player[0].transform.position,
+                            player[1].transform.position,
+                            Color.green);
+                    }
+                }
+                
+                
+                if (hit.collider != null && 
+                    hit.collider.tag == "Moving Circle" &&
+                    Vector2.Distance(player[0].transform.position,
+                    player[1].transform.position) <= linkDistanceToCircle &&
+                    !GlobalVariable.globalVariable.circleIsTriggeredWithPlayers[0] &&
+                    !GlobalVariable.globalVariable.circleIsTriggeredWithPlayers[1])
                 {
-                    playerLinkedEachOther = false;
-                    Debug.DrawLine(player[0].transform.position,
-                        player[1].transform.position,
-                        Color.red);
-                    Destroy(GameObject.FindGameObjectWithTag("Bullet P1"));
+                    MovingCircle.movingCircle.isMoving = true;
                 }
                 else
                 {
-                    playerLinkedEachOther = true;
-                    Debug.DrawLine(player[0].transform.position,
-                        player[1].transform.position,
-                        Color.green);
-                }
-
-                if (hit.collider != null && hit.collider.tag == "Moving Circle")
-                {
-                    int circleIndex = MovingCircle.movingCircle.id - 1;
-
-                    GlobalVariable.globalVariable.circleIsMoving[circleIndex] = true;
-                }
-                else
-                {
-                    int circleIndex = MovingCircle.movingCircle.id - 1;
-                    GlobalVariable.globalVariable.circleIsMoving[circleIndex] = false;
+                    MovingCircle.movingCircle.isMoving = false;
                 }
             }
         }
@@ -109,7 +114,7 @@ public class LinkRay : MonoBehaviour
 
             float distance = Vector2.Distance(player[0].transform.position, obstacleP1[i].transform.position);
 
-            if (distance < linkDistance && distance < nearestDistance)
+            if (distance < linkDistanceToPlayer && distance < nearestDistance)
             {
                 RaycastHit2D hitBetweenPlayers = Physics2D.Linecast(player[0].transform.position,
                     player[1].transform.position, layerMask);
@@ -147,7 +152,7 @@ public class LinkRay : MonoBehaviour
         {
             float distance = Vector2.Distance(player[1].transform.position, obstacleP2[i].transform.position);
             //apakah objek saat ini berada dalam rentang dan lebih dekat dari objek terdekat sebelumnya
-            if (distance < linkDistance && distance < nearestDistance)
+            if (distance < linkDistanceToPlayer && distance < nearestDistance)
             {
                 RaycastHit2D hitBetweenPlayers = Physics2D.Linecast(player[0].transform.position,
                     player[1].transform.position, layerMask);

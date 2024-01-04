@@ -13,7 +13,7 @@ public class GlobalVariable : MonoBehaviour
 
     public bool isTriggeredWithObstacle;
 
-    public bool[] circleIsMoving;
+    public bool[] circleIsTriggeredWithPlayers;
 
     GameObject player1, player2;
 

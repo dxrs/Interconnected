@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7756265238510812880}
   - component: {fileID: 8872405157335790478}
   m_Layer: 0
-  m_Name: OBS_Gear
+  m_Name: Obstacle Gear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
