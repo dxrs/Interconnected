@@ -57,30 +57,31 @@ public class LinkRay : MonoBehaviour
 
             if (hit.collider != null)
             {
-                for(int x = 0; x < obstacleTag.Length; x++) 
+                bool isObstacleHit = false;
+                for (int x = 0; x < obstacleTag.Length; x++)
                 {
-                    if (hit.collider.gameObject.tag == obstacleTag[x] ||
-                    Player1.player1.isGhosting ||
-                    Player2.player2.isGhosting ||
-                    Vector2.Distance(player[0].transform.position,
-                    player[1].transform.position) >= linkDistanceToPlayer)
+                    if (hit.collider.gameObject.tag == obstacleTag[x])
                     {
-                        playerLinkedEachOther = false;
-                        Debug.DrawLine(player[0].transform.position,
-                            player[1].transform.position,
-                            Color.red);
-                        Destroy(GameObject.FindGameObjectWithTag("Bullet P1"));
-                    }
-                    else
-                    {
-                        playerLinkedEachOther = true;
-                        Debug.DrawLine(player[0].transform.position,
-                            player[1].transform.position,
-                            Color.green);
+                        isObstacleHit = true;
+                        break;
                     }
                 }
-                
-                
+                if (isObstacleHit ||
+                    Player1.player1.isGhosting ||
+                    Player2.player2.isGhosting ||
+                    Vector2.Distance(player[0].transform.position, player[1].transform.position) >= linkDistanceToPlayer)
+                {
+                    playerLinkedEachOther = false;
+                    Debug.DrawLine(player[0].transform.position, player[1].transform.position, Color.red);
+                    Destroy(GameObject.FindGameObjectWithTag("Bullet P1"));
+                }
+                else
+                {
+                    playerLinkedEachOther = true;
+                    Debug.DrawLine(player[0].transform.position, player[1].transform.position, Color.green);
+                }
+
+
                 if (hit.collider != null && 
                     hit.collider.tag == "Moving Circle" &&
                     Vector2.Distance(player[0].transform.position,
@@ -95,6 +96,7 @@ public class LinkRay : MonoBehaviour
                     MovingCircle.movingCircle.isMoving = false;
                 }
             }
+            else { Debug.Log("test"); }
         }
         if (!isLinkedToPlayer) 
         {

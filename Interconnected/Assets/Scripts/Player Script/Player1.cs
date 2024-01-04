@@ -433,19 +433,16 @@ public class Player1 : MonoBehaviour
             if (curPlayer1Health <= 0) { curPlayer1Health = 0; }
         }
 
-       
-        if(collision.gameObject.tag=="Object Trigger") 
+       if(collision.gameObject.tag=="Door Button P1") 
         {
-            player1DoorValue = 1;
+            //player1DoorValue = 1;
         }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Object Trigger")
-        {
-            player1DoorValue = 0;
-        }
+        
     }
 
     IEnumerator backToFalse() 

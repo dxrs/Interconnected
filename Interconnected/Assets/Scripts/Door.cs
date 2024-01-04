@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int id;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] GameObject[] doorButton;
+    [SerializeField] GameObject circleDoorStop;
+
+    [SerializeField] float doorMoveSpeed;
+
+    [SerializeField] Vector2 doorMoveTarget;
+
+    private void Update()
     {
+        for(int j = 1; j <= GlobalVariable.globalVariable.maxDoor; j++) 
+        {
+            if (id == j) 
+            {
+                if (doorButton[0] == null && doorButton[1] == null)
+                {
+                    transform.position = Vector2.MoveTowards(transform.position,
+                        doorMoveTarget, doorMoveSpeed * Time.deltaTime);
+                    Destroy(circleDoorStop,1);
+                }
+            }
+        }
+        if (id == 1) 
+        {
+           
+        }
+
         
     }
 }

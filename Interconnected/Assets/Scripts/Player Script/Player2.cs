@@ -421,14 +421,14 @@ public class Player2 : MonoBehaviour
         }
         if (collision.gameObject.tag == "Object Trigger")
         {
-            player2DoorValue = 1;
+            //player2DoorValue = 1;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Object Trigger")
         {
-            player2DoorValue = 0;
+            //player2DoorValue = 0;
         }
     }
 

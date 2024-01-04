@@ -15,6 +15,8 @@ public class GlobalVariable : MonoBehaviour
 
     public bool[] circleIsTriggeredWithPlayers;
 
+    public int maxDoor;
+
     GameObject player1, player2;
 
     private void Awake()

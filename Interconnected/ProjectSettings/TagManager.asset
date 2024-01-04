@@ -21,6 +21,8 @@ TagManager:
   - Circle Target
   - Wall
   - Circle Door Trigger
+  - Door Button P1
+  - Door Button P2
   layers:
   - Default
   - TransparentFX
