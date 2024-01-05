@@ -31,17 +31,21 @@ public class Player1 : MonoBehaviour
     #endregion
 
     #region  variable basic ability
-    [Header("Player 1 Basic Ability Dash")]
+    [Header("Player 1 Dash")]
     [SerializeField] float dashSpeed;
     [SerializeField] float dashDuration;
-    [Header("Player 1 Basic Ability Ghost")]
+    [Header("Player 1 Ghost")]
     public bool isGhosting;
     [SerializeField] float ghostDuration;
     [SerializeField] Color curPlayerTransparentColor;
+    [Header("Player 1 Shield")]
+    [SerializeField] GameObject player1Shield;
+    [SerializeField] float shieldDuration;
     float colorGhostA = 0.4f;
     float curColorA = 1f;
     SpriteRenderer spriteRenderer;
     bool isDashing;
+    bool isShielding;
     #endregion
 
     #region variable stamina
@@ -51,6 +55,7 @@ public class Player1 : MonoBehaviour
     [SerializeField] float curStamina;
     [SerializeField] float dashStaminaCost;
     [SerializeField] float ghostStaminaCost;
+    [SerializeField] float shieldStaminaCost;
     [SerializeField] float staminaRegenRate;
     Coroutine staminaRegen;
     #endregion
@@ -100,24 +105,11 @@ public class Player1 : MonoBehaviour
             maxSpeed = curSpeed;
         }
 
-        if (isMovePosition) 
-        {
+        player1Shield.transform.position = transform.position;
 
-            transform.position = playerRespawnPos;
-            /*
-            for (int i = 0; i < SpawnerValue.spawnerValue.spawnerValuerIndex.Length; i++)
-            {
-                if (SpawnerValue.spawnerValue.spawnerValuerIndex[i] == 1)
-                {
-                    transform.position = SpawnerValue.spawnerValue.player1SpawnPos[i];
-                    break;  // Keluar dari loop setelah menemukan indeks yang sesuai
-                }
-            }
-            */
-        }
+        player1SetPos();
 
-        isMovePosition = globalVariable.isTriggeredWithObstacle;
-        Ghosting();
+        Shielding();
         shareLives();
         changeLayer();
         player1KnockedOut();
@@ -146,6 +138,28 @@ public class Player1 : MonoBehaviour
             staminaImg.fillAmount = curStamina / maxStamina;
             yield return new WaitForSeconds(.1f); //rate regenate x/ms
         } while (curStamina < maxStamina);
+    }
+
+    public void player1SetPos() 
+    {
+        if (isMovePosition)
+        {
+
+
+            transform.position = playerRespawnPos;
+            /*
+            for (int i = 0; i < SpawnerValue.spawnerValue.spawnerValuerIndex.Length; i++)
+            {
+                if (SpawnerValue.spawnerValue.spawnerValuerIndex[i] == 1)
+                {
+                    transform.position = SpawnerValue.spawnerValue.player1SpawnPos[i];
+                    break;  // Keluar dari loop setelah menemukan indeks yang sesuai
+                }
+            }
+            */
+        }
+
+        isMovePosition = globalVariable.isTriggeredWithObstacle;
     }
 
     #region player 1 health and destroy
@@ -279,7 +293,7 @@ public class Player1 : MonoBehaviour
             {
                 if (curStamina > dashStaminaCost)
                 {
-                    StartCoroutine(dashing());
+                    StartCoroutine(Dashing());
                     curStamina -= dashStaminaCost; // laporan
                     if (curStamina < 0) { curStamina = 0; }
                     staminaImg.fillAmount = curStamina / maxStamina;
@@ -298,13 +312,13 @@ public class Player1 : MonoBehaviour
     {
         if (!isKnockedOut) 
         {
-            if (context.performed && !isGhosting)
+            if (context.performed && !isShielding)
             {
-                if (curStamina > ghostStaminaCost)
+                if (curStamina > shieldStaminaCost)
                 {
-                    isGhosting = true;
-                    linkRay.player1LinkedToObstacle = false;
-                    curStamina -= ghostStaminaCost; //-> nanti di perbaiki //laporan
+                    isShielding = true;
+                    //linkRay.player1LinkedToObstacle = false;
+                    curStamina -= shieldStaminaCost; //-> nanti di perbaiki //laporan
                     if (curStamina < 0) { curStamina = 0; }
                     staminaImg.fillAmount = curStamina / maxStamina;
 
@@ -319,7 +333,7 @@ public class Player1 : MonoBehaviour
        
     }
 
-    IEnumerator dashing()
+    IEnumerator Dashing()
     {
         isDashing = true;
         rb.velocity = new Vector2(inputDir.x * dashSpeed, inputDir.y * dashSpeed);
@@ -327,6 +341,31 @@ public class Player1 : MonoBehaviour
         isDashing = false;
     }
 
+    private void Shielding() 
+    {
+        if (isShielding) 
+        {
+            cc.enabled = false;
+            player1Shield.SetActive(true);
+            if (shieldDuration > 0) 
+            {
+                shieldDuration -= 1 * Time.deltaTime;
+            }
+        }
+
+        if(isShielding && shieldDuration <= 0) 
+        {
+            isShielding = false;
+            shieldDuration = 10;
+        }
+
+        if (!isShielding) 
+        {
+            shieldDuration = 10;
+            cc.enabled = true;
+            player1Shield.SetActive(false);
+        }
+    }
     private void Ghosting() 
     {
         if (isGhosting)
@@ -394,16 +433,20 @@ public class Player1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag=="Spike" || collision.gameObject.tag=="Gear") 
+        if (collision.gameObject.tag == "Spike" || collision.gameObject.tag == "Gear")
         {
-            curPlayer1Health--;
-            globalVariable.isTriggeredWithObstacle = true;
-            StartCoroutine(backToFalse());
-            if (GlobalVariable.globalVariable.isEnteringTrapArea) 
+     
+            if (cc.enabled) 
             {
-                
+                curPlayer1Health--;
+                globalVariable.isTriggeredWithObstacle = true;
+                StartCoroutine(backToFalse());
             }
+            
+
         }
+        
+        
 
         if(collision.gameObject.tag=="Player 2") 
         {
@@ -419,6 +462,12 @@ public class Player1 : MonoBehaviour
                     Player2.player2.isKnockedOut = false;
                 }
             }
+        }
+
+        if(collision.gameObject.tag=="Player 2 Shield") 
+        {
+            isShielding = false;
+            Player2.player2.isShielding = false;
         }
 
         if (!linkRay.isLinkedToPlayer && !isGhosting) 

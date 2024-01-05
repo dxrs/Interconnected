@@ -10,6 +10,7 @@ public class DoorButton : MonoBehaviour
 
     [SerializeField] bool isPlayer1SetPosToDoor;
     [SerializeField] bool isPlayer2SetPosToDoor;
+    [SerializeField] bool doorButtonIsDestroyed;
 
 
     private void Update()
@@ -23,33 +24,64 @@ public class DoorButton : MonoBehaviour
 
                     if (doorPlayer == "Player 1")
                     {
+                        if (doorButtonIsDestroyed)
+                        {
+                            transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0, 0), 2.5f * Time.deltaTime);
+                            if (transform.localScale.x < 0.01f)
+                            {
+                                Destroy(gameObject);
+                            }
+                        }
                         if (isPlayer1SetPosToDoor)
                         {
                             GameObject gP1;
                             gP1 = GameObject.FindGameObjectWithTag("Player 1");
                             gP1.transform.position = transform.position;
-                            Destroy(gameObject, 2);
+
+
                         }
                     }
 
                     if (doorPlayer == "Player 2")
                     {
+                        if (doorButtonIsDestroyed)
+                        {
+                            transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0, 0), 2.5f * Time.deltaTime);
+                            if (transform.localScale.x < 0.01f)
+                            {
+                                Destroy(gameObject);
+                            }
+                        }
                         if (isPlayer2SetPosToDoor)
                         {
+
                             GameObject gP2;
                             gP2 = GameObject.FindGameObjectWithTag("Player 2");
                             gP2.transform.position = transform.position;
-                            Destroy(gameObject, 2);
+
                         }
+
                     }
 
                     break;
                 }
             }
         }
-        
+        else 
+        {
+            isPlayer1SetPosToDoor = false;
+            isPlayer2SetPosToDoor = false;
+            if (Player1.player1 != null && Player2.player2!=null) 
+            {
+                Player1.player1.player1SetPos();
+                Player2.player2.player2SetPos();
+            }
+
+        }
+
 
         
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -59,7 +91,7 @@ public class DoorButton : MonoBehaviour
             if (collision.gameObject.tag == "Player 1")
             {
                 isPlayer1SetPosToDoor = true;
-                
+                doorButtonIsDestroyed = true;
             }
         }
         if (doorPlayer == "Player 2")
@@ -67,7 +99,7 @@ public class DoorButton : MonoBehaviour
             if (collision.gameObject.tag == "Player 2")
             {
                 isPlayer2SetPosToDoor = true;
-
+                doorButtonIsDestroyed = true;
             }
         }
        

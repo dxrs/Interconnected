@@ -23,6 +23,7 @@ TagManager:
   - Door Button P2
   - Gear
   - Spike
+  - Player 2 Shield
   layers:
   - Default
   - TransparentFX

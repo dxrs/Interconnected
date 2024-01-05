@@ -15,6 +15,8 @@ public class MovingCircle : MonoBehaviour
 
     [SerializeField] GameObject circle;
 
+    [SerializeField] SpriteRenderer circleSR;
+
     int startWaypoint = 0;
 
     private void Awake()
@@ -34,7 +36,12 @@ public class MovingCircle : MonoBehaviour
             circle.transform.position = Vector2.MoveTowards(circle.transform.position,
                 waypoint[startWaypoint].transform.position,
                 movementSpeed * Time.deltaTime);
-           
+
+            circleSR.color = Color.Lerp(circleSR.color, new Color(1, 1, 1), 3 * Time.deltaTime);
+        }
+        else 
+        {
+            circleSR.color = Color.Lerp(circleSR.color, new Color(.5f, .5f, .5f), 1 * Time.deltaTime);
         }
         if (circle.transform.position == waypoint[startWaypoint].transform.position)
         {

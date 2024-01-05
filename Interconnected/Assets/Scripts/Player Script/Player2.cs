@@ -30,17 +30,22 @@ public class Player2 : MonoBehaviour
     #endregion
 
     #region basic ability variable
-    [Header("Player 2 Basic Ability Dash")]
+    [Header("Player 2 Dash")]
     [SerializeField] float dashSpeed;
     [SerializeField] float dashDuration;
-    [Header("Player 2 Basic Ability Ghost")]
+    [Header("Player 2 Ghost")]
     public bool isGhosting;
     [SerializeField] float ghostDuration;
     [SerializeField] Color curPlayerTransparentColor;
+    [Header("Player 2 Shield")]
+    public bool isShielding;
+    [SerializeField] GameObject player2Shield;
+    [SerializeField] float shieldDuration;
     float colorGhostA = 0.4f;
     float curColorA = 1f;
     SpriteRenderer spriteRenderer;
     bool isDashing;
+    
     #endregion
 
     #region variable stamina
@@ -50,6 +55,7 @@ public class Player2 : MonoBehaviour
     [SerializeField] float curStamina;
     [SerializeField] float dashStaminaCost;
     [SerializeField] float ghostStaminaCost;
+    [SerializeField] float shieldStaminaCost;
     [SerializeField] float staminaRegenRate;
     Coroutine staminaRegen;
     #endregion
@@ -96,13 +102,11 @@ public class Player2 : MonoBehaviour
             maxSpeed = curSpeed;
         }
 
-        if (isMovePosition)
-        {
-            transform.position = playerRespawnPos;
-        }
+        player2Shield.transform.position = transform.position;
 
-        isMovePosition = globalVariable.isTriggeredWithObstacle;
-        Ghosting();
+        player2SetPos();
+        Shielding();
+
         changeLayer();
         shareLives();
         player2KnockedOut();
@@ -130,6 +134,17 @@ public class Player2 : MonoBehaviour
             staminaImg.fillAmount = curStamina / maxStamina;
             yield return new WaitForSeconds(.1f); //rate regenate x/ms
         } while (curStamina < maxStamina);
+    }
+
+    public void player2SetPos() 
+    {
+        if (isMovePosition)
+        {
+
+            transform.position = playerRespawnPos;
+        }
+
+        isMovePosition = globalVariable.isTriggeredWithObstacle;
     }
 
     #region player 2 health and destroy
@@ -280,13 +295,13 @@ public class Player2 : MonoBehaviour
     {
         if (!isKnockedOut) 
         {
-            if (context.performed && !isGhosting)
+            if (context.performed && !isShielding)
             {
-                if (curStamina > ghostStaminaCost)
+                if (curStamina > shieldStaminaCost)
                 {
-                    isGhosting = true;
-                    linkRay.player2LinkedToObstacle = false;
-                    curStamina -= ghostStaminaCost; //-> nanti di perbaiki
+                    isShielding = true;
+                    //linkRay.player2LinkedToObstacle = false;
+                    curStamina -= shieldStaminaCost; //-> nanti di perbaiki
                     if (curStamina < 0) { curStamina = 0; }
                     staminaImg.fillAmount = curStamina / maxStamina;
 
@@ -307,7 +322,31 @@ public class Player2 : MonoBehaviour
         yield return new WaitForSeconds(dashDuration);
         isDashing = false;
     }
+    private void Shielding()
+    {
+        if (isShielding)
+        {
+            cc.enabled = false;
+            player2Shield.SetActive(true);
+            if (shieldDuration > 0)
+            {
+                shieldDuration -= 1 * Time.deltaTime;
+            }
+        }
 
+        if (isShielding && shieldDuration <= 0)
+        {
+            isShielding = false;
+            shieldDuration = 10;
+        }
+
+        if (!isShielding)
+        {
+            shieldDuration = 10;
+            cc.enabled = true;
+            player2Shield.SetActive(false);
+        }
+    }
     private void Ghosting()
     {
         if (isGhosting)
@@ -376,10 +415,15 @@ public class Player2 : MonoBehaviour
     {
         if (collision.gameObject.tag == "Spike" || collision.gameObject.tag == "Gear")
         {
-            curPlayer2Health--;
-            globalVariable.isTriggeredWithObstacle = true;
-            StartCoroutine(backToFalse());
+            if (cc.enabled) 
+            {
+                curPlayer2Health--;
+                globalVariable.isTriggeredWithObstacle = true;
+                StartCoroutine(backToFalse());
+            }
+           
         }
+ 
 
         if (collision.gameObject.tag == "Player 1")
         {
