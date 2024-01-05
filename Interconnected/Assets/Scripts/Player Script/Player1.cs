@@ -39,13 +39,13 @@ public class Player1 : MonoBehaviour
     [SerializeField] float ghostDuration;
     [SerializeField] Color curPlayerTransparentColor;
     [Header("Player 1 Shield")]
+    public bool isShielding;
     [SerializeField] GameObject player1Shield;
     [SerializeField] float shieldDuration;
     float colorGhostA = 0.4f;
     float curColorA = 1f;
     SpriteRenderer spriteRenderer;
     bool isDashing;
-    bool isShielding;
     #endregion
 
     #region variable stamina
@@ -345,7 +345,7 @@ public class Player1 : MonoBehaviour
     {
         if (isShielding) 
         {
-            cc.enabled = false;
+            //cc.enabled = false;
             player1Shield.SetActive(true);
             if (shieldDuration > 0) 
             {
@@ -362,7 +362,7 @@ public class Player1 : MonoBehaviour
         if (!isShielding) 
         {
             shieldDuration = 10;
-            cc.enabled = true;
+            //cc.enabled = true;
             player1Shield.SetActive(false);
         }
     }
@@ -431,19 +431,32 @@ public class Player1 : MonoBehaviour
     }
     #endregion
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Spike" || collision.gameObject.tag == "Gear")
         {
-     
-            if (cc.enabled) 
+            if (!isShielding)
             {
                 curPlayer1Health--;
                 globalVariable.isTriggeredWithObstacle = true;
                 StartCoroutine(backToFalse());
             }
-            
 
+           
+
+
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Spike" || collision.gameObject.tag == "Gear")
+        {
+            if (!isShielding) 
+            {
+                curPlayer1Health--;
+                globalVariable.isTriggeredWithObstacle = true;
+                StartCoroutine(backToFalse());
+            }
         }
         
         

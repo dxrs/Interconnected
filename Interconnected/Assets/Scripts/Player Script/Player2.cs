@@ -326,7 +326,7 @@ public class Player2 : MonoBehaviour
     {
         if (isShielding)
         {
-            cc.enabled = false;
+            //cc.enabled = false;
             player2Shield.SetActive(true);
             if (shieldDuration > 0)
             {
@@ -343,7 +343,7 @@ public class Player2 : MonoBehaviour
         if (!isShielding)
         {
             shieldDuration = 10;
-            cc.enabled = true;
+            //cc.enabled = true;
             player2Shield.SetActive(false);
         }
     }
@@ -411,11 +411,26 @@ public class Player2 : MonoBehaviour
     }
     #endregion
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Spike" || collision.gameObject.tag == "Gear")
+        {
+
+            if (!isShielding)
+            {
+                curPlayer2Health--;
+                globalVariable.isTriggeredWithObstacle = true;
+                StartCoroutine(backToFalse());
+            }
+
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Spike" || collision.gameObject.tag == "Gear")
         {
-            if (cc.enabled) 
+         
+            if (!isShielding) 
             {
                 curPlayer2Health--;
                 globalVariable.isTriggeredWithObstacle = true;

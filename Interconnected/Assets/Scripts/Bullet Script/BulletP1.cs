@@ -72,7 +72,7 @@ public class BulletP1 : MonoBehaviour
         }
         if (LinkRay.linkRay.isLinkedToPlayer) 
         {
-            if(collision.gameObject.tag=="Player 2") 
+            if(collision.gameObject.tag=="Player 2" || collision.gameObject.tag=="Player 2 Shield") 
             {
                 Destroy(gameObject);
             }

@@ -7,11 +7,11 @@ public class Circle : MonoBehaviour
     [SerializeField] GlobalVariable globalVariable;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player 1")
+        if (collision.gameObject.tag == "Player 1" || collision.gameObject.tag=="Player 1 Shield")
         {
             globalVariable.circleIsTriggeredWithPlayers[0] = true;
         }
-        if (collision.gameObject.tag == "Player 2")
+        if (collision.gameObject.tag == "Player 2" || collision.gameObject.tag=="Player 2 Shield")
         {
             globalVariable.circleIsTriggeredWithPlayers[1] = true;
         }
@@ -22,12 +22,12 @@ public class Circle : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player 1")
+        if (collision.gameObject.tag == "Player 1" || collision.gameObject.tag=="Player 1 Shield")
         {
             globalVariable.circleIsTriggeredWithPlayers[0] = false;
         }
 
-        if (collision.gameObject.tag == "Player 2")
+        if (collision.gameObject.tag == "Player 2" || collision.gameObject.tag=="Player 2 Shield")
         {
             globalVariable.circleIsTriggeredWithPlayers[1] = false;
         }

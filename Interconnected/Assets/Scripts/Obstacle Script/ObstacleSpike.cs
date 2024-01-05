@@ -4,25 +4,15 @@ using UnityEngine;
 
 public class ObstacleSpike : MonoBehaviour
 {
-    [SerializeField] string spikeType;
+    PolygonCollider2D pc;
 
-    [SerializeField] bool isAnimatedSpike;
-    [SerializeField] bool isRotatingSpike;
-
-    [SerializeField] float rotationSpeed;
+    private void Start()
+    {
+        pc = gameObject.GetComponent<PolygonCollider2D>();
+    }
 
     private void Update()
     {
-        if (spikeType == "Gear") 
-        {
-            if (isAnimatedSpike) 
-            {
-                if (isRotatingSpike) 
-                {
-                    // rotate obstacle left or right
-                    transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
-                }
-            }
-        }
+        
     }
 }

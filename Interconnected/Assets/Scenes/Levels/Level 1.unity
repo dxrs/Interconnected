@@ -3678,7 +3678,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814672459}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -4994,7 +4994,7 @@ Transform:
   m_GameObject: {fileID: 933768263}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.04, y: 0.13, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 814672465}
@@ -5277,10 +5277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809387f60d459124bab3adead54e640d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spikeType: Gear
-  isAnimatedSpike: 1
-  isRotatingSpike: 1
-  rotationSpeed: 100
 --- !u!1 &1052668762
 GameObject:
   m_ObjectHideFlags: 0
@@ -7056,10 +7052,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809387f60d459124bab3adead54e640d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spikeType: Gear
-  isAnimatedSpike: 1
-  isRotatingSpike: 1
-  rotationSpeed: -100
 --- !u!1 &1419934915
 GameObject:
   m_ObjectHideFlags: 0
@@ -8638,7 +8630,7 @@ Transform:
   m_GameObject: {fileID: 1731398176}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.066666596, y: -0.066666596, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2097847137}
@@ -10702,6 +10694,7 @@ MonoBehaviour:
   isGhosting: 0
   ghostDuration: 10
   curPlayerTransparentColor: {r: 1, g: 1, b: 1, a: 1}
+  isShielding: 0
   player1Shield: {fileID: 1731398176}
   shieldDuration: 10
   staminaImg: {fileID: 502329541}
