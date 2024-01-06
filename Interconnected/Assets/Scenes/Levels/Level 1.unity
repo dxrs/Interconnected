@@ -546,6 +546,11 @@ MonoBehaviour:
   isTriggeredWithObstacle: 0
   circleIsTriggeredWithPlayers: 0000
   maxDoor: 10
+  isNotShoot: 0
+  p1Sr: {fileID: 2097847142}
+  p2Sr: {fileID: 814672464}
+  p1cc: {fileID: 2097847138}
+  p2cc: {fileID: 814672460}
 --- !u!4 &106151308
 Transform:
   m_ObjectHideFlags: 0
@@ -3924,8 +3929,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 814672463}
-        m_TargetAssemblyTypeName: Player2Input, Assembly-CSharp
-        m_MethodName: player1Ghosting
+        m_TargetAssemblyTypeName: Player2, Assembly-CSharp
+        m_MethodName: player1Shielding
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10645,8 +10650,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2097847141}
-        m_TargetAssemblyTypeName: Player1Input, Assembly-CSharp
-        m_MethodName: player1Ghosting
+        m_TargetAssemblyTypeName: Player1, Assembly-CSharp
+        m_MethodName: player1Shielding
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

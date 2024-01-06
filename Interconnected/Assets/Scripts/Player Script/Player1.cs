@@ -96,7 +96,7 @@ public class Player1 : MonoBehaviour
 
     private void Update()
     {
-        if (isKnockedOut)
+        if (isKnockedOut || globalVariable.isTriggeredWithObstacle)
         {
             maxSpeed = 0;
         }
@@ -112,7 +112,7 @@ public class Player1 : MonoBehaviour
         Shielding();
         shareLives();
         changeLayer();
-        player1KnockedOut();
+        //player1KnockedOut();
         player1Destroy();
     }
 
@@ -145,21 +145,16 @@ public class Player1 : MonoBehaviour
         if (isMovePosition)
         {
 
-
-            transform.position = playerRespawnPos;
-            /*
-            for (int i = 0; i < SpawnerValue.spawnerValue.spawnerValuerIndex.Length; i++)
-            {
-                if (SpawnerValue.spawnerValue.spawnerValuerIndex[i] == 1)
-                {
-                    transform.position = SpawnerValue.spawnerValue.player1SpawnPos[i];
-                    break;  // Keluar dari loop setelah menemukan indeks yang sesuai
-                }
-            }
-            */
+            StartCoroutine(waitToSetPos());
+           
         }
 
         isMovePosition = globalVariable.isTriggeredWithObstacle;
+    }
+    IEnumerator waitToSetPos() 
+    {
+        yield return new WaitForSeconds(1);
+        transform.position = playerRespawnPos;
     }
 
     #region player 1 health and destroy
@@ -200,7 +195,7 @@ public class Player1 : MonoBehaviour
 
     public void p1ShareLives(InputAction.CallbackContext context)
     {
-        if (!isKnockedOut)
+        if (!globalVariable.isTriggeredWithObstacle)
         {
             if (context.started && !Player2.player2.isSharingLivesToP1 && linkRay.playerLinkedEachOther)
             {
@@ -287,7 +282,7 @@ public class Player1 : MonoBehaviour
 
     public void player1Dashing(InputAction.CallbackContext context) 
     {
-        if (!isKnockedOut) 
+        if (!globalVariable.isTriggeredWithObstacle) 
         {
             if (context.performed && !isBreaking)
             {
@@ -308,9 +303,9 @@ public class Player1 : MonoBehaviour
         
     }
 
-    public void player1Ghosting(InputAction.CallbackContext context) 
+    public void player1Shielding(InputAction.CallbackContext context) 
     {
-        if (!isKnockedOut) 
+        if (!globalVariable.isTriggeredWithObstacle) 
         {
             if (context.performed && !isShielding)
             {

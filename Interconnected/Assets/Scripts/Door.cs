@@ -24,7 +24,7 @@ public class Door : MonoBehaviour
                     transform.position = Vector2.MoveTowards(transform.position,
                         doorMoveTarget, doorMoveSpeed * Time.deltaTime);
                     circleDoorStop.SetActive(false);
-                    Destroy(circleDoorStop, 60);
+                    //Destroy(circleDoorStop, 60);
                 }
             }
         }

@@ -30,7 +30,7 @@ public class Player2ShootPoint : MonoBehaviour
                 {
                     for(int x = 0; x < targetToObstacleP2.Length; x++) 
                     {
-                        if (linkRay.player2LinkedToObstacle)
+                        if (linkRay.player2LinkedToObstacle && !GlobalVariable.globalVariable.isTriggeredWithObstacle)
                         {
                             Instantiate(player2Bullet, shootPoint.transform.position, Quaternion.identity);
                         }

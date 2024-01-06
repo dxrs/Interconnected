@@ -82,19 +82,21 @@ public class LinkRay : MonoBehaviour
                 }
 
 
-                if (hit.collider != null && 
-                    hit.collider.tag == "Moving Circle" &&
-                    Vector2.Distance(player[0].transform.position,
-                    player[1].transform.position) <= linkDistanceToCircle &&
-                    !GlobalVariable.globalVariable.circleIsTriggeredWithPlayers[0] &&
-                    !GlobalVariable.globalVariable.circleIsTriggeredWithPlayers[1])
-                {
-                    MovingCircle.movingCircle.isMoving = true;
-                }
-                else
-                {
-                    MovingCircle.movingCircle.isMoving = false;
-                }
+               
+            }
+            if (hit.collider != null &&
+                   hit.collider.tag == "Moving Circle" &&
+                   Vector2.Distance(player[0].transform.position,
+                   player[1].transform.position) <= linkDistanceToCircle &&
+                   !GlobalVariable.globalVariable.circleIsTriggeredWithPlayers[0] &&
+                   !GlobalVariable.globalVariable.circleIsTriggeredWithPlayers[1] &&
+                   !GlobalVariable.globalVariable.isTriggeredWithObstacle)
+            {
+                MovingCircle.movingCircle.isMoving = true;
+            }
+            else
+            {
+                MovingCircle.movingCircle.isMoving = false;
             }
         }
         if (!isLinkedToPlayer) 

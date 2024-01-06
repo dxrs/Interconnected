@@ -93,7 +93,7 @@ public class Player2 : MonoBehaviour
     }
     private void Update()
     {
-        if (isKnockedOut)
+        if (isKnockedOut || globalVariable.isTriggeredWithObstacle)
         {
             maxSpeed = 0;
         }
@@ -109,7 +109,7 @@ public class Player2 : MonoBehaviour
 
         changeLayer();
         shareLives();
-        player2KnockedOut();
+        //player2KnockedOut();
         player2Destroy();
     }
     private void FixedUpdate()
@@ -141,12 +141,16 @@ public class Player2 : MonoBehaviour
         if (isMovePosition)
         {
 
-            transform.position = playerRespawnPos;
+            StartCoroutine(waitToSetPos());
         }
 
         isMovePosition = globalVariable.isTriggeredWithObstacle;
     }
-
+    IEnumerator waitToSetPos()
+    {
+        yield return new WaitForSeconds(1);
+        transform.position = playerRespawnPos;
+    }
     #region player 2 health and destroy
     private void player2KnockedOut()
     {
@@ -184,7 +188,7 @@ public class Player2 : MonoBehaviour
     #region player 2 share lives
     public void p2ShareLives(InputAction.CallbackContext context)
     {
-        if (!isKnockedOut) 
+        if (!globalVariable.isTriggeredWithObstacle) 
         {
             if (context.started && !Player1.player1.isSharingLivesToP2 && linkRay.playerLinkedEachOther)
             {
@@ -271,7 +275,7 @@ public class Player2 : MonoBehaviour
 
     public void player1Dashing(InputAction.CallbackContext context)
     {
-        if (!isKnockedOut) 
+        if (!globalVariable.isTriggeredWithObstacle) 
         {
             if (context.performed && !isBreaking)
             {
@@ -291,9 +295,9 @@ public class Player2 : MonoBehaviour
         
     }
 
-    public void player1Ghosting(InputAction.CallbackContext context)
+    public void player1Shielding(InputAction.CallbackContext context)
     {
-        if (!isKnockedOut) 
+        if (!globalVariable.isTriggeredWithObstacle) 
         {
             if (context.performed && !isShielding)
             {
