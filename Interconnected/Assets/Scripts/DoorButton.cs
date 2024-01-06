@@ -12,6 +12,8 @@ public class DoorButton : MonoBehaviour
     [SerializeField] bool isPlayer2SetPosToDoor;
     [SerializeField] bool doorButtonIsDestroyed;
 
+    [SerializeField] Rigidbody2D rp1;
+    [SerializeField] Rigidbody2D rp2;
 
     private void Update()
     {
@@ -92,6 +94,7 @@ public class DoorButton : MonoBehaviour
             {
                 isPlayer1SetPosToDoor = true;
                 doorButtonIsDestroyed = true;
+                rp1.drag = 0;
             }
         }
         if (doorPlayer == "Player 2")
@@ -100,6 +103,7 @@ public class DoorButton : MonoBehaviour
             {
                 isPlayer2SetPosToDoor = true;
                 doorButtonIsDestroyed = true;
+                rp2.drag = 0;
             }
         }
        
