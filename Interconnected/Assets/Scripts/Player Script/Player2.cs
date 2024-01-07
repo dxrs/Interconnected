@@ -10,6 +10,8 @@ public class Player2 : MonoBehaviour
     public static Player2 player2;
 
     public int player2DoorValue;
+    public ParticleSystem deathParticle;
+
 
     [SerializeField] LinkRay linkRay;
     [SerializeField] GlobalVariable globalVariable;
@@ -422,6 +424,7 @@ public class Player2 : MonoBehaviour
 
             if (!isShielding)
             {
+                Instantiate(deathParticle,this.transform.position,Quaternion.identity);
                 curPlayer2Health--;
                 globalVariable.isTriggeredWithObstacle = true;
                 StartCoroutine(backToFalse());
@@ -436,6 +439,7 @@ public class Player2 : MonoBehaviour
          
             if (!isShielding) 
             {
+                Instantiate(deathParticle,this.transform.position,Quaternion.identity);
                 curPlayer2Health--;
                 globalVariable.isTriggeredWithObstacle = true;
                 StartCoroutine(backToFalse());
