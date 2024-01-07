@@ -16,9 +16,9 @@ public class ObstacleWall : MonoBehaviour
     float ySinePos;
 
     [Header("Move Towards Wall")]
-    [SerializeField] Transform[] wallWaypoint;
-    [SerializeField] int startWaypoint;
+    [SerializeField] Transform pathWall;
     [SerializeField] float moveSpeed;
+    [SerializeField] float delayTime;
 
     Vector2 pos;
 
@@ -33,7 +33,12 @@ public class ObstacleWall : MonoBehaviour
 
         if(wallType=="Move Towards") 
         {
-            transform.position = wallWaypoint[startWaypoint].transform.position;
+            Vector2[] waypoint = new Vector2[pathWall.childCount];
+            for(int i = 0; i < waypoint.Length; i++) 
+            {
+                waypoint[i] = pathWall.GetChild(i).position;
+            }
+            StartCoroutine(wallFollowWaypoint(waypoint));
         }
     }
     private void Update()
@@ -49,23 +54,42 @@ public class ObstacleWall : MonoBehaviour
             {
                 transform.position = new Vector2(transform.position.x, pos.y + (Mathf.Sin(sineSpeed * Time.time) * sinePower));
             }
-        
         }
+    }
+
+    IEnumerator wallFollowWaypoint(Vector2[] waypoint) 
+    {
+        transform.position = waypoint[0];
+        int targetWaypointIndex = 0;
+        Vector3 targetWaypoint = waypoint[targetWaypointIndex];
+
+        while (true) 
+        {
+            transform.position = Vector2.MoveTowards(transform.position, targetWaypoint, moveSpeed * Time.deltaTime);
+            if (transform.position == targetWaypoint) 
+            {
+                targetWaypointIndex = (targetWaypointIndex + 1) % waypoint.Length;
+                targetWaypoint = waypoint[targetWaypointIndex];
+                yield return new WaitForSeconds(delayTime);
+            }
+            yield return null;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
         if(wallType=="Move Towards") 
         {
-            transform.position = Vector2.MoveTowards(transform.position,
-                wallWaypoint[startWaypoint].transform.position,
-                moveSpeed * Time.deltaTime);
-
-            if (transform.position == wallWaypoint[startWaypoint].transform.position) 
+            Vector2 startPos = pathWall.GetChild(0).position;
+            Vector2 prevPos = startPos;
+            foreach (Transform waypoint in pathWall)
             {
-                startWaypoint += 1;
+                Gizmos.DrawSphere(waypoint.position, .5f);
+                Gizmos.DrawLine(prevPos, waypoint.position);
+                prevPos = waypoint.position;
             }
-
-            if (startWaypoint == wallWaypoint.Length) 
-            {
-                startWaypoint = 0;
-            }
+            Gizmos.DrawLine(prevPos, startPos);
         }
+        
     }
 }

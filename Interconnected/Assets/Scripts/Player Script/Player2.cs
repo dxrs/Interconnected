@@ -93,7 +93,7 @@ public class Player2 : MonoBehaviour
     }
     private void Update()
     {
-        if (isKnockedOut || globalVariable.isTriggeredWithObstacle)
+        if (isKnockedOut || globalVariable.isTriggeredWithObstacle || globalVariable.isGameFinish)
         {
             maxSpeed = 0;
         }
