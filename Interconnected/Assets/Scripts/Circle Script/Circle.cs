@@ -19,6 +19,10 @@ public class Circle : MonoBehaviour
         {
             MovingCircle.movingCircle.circleTriggertWithDoor = true; 
         }
+        if(collision.gameObject.tag=="Circle Target") 
+        {
+            GlobalVariable.globalVariable.isGameFinish = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

@@ -9,11 +9,15 @@ public class MovingCircle : MonoBehaviour
     public bool isMoving;
     public bool circleTriggertWithDoor;
 
+    [SerializeField] GlobalVariable globalVariable;
+
     [SerializeField] float movementSpeed;
 
     [SerializeField] Transform[] waypoint;
+    [SerializeField] Transform circlePath;
 
     [SerializeField] GameObject circle;
+    [SerializeField] GameObject circleTarget;
 
     [SerializeField] SpriteRenderer circleSR;
 
@@ -48,12 +52,27 @@ public class MovingCircle : MonoBehaviour
             startWaypoint += 1;
         }
 
-        if (startWaypoint == waypoint.Length) 
+        if (startWaypoint == waypoint.Length && !globalVariable.isGameFinish) 
         {
             // starWaypoint = index terakhir dari waypoint.length
             startWaypoint = waypoint.Length - 1;
         }
+        if (globalVariable.isGameFinish) 
+        {
+            circle.transform.position = circleTarget.transform.position;
+        }
     }
 
-    
+    private void OnDrawGizmos()
+    {
+        Vector2 startPos = circlePath.GetChild(0).position;
+        Vector2 prevPos = startPos;
+        foreach(Transform waypoint in circlePath) 
+        {
+            Gizmos.DrawSphere(waypoint.position, .3f);
+            Gizmos.DrawLine(prevPos, waypoint.position);
+            Gizmos.color = Color.blue;
+            prevPos = waypoint.position;
+        }
+    }
 }

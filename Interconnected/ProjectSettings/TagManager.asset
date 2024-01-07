@@ -24,6 +24,7 @@ TagManager:
   - Gear
   - Spike
   - Player 2 Shield
+  - Player 1 Shield
   layers:
   - Default
   - TransparentFX

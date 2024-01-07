@@ -11,6 +11,8 @@ public class GlobalVariable : MonoBehaviour
 
     public bool isGameOver;
 
+    public bool isGameFinish;
+
     public bool isTriggeredWithObstacle;
 
     public bool[] circleIsTriggeredWithPlayers;

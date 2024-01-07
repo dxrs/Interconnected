@@ -5,8 +5,6 @@ using UnityEngine;
 public class DoorButton : MonoBehaviour
 {
     public int id;
-    public int ValueButton;
-    public int coba;
 
     [SerializeField] string doorPlayer;
 
@@ -14,15 +12,11 @@ public class DoorButton : MonoBehaviour
     [SerializeField] bool isPlayer2SetPosToDoor;
     [SerializeField] bool doorButtonIsDestroyed;
 
+    [SerializeField] Rigidbody2D rp1;
+    [SerializeField] Rigidbody2D rp2;
 
     private void Update()
     {
-        coba = ValueButton/2;
-        if(id==coba)
-        {
-            print("asd");
-            Destroy(this.gameObject);
-        }
         if (!GlobalVariable.globalVariable.isTriggeredWithObstacle) 
         {
             for (int i = 1; i <= GlobalVariable.globalVariable.maxDoor; i++)
@@ -94,18 +88,13 @@ public class DoorButton : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player 1"||collision.gameObject.tag == "Player 2")
-        {
-                ValueButton ++;
-
-        }
         if (doorPlayer == "Player 1")
         {
             if (collision.gameObject.tag == "Player 1")
             {
                 isPlayer1SetPosToDoor = true;
-                // ValueButton ++;
-                // doorButtonIsDestroyed = true;
+                doorButtonIsDestroyed = true;
+                rp1.drag = 0;
             }
         }
         if (doorPlayer == "Player 2")
@@ -113,8 +102,8 @@ public class DoorButton : MonoBehaviour
             if (collision.gameObject.tag == "Player 2")
             {
                 isPlayer2SetPosToDoor = true;
-                // ValueButton ++;
-                // doorButtonIsDestroyed = true;
+                doorButtonIsDestroyed = true;
+                rp2.drag = 0;
             }
         }
        
