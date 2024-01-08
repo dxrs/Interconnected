@@ -190,7 +190,10 @@ public class Player2 : MonoBehaviour
     #region player 2 share lives
     public void p2ShareLives(InputAction.CallbackContext context)
     {
-        if (!globalVariable.isTriggeredWithObstacle) 
+        if (!globalVariable.isTriggeredWithObstacle
+            && !globalVariable.isGameFinish
+            && !globalVariable.isGameOver
+            && !Pause.pause.isGamePaused) 
         {
             if (context.started && !Player1.player1.isSharingLivesToP2 && linkRay.playerLinkedEachOther)
             {
@@ -277,7 +280,10 @@ public class Player2 : MonoBehaviour
 
     public void player1Dashing(InputAction.CallbackContext context)
     {
-        if (!globalVariable.isTriggeredWithObstacle) 
+        if (!globalVariable.isTriggeredWithObstacle
+            && !globalVariable.isGameFinish
+            && !globalVariable.isGameOver
+            && !Pause.pause.isGamePaused) 
         {
             if (context.performed && !isBreaking)
             {
@@ -299,7 +305,10 @@ public class Player2 : MonoBehaviour
 
     public void player1Shielding(InputAction.CallbackContext context)
     {
-        if (!globalVariable.isTriggeredWithObstacle) 
+        if (!globalVariable.isTriggeredWithObstacle
+            && !globalVariable.isGameFinish
+            && !globalVariable.isGameOver
+            && !Pause.pause.isGamePaused) 
         {
             if (context.performed && !isShielding)
             {
@@ -398,7 +407,11 @@ public class Player2 : MonoBehaviour
 
     public void changeLinkMethod(InputAction.CallbackContext context)
     {
-        if (!isKnockedOut) 
+        if (!isKnockedOut
+            && !globalVariable.isTriggeredWithObstacle
+            && !globalVariable.isGameFinish
+            && !globalVariable.isGameOver
+            && !Pause.pause.isGamePaused) 
         {
             if (context.performed && !isGhosting)
             {

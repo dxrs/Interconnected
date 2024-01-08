@@ -196,7 +196,10 @@ public class Player1 : MonoBehaviour
 
     public void p1ShareLives(InputAction.CallbackContext context)
     {
-        if (!globalVariable.isTriggeredWithObstacle)
+        if (!globalVariable.isTriggeredWithObstacle
+            && !globalVariable.isGameFinish
+            && !globalVariable.isGameOver
+            && !Pause.pause.isGamePaused)
         {
             if (context.started && !Player2.player2.isSharingLivesToP1 && linkRay.playerLinkedEachOther)
             {
@@ -248,7 +251,11 @@ public class Player1 : MonoBehaviour
     #region player 1 movement 
     public void p1Move(InputAction.CallbackContext context) 
     {
-        if (!isKnockedOut) 
+        if (!isKnockedOut
+            && !globalVariable.isTriggeredWithObstacle
+            && !globalVariable.isGameFinish
+            && !globalVariable.isGameOver
+            && !Pause.pause.isGamePaused) 
         {
             if (context.performed)
             {
@@ -283,7 +290,10 @@ public class Player1 : MonoBehaviour
 
     public void player1Dashing(InputAction.CallbackContext context) 
     {
-        if (!globalVariable.isTriggeredWithObstacle) 
+        if (!globalVariable.isTriggeredWithObstacle
+            && !globalVariable.isGameFinish
+            && !globalVariable.isGameOver
+            && !Pause.pause.isGamePaused)
         {
             if (context.performed && !isBreaking)
             {
@@ -306,7 +316,10 @@ public class Player1 : MonoBehaviour
 
     public void player1Shielding(InputAction.CallbackContext context) 
     {
-        if (!globalVariable.isTriggeredWithObstacle) 
+        if (!globalVariable.isTriggeredWithObstacle
+            && !globalVariable.isGameFinish
+            && !globalVariable.isGameOver
+            && !Pause.pause.isGamePaused) 
         {
             if (context.performed && !isShielding)
             {
@@ -407,7 +420,11 @@ public class Player1 : MonoBehaviour
     }
     public void changeLinkMethod(InputAction.CallbackContext context)
     {
-        if (!isKnockedOut) 
+        if (!isKnockedOut
+            && !globalVariable.isTriggeredWithObstacle
+            && !globalVariable.isGameFinish
+            && !globalVariable.isGameOver
+            && !Pause.pause.isGamePaused) 
         {
             if (context.performed && !isGhosting)
             {
