@@ -34,7 +34,11 @@ public class BulletP2 : MonoBehaviour
                 }
             }
 
-            if (nearestObstacle != null && nearestDistance < maxDistance)
+            if (nearestObstacle != null && nearestDistance < maxDistance
+                && !GlobalVariable.globalVariable.isTriggeredWithObstacle
+                        && !GlobalVariable.globalVariable.isNotShoot
+                        && !SceneSystem.sceneSystem.isExitScene
+                        && !SceneSystem.sceneSystem.isRestartScene)
             {
                 transform.position = Vector2.MoveTowards(transform.position, nearestObstacle.transform.position, bulletSpeed * Time.deltaTime);
             }

@@ -9,6 +9,7 @@ using Unity.VisualScripting;
 public class Timer : MonoBehaviour
 {
     [SerializeField] GlobalVariable globalVariable;
+    [SerializeField] SceneSystem sceneSystem;
 
     [SerializeField] TextMeshProUGUI textCurrentTimer;
 
@@ -39,7 +40,8 @@ public class Timer : MonoBehaviour
         {
             if (!isTimerStop) 
             {
-                if (!globalVariable.isGameFinish || !globalVariable.isGameOver)
+                if (!globalVariable.isGameFinish || !globalVariable.isGameOver
+                    || !sceneSystem.isRestartScene || !sceneSystem.isExitScene)
                 {
                     curTimerValue += Time.deltaTime;
                     timerCount = TimeSpan.FromSeconds(curTimerValue);

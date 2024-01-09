@@ -29,7 +29,9 @@ public class Player1ShootPoint : MonoBehaviour
                 {
                     if (linkRay.playerLinkedEachOther 
                         && !GlobalVariable.globalVariable.isTriggeredWithObstacle
-                        && !GlobalVariable.globalVariable.isNotShoot)
+                        && !GlobalVariable.globalVariable.isNotShoot
+                        && !SceneSystem.sceneSystem.isExitScene
+                        && !SceneSystem.sceneSystem.isRestartScene)
                     {
                         Instantiate(player1Bullet, shootPoint.transform.position, Quaternion.identity);
                     }
@@ -38,7 +40,10 @@ public class Player1ShootPoint : MonoBehaviour
                 {
                     for (int j = 0; j < targetToObstacleP1.Length; j++)
                     {
-                        if (linkRay.player1LinkedToObstacle && !GlobalVariable.globalVariable.isTriggeredWithObstacle)
+                        if (linkRay.player1LinkedToObstacle && !GlobalVariable.globalVariable.isTriggeredWithObstacle
+                        && !GlobalVariable.globalVariable.isNotShoot
+                        && !SceneSystem.sceneSystem.isExitScene
+                        && !SceneSystem.sceneSystem.isRestartScene)
                         {
                             Instantiate(player1Bullet, shootPoint.transform.position, Quaternion.identity);
                         }

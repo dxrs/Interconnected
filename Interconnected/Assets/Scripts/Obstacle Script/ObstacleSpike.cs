@@ -13,6 +13,9 @@ public class ObstacleSpike : MonoBehaviour
 
     private void Update()
     {
-        
+        if (SceneSystem.sceneSystem.isExitScene || SceneSystem.sceneSystem.isRestartScene)
+        {
+            pc.enabled = false;
+        }
     }
 }

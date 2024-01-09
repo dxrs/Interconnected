@@ -28,7 +28,10 @@ public class BulletP1 : MonoBehaviour
     {
         if (LinkRay.linkRay.isLinkedToPlayer) 
         {
-            if (targetToPlayer2 != null && !GlobalVariable.globalVariable.isTriggeredWithObstacle) 
+            if (targetToPlayer2 != null && !GlobalVariable.globalVariable.isTriggeredWithObstacle
+                        && !GlobalVariable.globalVariable.isNotShoot
+                        && !SceneSystem.sceneSystem.isExitScene
+                        && !SceneSystem.sceneSystem.isRestartScene) 
             {
                 transform.position = Vector2.MoveTowards(transform.position, targetToPlayer2.transform.position, bulletSpeed * Time.deltaTime);
             }

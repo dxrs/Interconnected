@@ -10,6 +10,9 @@ public class Pause : MonoBehaviour
 
     public bool isGamePaused;
 
+    [SerializeField] GlobalVariable globalVariable;
+    [SerializeField] SceneSystem sceneSystem;
+
     [SerializeField] GameObject pauseUI;
     [SerializeField] GameObject pauseSelector;
 
@@ -19,13 +22,12 @@ public class Pause : MonoBehaviour
     [SerializeField] int[] curValueButtonIndex; // buat mouse cursor
     [SerializeField] int maxListButton;
     [SerializeField] int buttonPauseHighlightedValue; // yang di highlight sama cursor mouse
-    [SerializeField] int buttonPauseSelectedValue;
 
     [SerializeField] Button[] listPauseButton;
 
     [SerializeField] Vector2[] pauseSelectorPos;
 
-    bool dpadPressed = false;
+    bool isDpadPressed = false;
 
 
     private void Awake()
@@ -40,19 +42,27 @@ public class Pause : MonoBehaviour
     }
     private void Update()
     {
-       
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start")) 
+       if(!globalVariable.isGameOver || !globalVariable.isGameFinish) 
         {
-            if (!isGamePaused) 
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
             {
-                isGamePaused = true;
-            }
-            else 
-            {
-                isGamePaused = false;
+                if (!isGamePaused)
+                {
+                    isGamePaused = true;
+                }
+                else
+                {
+                    isGamePaused = false;
+                }
             }
         }
-
+        gamePaused();
+        pauseInputConfirmButton();
+        pauseInputListSelection();
+        selectorPos();
+    }
+    void gamePaused()
+    {
         if (isGamePaused)
         {
             float mouseX = Input.GetAxis("Mouse X");
@@ -61,23 +71,16 @@ public class Pause : MonoBehaviour
             {
                 isMouseMoving = true;
             }
-            else 
-            {
-                //isMouseMoving = false;
-            }
 
-            
             if (isMouseMoving)
             {
                 curValueButton = buttonPauseHighlightedValue;
-                Debug.Log("Mouse bergerak");
             }
             else
             {
                 buttonPauseHighlightedValue = curValueButton;
-                Debug.Log("Mouse tidak bergerak");
             }
-            pauseUI.SetActive(true);
+
             Time.timeScale = 0;
         }
         else
@@ -86,22 +89,25 @@ public class Pause : MonoBehaviour
             curValueButton = 1;
             Time.timeScale = 1;
         }
-        pauseInput();
-        selectorPos();
+        
+        if(isGamePaused || sceneSystem.isRestartScene || sceneSystem.isExitScene) 
+        {
+            pauseUI.SetActive(true);
+        }
     }
-
     void selectorPos() 
     {
         if(!isMouseMoving && isGamePaused) 
         {
-            if (curValueButton == 1) 
+            for(int j = 0; j < pauseSelectorPos.Length; j++) 
             {
-                pauseSelector.transform.localPosition = pauseSelectorPos[0];
+                if (curValueButton == j + 1) 
+                {
+                    pauseSelector.transform.localPosition = pauseSelectorPos[j];
+                }
+               
             }
-            if (curValueButton == 2) 
-            {
-                pauseSelector.transform.localPosition = pauseSelectorPos[1];
-            }
+            
         }
         for (int i = 0; i < pauseSelectorPos.Length; i++)
         {
@@ -112,14 +118,8 @@ public class Pause : MonoBehaviour
                     pauseSelector.transform.localPosition = pauseSelectorPos[i];
                 }
                 
-            }
-            
-            
-            
-            
+            }            
         }
-
- 
     }
 
     private void mouseListener() 
@@ -130,8 +130,6 @@ public class Pause : MonoBehaviour
             {
                 int buttonValue = curValueButtonIndex[j];
 
-                listPauseButton[j].onClick.AddListener(() => buttonPauseClick(buttonValue));
-
                 EventTrigger eventTrigger = listPauseButton[j].gameObject.AddComponent<EventTrigger>();
                 EventTrigger.Entry entry = new EventTrigger.Entry();
                 entry.eventID = EventTriggerType.PointerEnter;
@@ -140,23 +138,43 @@ public class Pause : MonoBehaviour
             }
         } while (isGamePaused);
     }
-
-    void buttonPauseClick(int value) 
-    {
-        buttonPauseSelectedValue = value;
-    }
     void buttonPauseHighlighted(int value)
     {
         buttonPauseHighlightedValue = value;
-       
-
     }
-    void pauseInput() 
+
+    #region pause input
+
+    void pauseInputConfirmButton() 
+    {
+        if (isGamePaused) 
+        {
+            
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Gamepad Enter")) 
+            {
+                isGamePaused = false;
+                if (curValueButton == 1) 
+                {
+                    sceneSystem.isRestartScene = true;
+                    // restart scene
+                }
+
+                if (curValueButton == 2) 
+                {
+                    sceneSystem.isExitScene = true;
+
+                    //exit scene ke menu
+                }
+            }
+        }
+    }
+
+    void pauseInputListSelection() 
     {
         if (isGamePaused)
         {
             
-            float inputDpadVertical = Input.GetAxis("Dpad");
+            float inputDpadVertical = Input.GetAxis("Dpad Vertical");
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
@@ -177,7 +195,7 @@ public class Pause : MonoBehaviour
                 isMouseMoving = false;
             }
 
-            if (inputDpadVertical == 1 && !dpadPressed)
+            if (inputDpadVertical == 1 && !isDpadPressed)
             {
                 isMouseMoving = false;
                 curValueButton++;
@@ -185,9 +203,9 @@ public class Pause : MonoBehaviour
                 {
                     curValueButton = 1;
                 }
-                dpadPressed = true;
+                isDpadPressed = true;
             }
-            if (inputDpadVertical == -1 && !dpadPressed)
+            if (inputDpadVertical == -1 && !isDpadPressed)
             {
                 isMouseMoving = false;
                 curValueButton--;
@@ -195,13 +213,31 @@ public class Pause : MonoBehaviour
                 {
                     curValueButton = maxListButton;
                 }
-                dpadPressed = true;
+                isDpadPressed = true;
             }
 
             if (inputDpadVertical == 0)
             {
-                dpadPressed = false;
+                isDpadPressed = false;
             }
         }
+    }
+    #endregion
+    public void onClickRestart() 
+    {
+        sceneSystem.isRestartScene = true;
+        Debug.Log("restart");
+        isGamePaused = false;
+
+        // restart scene
+
+    }
+    public void onClickExit() 
+    {
+        sceneSystem.isExitScene = true;
+        Debug.Log("exit");
+        isGamePaused = false;
+
+        // exit scene to menu
     }
 }
