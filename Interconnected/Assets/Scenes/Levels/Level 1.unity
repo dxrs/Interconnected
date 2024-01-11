@@ -2136,7 +2136,7 @@ MonoBehaviour:
   isMoving: 0
   circleTriggertWithDoor: 0
   globalVariable: {fileID: 106151307}
-  movementSpeed: 3
+  movementSpeed: 6
   waypoint:
   - {fileID: 799493424}
   - {fileID: 192765833}
@@ -2163,6 +2163,7 @@ MonoBehaviour:
   circle: {fileID: 421026751}
   circleTarget: {fileID: 1582922792}
   circleSR: {fileID: 421026755}
+  rb2D: {fileID: 421026757}
 --- !u!1 &259226752
 GameObject:
   m_ObjectHideFlags: 0
@@ -3328,14 +3329,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421026751}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -8834,6 +8835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalVariable: {fileID: 106151307}
+  sceneSystem: {fileID: 0}
   textCurrentTimer: {fileID: 681168779}
   curTimerValue: 0
   timerTargetValue:
@@ -8862,7 +8864,6 @@ MonoBehaviour:
   curValueButtonIndex: 0100000002000000
   maxListButton: 2
   buttonPauseHighlightedValue: 0
-  buttonPauseSelectedValue: 0
   listPauseButton:
   - {fileID: 285759082}
   - {fileID: 879795312}
