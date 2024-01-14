@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
@@ -156,13 +157,14 @@ public class Pause : MonoBehaviour
                 if (curValueButton == 1) 
                 {
                     sceneSystem.isRestartScene = true;
+                    SceneManager.LoadScene("Level 1");
                     // restart scene
                 }
 
                 if (curValueButton == 2) 
                 {
                     sceneSystem.isExitScene = true;
-
+                    SceneManager.LoadScene("Menu");
                     //exit scene ke menu
                 }
             }
@@ -229,7 +231,7 @@ public class Pause : MonoBehaviour
         Debug.Log("restart");
         isGamePaused = false;
 
-        // restart scene
+        SceneManager.LoadScene("Level 1");// restart scene
 
     }
     public void onClickExit() 
@@ -237,7 +239,7 @@ public class Pause : MonoBehaviour
         sceneSystem.isExitScene = true;
         Debug.Log("exit");
         isGamePaused = false;
-
+        SceneManager.LoadScene("Menu");
         // exit scene to menu
     }
 }
