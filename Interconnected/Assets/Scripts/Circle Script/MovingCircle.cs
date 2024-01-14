@@ -39,27 +39,24 @@ public class MovingCircle : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(rb.drag);
         if (isMoving && !circleTriggertWithDoor)
         {
             Vector2 targetPosition = waypoint[startWaypoint].transform.position;
 
-            // Hitung vektor arah dan jarak
             Vector2 moveDirection = (targetPosition - (Vector2)circle.transform.position).normalized;
             float distance = Vector2.Distance(circle.transform.position, targetPosition);
 
-            // Hitung target velocity menggunakan SmoothDamp
+            // Hitung target velocity pakai SmoothDamp
             Vector2 targetVelocity = moveDirection * movementSpeed;
             rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref velocity, 0.1f);
 
-            circleSR.color = Color.Lerp(circleSR.color, new Color(1, 1, 1), 3 * Time.deltaTime);
+            circleSR.color = Color.Lerp(circleSR.color, new Color(1, 1, 1), 5 * Time.deltaTime);
         }
         else
         {
             circleSR.color = Color.Lerp(circleSR.color, new Color(.5f, .5f, .5f), 1 * Time.deltaTime);
 
             // Proses pengereman
-            //rb.drag = Mathf.Lerp(rb.drag, 5, 1 * Time.deltaTime);
             rb.drag = 5;
         }
 
