@@ -21,13 +21,15 @@ public class MovingCircle : MonoBehaviour
 
     [SerializeField] SpriteRenderer circleSR;
 
-   [SerializeField] Rigidbody2D rb2D;
+    [SerializeField] Rigidbody2D rb;
+
     int startWaypoint = 0;
+
+    Vector2 velocity;
 
     private void Awake()
     {
         if (movingCircle == null) { movingCircle = this; }
-       // rb2D = circle.GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -39,36 +41,33 @@ public class MovingCircle : MonoBehaviour
     {
         if (isMoving && !circleTriggertWithDoor)
         {
-            // Batasi kecepatan maksimum
-            if (rb2D.velocity.magnitude < movementSpeed)
-            {
-                Vector2 targetPosition = waypoint[startWaypoint].transform.position;
+            Vector2 targetPosition = waypoint[startWaypoint].transform.position;
 
-                // Batasi kecepatan maksimum
-                Vector2 moveDirection = (targetPosition - (Vector2)circle.transform.position).normalized;
-                rb2D.MovePosition(rb2D.position + moveDirection * movementSpeed * Time.deltaTime);
-            }
+            Vector2 moveDirection = (targetPosition - (Vector2)circle.transform.position).normalized;
+            float distance = Vector2.Distance(circle.transform.position, targetPosition);
 
-            circleSR.color = Color.Lerp(circleSR.color, new Color(1, 1, 1), 3 * Time.deltaTime);
+            // Hitung target velocity pakai SmoothDamp
+            Vector2 targetVelocity = moveDirection * movementSpeed;
+            rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref velocity, 0.1f);
+
+            circleSR.color = Color.Lerp(circleSR.color, new Color(1, 1, 1), 5 * Time.deltaTime);
         }
         else
         {
             circleSR.color = Color.Lerp(circleSR.color, new Color(.5f, .5f, .5f), 1 * Time.deltaTime);
 
-            // Berhenti ketika mencapai waypoint
-            rb2D.drag = 5f;
+            // Proses pengereman
+            rb.drag = 5;
         }
 
-        // Jika posisi objek mendekati waypoint, pindah ke waypoint berikutnya
+        
         if (Vector2.Distance(circle.transform.position, waypoint[startWaypoint].transform.position) < 0.1f)
         {
             startWaypoint = (startWaypoint + 1) % waypoint.Length;
-            rb2D.drag = 0f;
         }
 
         if (startWaypoint == waypoint.Length && !globalVariable.isGameFinish)
         {
-            // startWaypoint = index terakhir dari waypoint.length
             startWaypoint = waypoint.Length - 1;
         }
 

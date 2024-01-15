@@ -241,7 +241,7 @@ public class Player2 : MonoBehaviour
 
     #endregion
 
-    #region player 2 movement function
+    #region player 2 movement
     public void p2Move(InputAction.CallbackContext context)
     {
         if (!isKnockedOut) 
@@ -262,7 +262,7 @@ public class Player2 : MonoBehaviour
     }
     #endregion
 
-    #region player 2 breaking function
+    #region player 2 breaking
     void player2IsBreaking()
     {
         if (isBreaking)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneSystem : MonoBehaviour
 {
@@ -19,10 +20,12 @@ public class SceneSystem : MonoBehaviour
     {
         if (isRestartScene) 
         {
-            // restart scne nya di siniaja
+            string currentRestartLevel = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentRestartLevel);
         }
         if (isExitScene) 
         {
+            SceneManager.LoadScene("Menu");
             // exit scene di sini aja
         }
     }

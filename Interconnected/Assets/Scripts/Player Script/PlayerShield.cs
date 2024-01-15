@@ -5,15 +5,25 @@ using UnityEngine;
 public class PlayerShield : MonoBehaviour
 {
     [SerializeField] float rotationSpeed;
-    // Start is called before the first frame update
-    void Start()
+
+    SpriteRenderer sr;
+
+    private void Start()
     {
-        
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+        if (GlobalVariable.globalVariable.isTriggeredWithObstacle) 
+        {
+            sr.enabled = false;
+        }
+        else 
+        {
+            sr.enabled = true;
+        }
     }
 }

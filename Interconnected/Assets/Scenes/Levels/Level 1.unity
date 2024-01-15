@@ -488,7 +488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812887, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_Name
-      value: Gear (5)
+      value: Gear
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d006a6e8903a0104193994fdc7465165, type: 3}
@@ -659,7 +659,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (12)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -719,7 +719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5738183617969686273, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_SortingOrder
-      value: -3
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
@@ -737,7 +737,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (19)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -1230,7 +1230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812887, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_Name
-      value: Gear (6)
+      value: Gear
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d006a6e8903a0104193994fdc7465165, type: 3}
@@ -1752,7 +1752,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (11)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -1953,7 +1953,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (13)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -2023,7 +2023,7 @@ GameObject:
   - component: {fileID: 229058847}
   - component: {fileID: 229058846}
   m_Layer: 6
-  m_Name: Wall (1)
+  m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2271,7 +2271,7 @@ MonoBehaviour:
   isMoving: 0
   circleTriggertWithDoor: 0
   globalVariable: {fileID: 106151307}
-  movementSpeed: 6
+  movementSpeed: 3
   waypoint:
   - {fileID: 799493424}
   - {fileID: 192765833}
@@ -2298,7 +2298,7 @@ MonoBehaviour:
   circle: {fileID: 421026751}
   circleTarget: {fileID: 1582922792}
   circleSR: {fileID: 421026755}
-  rb2D: {fileID: 421026757}
+  rb: {fileID: 421026757}
 --- !u!1 &259226752
 GameObject:
   m_ObjectHideFlags: 0
@@ -3001,7 +3001,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (15)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -3178,7 +3178,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (14)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -3238,7 +3238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5738183617969686273, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_SortingOrder
-      value: -3
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
@@ -3263,15 +3263,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812881, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.97
+      value: 0.78137386
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812881, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.97
+      value: 0.78137386
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812881, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.97
+      value: 0.78137386
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812881, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3337,7 +3337,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (14)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -4588,7 +4588,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (3)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -5065,7 +5065,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (9)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -5131,7 +5131,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (18)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -7351,7 +7351,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (13)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -7411,7 +7411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5738183617969686273, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_SortingOrder
-      value: -3
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
@@ -7729,7 +7729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812887, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_Name
-      value: Gear (2)
+      value: Gear
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d006a6e8903a0104193994fdc7465165, type: 3}
@@ -7827,7 +7827,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (12)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -8936,7 +8936,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (2)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -9070,7 +9070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812887, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_Name
-      value: Gear (1)
+      value: Gear
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d006a6e8903a0104193994fdc7465165, type: 3}
@@ -10177,7 +10177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812887, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_Name
-      value: Gear (3)
+      value: Gear
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d006a6e8903a0104193994fdc7465165, type: 3}
@@ -10221,7 +10221,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (5)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -11297,7 +11297,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (8)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -12683,7 +12683,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (1)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -13106,7 +13106,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (12)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -13166,7 +13166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5738183617969686273, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_SortingOrder
-      value: -3
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
@@ -14037,7 +14037,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812887, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_Name
-      value: Gear (4)
+      value: Gear
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d006a6e8903a0104193994fdc7465165, type: 3}
@@ -15015,7 +15015,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (16)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -15144,7 +15144,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (6)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -15216,7 +15216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1785029592
 Transform:
   m_ObjectHideFlags: 0
@@ -15778,7 +15778,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (4)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -15906,7 +15906,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (17)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -16339,7 +16339,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (7)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -16815,26 +16815,6 @@ MonoBehaviour:
     m_ActionId: c473713c-8497-4e8c-99a7-835e0d925607
     m_ActionName: Input Player 2/Change Link
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7e1d956e-a07b-435b-ade5-61307944c8a6
-    m_ActionName: Input Main Menu/New action
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0d0455cf-579b-4d16-961e-41f135daee55
-    m_ActionName: Input Select Level/New action
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 13729b59-fe6d-4663-928d-61c56f7f80e9
-    m_ActionName: Input Select Player/New action
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7ae3b5f4-a387-4307-90a5-19d262ab2517
-    m_ActionName: Input Game Pause/New action
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ba1addda-4e5d-4fc9-9cca-a32652316810
-    m_ActionName: Input Game Finish/New action
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2097847141}
         m_TargetAssemblyTypeName: Player1, Assembly-CSharp
@@ -16854,10 +16834,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4af3bff8-8a64-4d2f-9bd0-9ea63d615ebb
     m_ActionName: Input Player 2/Basic Skill Ghost
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 16eeaa11-c117-4837-9a20-9b3cb25054e8
-    m_ActionName: Input Game Pause/Open Close Pause Gamepad[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard Scheme
   m_DefaultActionMap: Input Player 1
@@ -17051,7 +17027,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (13)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
@@ -17111,7 +17087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5738183617969686273, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_SortingOrder
-      value: -3
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
@@ -17532,7 +17508,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527953740836492593, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_Name
-      value: Spike (10)
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
       propertyPath: m_RootOrder
