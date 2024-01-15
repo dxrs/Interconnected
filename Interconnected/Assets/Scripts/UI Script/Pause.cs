@@ -16,12 +16,10 @@ public class Pause : MonoBehaviour
     [SerializeField] GameObject pauseUI;
     [SerializeField] GameObject pauseSelector;
 
-    [SerializeField] bool isMouseMoving;
-
     [SerializeField] int curValueButton;
     [SerializeField] int[] curValueButtonIndex; // buat mouse cursor
     [SerializeField] int maxListButton;
-    [SerializeField] int buttonPauseHighlightedValue; // yang di highlight sama cursor mouse
+    [SerializeField] int buttonHighlightedValue; // yang di highlight sama cursor mouse
 
     [SerializeField] Button[] listPauseButton;
 
@@ -38,7 +36,7 @@ public class Pause : MonoBehaviour
     {
         mouseListener();
         curValueButton = 1;
-        buttonPauseHighlightedValue = 1;
+        buttonHighlightedValue = 1;
     }
     private void Update()
     {
@@ -46,6 +44,7 @@ public class Pause : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
             {
+                //MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
                 if (!isGamePaused)
                 {
                     isGamePaused = true;
@@ -65,20 +64,14 @@ public class Pause : MonoBehaviour
     {
         if (isGamePaused)
         {
-            float mouseX = Input.GetAxis("Mouse X");
-            float mouseY = Input.GetAxis("Mouse Y");
-            if (Mathf.Abs(mouseX) > 0.1f || Mathf.Abs(mouseY) > 0.1f)
+        
+            if (MouseCursorActivated.mouseCursorActivated.isMouseActive)
             {
-                isMouseMoving = true;
-            }
-
-            if (isMouseMoving)
-            {
-                curValueButton = buttonPauseHighlightedValue;
+                curValueButton = buttonHighlightedValue;
             }
             else
             {
-                buttonPauseHighlightedValue = curValueButton;
+                buttonHighlightedValue = curValueButton;
             }
 
             Time.timeScale = 0;
@@ -97,7 +90,7 @@ public class Pause : MonoBehaviour
     }
     void selectorPos() 
     {
-        if(!isMouseMoving && isGamePaused) 
+        if(!MouseCursorActivated.mouseCursorActivated.isMouseActive && isGamePaused) 
         {
             for(int j = 0; j < pauseSelectorPos.Length; j++) 
             {
@@ -111,9 +104,9 @@ public class Pause : MonoBehaviour
         }
         for (int i = 0; i < pauseSelectorPos.Length; i++)
         {
-            if (isMouseMoving) 
+            if (MouseCursorActivated.mouseCursorActivated.isMouseActive) 
             {
-                if (buttonPauseHighlightedValue == i + 1)
+                if (buttonHighlightedValue == i + 1)
                 {
                     pauseSelector.transform.localPosition = pauseSelectorPos[i];
                 }
@@ -140,7 +133,7 @@ public class Pause : MonoBehaviour
     }
     void buttonPauseHighlighted(int value)
     {
-        buttonPauseHighlightedValue = value;
+        buttonHighlightedValue = value;
     }
 
     #region pause input
@@ -183,7 +176,7 @@ public class Pause : MonoBehaviour
                 {
                     curValueButton = 1;
                 }
-                isMouseMoving = false;
+                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
             }
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
@@ -192,12 +185,12 @@ public class Pause : MonoBehaviour
                 {
                     curValueButton = maxListButton;
                 }
-                isMouseMoving = false;
+                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
             }
 
             if (inputDpadVertical == 1 && !isDpadPressed)
             {
-                isMouseMoving = false;
+                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
                 curValueButton++;
                 if (curValueButton > maxListButton)
                 {
@@ -207,7 +200,7 @@ public class Pause : MonoBehaviour
             }
             if (inputDpadVertical == -1 && !isDpadPressed)
             {
-                isMouseMoving = false;
+                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
                 curValueButton--;
                 if (curValueButton < 1)
                 {
@@ -226,14 +219,14 @@ public class Pause : MonoBehaviour
     public void onClickRestart() 
     {
         sceneSystem.isRestartScene = true;
-        Debug.Log("restart");
+
         isGamePaused = false;
 
     }
     public void onClickExit() 
     {
         sceneSystem.isExitScene = true;
-        Debug.Log("exit");
+
         isGamePaused = false;
     }
 }

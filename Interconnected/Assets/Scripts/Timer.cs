@@ -12,6 +12,7 @@ public class Timer : MonoBehaviour
     [SerializeField] SceneSystem sceneSystem;
 
     [SerializeField] TextMeshProUGUI textCurrentTimer;
+    [SerializeField] TextMeshProUGUI textPlayerTimer;
     [SerializeField] TextMeshProUGUI[] textTargetTimer;
 
     [SerializeField] float curTimerValue;
@@ -35,6 +36,13 @@ public class Timer : MonoBehaviour
 
     private void Update()
     {
+        if (globalVariable.isGameFinish) 
+        {
+            float playerTimerValue = curTimerValue;
+            TimeSpan playerTimeSpan = TimeSpan.FromSeconds(playerTimerValue);
+            string playerTimer = playerTimeSpan.ToString("mm':'ss':'ff");
+            textPlayerTimer.text = playerTimer;
+        }
         if (curTimerValue >= 86400) //24jam
         {
             curTimerValue = 0;
