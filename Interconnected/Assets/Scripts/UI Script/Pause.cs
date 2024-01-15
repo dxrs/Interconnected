@@ -42,7 +42,7 @@ public class Pause : MonoBehaviour
     }
     private void Update()
     {
-       if(!globalVariable.isGameOver || !globalVariable.isGameFinish) 
+       if(!globalVariable.isGameOver || !globalVariable.isGameFinish || ReadyToStart.readyToStart.isGameStart) 
         {
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
             {

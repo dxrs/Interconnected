@@ -199,7 +199,8 @@ public class Player1 : MonoBehaviour
         if (!globalVariable.isTriggeredWithObstacle
             && !globalVariable.isGameFinish
             && !globalVariable.isGameOver
-            && !Pause.pause.isGamePaused)
+            && !Pause.pause.isGamePaused
+            && ReadyToStart.readyToStart.isGameStart)
         {
             if (context.started && !Player2.player2.isSharingLivesToP1 && linkRay.playerLinkedEachOther)
             {
@@ -255,7 +256,8 @@ public class Player1 : MonoBehaviour
             && !globalVariable.isTriggeredWithObstacle
             && !globalVariable.isGameFinish
             && !globalVariable.isGameOver
-            && !Pause.pause.isGamePaused) 
+            && !Pause.pause.isGamePaused
+            && ReadyToStart.readyToStart.isGameStart) 
         {
             if (context.performed)
             {
@@ -293,7 +295,8 @@ public class Player1 : MonoBehaviour
         if (!globalVariable.isTriggeredWithObstacle
             && !globalVariable.isGameFinish
             && !globalVariable.isGameOver
-            && !Pause.pause.isGamePaused)
+            && !Pause.pause.isGamePaused
+            && ReadyToStart.readyToStart.isGameStart)
         {
             if (context.performed && !isBreaking)
             {
@@ -319,7 +322,8 @@ public class Player1 : MonoBehaviour
         if (!globalVariable.isTriggeredWithObstacle
             && !globalVariable.isGameFinish
             && !globalVariable.isGameOver
-            && !Pause.pause.isGamePaused) 
+            && !Pause.pause.isGamePaused
+            && ReadyToStart.readyToStart.isGameStart) 
         {
             if (context.performed && !isShielding)
             {
@@ -424,7 +428,8 @@ public class Player1 : MonoBehaviour
             && !globalVariable.isTriggeredWithObstacle
             && !globalVariable.isGameFinish
             && !globalVariable.isGameOver
-            && !Pause.pause.isGamePaused) 
+            && !Pause.pause.isGamePaused
+            && ReadyToStart.readyToStart.isGameStart) 
         {
             if (context.performed && !isGhosting)
             {

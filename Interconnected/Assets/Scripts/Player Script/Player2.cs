@@ -193,7 +193,8 @@ public class Player2 : MonoBehaviour
         if (!globalVariable.isTriggeredWithObstacle
             && !globalVariable.isGameFinish
             && !globalVariable.isGameOver
-            && !Pause.pause.isGamePaused) 
+            && !Pause.pause.isGamePaused
+            && ReadyToStart.readyToStart.isGameStart) 
         {
             if (context.started && !Player1.player1.isSharingLivesToP2 && linkRay.playerLinkedEachOther)
             {
@@ -244,7 +245,11 @@ public class Player2 : MonoBehaviour
     #region player 2 movement
     public void p2Move(InputAction.CallbackContext context)
     {
-        if (!isKnockedOut) 
+        if (!isKnockedOut && !globalVariable.isTriggeredWithObstacle
+            && !globalVariable.isGameFinish
+            && !globalVariable.isGameOver
+            && !Pause.pause.isGamePaused
+            && ReadyToStart.readyToStart.isGameStart) 
         {
             if (context.performed)
             {
@@ -283,7 +288,8 @@ public class Player2 : MonoBehaviour
         if (!globalVariable.isTriggeredWithObstacle
             && !globalVariable.isGameFinish
             && !globalVariable.isGameOver
-            && !Pause.pause.isGamePaused) 
+            && !Pause.pause.isGamePaused
+            && ReadyToStart.readyToStart.isGameStart) 
         {
             if (context.performed && !isBreaking)
             {
@@ -308,7 +314,8 @@ public class Player2 : MonoBehaviour
         if (!globalVariable.isTriggeredWithObstacle
             && !globalVariable.isGameFinish
             && !globalVariable.isGameOver
-            && !Pause.pause.isGamePaused) 
+            && !Pause.pause.isGamePaused
+            && ReadyToStart.readyToStart.isGameStart) 
         {
             if (context.performed && !isShielding)
             {
@@ -411,7 +418,8 @@ public class Player2 : MonoBehaviour
             && !globalVariable.isTriggeredWithObstacle
             && !globalVariable.isGameFinish
             && !globalVariable.isGameOver
-            && !Pause.pause.isGamePaused) 
+            && !Pause.pause.isGamePaused
+            && ReadyToStart.readyToStart.isGameStart) 
         {
             if (context.performed && !isGhosting)
             {

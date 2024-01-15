@@ -26,7 +26,8 @@ public class CameraSystem : MonoBehaviour
         if (cameraTargetObject == null) { return; }
 
         if (!GlobalVariable.globalVariable.isGameOver
-            && !GlobalVariable.globalVariable.isTriggeredWithObstacle) 
+            && !GlobalVariable.globalVariable.isTriggeredWithObstacle
+            && ReadyToStart.readyToStart.isGameStart) 
         {
             if (cameraTargetObject[0] != null && cameraTargetObject[1]!=null) 
             {

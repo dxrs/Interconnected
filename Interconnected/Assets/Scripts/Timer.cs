@@ -12,6 +12,7 @@ public class Timer : MonoBehaviour
     [SerializeField] SceneSystem sceneSystem;
 
     [SerializeField] TextMeshProUGUI textCurrentTimer;
+    [SerializeField] TextMeshProUGUI[] textTargetTimer;
 
     [SerializeField] float curTimerValue;
     [SerializeField] float[] timerTargetValue;
@@ -22,6 +23,13 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
+        for (int i = 0; i < textTargetTimer.Length && i < timerTargetValue.Length; i++)
+        {
+            float targetTimer = timerTargetValue[i];
+            TimeSpan targetTimeSpan = TimeSpan.FromSeconds(targetTimer);
+            string targetTimerString = targetTimeSpan.ToString("mm':'ss':'ff");
+            textTargetTimer[i].text = targetTimerString;
+        }
         StartCoroutine(timerStartCount());
     }
 
@@ -38,17 +46,20 @@ public class Timer : MonoBehaviour
     {
         while (true) 
         {
-            if (!isTimerStop) 
+            if (ReadyToStart.readyToStart.isGameStart 
+                && !globalVariable.isGameFinish
+                && !globalVariable.isGameOver)
             {
-                if (!globalVariable.isGameFinish || !globalVariable.isGameOver
-                    || !sceneSystem.isRestartScene || !sceneSystem.isExitScene)
+                if (!isTimerStop)
                 {
                     curTimerValue += Time.deltaTime;
                     timerCount = TimeSpan.FromSeconds(curTimerValue);
                     string timer = timerCount.ToString("mm':'ss':'ff");
                     textCurrentTimer.text = timer;
+
                 }
             }
+            
             yield return null;
         }
     }
