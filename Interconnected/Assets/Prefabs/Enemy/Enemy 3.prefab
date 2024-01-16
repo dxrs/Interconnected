@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2443439716624830963
 Transform:
   m_ObjectHideFlags: 0
@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e9369e4a825de418d7a9d41ae42062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathParticle: {fileID: 1374567328952284614, guid: dc3fb0a9ea247b34b83c313a5c1f7c37, type: 3}
   enemyMovementSpeed: 1.5
   enemyHealth: 50
 --- !u!114 &5121257545381358979

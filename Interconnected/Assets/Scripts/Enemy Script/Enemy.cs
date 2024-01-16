@@ -6,6 +6,9 @@ public class Enemy : MonoBehaviour
 {
     //[SerializeField] EnemyHitEffect enemyHitEffect1;
 
+    public ParticleSystem deathParticle;
+
+
     [Header("Enemy Movement")]
     [SerializeField] float enemyMovementSpeed;
 
@@ -40,6 +43,7 @@ public class Enemy : MonoBehaviour
         {
             EnemyTargetDestroy.enemyTargetDestroy.curValueEnemyDestroy++;
             isEnemyDestroyed = true;
+            Instantiate(deathParticle,this.transform.position,Quaternion.identity);
             Destroy(gameObject);
         }
 
@@ -133,6 +137,7 @@ public class Enemy : MonoBehaviour
         }
         if(collision.gameObject.tag=="Player 1 Shield" || collision.gameObject.tag=="Player 2 Shield") 
         {
+            Instantiate(deathParticle,this.transform.position,Quaternion.identity);
             Destroy(gameObject);
         }
         if (collision.gameObject.tag == "Wall") 
@@ -143,6 +148,7 @@ public class Enemy : MonoBehaviour
         {
             if (!Player1.player1.isKnockedOut) 
             {
+                Instantiate(deathParticle,this.transform.position,Quaternion.identity);
                 Destroy(gameObject);
             }
         }
@@ -150,6 +156,7 @@ public class Enemy : MonoBehaviour
         {
             if (!Player2.player2.isKnockedOut) 
             {
+                Instantiate(deathParticle,this.transform.position,Quaternion.identity);
                 Destroy(gameObject);
             }
         }

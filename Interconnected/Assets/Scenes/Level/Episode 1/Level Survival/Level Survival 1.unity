@@ -2835,13 +2835,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2343648084581014973, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -117
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343648084581014973, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -18
+      objectReference: {fileID: 0}
     - target: {fileID: 2343648084736162997, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2343648084994122940, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2343648085329951436, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2952,12 +2960,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 106151307}
     - target: {fileID: 2343648085968558979, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
+      propertyPath: pauseSelectorPos.Array.data[0].x
+      value: -114
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343648085968558979, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: pauseSelectorPos.Array.data[0].y
-      value: 11
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343648085968558979, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
+      propertyPath: pauseSelectorPos.Array.data[1].x
+      value: -73.8
       objectReference: {fileID: 0}
     - target: {fileID: 2343648085968558979, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: pauseSelectorPos.Array.data[1].y
-      value: -54.7
+      value: -58.2
       objectReference: {fileID: 0}
     - target: {fileID: 2343648085968558981, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: sceneSystem
@@ -2968,20 +2984,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 106151307}
     - target: {fileID: 2343648085968558981, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
+      propertyPath: finishSelectorPos.Array.data[0].x
+      value: -117
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343648085968558981, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: finishSelectorPos.Array.data[0].y
-      value: -18.61
+      value: -18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343648085968558981, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
+      propertyPath: finishSelectorPos.Array.data[1].x
+      value: -74.3
       objectReference: {fileID: 0}
     - target: {fileID: 2343648085968558981, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: finishSelectorPos.Array.data[1].y
-      value: -85.9
+      value: -87.7
       objectReference: {fileID: 0}
     - target: {fileID: 2343648086575919004, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -123
+      value: -114
       objectReference: {fileID: 0}
     - target: {fileID: 2343648086575919004, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
