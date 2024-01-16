@@ -161,7 +161,7 @@ public class Player1 : MonoBehaviour
     #region player 1 health and destroy
     private void player1KnockedOut() 
     {
-        if (curPlayer1Health <= 0 && globalVariable.isEnteringSurvivalArea) 
+        if (curPlayer1Health <= 0) 
         {
             isKnockedOut = true;
         }
@@ -184,7 +184,7 @@ public class Player1 : MonoBehaviour
 
     private void player1Destroy() 
     {
-        if (curPlayer1Health <= 0 && !globalVariable.isEnteringSurvivalArea) 
+        if (curPlayer1Health <= 0) 
         {
             Destroy(gameObject);
         }
@@ -520,10 +520,7 @@ public class Player1 : MonoBehaviour
             if (curPlayer1Health <= 0) { curPlayer1Health = 0; }
         }
 
-       if(collision.gameObject.tag=="Door Button P1") 
-        {
-            //player1DoorValue = 1;
-        }
+       
         
     }
 

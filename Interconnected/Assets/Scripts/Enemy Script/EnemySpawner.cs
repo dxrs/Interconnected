@@ -24,12 +24,16 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator spawneEnemy()
     {
-        yield return new WaitForSeconds(1);
+       
         while (true)
         {
-            enemySpawnPos = enemySpawnRadius.transform.position;
-            enemySpawnPos += Random.insideUnitCircle.normalized * enemyRadiusValue;
-            Instantiate(enemy, enemySpawnPos, Quaternion.identity);
+            if (ReadyToStart.readyToStart.isGameStart) 
+            {
+                enemySpawnPos = enemySpawnRadius.transform.position;
+                enemySpawnPos += Random.insideUnitCircle.normalized * enemyRadiusValue;
+                Instantiate(enemy, enemySpawnPos, Quaternion.identity);
+            }
+           
             yield return new WaitForSeconds(waitTimeToSpawn);
         }
     }

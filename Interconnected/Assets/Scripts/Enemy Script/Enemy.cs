@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Status")]
     [SerializeField] float enemyHealth;
 
+    private bool isEnemyDestroyed = false;
+
     Rigidbody2D rb;
 
     GameObject player1, player2;
@@ -32,8 +34,10 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (enemyHealth <= 0) 
+        if (enemyHealth <= 0 && !isEnemyDestroyed) 
         {
+            EnemyTargetDestroy.enemyTargetDestroy.curValueEnemyDestroy++;
+            isEnemyDestroyed = true;
             Destroy(gameObject);
         }
 
@@ -119,6 +123,14 @@ public class Enemy : MonoBehaviour
             enemyHealth -= 1;
             EnemyHitEffect enemyHitEffect = gameObject.GetComponent<EnemyHitEffect>();
            
+        }
+        if(collision.gameObject.tag=="Player 1 Shield" || collision.gameObject.tag=="Player 2 Shield") 
+        {
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "Wall") 
+        {
+            GlobalVariable.globalVariable.isTimerStart = true;
         }
         if(collision.gameObject.tag=="Player 1") 
         {

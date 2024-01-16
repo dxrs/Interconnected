@@ -156,7 +156,7 @@ public class Player2 : MonoBehaviour
     #region player 2 health and destroy
     private void player2KnockedOut()
     {
-        if (curPlayer2Health <= 0 && globalVariable.isEnteringSurvivalArea)
+        if (curPlayer2Health <= 0 )
         {
             isKnockedOut = true;
         }
@@ -179,7 +179,7 @@ public class Player2 : MonoBehaviour
 
     private void player2Destroy() 
     {
-        if (curPlayer2Health <= 0 && !globalVariable.isEnteringSurvivalArea) 
+        if (curPlayer2Health <= 0) 
         {
             Destroy(gameObject);
         }
@@ -502,18 +502,9 @@ public class Player2 : MonoBehaviour
             curPlayer2Health--;
             if (curPlayer2Health <= 0) { curPlayer2Health = 0; }
         }
-        if (collision.gameObject.tag == "Object Trigger")
-        {
-            //player2DoorValue = 1;
-        }
+        
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Object Trigger")
-        {
-            //player2DoorValue = 0;
-        }
-    }
+   
 
     IEnumerator backToFalse()
     {

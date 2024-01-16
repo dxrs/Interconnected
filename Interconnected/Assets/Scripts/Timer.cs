@@ -24,50 +24,86 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < textTargetTimer.Length && i < timerTargetValue.Length; i++)
-        {
-            float targetTimer = timerTargetValue[i];
-            TimeSpan targetTimeSpan = TimeSpan.FromSeconds(targetTimer);
-            string targetTimerString = targetTimeSpan.ToString("mm':'ss':'ff");
-            textTargetTimer[i].text = targetTimerString;
-        }
-        StartCoroutine(timerStartCount());
+        StartCoroutine(timerCountUp());
+        StartCoroutine(timerCountDown());
     }
 
     private void Update()
     {
-        if (globalVariable.isGameFinish) 
+        if (LevelStatus.levelStatus.levelID == 1)
         {
-            float playerTimerValue = curTimerValue;
-            TimeSpan playerTimeSpan = TimeSpan.FromSeconds(playerTimerValue);
-            string playerTimer = playerTimeSpan.ToString("mm':'ss':'ff");
-            textPlayerTimer.text = playerTimer;
+            for (int i = 0; i < textTargetTimer.Length && i < timerTargetValue.Length; i++)
+            {
+                float targetTimer = timerTargetValue[i];
+                TimeSpan targetTimeSpan = TimeSpan.FromSeconds(targetTimer);
+                string targetTimerString = targetTimeSpan.ToString("mm':'ss':'ff");
+                textTargetTimer[i].text = targetTimerString;
+            }
+            if (globalVariable.isGameFinish)
+            {
+                float playerTimerValue = curTimerValue;
+                TimeSpan playerTimeSpan = TimeSpan.FromSeconds(playerTimerValue);
+                string playerTimer = playerTimeSpan.ToString("mm':'ss':'ff");
+                textPlayerTimer.text = playerTimer;
+            }
+            if (curTimerValue >= 86400) //24jam
+            {
+                curTimerValue = 0;
+                isTimerStop = true;
+                globalVariable.isGameOver = true;
+            }
         }
-        if (curTimerValue >= 86400) //24jam
-        {
-            curTimerValue = 0;
-            isTimerStop = true;
-            globalVariable.isGameOver = true;
-        }
+       
+        
     }
-    IEnumerator timerStartCount() 
+    IEnumerator timerCountUp() 
     {
         while (true) 
         {
-            if (ReadyToStart.readyToStart.isGameStart 
+            if (LevelStatus.levelStatus.levelID == 1) 
+            {
+                if (ReadyToStart.readyToStart.isGameStart
                 && !globalVariable.isGameFinish
                 && !globalVariable.isGameOver)
-            {
-                if (!isTimerStop)
                 {
-                    curTimerValue += Time.deltaTime;
-                    timerCount = TimeSpan.FromSeconds(curTimerValue);
-                    string timer = timerCount.ToString("mm':'ss':'ff");
-                    textCurrentTimer.text = timer;
+                    if (!isTimerStop)
+                    {
+                        curTimerValue += Time.deltaTime;
+                        timerCount = TimeSpan.FromSeconds(curTimerValue);
+                        string timer = timerCount.ToString("mm':'ss':'ff");
+                        textCurrentTimer.text = timer;
 
+                    }
                 }
             }
-            
+            yield return null;
+        }
+    }
+    IEnumerator timerCountDown()
+    {
+        while (true)
+        {
+            if (LevelStatus.levelStatus.levelID == 2)
+            {
+                if (ReadyToStart.readyToStart.isGameStart
+                && !globalVariable.isGameFinish
+                && !globalVariable.isGameOver
+                && globalVariable.isTimerStart)
+                {
+                    if (!isTimerStop)
+                    {
+                        if (curTimerValue > 0) 
+                        {
+                            curTimerValue -= Time.deltaTime;
+                        }
+
+                        timerCount = TimeSpan.FromSeconds(curTimerValue);
+                        string timer = timerCount.ToString("mm':'ss':'ff");
+                        textCurrentTimer.text = timer;
+
+                    }
+                }
+            }
             yield return null;
         }
     }

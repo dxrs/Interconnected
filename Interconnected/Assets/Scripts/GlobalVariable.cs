@@ -1,25 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GlobalVariable : MonoBehaviour
 {
     public static GlobalVariable globalVariable;
 
-    public bool isEnteringSurvivalArea;
-    public bool isEnteringTrapArea;
-
     public bool isGameOver;
-
     public bool isGameFinish;
-
     public bool isTriggeredWithObstacle;
-
+    public bool isNotShoot;
+    public bool isTimerStart;
     public bool[] circleIsTriggeredWithPlayers;
 
     public int maxDoor;
 
-    public bool isNotShoot;
+
 
     [SerializeField] SpriteRenderer p1Sr;
     [SerializeField] SpriteRenderer p2Sr;
@@ -66,7 +63,7 @@ public class GlobalVariable : MonoBehaviour
        
         if (Player1.player1.isKnockedOut && Player2.player2.isKnockedOut) 
         {
-            isGameOver = true;
+            //isGameOver = true;
         }
 
         if (player1 == null || player2 == null) 
@@ -76,6 +73,7 @@ public class GlobalVariable : MonoBehaviour
 
         if (isGameOver) 
         {
+            SceneSystem.sceneSystem.isRestartScene = true;
             Destroy(player1);
             Destroy(player2);
         }

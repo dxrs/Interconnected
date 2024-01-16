@@ -12,6 +12,10 @@ public class ReadyToStart : MonoBehaviour
     [SerializeField] GameObject startUI;
     [SerializeField] GameObject inGameUI;
 
+    [SerializeField] GameObject panelTimer;
+    [SerializeField] GameObject panelTargetEnemyDestroy;
+    [SerializeField] GameObject panelStar;
+
     private void Awake()
     {
         readyToStart = this;
@@ -21,10 +25,22 @@ public class ReadyToStart : MonoBehaviour
     {
         inGameUI.SetActive(false);
         startUI.SetActive(true);
+
+       
     }
 
     private void Update()
     {
+        if (LevelStatus.levelStatus.levelID == 1)
+        {
+            panelTimer.SetActive(true);
+            panelStar.SetActive(true);
+        }
+        if (LevelStatus.levelStatus.levelID == 2) 
+        {
+            panelStar.SetActive(true);
+            panelTargetEnemyDestroy.SetActive(true);
+        }
         if (isGameStart) 
         {
             inGameUI.SetActive(true);

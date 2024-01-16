@@ -25,21 +25,25 @@ public class CameraSystem : MonoBehaviour
     {
         if (cameraTargetObject == null) { return; }
 
-        if (!GlobalVariable.globalVariable.isGameOver
-            && !GlobalVariable.globalVariable.isTriggeredWithObstacle
-            && ReadyToStart.readyToStart.isGameStart) 
+        if (LevelStatus.levelStatus.levelID == 1) 
         {
-            if (cameraTargetObject[0] != null && cameraTargetObject[1]!=null) 
+            if (!GlobalVariable.globalVariable.isGameOver
+            && !GlobalVariable.globalVariable.isTriggeredWithObstacle
+            && ReadyToStart.readyToStart.isGameStart)
             {
-                if (Vector2.Distance(cameraTargetObject[0].transform.position, cameraTargetObject[1].transform.position) < distanceBetween2Player)
+                if (cameraTargetObject[0] != null && cameraTargetObject[1] != null)
                 {
-                    cameraZoom();
-                    cameraMovement();
-                    UpdateCameraCollider();
+                    if (Vector2.Distance(cameraTargetObject[0].transform.position, cameraTargetObject[1].transform.position) < distanceBetween2Player)
+                    {
+                        cameraZoom();
+                        cameraMovement();
+                        UpdateCameraCollider();
+                    }
                 }
+
             }
-            
         }
+        
         
        
     }
