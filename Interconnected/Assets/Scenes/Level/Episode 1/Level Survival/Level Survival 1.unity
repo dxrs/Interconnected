@@ -925,6 +925,7 @@ MonoBehaviour:
   - {fileID: 1319856432}
   - {fileID: 1767510733}
   - {fileID: 694324287}
+  textEnemyDestroy: {fileID: 935309805}
 --- !u!1 &850828446
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,6 +976,17 @@ MonoBehaviour:
   isEnemyDelayToSpawn: 0
   enemySpawnRadius: {fileID: 850828446}
   enemy: {fileID: 9081289969987928053, guid: 0f8e527881b2d9044b25b72edf3b492a, type: 3}
+--- !u!114 &935309805 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1629277269399936621, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
+  m_PrefabInstance: {fileID: 2343648084958215712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &984836891
 GameObject:
   m_ObjectHideFlags: 0
@@ -2835,6 +2847,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 295586423523918913, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2343648084581014973, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -117
@@ -2849,7 +2865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2343648084994122940, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2343648085329951436, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: m_SizeDelta.x
