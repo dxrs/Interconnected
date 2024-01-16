@@ -499,8 +499,13 @@ public class Player2 : MonoBehaviour
         }
         if (collision.gameObject.tag == "Enemy")
         {
-            curPlayer2Health--;
-            if (curPlayer2Health <= 0) { curPlayer2Health = 0; }
+
+            if (!isShielding)
+            {
+                Instantiate(deathParticle, this.transform.position, Quaternion.identity);
+                curPlayer2Health--;
+                StartCoroutine(backToFalse());
+            }
         }
         
     }

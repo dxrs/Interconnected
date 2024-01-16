@@ -51,7 +51,8 @@ public class Enemy : MonoBehaviour
 
     private void enemyChassingPlayer() 
     {
-        if (GlobalVariable.globalVariable.isGameOver) 
+        if (GlobalVariable.globalVariable.isGameOver
+            || GlobalVariable.globalVariable.isGameFinish) 
         {
             Destroy(gameObject);
         }

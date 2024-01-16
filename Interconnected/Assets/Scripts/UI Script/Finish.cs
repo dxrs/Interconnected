@@ -15,6 +15,8 @@ public class Finish : MonoBehaviour
     [SerializeField] GameObject inGameUI;
     [SerializeField] GameObject finishSelector;
 
+    [SerializeField] TextMeshProUGUI textFinishStatusEnemyDestroy;
+
     [SerializeField] int curValueButton;
     [SerializeField] int[] curValueButtonIndex; // buat mouse cursor
     [SerializeField] int maxListButton;
@@ -38,6 +40,11 @@ public class Finish : MonoBehaviour
     {
         if (globalVariable.isGameFinish) 
         {
+            if (LevelStatus.levelStatus.levelID == 2) 
+            {
+                textFinishStatusEnemyDestroy.text = EnemyTargetDestroy.enemyTargetDestroy.curValueEnemyDestroy + " Enemy Destroyed";
+                
+            }
             StartCoroutine(waitToActive());
             if (MouseCursorActivated.mouseCursorActivated.isMouseActive)
             {
@@ -183,7 +190,7 @@ public class Finish : MonoBehaviour
 
     IEnumerator waitToActive() 
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         finishUI.SetActive(true);
         inGameUI.SetActive(false);
     }

@@ -41,7 +41,7 @@ public class ReadyToStart : MonoBehaviour
             panelStar.SetActive(true);
             panelTargetEnemyDestroy.SetActive(true);
         }
-        if (isGameStart) 
+        if (isGameStart && !GlobalVariable.globalVariable.isGameFinish) 
         {
             inGameUI.SetActive(true);
             startUI.SetActive(false);

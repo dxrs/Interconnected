@@ -27,7 +27,10 @@ public class EnemySpawner : MonoBehaviour
        
         while (true)
         {
-            if (ReadyToStart.readyToStart.isGameStart) 
+            if (ReadyToStart.readyToStart.isGameStart
+                && !GlobalVariable.globalVariable.isGameFinish
+                && !GlobalVariable.globalVariable.isGameOver
+                && !Pause.pause.isGamePaused) 
             {
                 enemySpawnPos = enemySpawnRadius.transform.position;
                 enemySpawnPos += Random.insideUnitCircle.normalized * enemyRadiusValue;

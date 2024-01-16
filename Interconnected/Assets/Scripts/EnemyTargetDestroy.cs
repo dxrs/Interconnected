@@ -24,8 +24,10 @@ public class EnemyTargetDestroy : MonoBehaviour
         {
             for (int i = 0; i < textTargetEnemyDestroy.Length && i < targetEnemyDestroyValue.Length; i++)
             {
-                textTargetEnemyDestroy[i].text = "Kill " + targetEnemyDestroyValue[i] + " Enemy";
+                textTargetEnemyDestroy[i].text = "Destroy " + targetEnemyDestroyValue[i] + " Enemy";
             }
         }
+
+      
     }
 }

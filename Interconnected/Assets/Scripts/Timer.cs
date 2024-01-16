@@ -53,6 +53,15 @@ public class Timer : MonoBehaviour
                 globalVariable.isGameOver = true;
             }
         }
+
+        if (LevelStatus.levelStatus.levelID == 2) 
+        {
+            if (curTimerValue <= 0) 
+            {
+                curTimerValue = 0;
+                globalVariable.isGameFinish = true;
+            }
+        }
        
         
     }

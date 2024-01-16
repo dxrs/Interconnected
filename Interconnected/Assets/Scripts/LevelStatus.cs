@@ -17,7 +17,7 @@ public class LevelStatus : MonoBehaviour
     private void Start()
     {
         string levelString = levelStats.ToString();
-        Debug.Log("Level as String: " + levelString);
+        Debug.Log("level status: " + levelString);
 
         if (levelStats == statusLevel.Adventure)
         {
