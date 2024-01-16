@@ -8,6 +8,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float delayTimerSpawn;
     [SerializeField] float enemyRadiusValue;
 
+    [SerializeField] bool isEnemyDelayToSpawn;
+
     [SerializeField] GameObject enemySpawnRadius;
     [SerializeField] GameObject enemy;
 
@@ -32,9 +34,22 @@ public class EnemySpawner : MonoBehaviour
                 && !GlobalVariable.globalVariable.isGameOver
                 && !Pause.pause.isGamePaused) 
             {
-                enemySpawnPos = enemySpawnRadius.transform.position;
-                enemySpawnPos += Random.insideUnitCircle.normalized * enemyRadiusValue;
-                Instantiate(enemy, enemySpawnPos, Quaternion.identity);
+                if (!isEnemyDelayToSpawn) 
+                {
+                    enemySpawnPos = enemySpawnRadius.transform.position;
+                    enemySpawnPos += Random.insideUnitCircle.normalized * enemyRadiusValue;
+                    Instantiate(enemy, enemySpawnPos, Quaternion.identity);
+                }
+                if (isEnemyDelayToSpawn) 
+                {
+                    if (Timer.timerInstance.curTimerValue <= delayTimerSpawn) 
+                    {
+                        enemySpawnPos = enemySpawnRadius.transform.position;
+                        enemySpawnPos += Random.insideUnitCircle.normalized * enemyRadiusValue;
+                        Instantiate(enemy, enemySpawnPos, Quaternion.identity);
+                    }
+                }
+               
             }
            
             yield return new WaitForSeconds(waitTimeToSpawn);

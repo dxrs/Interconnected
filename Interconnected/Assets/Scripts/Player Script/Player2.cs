@@ -503,8 +503,8 @@ public class Player2 : MonoBehaviour
             if (!isShielding)
             {
                 Instantiate(deathParticle, this.transform.position, Quaternion.identity);
-                curPlayer2Health--;
-                StartCoroutine(backToFalse());
+                //curPlayer2Health--;
+
             }
         }
         

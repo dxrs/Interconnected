@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyHitEffect : MonoBehaviour
 {
+    
+
     [SerializeField] Material hitEffectMat;
 
     [SerializeField] float durationEffect;
@@ -13,6 +15,11 @@ public class EnemyHitEffect : MonoBehaviour
     Material originalMat;
 
     Coroutine hitCoroutine;
+
+    private void Awake()
+    {
+        
+    }
 
     private void Start()
     {

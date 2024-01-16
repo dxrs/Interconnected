@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] EnemyHitEffect enemyHitEffect1;
+    //[SerializeField] EnemyHitEffect enemyHitEffect1;
 
     [Header("Enemy Movement")]
     [SerializeField] float enemyMovementSpeed;
@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rb;
 
     GameObject player1, player2;
+
+    EnemyHitEffect enemyHitEffect;
 
     Vector2 dir, movement;
 
@@ -122,7 +124,11 @@ public class Enemy : MonoBehaviour
         if(collision.gameObject.tag=="Bullet P1" || collision.gameObject.tag=="Bullet P2") 
         {
             enemyHealth -= 1;
-            EnemyHitEffect enemyHitEffect = gameObject.GetComponent<EnemyHitEffect>();
+            enemyHitEffect = GetComponent<EnemyHitEffect>();
+            if (enemyHitEffect != null) 
+            {
+                enemyHitEffect.hitEffectEnemy();
+            }
            
         }
         if(collision.gameObject.tag=="Player 1 Shield" || collision.gameObject.tag=="Player 2 Shield") 

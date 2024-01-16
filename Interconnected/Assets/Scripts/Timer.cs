@@ -8,6 +8,11 @@ using Unity.VisualScripting;
 
 public class Timer : MonoBehaviour
 {
+    public static Timer timerInstance;
+
+
+    public float curTimerValue;
+
     [SerializeField] GlobalVariable globalVariable;
     [SerializeField] SceneSystem sceneSystem;
 
@@ -15,12 +20,16 @@ public class Timer : MonoBehaviour
     [SerializeField] TextMeshProUGUI textPlayerTimer;
     [SerializeField] TextMeshProUGUI[] textTargetTimer;
 
-    [SerializeField] float curTimerValue;
     [SerializeField] float[] timerTargetValue;
 
     bool isTimerStop = false;
 
     TimeSpan timerCount;
+
+    private void Awake()
+    {
+        timerInstance = this;
+    }
 
     private void Start()
     {
