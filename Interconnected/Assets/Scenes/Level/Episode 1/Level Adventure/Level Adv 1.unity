@@ -6743,8 +6743,8 @@ MonoBehaviour:
   player1LinkedToObstacle: 0
   player2LinkedToObstacle: 0
   isLinkedToPlayer: 0
-  linkDistanceToPlayer: 6.5
-  linkDistanceToCircle: 6.5
+  linkDistanceToPlayer: 12
+  linkDistanceToCircle: 12
   player:
   - {fileID: 116975106}
   - {fileID: 90475037}
@@ -7183,7 +7183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1785029592
 Transform:
   m_ObjectHideFlags: 0
@@ -8931,6 +8931,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2675795390482111966, guid: 61be260b28b4de943b96dd5fad2bc628, type: 3}
+      propertyPath: movementSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675795390482111966, guid: 61be260b28b4de943b96dd5fad2bc628, type: 3}
       propertyPath: globalVariable
       value: 
       objectReference: {fileID: 106151307}
@@ -9048,9 +9052,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1708332662}
     - target: {fileID: 4753034474993768709, guid: d925ca9e426fbae4283a451efb22264d, type: 3}
+      propertyPath: curSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753034474993768709, guid: d925ca9e426fbae4283a451efb22264d, type: 3}
       propertyPath: staminaImg
       value: 
       objectReference: {fileID: 502329541}
+    - target: {fileID: 4753034474993768709, guid: d925ca9e426fbae4283a451efb22264d, type: 3}
+      propertyPath: dashDuration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4753034474993768709, guid: d925ca9e426fbae4283a451efb22264d, type: 3}
       propertyPath: globalVariable
       value: 
@@ -9105,9 +9117,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1708332662}
     - target: {fileID: 6039059479332918735, guid: 3bb3abfd6c5a8234d95070aa528f1827, type: 3}
+      propertyPath: curSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039059479332918735, guid: 3bb3abfd6c5a8234d95070aa528f1827, type: 3}
       propertyPath: staminaImg
       value: 
       objectReference: {fileID: 158538260}
+    - target: {fileID: 6039059479332918735, guid: 3bb3abfd6c5a8234d95070aa528f1827, type: 3}
+      propertyPath: dashDuration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6039059479332918735, guid: 3bb3abfd6c5a8234d95070aa528f1827, type: 3}
       propertyPath: globalVariable
       value: 

@@ -919,7 +919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d0e54a415c58747ae0fe725e421da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curValueEnemyDestroy: 25
+  curValueEnemyDestroy: 0
   targetEnemyDestroyValue: 1e000000140000000f000000
   textTargetEnemyDestroy:
   - {fileID: 1319856432}
@@ -2319,8 +2319,8 @@ MonoBehaviour:
   player1LinkedToObstacle: 0
   player2LinkedToObstacle: 0
   isLinkedToPlayer: 0
-  linkDistanceToPlayer: 6.5
-  linkDistanceToCircle: 6.5
+  linkDistanceToPlayer: 12
+  linkDistanceToCircle: 12
   player:
   - {fileID: 116975106}
   - {fileID: 90475037}
@@ -3085,9 +3085,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1708332662}
     - target: {fileID: 4753034474993768709, guid: d925ca9e426fbae4283a451efb22264d, type: 3}
+      propertyPath: curSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753034474993768709, guid: d925ca9e426fbae4283a451efb22264d, type: 3}
       propertyPath: staminaImg
       value: 
       objectReference: {fileID: 502329541}
+    - target: {fileID: 4753034474993768709, guid: d925ca9e426fbae4283a451efb22264d, type: 3}
+      propertyPath: dashDuration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4753034474993768709, guid: d925ca9e426fbae4283a451efb22264d, type: 3}
       propertyPath: globalVariable
       value: 
@@ -3142,9 +3150,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1708332662}
     - target: {fileID: 6039059479332918735, guid: 3bb3abfd6c5a8234d95070aa528f1827, type: 3}
+      propertyPath: curSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039059479332918735, guid: 3bb3abfd6c5a8234d95070aa528f1827, type: 3}
       propertyPath: staminaImg
       value: 
       objectReference: {fileID: 158538260}
+    - target: {fileID: 6039059479332918735, guid: 3bb3abfd6c5a8234d95070aa528f1827, type: 3}
+      propertyPath: dashDuration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6039059479332918735, guid: 3bb3abfd6c5a8234d95070aa528f1827, type: 3}
       propertyPath: globalVariable
       value: 
