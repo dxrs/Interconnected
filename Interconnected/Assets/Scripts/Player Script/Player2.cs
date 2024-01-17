@@ -131,9 +131,13 @@ public class Player2 : MonoBehaviour
 
         do
         {
-            curStamina += staminaRegenRate / 10;
-            if (curStamina > maxStamina) { curStamina = maxStamina; }
-            staminaImg.fillAmount = curStamina / maxStamina;
+            if (!isShielding) 
+            {
+                curStamina += staminaRegenRate / 10;
+                if (curStamina > maxStamina) { curStamina = maxStamina; }
+                staminaImg.fillAmount = curStamina / maxStamina;
+            }
+           
             yield return new WaitForSeconds(.1f); //rate regenate x/ms
         } while (curStamina < maxStamina);
     }
