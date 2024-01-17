@@ -9234,6 +9234,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7606320907494012610, guid: dc1b6d038fd81794ba874fdea47fc06a, type: 3}
+      propertyPath: cameraMaxZoom
+      value: 3.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606320907494012610, guid: dc1b6d038fd81794ba874fdea47fc06a, type: 3}
+      propertyPath: cameraMinZoom
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606320907494012610, guid: dc1b6d038fd81794ba874fdea47fc06a, type: 3}
+      propertyPath: cameraZoomLimiter
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606320907494012610, guid: dc1b6d038fd81794ba874fdea47fc06a, type: 3}
+      propertyPath: distanceBetween2Player
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606320907494012610, guid: dc1b6d038fd81794ba874fdea47fc06a, type: 3}
       propertyPath: cameraTargetObject.Array.data[0]
       value: 
       objectReference: {fileID: 2097847137}

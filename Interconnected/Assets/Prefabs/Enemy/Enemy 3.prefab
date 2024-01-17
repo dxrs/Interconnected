@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 9081289969987928053}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2443439716624830963}
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathParticle: {fileID: 1374567328952284614, guid: dc3fb0a9ea247b34b83c313a5c1f7c37, type: 3}
   enemyMovementSpeed: 1.5
-  enemyHealth: 50
+  enemyHealth: 20
 --- !u!114 &5121257545381358979
 MonoBehaviour:
   m_ObjectHideFlags: 0

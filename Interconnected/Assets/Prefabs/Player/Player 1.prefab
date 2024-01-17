@@ -779,8 +779,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4753034474993768709}
         m_TargetAssemblyTypeName: Player1, Assembly-CSharp
-        m_MethodName: changeLinkMethod
-        m_Mode: 0
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

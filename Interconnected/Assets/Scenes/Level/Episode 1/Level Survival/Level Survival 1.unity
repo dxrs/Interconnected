@@ -919,7 +919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d0e54a415c58747ae0fe725e421da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curValueEnemyDestroy: 0
+  curValueEnemyDestroy: 25
   targetEnemyDestroyValue: 1e000000140000000f000000
   textTargetEnemyDestroy:
   - {fileID: 1319856432}
@@ -970,7 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3939da2d7f4ab1e43b193f1484ae3dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimeToSpawn: 3
+  waitTimeToSpawn: 10
   delayTimerSpawn: 0
   enemyRadiusValue: 35
   isEnemyDelayToSpawn: 0
@@ -1815,7 +1815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3939da2d7f4ab1e43b193f1484ae3dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimeToSpawn: 5
+  waitTimeToSpawn: 4
   delayTimerSpawn: 0
   enemyRadiusValue: 35
   isEnemyDelayToSpawn: 0

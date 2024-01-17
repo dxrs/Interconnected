@@ -6,26 +6,30 @@ public class BulletP1 : MonoBehaviour
 {
 
     [SerializeField] float bulletSpeed;
+    [SerializeField] float colorChangeDistanceThreshold;
 
     GameObject targetToPlayer2;
     GameObject[] targetToObstacleP1;
 
     [SerializeField] Color defaultBulletColor;
-    [SerializeField] Color obstacleBulletColor;
+    [SerializeField] Color targetColor;
 
     SpriteRenderer sr;
 
     CircleCollider2D cc;
+    Color currentColor;
 
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        sr.color = defaultBulletColor;
         targetToPlayer2 = GameObject.FindGameObjectWithTag("Player 2");
         targetToObstacleP1 = GameObject.FindGameObjectsWithTag("Obstacle P1");
     }
 
     private void Update()
     {
+       
         if (LinkRay.linkRay.isLinkedToPlayer) 
         {
             if (targetToPlayer2 != null && !GlobalVariable.globalVariable.isTriggeredWithObstacle
@@ -34,13 +38,23 @@ public class BulletP1 : MonoBehaviour
                         && !SceneSystem.sceneSystem.isRestartScene) 
             {
                 transform.position = Vector2.MoveTowards(transform.position, targetToPlayer2.transform.position, bulletSpeed * Time.deltaTime);
+
+                float distanceToPlayer2 = Vector2.Distance(transform.position, targetToPlayer2.transform.position);
+
+                float normalizedDistance = Mathf.Clamp01(distanceToPlayer2 / colorChangeDistanceThreshold);
+
+                Color currentColor = Color.Lerp(targetColor, defaultBulletColor, normalizedDistance);
+                sr.color = currentColor;
             }
-            else { Destroy(gameObject); }
-            sr.color = defaultBulletColor;
+            else
+            {
+                Destroy(gameObject);
+            }
+
         }
         else 
         {
-            sr.color = obstacleBulletColor;
+    
             float maxDistance = 6.5f;
             GameObject nearestObstacle = null;
             float nearestDistance = float.MaxValue;
@@ -63,6 +77,12 @@ public class BulletP1 : MonoBehaviour
             }
             else { Destroy(gameObject); }
         }
+       
+    }
+
+    private float GetDistanceToPlayer2()
+    {
+        return Vector2.Distance(transform.position, targetToPlayer2.transform.position);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

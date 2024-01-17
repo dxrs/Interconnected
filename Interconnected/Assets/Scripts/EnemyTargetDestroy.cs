@@ -31,10 +31,11 @@ public class EnemyTargetDestroy : MonoBehaviour
             {
                 textEnemyDestroy.text = "Enemy Destroyed " + curValueEnemyDestroy + " / " + targetEnemyDestroyValue[1].ToString();
             }
-            if (curValueEnemyDestroy == Mathf.Clamp(curValueEnemyDestroy, targetEnemyDestroyValue[1], targetEnemyDestroyValue[0]))
+            if (curValueEnemyDestroy == Mathf.Clamp(curValueEnemyDestroy, targetEnemyDestroyValue[1], targetEnemyDestroyValue[0]) || curValueEnemyDestroy > targetEnemyDestroyValue[0])
             {
                 textEnemyDestroy.text = "Enemy Destroyed " + curValueEnemyDestroy + " / " + targetEnemyDestroyValue[0].ToString();
             }
+            
             for (int i = 0; i < textTargetEnemyDestroy.Length && i < targetEnemyDestroyValue.Length; i++)
             {
                 textTargetEnemyDestroy[i].text = "Destroy " + targetEnemyDestroyValue[i] + " Enemy";
