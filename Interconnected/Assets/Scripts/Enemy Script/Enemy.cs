@@ -117,7 +117,10 @@ public class Enemy : MonoBehaviour
         dir.Normalize();
         movement = dir;
     }
-
+    private void OnDestroy()
+    {
+        GlobalVariable.globalVariable.curEnemySpawn--;
+    }
     private void enemyMovement(Vector2 direction) 
     {
         rb.MovePosition((Vector2)transform.position + (direction * enemyMovementSpeed * Time.deltaTime));
@@ -137,29 +140,20 @@ public class Enemy : MonoBehaviour
         }
         if(collision.gameObject.tag=="Player 1 Shield" || collision.gameObject.tag=="Player 2 Shield") 
         {
-            Instantiate(deathParticle,this.transform.position,Quaternion.identity);
-            Destroy(gameObject);
+            Instantiate(deathParticle,transform.position,Quaternion.identity);
+            enemyHealth = 0;
         }
         if (collision.gameObject.tag == "Wall") 
         {
             GlobalVariable.globalVariable.isTimerStart = true;
         }
-        if(collision.gameObject.tag=="Player 1") 
+        if(collision.gameObject.tag=="Player 1" || collision.gameObject.tag == "Player 2") 
         {
-            if (!Player1.player1.isKnockedOut) 
-            {
-                Instantiate(deathParticle,this.transform.position,Quaternion.identity);
-                Destroy(gameObject);
-            }
+
+            Destroy(gameObject);
+
         }
-        if(collision.gameObject.tag=="Player 2") 
-        {
-            if (!Player2.player2.isKnockedOut) 
-            {
-                Instantiate(deathParticle,this.transform.position,Quaternion.identity);
-                Destroy(gameObject);
-            }
-        }
+       
         
     }
 }

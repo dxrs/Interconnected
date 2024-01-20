@@ -175,6 +175,8 @@ MonoBehaviour:
   isTimerStart: 0
   circleIsTriggeredWithPlayers: 0000
   maxDoor: 10
+  curEnemySpawn: 0
+  maxEnemySpawn: 10
   p1Sr: {fileID: 2097847142}
   p2Sr: {fileID: 814672464}
   p1cc: {fileID: 2097847138}

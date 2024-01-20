@@ -36,17 +36,23 @@ public class EnemySpawner : MonoBehaviour
             {
                 if (!isEnemyDelayToSpawn) 
                 {
-                    enemySpawnPos = enemySpawnRadius.transform.position;
-                    enemySpawnPos += Random.insideUnitCircle.normalized * enemyRadiusValue;
-                    Instantiate(enemy, enemySpawnPos, Quaternion.identity);
-                }
-                if (isEnemyDelayToSpawn) 
-                {
-                    if (Timer.timerInstance.curTimerValue <= delayTimerSpawn) 
+                    if (GlobalVariable.globalVariable.curEnemySpawn < GlobalVariable.globalVariable.maxEnemySpawn) 
                     {
                         enemySpawnPos = enemySpawnRadius.transform.position;
                         enemySpawnPos += Random.insideUnitCircle.normalized * enemyRadiusValue;
                         Instantiate(enemy, enemySpawnPos, Quaternion.identity);
+                        GlobalVariable.globalVariable.curEnemySpawn++;
+                    }
+                    
+                }
+                if (isEnemyDelayToSpawn) 
+                {
+                    if (Timer.timerInstance.curTimerValue <= delayTimerSpawn && GlobalVariable.globalVariable.curEnemySpawn < GlobalVariable.globalVariable.maxEnemySpawn) 
+                    {
+                        enemySpawnPos = enemySpawnRadius.transform.position;
+                        enemySpawnPos += Random.insideUnitCircle.normalized * enemyRadiusValue;
+                        Instantiate(enemy, enemySpawnPos, Quaternion.identity);
+                        GlobalVariable.globalVariable.curEnemySpawn++;
                     }
                 }
                

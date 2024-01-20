@@ -15,8 +15,8 @@ public class GlobalVariable : MonoBehaviour
     public bool[] circleIsTriggeredWithPlayers;
 
     public int maxDoor;
-
-
+    public int curEnemySpawn;
+    public int maxEnemySpawn;
 
     [SerializeField] SpriteRenderer p1Sr;
     [SerializeField] SpriteRenderer p2Sr;
