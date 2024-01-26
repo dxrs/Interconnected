@@ -18,6 +18,7 @@ public class Player2 : MonoBehaviour
 
     [SerializeField] float curSpeed;
     [SerializeField] float maxSpeed;
+    [SerializeField] float playerCrashForceValue;
 
     [SerializeField] bool isMovePosition;
 
@@ -276,7 +277,7 @@ public class Player2 : MonoBehaviour
     {
         if (isBreaking)
         {
-            rb.drag = math.lerp(rb.drag, 3, 1 * Time.deltaTime);
+            rb.drag = math.lerp(rb.drag, 5, 1 * Time.deltaTime);
         }
         else
         {
@@ -475,6 +476,8 @@ public class Player2 : MonoBehaviour
 
         if (collision.gameObject.tag == "Player 1")
         {
+            Vector2 crashForcePos = (transform.position - collision.transform.position).normalized;
+            rb.AddForce(crashForcePos * playerCrashForceValue, ForceMode2D.Impulse);
             if (Player1.player1.isKnockedOut)
             {
                 if (Player1.player1.reviveCountValue > 0)

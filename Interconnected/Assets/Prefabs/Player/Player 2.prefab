@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 6039059479332918734}
   - component: {fileID: 6039059479332918733}
   - component: {fileID: 6039059479332918732}
+  - component: {fileID: 1889150250016434555}
   m_Layer: 6
   m_Name: Player 2
   m_TagString: Player 2
@@ -204,6 +205,7 @@ MonoBehaviour:
   globalVariable: {fileID: 0}
   curSpeed: 5
   maxSpeed: 5
+  playerCrashForceValue: 0
   isMovePosition: 0
   playerRespawnPos: {x: -7.18, y: -9.34}
   isKnockedOut: 0
@@ -477,6 +479,22 @@ CircleCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.7
+--- !u!58 &1889150250016434555
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6039059479332918731}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

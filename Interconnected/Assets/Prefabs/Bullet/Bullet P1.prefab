@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68dbefe18284ae842b182260ebc8c61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 8.5
+  bulletSpeed: 10
   colorChangeDistanceThreshold: 3.5
   defaultBulletColor: {r: 1, g: 0, b: 0.89264774, a: 1}
   targetColor: {r: 0, g: 0.9489832, b: 1, a: 1}

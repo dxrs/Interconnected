@@ -13,7 +13,7 @@ public class LinkRay : MonoBehaviour
     public bool player1LinkedToObstacle, player2LinkedToObstacle;
     public bool isLinkedToPlayer;
 
-    [SerializeField] float linkDistanceToPlayer;
+    public float linkDistanceToPlayer;
     [SerializeField] float linkDistanceToCircle;
 
     [SerializeField] GameObject[] player; // array for link point player 1 and player 2
