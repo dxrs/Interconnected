@@ -73,7 +73,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Change Link"",
+                    ""name"": ""Brake"",
                     ""type"": ""Button"",
                     ""id"": ""a9a444fa-beb5-47e7-a00f-295983c6397f"",
                     ""expectedControlType"": ""Button"",
@@ -225,7 +225,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8a5e7c01-edf9-4278-af5d-fee1fa3bd93c"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard Scheme"",
@@ -258,7 +258,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b774218d-1c96-410e-8efd-5cb3699e0c23"",
-                    ""path"": ""<Keyboard>/leftShift"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard Scheme"",
@@ -280,11 +280,11 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2c2e3ea9-b5e6-4bb8-84c1-f7dffc0e8953"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard Scheme"",
-                    ""action"": ""Change Link"",
+                    ""action"": ""Brake"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -340,7 +340,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Change Link"",
+                    ""name"": ""Brake"",
                     ""type"": ""Button"",
                     ""id"": ""c473713c-8497-4e8c-99a7-835e0d925607"",
                     ""expectedControlType"": ""Button"",
@@ -358,7 +358,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Basic Skill Ghost"",
+                    ""name"": ""Basic Skill Shield"",
                     ""type"": ""Button"",
                     ""id"": ""4af3bff8-8a64-4d2f-9bd0-9ea63d615ebb"",
                     ""expectedControlType"": ""Button"",
@@ -404,11 +404,11 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""78d08b0f-d2f5-4f51-8a68-ae5bc40f6123"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad Scheme"",
-                    ""action"": ""Basic Skill Ghost"",
+                    ""action"": ""Basic Skill Shield"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -426,11 +426,11 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7d6c5153-cb0e-42fb-8477-94aa3ff390cb"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad Scheme"",
-                    ""action"": ""Change Link"",
+                    ""action"": ""Brake"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -502,7 +502,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         m_InputPlayer1_InteractTap = m_InputPlayer1.FindAction("Interact Tap", throwIfNotFound: true);
         m_InputPlayer1_InteractHold = m_InputPlayer1.FindAction("Interact Hold", throwIfNotFound: true);
         m_InputPlayer1_GiveHealth = m_InputPlayer1.FindAction("Give Health", throwIfNotFound: true);
-        m_InputPlayer1_ChangeLink = m_InputPlayer1.FindAction("Change Link", throwIfNotFound: true);
+        m_InputPlayer1_Brake = m_InputPlayer1.FindAction("Brake", throwIfNotFound: true);
         m_InputPlayer1_BasicSkillDash = m_InputPlayer1.FindAction("Basic Skill Dash", throwIfNotFound: true);
         m_InputPlayer1_BasicSkillShield = m_InputPlayer1.FindAction("Basic Skill Shield", throwIfNotFound: true);
         // Input Player 2
@@ -512,9 +512,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         m_InputPlayer2_InteractTap = m_InputPlayer2.FindAction("Interact Tap", throwIfNotFound: true);
         m_InputPlayer2_InteractHold = m_InputPlayer2.FindAction("Interact Hold", throwIfNotFound: true);
         m_InputPlayer2_GiveHealth = m_InputPlayer2.FindAction("Give Health", throwIfNotFound: true);
-        m_InputPlayer2_ChangeLink = m_InputPlayer2.FindAction("Change Link", throwIfNotFound: true);
+        m_InputPlayer2_Brake = m_InputPlayer2.FindAction("Brake", throwIfNotFound: true);
         m_InputPlayer2_BasicSkillDash = m_InputPlayer2.FindAction("Basic Skill Dash", throwIfNotFound: true);
-        m_InputPlayer2_BasicSkillGhost = m_InputPlayer2.FindAction("Basic Skill Ghost", throwIfNotFound: true);
+        m_InputPlayer2_BasicSkillShield = m_InputPlayer2.FindAction("Basic Skill Shield", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -581,7 +581,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_InputPlayer1_InteractTap;
     private readonly InputAction m_InputPlayer1_InteractHold;
     private readonly InputAction m_InputPlayer1_GiveHealth;
-    private readonly InputAction m_InputPlayer1_ChangeLink;
+    private readonly InputAction m_InputPlayer1_Brake;
     private readonly InputAction m_InputPlayer1_BasicSkillDash;
     private readonly InputAction m_InputPlayer1_BasicSkillShield;
     public struct InputPlayer1Actions
@@ -593,7 +593,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         public InputAction @InteractTap => m_Wrapper.m_InputPlayer1_InteractTap;
         public InputAction @InteractHold => m_Wrapper.m_InputPlayer1_InteractHold;
         public InputAction @GiveHealth => m_Wrapper.m_InputPlayer1_GiveHealth;
-        public InputAction @ChangeLink => m_Wrapper.m_InputPlayer1_ChangeLink;
+        public InputAction @Brake => m_Wrapper.m_InputPlayer1_Brake;
         public InputAction @BasicSkillDash => m_Wrapper.m_InputPlayer1_BasicSkillDash;
         public InputAction @BasicSkillShield => m_Wrapper.m_InputPlayer1_BasicSkillShield;
         public InputActionMap Get() { return m_Wrapper.m_InputPlayer1; }
@@ -620,9 +620,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @GiveHealth.started += instance.OnGiveHealth;
             @GiveHealth.performed += instance.OnGiveHealth;
             @GiveHealth.canceled += instance.OnGiveHealth;
-            @ChangeLink.started += instance.OnChangeLink;
-            @ChangeLink.performed += instance.OnChangeLink;
-            @ChangeLink.canceled += instance.OnChangeLink;
+            @Brake.started += instance.OnBrake;
+            @Brake.performed += instance.OnBrake;
+            @Brake.canceled += instance.OnBrake;
             @BasicSkillDash.started += instance.OnBasicSkillDash;
             @BasicSkillDash.performed += instance.OnBasicSkillDash;
             @BasicSkillDash.canceled += instance.OnBasicSkillDash;
@@ -648,9 +648,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @GiveHealth.started -= instance.OnGiveHealth;
             @GiveHealth.performed -= instance.OnGiveHealth;
             @GiveHealth.canceled -= instance.OnGiveHealth;
-            @ChangeLink.started -= instance.OnChangeLink;
-            @ChangeLink.performed -= instance.OnChangeLink;
-            @ChangeLink.canceled -= instance.OnChangeLink;
+            @Brake.started -= instance.OnBrake;
+            @Brake.performed -= instance.OnBrake;
+            @Brake.canceled -= instance.OnBrake;
             @BasicSkillDash.started -= instance.OnBasicSkillDash;
             @BasicSkillDash.performed -= instance.OnBasicSkillDash;
             @BasicSkillDash.canceled -= instance.OnBasicSkillDash;
@@ -683,9 +683,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_InputPlayer2_InteractTap;
     private readonly InputAction m_InputPlayer2_InteractHold;
     private readonly InputAction m_InputPlayer2_GiveHealth;
-    private readonly InputAction m_InputPlayer2_ChangeLink;
+    private readonly InputAction m_InputPlayer2_Brake;
     private readonly InputAction m_InputPlayer2_BasicSkillDash;
-    private readonly InputAction m_InputPlayer2_BasicSkillGhost;
+    private readonly InputAction m_InputPlayer2_BasicSkillShield;
     public struct InputPlayer2Actions
     {
         private @InputControl m_Wrapper;
@@ -695,9 +695,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         public InputAction @InteractTap => m_Wrapper.m_InputPlayer2_InteractTap;
         public InputAction @InteractHold => m_Wrapper.m_InputPlayer2_InteractHold;
         public InputAction @GiveHealth => m_Wrapper.m_InputPlayer2_GiveHealth;
-        public InputAction @ChangeLink => m_Wrapper.m_InputPlayer2_ChangeLink;
+        public InputAction @Brake => m_Wrapper.m_InputPlayer2_Brake;
         public InputAction @BasicSkillDash => m_Wrapper.m_InputPlayer2_BasicSkillDash;
-        public InputAction @BasicSkillGhost => m_Wrapper.m_InputPlayer2_BasicSkillGhost;
+        public InputAction @BasicSkillShield => m_Wrapper.m_InputPlayer2_BasicSkillShield;
         public InputActionMap Get() { return m_Wrapper.m_InputPlayer2; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -722,15 +722,15 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @GiveHealth.started += instance.OnGiveHealth;
             @GiveHealth.performed += instance.OnGiveHealth;
             @GiveHealth.canceled += instance.OnGiveHealth;
-            @ChangeLink.started += instance.OnChangeLink;
-            @ChangeLink.performed += instance.OnChangeLink;
-            @ChangeLink.canceled += instance.OnChangeLink;
+            @Brake.started += instance.OnBrake;
+            @Brake.performed += instance.OnBrake;
+            @Brake.canceled += instance.OnBrake;
             @BasicSkillDash.started += instance.OnBasicSkillDash;
             @BasicSkillDash.performed += instance.OnBasicSkillDash;
             @BasicSkillDash.canceled += instance.OnBasicSkillDash;
-            @BasicSkillGhost.started += instance.OnBasicSkillGhost;
-            @BasicSkillGhost.performed += instance.OnBasicSkillGhost;
-            @BasicSkillGhost.canceled += instance.OnBasicSkillGhost;
+            @BasicSkillShield.started += instance.OnBasicSkillShield;
+            @BasicSkillShield.performed += instance.OnBasicSkillShield;
+            @BasicSkillShield.canceled += instance.OnBasicSkillShield;
         }
 
         private void UnregisterCallbacks(IInputPlayer2Actions instance)
@@ -750,15 +750,15 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @GiveHealth.started -= instance.OnGiveHealth;
             @GiveHealth.performed -= instance.OnGiveHealth;
             @GiveHealth.canceled -= instance.OnGiveHealth;
-            @ChangeLink.started -= instance.OnChangeLink;
-            @ChangeLink.performed -= instance.OnChangeLink;
-            @ChangeLink.canceled -= instance.OnChangeLink;
+            @Brake.started -= instance.OnBrake;
+            @Brake.performed -= instance.OnBrake;
+            @Brake.canceled -= instance.OnBrake;
             @BasicSkillDash.started -= instance.OnBasicSkillDash;
             @BasicSkillDash.performed -= instance.OnBasicSkillDash;
             @BasicSkillDash.canceled -= instance.OnBasicSkillDash;
-            @BasicSkillGhost.started -= instance.OnBasicSkillGhost;
-            @BasicSkillGhost.performed -= instance.OnBasicSkillGhost;
-            @BasicSkillGhost.canceled -= instance.OnBasicSkillGhost;
+            @BasicSkillShield.started -= instance.OnBasicSkillShield;
+            @BasicSkillShield.performed -= instance.OnBasicSkillShield;
+            @BasicSkillShield.canceled -= instance.OnBasicSkillShield;
         }
 
         public void RemoveCallbacks(IInputPlayer2Actions instance)
@@ -810,7 +810,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         void OnInteractTap(InputAction.CallbackContext context);
         void OnInteractHold(InputAction.CallbackContext context);
         void OnGiveHealth(InputAction.CallbackContext context);
-        void OnChangeLink(InputAction.CallbackContext context);
+        void OnBrake(InputAction.CallbackContext context);
         void OnBasicSkillDash(InputAction.CallbackContext context);
         void OnBasicSkillShield(InputAction.CallbackContext context);
     }
@@ -821,8 +821,8 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         void OnInteractTap(InputAction.CallbackContext context);
         void OnInteractHold(InputAction.CallbackContext context);
         void OnGiveHealth(InputAction.CallbackContext context);
-        void OnChangeLink(InputAction.CallbackContext context);
+        void OnBrake(InputAction.CallbackContext context);
         void OnBasicSkillDash(InputAction.CallbackContext context);
-        void OnBasicSkillGhost(InputAction.CallbackContext context);
+        void OnBasicSkillShield(InputAction.CallbackContext context);
     }
 }

@@ -61,10 +61,7 @@ public class GlobalVariable : MonoBehaviour
         }
         if (!circleIsTriggeredWithPlayers[0] && !circleIsTriggeredWithPlayers[1]) { isNotShoot = false; }
        
-        if (Player1.player1.isKnockedOut && Player2.player2.isKnockedOut) 
-        {
-            //isGameOver = true;
-        }
+       
 
         if (player1 == null || player2 == null) 
         {

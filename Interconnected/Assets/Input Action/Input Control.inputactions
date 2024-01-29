@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Change Link",
+                    "name": "Brake",
                     "type": "Button",
                     "id": "a9a444fa-beb5-47e7-a00f-295983c6397f",
                     "expectedControlType": "Button",
@@ -203,7 +203,7 @@
                 {
                     "name": "",
                     "id": "8a5e7c01-edf9-4278-af5d-fee1fa3bd93c",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard Scheme",
@@ -236,7 +236,7 @@
                 {
                     "name": "",
                     "id": "b774218d-1c96-410e-8efd-5cb3699e0c23",
-                    "path": "<Keyboard>/leftShift",
+                    "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard Scheme",
@@ -258,11 +258,11 @@
                 {
                     "name": "",
                     "id": "2c2e3ea9-b5e6-4bb8-84c1-f7dffc0e8953",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard Scheme",
-                    "action": "Change Link",
+                    "action": "Brake",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -318,7 +318,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Change Link",
+                    "name": "Brake",
                     "type": "Button",
                     "id": "c473713c-8497-4e8c-99a7-835e0d925607",
                     "expectedControlType": "Button",
@@ -336,7 +336,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Basic Skill Ghost",
+                    "name": "Basic Skill Shield",
                     "type": "Button",
                     "id": "4af3bff8-8a64-4d2f-9bd0-9ea63d615ebb",
                     "expectedControlType": "Button",
@@ -382,11 +382,11 @@
                 {
                     "name": "",
                     "id": "78d08b0f-d2f5-4f51-8a68-ae5bc40f6123",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad Scheme",
-                    "action": "Basic Skill Ghost",
+                    "action": "Basic Skill Shield",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -404,11 +404,11 @@
                 {
                     "name": "",
                     "id": "7d6c5153-cb0e-42fb-8477-94aa3ff390cb",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad Scheme",
-                    "action": "Change Link",
+                    "action": "Brake",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

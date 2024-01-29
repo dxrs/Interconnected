@@ -65,49 +65,21 @@ public class Enemy : MonoBehaviour
         
         if (player1 != null) 
         {
-            if (!Player1.player1.isGhosting) 
+            if (indexPlayer == 0)
             {
-                if (indexPlayer == 0)
-                {
-                    if (!Player1.player1.isKnockedOut)
-                    {
-                        dir = player1.transform.position - transform.position;
-                    }
-                    else
-                    {
-                        indexPlayer = 1;
-                    }
-                }
+                dir = player1.transform.position - transform.position;
             }
-            else if(Player1.player1.isGhosting && !Player2.player2.isGhosting) 
-            {
-                dir = player2.transform.position - transform.position;
-                indexPlayer = 1;
-            }
-            
         }
 
         if (player2 != null) 
         {
-            if (!Player2.player2.isGhosting) 
+            if (indexPlayer == 1)
             {
-                if (indexPlayer == 1)
-                {
-                    if (!Player2.player2.isKnockedOut)
-                    {
-                        dir = player2.transform.position - transform.position;
-                    }
-                    else
-                    {
-                        indexPlayer = 0;
-                    }
-                }
+                dir = player2.transform.position - transform.position;
+               
             }
-            else if (!Player1.player1.isGhosting && Player2.player2.isGhosting)
-            {
-                dir = player1.transform.position - transform.position;
-                indexPlayer = 0;
-            }
+          
+            
 
         }
         else { return; }

@@ -25,6 +25,8 @@ TagManager:
   - Spike
   - Player 2 Shield
   - Player 1 Shield
+  - Player 1 Crash Trigger
+  - Player 2 Crash Trigger
   layers:
   - Default
   - TransparentFX
