@@ -9,11 +9,11 @@ public class Circle : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player 1" || collision.gameObject.tag=="Player 1 Shield")
         {
-            globalVariable.circleIsTriggeredWithPlayers[0] = true;
+            globalVariable.isTrashBinOverlapWithPlayers[0] = true;
         }
         if (collision.gameObject.tag == "Player 2" || collision.gameObject.tag=="Player 2 Shield")
         {
-            globalVariable.circleIsTriggeredWithPlayers[1] = true;
+            globalVariable.isTrashBinOverlapWithPlayers[1] = true;
         }
         if (collision.gameObject.tag=="Circle Door Trigger") 
         {
@@ -28,12 +28,12 @@ public class Circle : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player 1" || collision.gameObject.tag=="Player 1 Shield")
         {
-            globalVariable.circleIsTriggeredWithPlayers[0] = false;
+            globalVariable.isTrashBinOverlapWithPlayers[0] = false;
         }
 
         if (collision.gameObject.tag == "Player 2" || collision.gameObject.tag=="Player 2 Shield")
         {
-            globalVariable.circleIsTriggeredWithPlayers[1] = false;
+            globalVariable.isTrashBinOverlapWithPlayers[1] = false;
         }
         if (collision.gameObject.tag == "Circle Door Trigger")
         {

@@ -12,7 +12,7 @@ public class GlobalVariable : MonoBehaviour
     public bool isTriggeredWithObstacle;
     public bool isNotShoot;
     public bool isTimerStart;
-    public bool[] circleIsTriggeredWithPlayers;
+    public bool[] isTrashBinOverlapWithPlayers;
 
     public int maxDoor;
     public int curEnemySpawn;
@@ -55,11 +55,11 @@ public class GlobalVariable : MonoBehaviour
             }
         }
 
-        if (circleIsTriggeredWithPlayers[0] || circleIsTriggeredWithPlayers[1] == true) 
+        if (isTrashBinOverlapWithPlayers[0] || isTrashBinOverlapWithPlayers[1] == true) 
         {
             isNotShoot = true;
         }
-        if (!circleIsTriggeredWithPlayers[0] && !circleIsTriggeredWithPlayers[1]) { isNotShoot = false; }
+        if (!isTrashBinOverlapWithPlayers[0] && !isTrashBinOverlapWithPlayers[1]) { isNotShoot = false; }
        
        
 

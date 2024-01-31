@@ -88,15 +88,15 @@ public class LinkRay : MonoBehaviour
                   hit.collider.tag == "Trash Bin" &&
                   Vector2.Distance(player[0].transform.position,
                   player[1].transform.position) <= linkDistanceToCircle &&
-                  !GlobalVariable.globalVariable.circleIsTriggeredWithPlayers[0] &&
-                  !GlobalVariable.globalVariable.circleIsTriggeredWithPlayers[1] &&
+                  !GlobalVariable.globalVariable.isTrashBinOverlapWithPlayers[0] &&
+                  !GlobalVariable.globalVariable.isTrashBinOverlapWithPlayers[1] &&
                   !GlobalVariable.globalVariable.isTriggeredWithObstacle)
                 {
-                    //MovingCircle.movingCircle.isMoving = true;
+                    TrashBin.trashBin.isTrashBinMoving = true;
                 }
                 else
                 {
-                   // MovingCircle.movingCircle.isMoving = false;
+                    TrashBin.trashBin.isTrashBinMoving = false;
                 }
             }
            

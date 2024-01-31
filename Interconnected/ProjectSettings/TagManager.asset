@@ -28,6 +28,8 @@ TagManager:
   - Player 1 Crash Trigger
   - Player 2 Crash Trigger
   - Trash Bin
+  - Rubbish
+  - Trash Bin Stop Collider
   layers:
   - Default
   - TransparentFX
