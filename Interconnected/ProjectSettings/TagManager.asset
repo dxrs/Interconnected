@@ -27,6 +27,7 @@ TagManager:
   - Player 1 Shield
   - Player 1 Crash Trigger
   - Player 2 Crash Trigger
+  - Trash Bin
   layers:
   - Default
   - TransparentFX
@@ -40,7 +41,7 @@ TagManager:
   - Player 1
   - Player 2
   - Background
-  - 
+  - Trash Bin
   - 
   - 
   - 

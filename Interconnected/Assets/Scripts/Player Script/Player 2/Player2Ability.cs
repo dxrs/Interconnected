@@ -12,6 +12,8 @@ public class Player2Ability : MonoBehaviour
     [SerializeField] Player2Movement player2Movement;
     [SerializeField] Player2Stamina player2Stamina;
 
+    [SerializeField] GameObject crashTriggerObject;
+
     [Header("Player 2 Dash")]
     public bool isDashing;
     [SerializeField] float dashSpeed;
@@ -36,7 +38,7 @@ public class Player2Ability : MonoBehaviour
 
     private void Update()
     {
-        
+        Shielding();
     }
 
     IEnumerator Dashing()
@@ -51,7 +53,7 @@ public class Player2Ability : MonoBehaviour
     {
         if (isShielding)
         {
-
+            crashTriggerObject.SetActive(false);
             playerShield.SetActive(true);
             if (shieldDuration > 0)
             {
@@ -67,6 +69,7 @@ public class Player2Ability : MonoBehaviour
 
         if (!isShielding)
         {
+            crashTriggerObject.SetActive(true);
             shieldDuration = 10;
             playerShield.SetActive(false);
         }

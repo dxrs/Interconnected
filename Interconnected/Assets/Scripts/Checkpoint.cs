@@ -8,14 +8,45 @@ public class Checkpoint : MonoBehaviour
 
     [SerializeField] int maxCheckpointValue;
 
-    [SerializeField] Vector2[] player1CheckpointPos;
-    [SerializeField] Vector2[] player2CheckpointPos;
+    [SerializeField] Transform[] player1CheckpintPos;
+    [SerializeField] Transform[] player2CheckpintPos;
 
     [SerializeField] GameObject player1;
     [SerializeField] GameObject player2;
 
+   
     private void Start()
     {
-        curCheckpointValue = maxCheckpointValue;
+        curCheckpointValue = 1;
+
+        player1.transform.position = player1CheckpintPos[0].position;
+        player2.transform.position = player2CheckpintPos[0].position;
     }
+
+    private void Update()
+    {
+        if (LevelStatus.levelStatus.levelID == 1) 
+        {
+            if (GlobalVariable.globalVariable.isTriggeredWithObstacle)
+            {
+                StartCoroutine(moveToPos());
+            }
+        }
+       
+    }
+
+    IEnumerator moveToPos()
+    {
+        yield return new WaitForSeconds(.5f);
+        int index = curCheckpointValue - 1;
+
+        if (index >= 0 && index < player1CheckpintPos.Length)
+        {
+            player1.transform.position = player1CheckpintPos[index].position;
+            player2.transform.position = player2CheckpintPos[index].position;
+        }
+
+
+    }
+
 }

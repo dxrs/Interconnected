@@ -9,6 +9,8 @@ public class MovingCircle : MonoBehaviour
     public bool isMoving;
     public bool circleTriggertWithDoor;
 
+    public Vector2 maxScaleBag;
+
     [SerializeField] GlobalVariable globalVariable;
 
     [SerializeField] float movementSpeed;

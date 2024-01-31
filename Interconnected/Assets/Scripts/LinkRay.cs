@@ -85,18 +85,18 @@ public class LinkRay : MonoBehaviour
             if (LevelStatus.levelStatus.levelID == 1) 
             {
                 if (hit.collider != null &&
-                  hit.collider.tag == "Moving Circle" &&
+                  hit.collider.tag == "Trash Bin" &&
                   Vector2.Distance(player[0].transform.position,
                   player[1].transform.position) <= linkDistanceToCircle &&
                   !GlobalVariable.globalVariable.circleIsTriggeredWithPlayers[0] &&
                   !GlobalVariable.globalVariable.circleIsTriggeredWithPlayers[1] &&
                   !GlobalVariable.globalVariable.isTriggeredWithObstacle)
                 {
-                    MovingCircle.movingCircle.isMoving = true;
+                    //MovingCircle.movingCircle.isMoving = true;
                 }
                 else
                 {
-                    MovingCircle.movingCircle.isMoving = false;
+                   // MovingCircle.movingCircle.isMoving = false;
                 }
             }
            

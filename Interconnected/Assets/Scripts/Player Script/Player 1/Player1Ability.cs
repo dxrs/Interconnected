@@ -13,6 +13,8 @@ public class Player1Ability : MonoBehaviour
     [SerializeField] Player1Movement player1Movement;
     [SerializeField] Player1Stamina player1Stamina;
 
+    [SerializeField] GameObject crashTriggerObject;
+
     [Header("Player 1 Dash")]
     public bool isDashing;
     [SerializeField] float dashSpeed;
@@ -52,7 +54,7 @@ public class Player1Ability : MonoBehaviour
     {
         if (isShielding)
         {
-
+            crashTriggerObject.SetActive(false);
             playerShield.SetActive(true);
             if (shieldDuration > 0)
             {
@@ -68,6 +70,7 @@ public class Player1Ability : MonoBehaviour
 
         if (!isShielding)
         {
+            crashTriggerObject.SetActive(true);
             shieldDuration = 10;
             playerShield.SetActive(false);
         }

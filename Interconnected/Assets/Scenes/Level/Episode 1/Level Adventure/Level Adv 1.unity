@@ -1377,7 +1377,7 @@ GameObject:
   - component: {fileID: 257646500}
   - component: {fileID: 257646501}
   m_Layer: 0
-  m_Name: Moving Circle
+  m_Name: Trash Bin Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1408,13 +1408,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257646499}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9bd304b6c67024748874ba0c73a503ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isMoving: 0
   circleTriggertWithDoor: 0
+  maxScaleBag: {x: 0, y: 0}
   globalVariable: {fileID: 106151307}
   movementSpeed: 3
   waypoint:
@@ -1869,9 +1870,9 @@ GameObject:
   - component: {fileID: 421026754}
   - component: {fileID: 421026756}
   - component: {fileID: 421026757}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Circle
-  m_TagString: Moving Circle
+  m_TagString: Trash Bin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1885,7 +1886,7 @@ Transform:
   m_GameObject: {fileID: 421026751}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -4.53, y: -8.08, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 257646500}
@@ -3209,9 +3210,9 @@ MonoBehaviour:
     m_ActionName: Input Player 2/Basic Skill
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 814672459}
-        m_TargetAssemblyTypeName: Player2, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 814672469}
+        m_TargetAssemblyTypeName: Player2Health, Assembly-CSharp
+        m_MethodName: shareLivesInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3412,9 +3413,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCrashToOtherBoat: 0
+  globalVariable: {fileID: 106151307}
   player2Movement: {fileID: 814672468}
-  playerHitParticle: {fileID: 0}
+  player2Ability: {fileID: 814672471}
+  player2Health: {fileID: 814672469}
+  playerHitParticle: {fileID: 1374567328952284614, guid: d6311a8ae24beb94b887d184f03d7103, type: 3}
   crashForceValue: 50
+  playerCrashObject: {fileID: 1676179322}
 --- !u!114 &814672471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3431,6 +3436,7 @@ MonoBehaviour:
   globalVariable: {fileID: 106151307}
   player2Movement: {fileID: 814672468}
   player2Stamina: {fileID: 814672467}
+  crashTriggerObject: {fileID: 1676179322}
   isDashing: 0
   dashSpeed: 12
   dashDuration: 0.2
@@ -4053,7 +4059,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812881, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812881, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_LocalScale.x
@@ -5237,7 +5243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812881, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812881, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_LocalScale.x
@@ -6064,7 +6070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812881, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812881, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_LocalScale.x
@@ -7172,6 +7178,37 @@ PolygonCollider2D:
       - {x: 0.099999994, y: -0.52}
       - {x: 0, y: -0.57}
       - {x: -0.01, y: -0.56}
+--- !u!1 &1606266152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1606266153}
+  m_Layer: 0
+  m_Name: Player 1 Pos (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1606266153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606266152}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.24, y: -6.09, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2029332840}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1636540066 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5616543311535979693, guid: eb571df818fc1dd4eb86b26617d08736, type: 3}
@@ -7190,7 +7227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812881, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812881, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_LocalScale.x
@@ -7334,6 +7371,37 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.7
+--- !u!1 &1693698450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1693698451}
+  m_Layer: 0
+  m_Name: Player 2 Pos (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1693698451
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693698450}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.24, y: -9.36, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2029332840}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1708332661
 GameObject:
   m_ObjectHideFlags: 0
@@ -7375,7 +7443,7 @@ MonoBehaviour:
   - {fileID: 90475037}
   layerMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 4288
   playerObstacleTag:
   - Obstacle P1
   - Obstacle P2
@@ -8176,12 +8244,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1748976902}
   m_Layer: 0
-  m_Name: MOVING CIRCLE
+  m_Name: TRASH BIN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1748976902
 Transform:
   m_ObjectHideFlags: 0
@@ -8799,10 +8867,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curCheckpointValue: 0
   maxCheckpointValue: 3
-  player1CheckpointPos: []
-  player2CheckpointPos: []
-  player1: {fileID: 0}
-  player2: {fileID: 0}
+  player1CheckpintPos:
+  - {fileID: 1606266153}
+  - {fileID: 0}
+  - {fileID: 0}
+  player2CheckpintPos:
+  - {fileID: 1693698451}
+  - {fileID: 0}
+  - {fileID: 0}
+  player1: {fileID: 2097847136}
+  player2: {fileID: 814672459}
 --- !u!4 &2029332840
 Transform:
   m_ObjectHideFlags: 0
@@ -8814,7 +8888,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1606266153}
+  - {fileID: 1693698451}
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9383,6 +9459,7 @@ MonoBehaviour:
   globalVariable: {fileID: 106151307}
   player1Movement: {fileID: 2097847143}
   player1Stamina: {fileID: 2097847144}
+  crashTriggerObject: {fileID: 1724269295}
   isDashing: 0
   dashSpeed: 12
   dashDuration: 0.2
@@ -9406,7 +9483,7 @@ MonoBehaviour:
   player1Movement: {fileID: 2097847143}
   player1Ability: {fileID: 2097847145}
   player1Health: {fileID: 2097847148}
-  playerHitParticle: {fileID: 0}
+  playerHitParticle: {fileID: 1374567328952284614, guid: 9856a747321fd2c46adbde3bc5a9016c, type: 3}
   crashForceValue: 50
   playerCrashObject: {fileID: 1724269295}
 --- !u!58 &2097847147
@@ -9459,7 +9536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812881, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7756265238510812881, guid: d006a6e8903a0104193994fdc7465165, type: 3}
       propertyPath: m_LocalScale.x

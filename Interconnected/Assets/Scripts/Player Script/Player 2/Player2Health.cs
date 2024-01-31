@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class Player2Health : MonoBehaviour
+public class Player2Health : MonoBehaviour // kurang slow motion
 {
     public static Player2Health player2Health;
 

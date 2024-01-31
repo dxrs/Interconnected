@@ -37,7 +37,7 @@ public class Player2Movement : MonoBehaviour
 
     private void Update()
     {
-        
+        playerSpeedComparison();
     }
 
     private void FixedUpdate()

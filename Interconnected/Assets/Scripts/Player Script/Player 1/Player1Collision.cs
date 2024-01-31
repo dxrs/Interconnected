@@ -37,14 +37,15 @@ public class Player1Collision : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag=="Spike" || collision.gameObject.tag == "Gear") 
+        if (collision.gameObject.tag == "Spike" || collision.gameObject.tag == "Gear")
         {
-            if (!player1Ability.isShielding) 
+            if (!player1Ability.isShielding)
             {
-                //player1Health.curPlayer1Health--;
-                //globalVariable.isTriggeredWithObstacle = true;
-                //particle
-               // StartCoroutine(player1SetPosToCheckpoint());
+                player1Health.curPlayer1Health--;
+                player1Movement.isBraking = true;
+                globalVariable.isTriggeredWithObstacle = true;
+                Instantiate(playerHitParticle, transform.position, Quaternion.identity);
+                StartCoroutine(player1SetPosToCheckpoint());
             }
         }
     }
@@ -56,9 +57,10 @@ public class Player1Collision : MonoBehaviour
             if (!player1Ability.isShielding)
             {
                 player1Health.curPlayer1Health--;
-                //globalVariable.isTriggeredWithObstacle = true;
-                //particle
-                //StartCoroutine(player1SetPosToCheckpoint());
+                player1Movement.isBraking = true;
+                globalVariable.isTriggeredWithObstacle = true;
+                Instantiate(playerHitParticle, transform.position, Quaternion.identity);
+                StartCoroutine(player1SetPosToCheckpoint());
             }
         }
 
@@ -72,11 +74,23 @@ public class Player1Collision : MonoBehaviour
             rb.AddForce(backwardMovePos * crashForceValue, ForceMode2D.Impulse);
             
         }
+
+        if(collision.gameObject.tag=="PLayer 2 Shield") 
+        {
+            player1Ability.isShielding = false;
+            Player2Ability.player2Ability.isShielding = false;
+        }
+
+        if (collision.gameObject.tag == "Enemy") 
+        {
+            player1Health.curPlayer1Health--;
+            Instantiate(playerHitParticle, transform.position, Quaternion.identity);
+        }
     }
 
     IEnumerator player1SetPosToCheckpoint() 
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.5f);
         globalVariable.isTriggeredWithObstacle = false;
     }
 
