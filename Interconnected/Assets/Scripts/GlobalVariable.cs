@@ -19,11 +19,15 @@ public class GlobalVariable : MonoBehaviour
     public int curEnemySpawn;
     public int maxEnemySpawn;
 
+    public float waitTimeToShareLives;
+
     [SerializeField] SpriteRenderer p1Sr;
     [SerializeField] SpriteRenderer p2Sr;
 
     [SerializeField] CircleCollider2D p1cc;
     [SerializeField] CircleCollider2D p2cc;
+
+    float maxDelayTime = 10;
 
     GameObject player1, player2;
 
@@ -36,9 +40,24 @@ public class GlobalVariable : MonoBehaviour
         player1 = GameObject.FindGameObjectWithTag("Player 1");
         player2 = GameObject.FindGameObjectWithTag("Player 2");
     }
+
+    public void delayTimeToShareLives() 
+    {
+        waitTimeToShareLives = maxDelayTime;
+    }
+
     private void Update()
     {
-        if(Player1Health.player1Health.isSharingLivesToP2 || Player2Health.player2Health.isSharingLivesToP1) 
+        if (waitTimeToShareLives > 0)
+        {
+            waitTimeToShareLives -= 1 * Time.deltaTime;
+        }
+        if (waitTimeToShareLives <= 0)
+        {
+            waitTimeToShareLives = 0;
+        }
+
+        if (Player1Health.player1Health.isSharingLivesToP2 || Player2Health.player2Health.isSharingLivesToP1) 
         {
             isPlayerSharingLives = true;
         }

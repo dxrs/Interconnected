@@ -20,6 +20,11 @@ public class Player2Health : MonoBehaviour // kurang slow motion
 
     int maxPlayerHealth = 4;
 
+    [SerializeField] GameObject healthPoint;
+
+    Vector3 maxScalePlayer = new Vector3(.4f, .4f, .4f);
+    Vector3 curScalePlayer;
+
     GameObject player1;
 
     private void Awake()
@@ -31,6 +36,7 @@ public class Player2Health : MonoBehaviour // kurang slow motion
     {
         curPlayer2Health = maxPlayerHealth;
         player1 = GameObject.FindGameObjectWithTag("Player 1");
+        curScalePlayer = transform.localScale;
     }
 
     private void Update()
@@ -47,6 +53,16 @@ public class Player2Health : MonoBehaviour // kurang slow motion
 
             bool isEnableHealthImg = curPlayer2Health >= i + 1;
             playerHealthImg[clampHealthIndex].enabled = isEnableHealthImg;
+
+            if (isSharingLivesToP1)
+            {
+                transform.localScale = Vector3.Lerp(transform.localScale, maxScalePlayer, 1 * Time.unscaledDeltaTime);
+            }
+            else
+            {
+                transform.localScale = Vector3.Lerp(transform.localScale, curScalePlayer, 10 * Time.unscaledDeltaTime);
+            }
+
         }
     }
 
@@ -59,7 +75,8 @@ public class Player2Health : MonoBehaviour // kurang slow motion
             && !Pause.pause.isGamePaused
             && ReadyToStart.readyToStart.isGameStart
             && !player2Ability.isShielding
-            && !player2Ability.isDashing)
+            && !player2Ability.isDashing
+            && globalVariable.waitTimeToShareLives <= 0)
         {
             if (context.started && !Player1Health.player1Health.isSharingLivesToP2 && linkRay.playerLinkedEachOther)
             {
@@ -72,6 +89,8 @@ public class Player2Health : MonoBehaviour // kurang slow motion
             {
                 if (curPlayer2Health > 1 && Player1Health.player1Health.curPlayer1Health < maxPlayerHealth)
                 {
+                    Instantiate(healthPoint, transform.position, Quaternion.identity);
+                    globalVariable.delayTimeToShareLives();
                     isSharingLivesToP1 = false;
                     curPlayer2Health--;
                     if (Player1Health.player1Health.curPlayer1Health < maxPlayerHealth && player1 != null)

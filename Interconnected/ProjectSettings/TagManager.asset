@@ -31,6 +31,7 @@ TagManager:
   - Rubbish
   - Trash Bin Stop Collider
   - Finish Point
+  - Health Point
   layers:
   - Default
   - TransparentFX

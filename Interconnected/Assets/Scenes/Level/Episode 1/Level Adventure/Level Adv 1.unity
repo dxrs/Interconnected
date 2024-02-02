@@ -635,6 +635,7 @@ MonoBehaviour:
   maxDoor: 10
   curEnemySpawn: 0
   maxEnemySpawn: 0
+  waitTimeToShareLives: 0
   p1Sr: {fileID: 2097847142}
   p2Sr: {fileID: 814672464}
   p1cc: {fileID: 2097847147}
@@ -3293,6 +3294,7 @@ MonoBehaviour:
   - {fileID: 2343648084958215715}
   - {fileID: 2343648084958215714}
   - {fileID: 2343648084958215713}
+  healthPoint: {fileID: 3049922895871073084, guid: 27eb201c7dd70d7479eb355d88e3ea08, type: 3}
 --- !u!114 &814672470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9511,6 +9513,7 @@ MonoBehaviour:
   - {fileID: 306479969}
   - {fileID: 191621483}
   - {fileID: 885623799}
+  healthPoint: {fileID: 3049922895871073084, guid: 3675dda038639cf43899d8f8809122e5, type: 3}
 --- !u!1001 &2106707231
 PrefabInstance:
   m_ObjectHideFlags: 0
