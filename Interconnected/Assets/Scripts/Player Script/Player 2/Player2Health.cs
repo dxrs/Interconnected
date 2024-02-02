@@ -8,6 +8,7 @@ public class Player2Health : MonoBehaviour // kurang slow motion
 {
     public static Player2Health player2Health;
 
+    [SerializeField] Player2Ability player2Ability;
     [SerializeField] GlobalVariable globalVariable;
     [SerializeField] LinkRay linkRay;
 
@@ -56,7 +57,9 @@ public class Player2Health : MonoBehaviour // kurang slow motion
             && !globalVariable.isGameFinish
             && !globalVariable.isGameOver
             && !Pause.pause.isGamePaused
-            && ReadyToStart.readyToStart.isGameStart)
+            && ReadyToStart.readyToStart.isGameStart
+            && !player2Ability.isShielding
+            && !player2Ability.isDashing)
         {
             if (context.started && !Player1Health.player1Health.isSharingLivesToP2 && linkRay.playerLinkedEachOther)
             {
@@ -69,6 +72,7 @@ public class Player2Health : MonoBehaviour // kurang slow motion
             {
                 if (curPlayer2Health > 1 && Player1Health.player1Health.curPlayer1Health < maxPlayerHealth)
                 {
+                    isSharingLivesToP1 = false;
                     curPlayer2Health--;
                     if (Player1Health.player1Health.curPlayer1Health < maxPlayerHealth && player1 != null)
                     {
@@ -78,6 +82,7 @@ public class Player2Health : MonoBehaviour // kurang slow motion
             }
             if (context.canceled && isSharingLivesToP1)
             {
+                Time.timeScale = 1;
                 isSharingLivesToP1 = false;
             }
         }

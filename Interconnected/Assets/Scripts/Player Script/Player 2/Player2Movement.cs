@@ -49,7 +49,7 @@ public class Player2Movement : MonoBehaviour
 
     private void playerSpeedComparison()
     {
-        if (globalVariable.isTriggeredWithObstacle || globalVariable.isGameFinish)
+        if (globalVariable.isTriggeredWithObstacle || globalVariable.isGameFinish || globalVariable.isPlayerSharingLives)
         {
             maxPlayerSpeed = 0;
         }
@@ -92,7 +92,8 @@ public class Player2Movement : MonoBehaviour
             && !globalVariable.isGameFinish
             && !globalVariable.isGameOver
             && !Pause.pause.isGamePaused
-            && ReadyToStart.readyToStart.isGameStart)
+            && ReadyToStart.readyToStart.isGameStart
+            && !globalVariable.isPlayerSharingLives)
         {
             if (context.performed)
             {

@@ -25,8 +25,8 @@ public class TrashBin : MonoBehaviour
 
     [SerializeField] Rigidbody2D trashBinRB;
 
-    float maxTrashBinMovementSpeed = 0.5f;
-    float maxTrashBinScale = 10;                                                                         
+    float minTrashBinMovementSpeed = 1f;
+    float maxTrashBinScale = 7.5f;                                                                         
 
     int startWaypoint = 0;
 
@@ -49,6 +49,10 @@ public class TrashBin : MonoBehaviour
         if (curTrashBinScale > maxTrashBinScale)
         {
             curTrashBinScale = maxTrashBinScale;
+        }
+        if(curTrashBinMovementSpeed <= minTrashBinMovementSpeed) 
+        {
+            curTrashBinMovementSpeed = minTrashBinMovementSpeed;
         }
     }
 
@@ -100,8 +104,11 @@ public class TrashBin : MonoBehaviour
         if (curTrashBinScale <= maxTrashBinScale) 
         {
             curTrashBinScale += 0.05f;
-            curTrashBinMovementSpeed -= 0.01f;
             trashBinObject.transform.localScale = new Vector3(curTrashBinScale, curTrashBinScale, curTrashBinScale);
+        }
+        if (curTrashBinMovementSpeed > minTrashBinMovementSpeed) 
+        {
+            curTrashBinMovementSpeed -= 0.1f;
         }
         
     }

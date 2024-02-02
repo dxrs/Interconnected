@@ -13,6 +13,7 @@ public class GlobalVariable : MonoBehaviour
     public bool isNotShoot;
     public bool isTimerStart;
     public bool[] isTrashBinOverlapWithPlayers;
+    public bool isPlayerSharingLives;
 
     public int maxDoor;
     public int curEnemySpawn;
@@ -37,6 +38,19 @@ public class GlobalVariable : MonoBehaviour
     }
     private void Update()
     {
+        if(Player1Health.player1Health.isSharingLivesToP2 || Player2Health.player2Health.isSharingLivesToP1) 
+        {
+            isPlayerSharingLives = true;
+        }
+        else { isPlayerSharingLives = false; }
+        if (!Pause.pause.isGamePaused) 
+        {
+            if(Player1Health.player1Health.isSharingLivesToP2 || Player2Health.player2Health.isSharingLivesToP1)
+            {
+                Time.timeScale = 0.5f;
+            }
+            
+        }
         if(player1 && player2 != null) 
         {
             if (isTriggeredWithObstacle)

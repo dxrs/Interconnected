@@ -8,6 +8,7 @@ public class Player1Health : MonoBehaviour // kurang slow motion
 {
     public static Player1Health player1Health;
 
+    [SerializeField] Player1Ability player1Ability;
     [SerializeField] GlobalVariable globalVariable;
     [SerializeField] LinkRay linkRay;
 
@@ -45,6 +46,14 @@ public class Player1Health : MonoBehaviour // kurang slow motion
             bool isEnableHealthImg = curPlayer1Health >= i + 1;
             playerHealthImg[clampHealthIndex].enabled = isEnableHealthImg;
         }
+        if (isSharingLivesToP2) 
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(.4f,.4f,.4f), 10 * Time.unscaledDeltaTime);
+        }
+        else 
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(.3f, .3f, .3f), 1 * Time.unscaledDeltaTime);
+        }
     }
 
     //input share lives
@@ -54,10 +63,13 @@ public class Player1Health : MonoBehaviour // kurang slow motion
             && !globalVariable.isGameFinish
             && !globalVariable.isGameOver
             && !Pause.pause.isGamePaused
-            && ReadyToStart.readyToStart.isGameStart) 
+            && ReadyToStart.readyToStart.isGameStart
+            && !player1Ability.isDashing
+            && !player1Ability.isShielding) 
         {
             if (context.started && !Player2Health.player2Health.isSharingLivesToP1 && linkRay.playerLinkedEachOther) 
             {
+ 
                 if (curPlayer1Health > 1 && Player2Health.player2Health.curPlayer2Health < maxPlayerHealth) 
                 {
                     isSharingLivesToP2 = true;
@@ -65,8 +77,10 @@ public class Player1Health : MonoBehaviour // kurang slow motion
             }
             if (context.performed && linkRay.playerLinkedEachOther && isSharingLivesToP2) 
             {
+ 
                 if (curPlayer1Health > 1 && Player2Health.player2Health.curPlayer2Health < maxPlayerHealth)
                 {
+                    isSharingLivesToP2 = false;
                     curPlayer1Health--;
                     if (Player2Health.player2Health.curPlayer2Health < maxPlayerHealth && player2 != null)
                     {
@@ -76,6 +90,7 @@ public class Player1Health : MonoBehaviour // kurang slow motion
             }
             if (context.canceled && isSharingLivesToP2) 
             {
+                Time.timeScale = 1;
                 isSharingLivesToP2 = false;
             }
         }

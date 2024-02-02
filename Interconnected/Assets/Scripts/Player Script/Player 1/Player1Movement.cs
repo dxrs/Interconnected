@@ -61,7 +61,7 @@ public class Player1Movement : MonoBehaviour
 
     private void playerSpeedComparison() 
     {
-        if(globalVariable.isTriggeredWithObstacle || globalVariable.isGameFinish) 
+        if(globalVariable.isTriggeredWithObstacle || globalVariable.isGameFinish || globalVariable.isPlayerSharingLives) 
         {
             maxPlayerSpeed = 0;
         }
@@ -94,21 +94,23 @@ public class Player1Movement : MonoBehaviour
             && !globalVariable.isGameFinish
             && !globalVariable.isGameOver
             && !Pause.pause.isGamePaused
-            && ReadyToStart.readyToStart.isGameStart) 
+            && ReadyToStart.readyToStart.isGameStart
+            && !globalVariable.isPlayerSharingLives)
         {
-            if (context.performed) 
+            if (context.performed)
             {
-                if (!isBrakingWithInput) 
+                if (!isBrakingWithInput)
                 {
                     isBraking = false;
                 }
             }
-            else 
+            else
             {
                 isBraking = true;
-           
+
             }
             inputDir = context.ReadValue<Vector2>();
+            
         }
     }
 

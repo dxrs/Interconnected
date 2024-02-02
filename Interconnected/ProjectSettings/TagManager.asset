@@ -30,6 +30,7 @@ TagManager:
   - Trash Bin
   - Rubbish
   - Trash Bin Stop Collider
+  - Finish Point
   layers:
   - Default
   - TransparentFX

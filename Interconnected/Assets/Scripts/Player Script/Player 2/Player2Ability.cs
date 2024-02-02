@@ -81,7 +81,8 @@ public class Player2Ability : MonoBehaviour
             && !globalVariable.isGameFinish
             && !globalVariable.isGameOver
             && !Pause.pause.isGamePaused
-            && ReadyToStart.readyToStart.isGameStart)
+            && ReadyToStart.readyToStart.isGameStart
+            && !globalVariable.isPlayerSharingLives)
         {
             if (context.performed
                 && !player2Movement.isBraking
@@ -105,7 +106,8 @@ public class Player2Ability : MonoBehaviour
             && !globalVariable.isGameFinish
             && !globalVariable.isGameOver
             && !Pause.pause.isGamePaused
-            && ReadyToStart.readyToStart.isGameStart)
+            && ReadyToStart.readyToStart.isGameStart
+            && !globalVariable.isPlayerSharingLives)
         {
             if (context.performed && !isShielding)
             {
