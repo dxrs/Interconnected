@@ -5,6 +5,7 @@ using UnityEngine;
 public class Beam : MonoBehaviour
 {
     public Transform objekTarget;
+    [SerializeField] Transform p1;
     [SerializeField] float maxDistanceBeam;
     [SerializeField] float currentScaleYbeam;
 
@@ -13,15 +14,16 @@ public class Beam : MonoBehaviour
     private void Start()
     {
 
-        //currentScaleYbeam = transform.localScale.y;
+        currentScaleYbeam = transform.localScale.y;
     }
     private void Update()
     {
         
         
-        float test = Vector2.Distance(transform.position, objekTarget.position);
+        float test = Vector2.Distance(p1.position, objekTarget.position);
+        //print(test);
         maxDistanceBeam = test;
-        transform.localScale = new Vector3(1, maxDistanceBeam, 1);
+        transform.localScale = new Vector3(.1f, maxDistanceBeam, 1);
         if (currentScaleYbeam < maxDistanceBeam) 
         {
             currentScaleYbeam++;
