@@ -92,11 +92,11 @@ public class LinkRay : MonoBehaviour
                   !GlobalVariable.globalVariable.isTrashBinOverlapWithPlayers[1] &&
                   !GlobalVariable.globalVariable.isTriggeredWithObstacle)
                 {
-                    TrashBin.trashBin.isTrashBinMoving = true;
+                    //TrashBin.trashBin.isTrashBinMoving = true;
                 }
                 else
                 {
-                    TrashBin.trashBin.isTrashBinMoving = false;
+                    //TrashBin.trashBin.isTrashBinMoving = false;
                 }
             }
            

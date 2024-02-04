@@ -10,15 +10,9 @@ TagManager:
   - Player 1
   - Player 2
   - Bullet P1
-  - Bullet P2
   - Enemy
-  - Hexagon P1
-  - Hexagon P2
   - Camera Trigger
-  - Moving Circle
-  - Circle Target
   - Wall
-  - Circle Door Trigger
   - Door Button P1
   - Door Button P2
   - Gear
@@ -27,11 +21,14 @@ TagManager:
   - Player 1 Shield
   - Player 1 Crash Trigger
   - Player 2 Crash Trigger
-  - Trash Bin
-  - Rubbish
   - Trash Bin Stop Collider
   - Finish Point
   - Health Point
+  - Laser Rope
+  - Garbage
+  - Trash Bin
+  - Circle Door Trigger
+  - Garbage Spawner
   layers:
   - Default
   - TransparentFX

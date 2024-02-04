@@ -6,12 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main Menu.unity
+    path: Assets/Scenes/Scene Main Menu/Main Menu.unity
     guid: dec819342e2f43b4a9c16c6018bada88
   - enabled: 1
-    path: Assets/Scenes/Level/Episode 1/Level Adventure/Level Adv 1.unity
+    path: Assets/Scenes/Scene Coba-Coba/Firza/Level  Firza.unity
     guid: a01c94b796497b944b5ca6370b734da8
-  - enabled: 1
-    path: Assets/Scenes/Level/Episode 1/Level Survival/Level Survival 1.unity
-    guid: 5700424f9c4f42e4d9a1f09a0fc863ac
   m_configObjects: {}

@@ -9,6 +9,7 @@ public class PlayerLookAtEachOther : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float rotationModifier;
 
+
     private void FixedUpdate() // player look at each other function
     {
         if (playerLookAt != null)
