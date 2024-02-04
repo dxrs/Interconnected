@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene Main Menu/Main Menu.unity
     guid: dec819342e2f43b4a9c16c6018bada88
   - enabled: 1
-    path: Assets/Scenes/Scene Coba-Coba/Firza/Level  Firza.unity
+    path: Assets/Scenes/Scene Coba-Coba/Level  Firza.unity
     guid: a01c94b796497b944b5ca6370b734da8
   m_configObjects: {}
