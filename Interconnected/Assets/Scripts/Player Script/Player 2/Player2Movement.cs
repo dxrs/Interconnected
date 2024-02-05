@@ -16,8 +16,8 @@ public class Player2Movement : MonoBehaviour
     public bool isBraking;
     public bool isBrakingWithInput;
 
+    public float maxPlayerSpeed;
     [SerializeField] float curPlayerSpeed;
-    [SerializeField] float maxPlayerSpeed;
     [SerializeField] float playerBrakingPower;
 
     [HideInInspector]
@@ -51,11 +51,11 @@ public class Player2Movement : MonoBehaviour
     {
         if (globalVariable.isTriggeredWithObstacle || globalVariable.isGameFinish || globalVariable.isPlayerSharingLives)
         {
-            maxPlayerSpeed = 0;
+            curPlayerSpeed = 0;
         }
         else
         {
-            maxPlayerSpeed = curPlayerSpeed;
+            curPlayerSpeed = maxPlayerSpeed;
         }
     }
 
@@ -63,8 +63,8 @@ public class Player2Movement : MonoBehaviour
     {
         if (!isBraking && !isBrakingWithInput)
         {
-            rb.AddForce(inputDir * curPlayerSpeed);
-            rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxPlayerSpeed);
+            rb.AddForce(inputDir * maxPlayerSpeed);
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity, curPlayerSpeed);
         }
 
     }

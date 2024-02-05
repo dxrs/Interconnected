@@ -74,6 +74,7 @@ public class Garbage : MonoBehaviour
         {
             isGarbageCollected = true;
             rb.drag = 0;
+           
         }
 
        
