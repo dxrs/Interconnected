@@ -25,7 +25,7 @@ public class SceneSystem : MonoBehaviour
         }
         if (isExitScene) 
         {
-            SceneManager.LoadScene("Main Menu");
+            SceneManager.LoadScene(0);
             // exit scene di sini aja
         }
     }

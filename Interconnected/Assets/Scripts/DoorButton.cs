@@ -12,8 +12,8 @@ public class DoorButton : MonoBehaviour
     [SerializeField] bool isPlayer2SetPosToDoor;
     [SerializeField] bool doorButtonIsDestroyed;
 
-    [SerializeField] Rigidbody2D rp1;
-    [SerializeField] Rigidbody2D rp2;
+    [SerializeField] Rigidbody2D rbPlayer1;
+    [SerializeField] Rigidbody2D rbPlayer2;
 
     private void Update()
     {
@@ -28,17 +28,21 @@ public class DoorButton : MonoBehaviour
                     {
                         if (doorButtonIsDestroyed)
                         {
-                            transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0, 0), 2.5f * Time.deltaTime);
-                            if (transform.localScale.x < 0.01f)
+                            if (GlobalVariable.globalVariable.curDoorOpenValue == 2) 
                             {
-                                Destroy(gameObject);
+                                transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0, 0), 2.5f * Time.deltaTime);
+                                if (transform.localScale.x < 0.01f)
+                                {
+                                    Destroy(gameObject);
+                                }
                             }
+                           
                         }
                         if (isPlayer1SetPosToDoor)
                         {
-                            GameObject gP1;
-                            gP1 = GameObject.FindGameObjectWithTag("Player 1");
-                            gP1.transform.position = transform.position;
+                            GameObject player1;
+                            player1 = GameObject.FindGameObjectWithTag("Player 1");
+                            player1.transform.position = transform.position;
 
 
                         }
@@ -48,18 +52,22 @@ public class DoorButton : MonoBehaviour
                     {
                         if (doorButtonIsDestroyed)
                         {
-                            transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0, 0), 2.5f * Time.deltaTime);
-                            if (transform.localScale.x < 0.01f)
+                            if (GlobalVariable.globalVariable.curDoorOpenValue == 2) 
                             {
-                                Destroy(gameObject);
+                                transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0, 0), 2.5f * Time.deltaTime);
+                                if (transform.localScale.x < 0.01f)
+                                {
+                                    Destroy(gameObject);
+                                }
                             }
+                            
                         }
                         if (isPlayer2SetPosToDoor)
                         {
 
-                            GameObject gP2;
-                            gP2 = GameObject.FindGameObjectWithTag("Player 2");
-                            gP2.transform.position = transform.position;
+                            GameObject player2;
+                            player2 = GameObject.FindGameObjectWithTag("Player 2");
+                            player2.transform.position = transform.position;
 
                         }
 
@@ -89,13 +97,17 @@ public class DoorButton : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.gameObject.tag=="Player 1"||collision.gameObject.tag=="Player 2") 
+        {
+            GlobalVariable.globalVariable.curDoorOpenValue++;
+        }
         if (doorPlayer == "Player 1")
         {
             if (collision.gameObject.tag == "Player 1")
             {
                 isPlayer1SetPosToDoor = true;
                 doorButtonIsDestroyed = true;
-                rp1.drag = 0;
+                rbPlayer1.drag = 0;
             }
         }
         if (doorPlayer == "Player 2")
@@ -104,7 +116,7 @@ public class DoorButton : MonoBehaviour
             {
                 isPlayer2SetPosToDoor = true;
                 doorButtonIsDestroyed = true;
-                rp2.drag = 0;
+                rbPlayer2.drag = 0;
             }
         }
        

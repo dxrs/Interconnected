@@ -420,7 +420,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26863814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.1, y: 4.11, z: 0}
+  m_LocalPosition: {x: 25.77, y: 6.83, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -548,8 +548,8 @@ MonoBehaviour:
   isPlayer1SetPosToDoor: 0
   isPlayer2SetPosToDoor: 0
   doorButtonIsDestroyed: 0
-  rp1: {fileID: 2097847139}
-  rp2: {fileID: 814672461}
+  rbPlayer1: {fileID: 2097847139}
+  rbPlayer2: {fileID: 814672461}
 --- !u!1001 &53243436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -660,6 +660,7 @@ MonoBehaviour:
   isTrashBinOverlapWithPlayers: 0000
   isPlayerSharingLives: 0
   maxDoor: 10
+  curDoorOpenValue: 0
   curEnemySpawn: 0
   maxEnemySpawn: 0
   waitTimeToShareLives: 0
@@ -910,8 +911,8 @@ MonoBehaviour:
   isPlayer1SetPosToDoor: 0
   isPlayer2SetPosToDoor: 0
   doorButtonIsDestroyed: 0
-  rp1: {fileID: 2097847139}
-  rp2: {fileID: 814672461}
+  rbPlayer1: {fileID: 2097847139}
+  rbPlayer2: {fileID: 814672461}
 --- !u!50 &200538290
 Rigidbody2D:
   serializedVersion: 4
@@ -1778,8 +1779,8 @@ MonoBehaviour:
   isPlayer1SetPosToDoor: 0
   isPlayer2SetPosToDoor: 0
   doorButtonIsDestroyed: 0
-  rp1: {fileID: 2097847139}
-  rp2: {fileID: 814672461}
+  rbPlayer1: {fileID: 2097847139}
+  rbPlayer2: {fileID: 814672461}
 --- !u!1 &609707632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,8 +1999,8 @@ MonoBehaviour:
   isPlayer1SetPosToDoor: 0
   isPlayer2SetPosToDoor: 0
   doorButtonIsDestroyed: 0
-  rp1: {fileID: 2097847139}
-  rp2: {fileID: 814672461}
+  rbPlayer1: {fileID: 2097847139}
+  rbPlayer2: {fileID: 814672461}
 --- !u!50 &739622765
 Rigidbody2D:
   serializedVersion: 4
@@ -2787,8 +2788,8 @@ MonoBehaviour:
   isPlayer1SetPosToDoor: 0
   isPlayer2SetPosToDoor: 0
   doorButtonIsDestroyed: 0
-  rp1: {fileID: 2097847139}
-  rp2: {fileID: 814672461}
+  rbPlayer1: {fileID: 2097847139}
+  rbPlayer2: {fileID: 814672461}
 --- !u!50 &819295966
 Rigidbody2D:
   serializedVersion: 4
@@ -4293,6 +4294,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1194078104 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5577450567484297365, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
+  m_PrefabInstance: {fileID: 2343648084958215712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1245603716
 GameObject:
   m_ObjectHideFlags: 0
@@ -7926,8 +7938,8 @@ MonoBehaviour:
   isPlayer1SetPosToDoor: 0
   isPlayer2SetPosToDoor: 0
   doorButtonIsDestroyed: 0
-  rp1: {fileID: 2097847139}
-  rp2: {fileID: 814672461}
+  rbPlayer1: {fileID: 2097847139}
+  rbPlayer2: {fileID: 814672461}
 --- !u!50 &2143040797
 Rigidbody2D:
   serializedVersion: 4
@@ -8161,7 +8173,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2343648085650009722, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343648085650096332, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2343648085968558976, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: m_Name
@@ -8239,6 +8255,10 @@ PrefabInstance:
       propertyPath: pauseSelectorPos.Array.data[1].y
       value: -58.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2343648085968558980, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
+      propertyPath: textTimerCountToStart
+      value: 
+      objectReference: {fileID: 1194078104}
     - target: {fileID: 2343648085968558981, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: sceneSystem
       value: 
@@ -8270,6 +8290,26 @@ PrefabInstance:
     - target: {fileID: 2343648086575919004, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 9.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5577450567484297365, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
+      propertyPath: m_text
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5577450567484297365, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
+      propertyPath: m_fontSize
+      value: 291.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5577450567484297365, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 291.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 9017381068432234178, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1908.7849
+      objectReference: {fileID: 0}
+    - target: {fileID: 9017381068432234178, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -5.5976
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b8b222f92a6e5444b519afd8612044d, type: 3}

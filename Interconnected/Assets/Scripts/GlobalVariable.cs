@@ -16,6 +16,7 @@ public class GlobalVariable : MonoBehaviour
     public bool isPlayerSharingLives;
 
     public int maxDoor;
+    public int curDoorOpenValue;
     public int curEnemySpawn;
     public int maxEnemySpawn;
 

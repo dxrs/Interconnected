@@ -12,6 +12,6 @@ public class MainMenuScript : MonoBehaviour
 
     public void adventure()
     {
-        SceneManager.LoadScene("Level Adv 1");
+        SceneManager.LoadScene(1);
     }
 }
