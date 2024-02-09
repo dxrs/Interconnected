@@ -61,10 +61,17 @@ public class Player1Movement : MonoBehaviour
 
     private void playerSpeedComparison() 
     {
-        if (!linkRay.playerLinkedEachOther) 
+        if (maxPlayerSpeed <= 0) 
         {
-           // maxPlayerSpeed = 5;
-            //Player2Movement.player2Movement.maxPlayerSpeed = 5;
+            if(linkRay.playerLinkedEachOther && !globalVariable.isTriggeredWithObstacle) 
+            {
+                StartCoroutine(setMaxSpeedPlayer());
+            }
+        }
+        if (!linkRay.playerLinkedEachOther || globalVariable.isTriggeredWithObstacle) 
+        {
+            maxPlayerSpeed = 5;
+
         }
         if(globalVariable.isTriggeredWithObstacle || globalVariable.isGameFinish || globalVariable.isPlayerSharingLives) 
         {
@@ -90,6 +97,12 @@ public class Player1Movement : MonoBehaviour
         {
             rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, 1 * Time.deltaTime);
         }
+    }
+
+    IEnumerator setMaxSpeedPlayer() 
+    {
+        yield return new WaitForSeconds(1);
+        maxPlayerSpeed = 5;
     }
 
     //movement input

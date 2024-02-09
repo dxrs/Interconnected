@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    //[SerializeField] EnemyHitEffect enemyHitEffect1;
-
     public ParticleSystem deathParticle;
-
 
     [Header("Enemy Movement")]
     [SerializeField] float enemyMovementSpeed;
@@ -15,7 +12,13 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Status")]
     [SerializeField] float enemyHealth;
 
+    [Header("Blast Settings")]
+    [SerializeField] float blastPower;
+    [SerializeField] float blastRadius;
+
     private bool isEnemyDestroyed = false;
+    private bool isBlasted = false;
+    private Vector2 blastDir;
 
     Rigidbody2D rb;
 
@@ -39,11 +42,11 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (enemyHealth <= 0 && !isEnemyDestroyed) 
+        if (enemyHealth <= 0 && !isEnemyDestroyed)
         {
             EnemyTargetDestroy.enemyTargetDestroy.curValueEnemyDestroy++;
             isEnemyDestroyed = true;
-            Instantiate(deathParticle,this.transform.position,Quaternion.identity);
+            Instantiate(deathParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
@@ -55,15 +58,15 @@ public class Enemy : MonoBehaviour
         enemyMovement(movement);
     }
 
-    private void enemyChassingPlayer() 
+    private void enemyChassingPlayer()
     {
         if (GlobalVariable.globalVariable.isGameOver
-            || GlobalVariable.globalVariable.isGameFinish) 
+            || GlobalVariable.globalVariable.isGameFinish)
         {
             Destroy(gameObject);
         }
-        
-        if (player1 != null) 
+
+        if (player1 != null)
         {
             if (indexPlayer == 0)
             {
@@ -71,16 +74,12 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (player2 != null) 
+        if (player2 != null)
         {
             if (indexPlayer == 1)
             {
                 dir = player2.transform.position - transform.position;
-               
             }
-          
-            
-
         }
         else { return; }
 
@@ -89,43 +88,83 @@ public class Enemy : MonoBehaviour
         dir.Normalize();
         movement = dir;
     }
+
     private void OnDestroy()
     {
         GlobalVariable.globalVariable.curEnemySpawn--;
     }
-    private void enemyMovement(Vector2 direction) 
+
+    private void enemyMovement(Vector2 direction)
     {
-        rb.MovePosition((Vector2)transform.position + (direction * enemyMovementSpeed * Time.deltaTime));
+        if (isBlasted)
+        {
+            //Jika musuh terpental
+            rb.MovePosition((Vector2)transform.position + (blastDir * enemyMovementSpeed * Time.deltaTime));
+
+        }
+        else
+        {
+            // Jika tidak terpental
+            rb.MovePosition((Vector2)transform.position + (direction * enemyMovementSpeed * Time.deltaTime));
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag=="Bullet P1" || collision.gameObject.tag=="Bullet P2") 
+        if (collision.gameObject.tag == "Bullet P1" || collision.gameObject.tag == "Bullet P2")
         {
             enemyHealth -= 1;
             enemyHitEffect = GetComponent<EnemyHitEffect>();
-            if (enemyHitEffect != null) 
+            if (enemyHitEffect != null)
             {
                 enemyHitEffect.hitEffectEnemy();
             }
-           
         }
-        if(collision.gameObject.tag=="Player 1 Shield" || collision.gameObject.tag=="Player 2 Shield") 
+        else if (collision.gameObject.tag == "Player 1 Shield" || collision.gameObject.tag == "Player 2 Shield")
         {
-            Instantiate(deathParticle,transform.position,Quaternion.identity);
-            enemyHealth = 0;
+            if (!isBlasted)
+            {
+                isBlasted = true;
+                enemyBouceToPlayerShield();
+
+                blastDir = (transform.position - collision.transform.position).normalized;
+            }
+            StartCoroutine(blastIsFalse());
         }
-        if (collision.gameObject.tag == "Wall") 
+        else if (collision.gameObject.tag == "Wall")
         {
             GlobalVariable.globalVariable.isTimerStart = true;
         }
-        if(collision.gameObject.tag=="Player 1" || collision.gameObject.tag == "Player 2") 
+        else if (collision.gameObject.tag == "Player 1" || collision.gameObject.tag == "Player 2")
         {
-
             Destroy(gameObject);
-
         }
-       
-        
+    }
+
+    IEnumerator blastIsFalse() 
+    {
+        if (isBlasted) 
+        {
+            yield return new WaitForSeconds(1);
+            isBlasted = false;
+        }
+    }
+
+    private void enemyBouceToPlayerShield()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, blastRadius);
+
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.CompareTag("Enemy"))
+            {
+                Rigidbody2D enemyRb = collider.GetComponent<Rigidbody2D>();
+                if (enemyRb != null)
+                {
+                    Vector2 blastDirection = (enemyRb.position - rb.position).normalized;
+                    enemyRb.AddForce(blastDirection * blastPower, ForceMode2D.Impulse);
+                }
+            }
+        }
     }
 }

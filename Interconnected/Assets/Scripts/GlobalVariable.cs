@@ -20,6 +20,8 @@ public class GlobalVariable : MonoBehaviour
     public int curEnemySpawn;
     public int maxEnemySpawn;
 
+    public string[] playerShieldTagCollision;
+
     public float waitTimeToShareLives;
 
     [SerializeField] SpriteRenderer p1Sr;
@@ -107,6 +109,18 @@ public class GlobalVariable : MonoBehaviour
             SceneSystem.sceneSystem.isRestartScene = true;
             Destroy(player1);
             Destroy(player2);
+        }
+
+        StartCoroutine(defaultValueCurDoorValue());
+    }
+
+    IEnumerator defaultValueCurDoorValue() 
+    {
+        
+        if (curDoorOpenValue >= 2) 
+        {
+            yield return new WaitForSeconds(3);
+            curDoorOpenValue = 0;
         }
     }
 }

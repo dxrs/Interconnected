@@ -12,7 +12,7 @@ public class Player1Stamina : MonoBehaviour
     public float maxStamina;
     public float curStamina;
     public float dashStaminaCost;
-    public float shieldStaminaCost;
+    public float pullUpStaminaCost;
     public float staminaRegenRate;
 
     Coroutine staminaRegen;
@@ -29,13 +29,14 @@ public class Player1Stamina : MonoBehaviour
         if (staminaRegen != null) { StopCoroutine(staminaRegen); }
         staminaRegen = StartCoroutine(staminaRegenerating());
     }
+
     IEnumerator staminaRegenerating()
     {
         yield return new WaitForSeconds(1f); //tunggu 1 detik untuk regenerate stamina
 
         do
         {
-            if (!player1Ability.isShielding)
+            if (!player1Ability.isPullingUp)
             {
                 curStamina += staminaRegenRate / 10;
                 if (curStamina > maxStamina) { curStamina = maxStamina; }
@@ -46,4 +47,5 @@ public class Player1Stamina : MonoBehaviour
             yield return new WaitForSeconds(.1f); //rate regenate x/ms
         } while (curStamina < maxStamina);
     }
+
 }

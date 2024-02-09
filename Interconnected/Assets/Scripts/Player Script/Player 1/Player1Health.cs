@@ -71,7 +71,7 @@ public class Player1Health : MonoBehaviour // kurang slow motion
             && !Pause.pause.isGamePaused
             && ReadyToStart.readyToStart.isGameStart
             && !player1Ability.isDashing
-            && !player1Ability.isShielding
+            && !Player2Ability.player2Ability.isShielding
             && globalVariable.waitTimeToShareLives <=0) 
         {
             if (context.started && !Player2Health.player2Health.isSharingLivesToP1 && linkRay.playerLinkedEachOther) 

@@ -82,11 +82,7 @@ public class DoorButton : MonoBehaviour
             isPlayer1SetPosToDoor = false;
             isPlayer2SetPosToDoor = false;
            
-            if (Player1Collision.player1Collision != null && Player2Collision.player2Collision != null) 
-            {
-                //Player1.player1.player1SetPos();
-                //Player2.player2.player2SetPos();
-            }
+          
 
         }
 

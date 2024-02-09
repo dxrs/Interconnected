@@ -188,6 +188,8 @@ MonoBehaviour:
   deathParticle: {fileID: 1374567328952284614, guid: dc3fb0a9ea247b34b83c313a5c1f7c37, type: 3}
   enemyMovementSpeed: 3.7
   enemyHealth: 1
+  blastPower: 3
+  blastRadius: 5
 --- !u!114 &5121257545381358979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,7 +219,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

@@ -11,17 +11,18 @@ public class Player2Ability : MonoBehaviour
     [SerializeField] GlobalVariable globalVariable;
     [SerializeField] Player2Movement player2Movement;
     [SerializeField] Player2Stamina player2Stamina;
+    [SerializeField] Player2Shield player2Shield;
 
-    [SerializeField] GameObject crashTriggerObject;
+    [SerializeField] GameObject[] crashTriggerObject;
 
-    [Header("Player 2 Dash")]
+    [Header("Player Dash")]
     public bool isDashing;
     [SerializeField] float dashSpeed;
     [SerializeField] float dashDuration;
 
-    [Header("Player 2 Shield")]
+    [Header("Player Shield")]
     public bool isShielding;
-    [SerializeField] GameObject playerShield;
+    [SerializeField] GameObject[] playerShield;
     [SerializeField] float shieldDuration;
 
     Rigidbody2D rb;
@@ -53,25 +54,34 @@ public class Player2Ability : MonoBehaviour
     {
         if (isShielding)
         {
-            crashTriggerObject.SetActive(false);
-            playerShield.SetActive(true);
+            crashTriggerObject[0].SetActive(false);
+            crashTriggerObject[1].SetActive(false);
+            playerShield[0].SetActive(true);
+            playerShield[1].SetActive(true);
             if (shieldDuration > 0)
             {
                 shieldDuration -= 1 * Time.deltaTime;
             }
-        }
 
-        if (isShielding && shieldDuration <= 0)
-        {
-            isShielding = false;
-            shieldDuration = 10;
+            if(shieldDuration <= 0 || player2Shield.isShieldInactive) 
+            {
+                isShielding = false;
+                shieldDuration = 10;
+            }
         }
+       
 
         if (!isShielding)
         {
-            crashTriggerObject.SetActive(true);
+            for(int j = 0; j < player2Shield.playerShieldHealth.Length; j++) 
+            {
+                player2Shield.playerShieldHealth[j] = 5;
+            }
+            crashTriggerObject[0].SetActive(true);
+            crashTriggerObject[1].SetActive(true);
             shieldDuration = 10;
-            playerShield.SetActive(false);
+            playerShield[0].SetActive(false);
+            playerShield[1].SetActive(false);
         }
     }
     //dash input
@@ -86,7 +96,8 @@ public class Player2Ability : MonoBehaviour
         {
             if (context.performed
                 && !player2Movement.isBraking
-                && !player2Movement.isBrakingWithInput)
+                && !player2Movement.isBrakingWithInput
+                && player2Movement.maxPlayerSpeed > 3)
             {
                 if (player2Stamina.curStamina > player2Stamina.shieldStaminaCost)
                 {
@@ -107,7 +118,8 @@ public class Player2Ability : MonoBehaviour
             && !globalVariable.isGameOver
             && !Pause.pause.isGamePaused
             && ReadyToStart.readyToStart.isGameStart
-            && !globalVariable.isPlayerSharingLives)
+            && !globalVariable.isPlayerSharingLives
+            && linkRay.playerLinkedEachOther)
         {
             if (context.performed && !isShielding)
             {

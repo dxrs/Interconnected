@@ -35,26 +35,12 @@ public class Player2Collision : MonoBehaviour
     private void Update()
     {
         playerCrashObject.transform.position = transform.position;
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Spike" || collision.gameObject.tag == "Trap")
-        {
-            if (!player2Ability.isShielding)
-            {
-                player2Health.curPlayer2Health--;
-                player2Movement.isBraking = true;
-                globalVariable.isTriggeredWithObstacle = true;
-                Instantiate(playerHitParticle, transform.position, Quaternion.identity);
-                StartCoroutine(player2SetPosToCheckpoint());
-            }
-        }
+       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag=="Spike" || collision.gameObject.tag == "Trap") 
+        if(collision.gameObject.tag=="Spike" || collision.gameObject.tag == "Trap" || collision.gameObject.tag=="Gear") 
         {
             if (!player2Ability.isShielding) 
             {
@@ -64,22 +50,43 @@ public class Player2Collision : MonoBehaviour
                 Instantiate(playerHitParticle, transform.position, Quaternion.identity);
                 StartCoroutine(player2SetPosToCheckpoint());
             }
+            else 
+            {
+                player2BouncedCollision(collision);
+            }
         }
         if (collision.gameObject.tag == "Player 1 Crash Trigger")
         {
-            player2Movement.isBraking = false;
-            player2Movement.isBrakingWithInput = false;
-            StartCoroutine(playerCrash());
-            Vector2 backwardMovePos = (transform.position - collision.transform.position).normalized;
-
-            rb.AddForce(backwardMovePos * crashForceValue, ForceMode2D.Impulse);
+            player2BouncedCollision(collision);
+            
         }
+
+       
         if (collision.gameObject.tag == "Enemy")
         {
-            player2Health.curPlayer2Health--;
-            Instantiate(playerHitParticle, transform.position, Quaternion.identity);
+            if (!player2Ability.isShielding) 
+            {
+                player2Health.curPlayer2Health--;
+                Instantiate(playerHitParticle, transform.position, Quaternion.identity);
+            }
+            else 
+            {
+                player2BouncedCollision(collision);
+            }
+   
         }
     }
+
+    public void player2BouncedCollision(Collider2D collider) 
+    {
+        player2Movement.isBraking = false;
+        player2Movement.isBrakingWithInput = false;
+        StartCoroutine(playerCrash());
+        Vector2 backwardMovePos = (transform.position - collider.transform.position).normalized;
+
+        rb.AddForce(backwardMovePos * crashForceValue, ForceMode2D.Impulse);
+    }
+
     IEnumerator playerCrash()
     {
         isCrashToOtherBoat = true;

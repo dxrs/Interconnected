@@ -91,7 +91,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Basic Skill Shield"",
+                    ""name"": ""Special Skill Pull Up"",
                     ""type"": ""Button"",
                     ""id"": ""250bb9b5-4e5e-4e86-a2fc-4c8982f1f65f"",
                     ""expectedControlType"": ""Button"",
@@ -262,7 +262,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard Scheme"",
-                    ""action"": ""Basic Skill Shield"",
+                    ""action"": ""Special Skill Pull Up"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -504,7 +504,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         m_InputPlayer1_GiveHealth = m_InputPlayer1.FindAction("Give Health", throwIfNotFound: true);
         m_InputPlayer1_Brake = m_InputPlayer1.FindAction("Brake", throwIfNotFound: true);
         m_InputPlayer1_BasicSkillDash = m_InputPlayer1.FindAction("Basic Skill Dash", throwIfNotFound: true);
-        m_InputPlayer1_BasicSkillShield = m_InputPlayer1.FindAction("Basic Skill Shield", throwIfNotFound: true);
+        m_InputPlayer1_SpecialSkillPullUp = m_InputPlayer1.FindAction("Special Skill Pull Up", throwIfNotFound: true);
         // Input Player 2
         m_InputPlayer2 = asset.FindActionMap("Input Player 2", throwIfNotFound: true);
         m_InputPlayer2_Movement = m_InputPlayer2.FindAction("Movement", throwIfNotFound: true);
@@ -583,7 +583,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_InputPlayer1_GiveHealth;
     private readonly InputAction m_InputPlayer1_Brake;
     private readonly InputAction m_InputPlayer1_BasicSkillDash;
-    private readonly InputAction m_InputPlayer1_BasicSkillShield;
+    private readonly InputAction m_InputPlayer1_SpecialSkillPullUp;
     public struct InputPlayer1Actions
     {
         private @InputControl m_Wrapper;
@@ -595,7 +595,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         public InputAction @GiveHealth => m_Wrapper.m_InputPlayer1_GiveHealth;
         public InputAction @Brake => m_Wrapper.m_InputPlayer1_Brake;
         public InputAction @BasicSkillDash => m_Wrapper.m_InputPlayer1_BasicSkillDash;
-        public InputAction @BasicSkillShield => m_Wrapper.m_InputPlayer1_BasicSkillShield;
+        public InputAction @SpecialSkillPullUp => m_Wrapper.m_InputPlayer1_SpecialSkillPullUp;
         public InputActionMap Get() { return m_Wrapper.m_InputPlayer1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -626,9 +626,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @BasicSkillDash.started += instance.OnBasicSkillDash;
             @BasicSkillDash.performed += instance.OnBasicSkillDash;
             @BasicSkillDash.canceled += instance.OnBasicSkillDash;
-            @BasicSkillShield.started += instance.OnBasicSkillShield;
-            @BasicSkillShield.performed += instance.OnBasicSkillShield;
-            @BasicSkillShield.canceled += instance.OnBasicSkillShield;
+            @SpecialSkillPullUp.started += instance.OnSpecialSkillPullUp;
+            @SpecialSkillPullUp.performed += instance.OnSpecialSkillPullUp;
+            @SpecialSkillPullUp.canceled += instance.OnSpecialSkillPullUp;
         }
 
         private void UnregisterCallbacks(IInputPlayer1Actions instance)
@@ -654,9 +654,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @BasicSkillDash.started -= instance.OnBasicSkillDash;
             @BasicSkillDash.performed -= instance.OnBasicSkillDash;
             @BasicSkillDash.canceled -= instance.OnBasicSkillDash;
-            @BasicSkillShield.started -= instance.OnBasicSkillShield;
-            @BasicSkillShield.performed -= instance.OnBasicSkillShield;
-            @BasicSkillShield.canceled -= instance.OnBasicSkillShield;
+            @SpecialSkillPullUp.started -= instance.OnSpecialSkillPullUp;
+            @SpecialSkillPullUp.performed -= instance.OnSpecialSkillPullUp;
+            @SpecialSkillPullUp.canceled -= instance.OnSpecialSkillPullUp;
         }
 
         public void RemoveCallbacks(IInputPlayer1Actions instance)
@@ -812,7 +812,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         void OnGiveHealth(InputAction.CallbackContext context);
         void OnBrake(InputAction.CallbackContext context);
         void OnBasicSkillDash(InputAction.CallbackContext context);
-        void OnBasicSkillShield(InputAction.CallbackContext context);
+        void OnSpecialSkillPullUp(InputAction.CallbackContext context);
     }
     public interface IInputPlayer2Actions
     {

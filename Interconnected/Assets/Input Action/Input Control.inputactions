@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Basic Skill Shield",
+                    "name": "Special Skill Pull Up",
                     "type": "Button",
                     "id": "250bb9b5-4e5e-4e86-a2fc-4c8982f1f65f",
                     "expectedControlType": "Button",
@@ -240,7 +240,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard Scheme",
-                    "action": "Basic Skill Shield",
+                    "action": "Special Skill Pull Up",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

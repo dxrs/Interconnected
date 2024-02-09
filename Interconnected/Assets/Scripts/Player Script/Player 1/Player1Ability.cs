@@ -15,15 +15,19 @@ public class Player1Ability : MonoBehaviour
 
     [SerializeField] GameObject crashTriggerObject;
 
-    [Header("Player 1 Dash")]
+    [Header("Player Dash")]
     public bool isDashing;
     [SerializeField] float dashSpeed;
     [SerializeField] float dashDuration;
 
-    [Header("Player 1 Shield")]
-    public bool isShielding;
-    [SerializeField] GameObject playerShield;
-    [SerializeField] float shieldDuration;
+    [Header("Player Pull Up")]
+    public bool isPullingUp;
+    public bool isPlayer1SetPosToPullUpObject;
+    [SerializeField] int pullUpProgress;
+    [SerializeField] GameObject player2;
+    [SerializeField] GameObject pullUpObject;
+    [SerializeField] float pullUpDuration;
+    [SerializeField] float distanceFromPlayer2;
 
     Rigidbody2D rb;
 
@@ -40,7 +44,33 @@ public class Player1Ability : MonoBehaviour
 
     private void Update()
     {
-        Shielding();
+        if (Vector2.Distance(transform.position, player2.transform.position) > distanceFromPlayer2) 
+        {
+            Debug.Log("jauh");
+        }
+        if (isPullingUp) 
+        {
+            if (pullUpProgress >= 2) 
+            {
+                pullUpProgress = 2;
+            }
+            if (pullUpDuration > 0 && pullUpProgress == 1) 
+            {
+                pullUpDuration -= 1 * Time.deltaTime;
+            }
+
+            if (player2.transform.position == pullUpObject.transform.position || pullUpDuration <= 0) 
+            {
+                isPullingUp = false;
+            }
+
+        }
+        else 
+        {
+            pullUpObject.SetActive(false);
+            pullUpDuration = 5;
+            pullUpProgress = 0;
+        }
     }
     IEnumerator Dashing() 
     {
@@ -50,32 +80,7 @@ public class Player1Ability : MonoBehaviour
         isDashing = false;
     }
 
-    private void Shielding()
-    {
-        if (isShielding)
-        {
-            crashTriggerObject.SetActive(false);
-            playerShield.SetActive(true);
-            if (shieldDuration > 0)
-            {
-                shieldDuration -= 1 * Time.deltaTime;
-            }
-        }
-
-        if (isShielding && shieldDuration <= 0)
-        {
-            isShielding = false;
-            shieldDuration = 10;
-        }
-
-        if (!isShielding)
-        {
-            crashTriggerObject.SetActive(true);
-            shieldDuration = 10;
-            playerShield.SetActive(false);
-        }
-    }
-
+    
     //dash input
     public void dashInput(InputAction.CallbackContext context) 
     {
@@ -88,9 +93,10 @@ public class Player1Ability : MonoBehaviour
         {
             if(context.performed
                 && !player1Movement.isBraking
-                && !player1Movement.isBrakingWithInput) 
+                && !player1Movement.isBrakingWithInput
+                && player1Movement.maxPlayerSpeed > 3 ) 
             {
-                if (player1Stamina.curStamina > player1Stamina.shieldStaminaCost) 
+                if (player1Stamina.curStamina > player1Stamina.dashStaminaCost) 
                 {
                     StartCoroutine(Dashing());
                     player1Stamina.curStamina -= player1Stamina.dashStaminaCost;
@@ -100,6 +106,7 @@ public class Player1Ability : MonoBehaviour
             }
         }
     }
+   
     //shield input
     public void shieldInput(InputAction.CallbackContext context) 
     {
@@ -110,16 +117,60 @@ public class Player1Ability : MonoBehaviour
             && ReadyToStart.readyToStart.isGameStart
             && !globalVariable.isPlayerSharingLives) 
         {
-            if (context.performed && !isShielding) 
+            if (Vector2.Distance(transform.position, player2.transform.position) > distanceFromPlayer2 && !linkRay.playerLinkedEachOther) 
             {
-                if (player1Stamina.curStamina > player1Stamina.shieldStaminaCost)
+                if (context.performed)
                 {
-                    isShielding = true;
-                    player1Stamina.curStamina -= player1Stamina.shieldStaminaCost;
-                    if (player1Stamina.curStamina < 0) { player1Stamina.curStamina = 0; }
-                    player1Stamina.staminaFunctionCallback();
+                    if (!isPullingUp)
+                    {
+                        if (pullUpProgress <= 2)
+                        {
+                            pullUpProgress++;
+
+                        }
+
+                        isPullingUp = true;
+
+                        if (pullUpProgress == 1)
+                        {
+                            pullUpObject.SetActive(true);
+                            pullUpObject.transform.position = transform.position;
+                        }
+                        if (player1Stamina.curStamina > player1Stamina.pullUpStaminaCost * 2)
+                        {
+                            player1Stamina.curStamina -= player1Stamina.pullUpStaminaCost;
+                            if (player1Stamina.curStamina < 0) { player1Stamina.curStamina = 0; }
+                            player1Stamina.staminaFunctionCallback();
+                        }
+                    }
+                    else
+                    {
+                        if (!isPlayer1SetPosToPullUpObject)
+                        {
+                            if (pullUpProgress <= 2)
+                            {
+                                pullUpProgress++;
+
+                            }
+                            if (pullUpProgress == 2)
+                            {
+                                player2.transform.position = pullUpObject.transform.position;
+                            }
+                            if (player1Stamina.curStamina > player1Stamina.pullUpStaminaCost * 2) 
+                            {
+                                player1Stamina.curStamina -= player1Stamina.pullUpStaminaCost;
+                                if (player1Stamina.curStamina < 0) { player1Stamina.curStamina = 0; }
+                                player1Stamina.staminaFunctionCallback();
+                            }
+
+                        }
+
+                    }
+
                 }
             }
+           
         }
     }
+   
 }

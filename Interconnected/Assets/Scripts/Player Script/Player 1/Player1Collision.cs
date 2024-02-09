@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player1Collision : MonoBehaviour
@@ -33,28 +34,14 @@ public class Player1Collision : MonoBehaviour
     private void Update()
     {
         playerCrashObject.transform.position = transform.position;
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Spike" || collision.gameObject.tag == "Gear")
-        {
-            if (!player1Ability.isShielding)
-            {
-                player1Health.curPlayer1Health--;
-                player1Movement.isBraking = true;
-                globalVariable.isTriggeredWithObstacle = true;
-                Instantiate(playerHitParticle, transform.position, Quaternion.identity);
-                StartCoroutine(player1SetPosToCheckpoint());
-            }
-        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Spike" || collision.gameObject.tag == "Gear")
+        if (collision.gameObject.tag == "Spike" || collision.gameObject.tag == "Gear" || collision.gameObject.tag == "Trap")
         {
-            if (!player1Ability.isShielding)
+            if (!Player2Ability.player2Ability.isShielding)
             {
                 player1Health.curPlayer1Health--;
                 player1Movement.isBraking = true;
@@ -62,29 +49,44 @@ public class Player1Collision : MonoBehaviour
                 Instantiate(playerHitParticle, transform.position, Quaternion.identity);
                 StartCoroutine(player1SetPosToCheckpoint());
             }
+            else 
+            {
+                player1BoucedCollision(collision);
+            }
         }
-
+        if(collision.gameObject.tag=="Player Pull Up Object") 
+        {
+            player1Ability.isPlayer1SetPosToPullUpObject = true;
+        }
         if (collision.gameObject.tag=="Player 2 Crash Trigger") 
         {
-            player1Movement.isBraking = false;
-            player1Movement.isBrakingWithInput = false;
-            StartCoroutine(playerCrash());
-            Vector2 backwardMovePos = (transform.position - collision.transform.position).normalized;
-            
-            rb.AddForce(backwardMovePos * crashForceValue, ForceMode2D.Impulse);
+           
+            player1BoucedCollision(collision);
             
         }
 
-        if(collision.gameObject.tag=="PLayer 2 Shield") 
-        {
-            player1Ability.isShielding = false;
-            Player2Ability.player2Ability.isShielding = false;
-        }
+       
 
         if (collision.gameObject.tag == "Enemy") 
         {
-            player1Health.curPlayer1Health--;
-            Instantiate(playerHitParticle, transform.position, Quaternion.identity);
+            if (!Player2Ability.player2Ability.isShielding) 
+            {
+                player1Health.curPlayer1Health--;
+                Instantiate(playerHitParticle, transform.position, Quaternion.identity);
+            }
+            else 
+            {
+                player1BoucedCollision(collision);
+            }
+   
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player Pull Up Object")
+        {
+            player1Ability.isPlayer1SetPosToPullUpObject = false;
         }
     }
 
@@ -92,6 +94,16 @@ public class Player1Collision : MonoBehaviour
     {
         yield return new WaitForSeconds(.5f);
         globalVariable.isTriggeredWithObstacle = false;
+    }
+
+    public void player1BoucedCollision(Collider2D collider)
+    {
+        player1Movement.isBraking = false;
+        player1Movement.isBrakingWithInput = false;
+        StartCoroutine(playerCrash());
+        Vector2 backwardMovePos = (transform.position - collider.transform.position).normalized;
+
+        rb.AddForce(backwardMovePos * crashForceValue, ForceMode2D.Impulse);
     }
 
     IEnumerator playerCrash() 

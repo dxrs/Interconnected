@@ -29,6 +29,7 @@ TagManager:
   - Trash Bin
   - Circle Door Trigger
   - Garbage Spawner
+  - Player Pull Up Object
   layers:
   - Default
   - TransparentFX
