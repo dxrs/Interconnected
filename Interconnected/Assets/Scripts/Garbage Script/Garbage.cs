@@ -22,6 +22,7 @@ public class Garbage : MonoBehaviour
     BoxCollider2D bc;
 
     Vector2 garbagePosition;
+    Vector2 randomGarbageScale;
 
     Vector2 maxGarbageScale = new Vector2(0.6f, 0.6f);
     Vector2 minGarbageScale = new Vector2(0.3f, 0.3f);
@@ -31,6 +32,7 @@ public class Garbage : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
         garbageSpawner = GameObject.FindGameObjectWithTag("Garbage Spawner");
+        randomGarbageScale = new Vector2(Random.Range(0.45f, maxGarbageScale.x), Random.Range(0.45f, maxGarbageScale.y));
         rb.drag = 5;
         angle = Random.Range(0f, 360f);
         lerpSpeed = Random.Range(4.5f, 6.5f);
@@ -77,7 +79,9 @@ public class Garbage : MonoBehaviour
         }
         if (!isGarbageCollected) 
         {
-            transform.localScale = Vector2.Lerp(transform.localScale, maxGarbageScale, 1f * Time.deltaTime);
+            
+            
+            transform.localScale = Vector2.Lerp(transform.localScale, randomGarbageScale, 1f * Time.deltaTime);
             bc.enabled = true;
             StartCoroutine(garbageRigidBrake(1f));
         }

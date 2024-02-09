@@ -6849,7 +6849,7 @@ GameObject:
   - component: {fileID: 1676179323}
   - component: {fileID: 1676179324}
   m_Layer: 0
-  m_Name: Player 2 Bounce
+  m_Name: Player 2 Collider
   m_TagString: Player 2 Crash Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7124,7 +7124,7 @@ GameObject:
   - component: {fileID: 1724269296}
   - component: {fileID: 1724269297}
   m_Layer: 0
-  m_Name: Player 1 Bounce
+  m_Name: Player 1 Collider
   m_TagString: Player 1 Crash Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

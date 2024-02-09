@@ -51,18 +51,26 @@ public class Player1Collision : MonoBehaviour
             }
             else 
             {
-                player1BoucedCollision(collision);
+                if (!globalVariable.isTriggeredWithObstacle) 
+                {
+                    player1BoucedCollision(collision);
+                }
+  
             }
         }
+       
         if(collision.gameObject.tag=="Player Pull Up Object") 
         {
             player1Ability.isPlayer1SetPosToPullUpObject = true;
         }
         if (collision.gameObject.tag=="Player 2 Crash Trigger") 
         {
-           
-            player1BoucedCollision(collision);
-            
+
+            if (!globalVariable.isTriggeredWithObstacle)
+            {
+                player1BoucedCollision(collision);
+            }
+
         }
 
        
@@ -76,7 +84,10 @@ public class Player1Collision : MonoBehaviour
             }
             else 
             {
-                player1BoucedCollision(collision);
+                if (!globalVariable.isTriggeredWithObstacle)
+                {
+                    player1BoucedCollision(collision);
+                }
             }
    
         }

@@ -52,13 +52,20 @@ public class Player2Collision : MonoBehaviour
             }
             else 
             {
-                player2BouncedCollision(collision);
+                if (!globalVariable.isTriggeredWithObstacle)
+                {
+                    player2BouncedCollision(collision);
+                }
             }
         }
+
         if (collision.gameObject.tag == "Player 1 Crash Trigger")
         {
-            player2BouncedCollision(collision);
-            
+            if (!globalVariable.isTriggeredWithObstacle)
+            {
+                player2BouncedCollision(collision);
+            }
+
         }
 
        
@@ -71,7 +78,11 @@ public class Player2Collision : MonoBehaviour
             }
             else 
             {
-                player2BouncedCollision(collision);
+                if (!globalVariable.isTriggeredWithObstacle) 
+                {
+                    player2BouncedCollision(collision);
+                }
+               
             }
    
         }

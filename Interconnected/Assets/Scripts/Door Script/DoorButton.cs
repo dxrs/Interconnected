@@ -95,12 +95,13 @@ public class DoorButton : MonoBehaviour
     {
         if(collision.gameObject.tag=="Player 1"||collision.gameObject.tag=="Player 2") 
         {
-            GlobalVariable.globalVariable.curDoorOpenValue++;
+            
         }
         if (doorPlayer == "Player 1")
         {
             if (collision.gameObject.tag == "Player 1")
             {
+                GlobalVariable.globalVariable.curDoorOpenValue++;
                 isPlayer1SetPosToDoor = true;
                 doorButtonIsDestroyed = true;
                 rbPlayer1.drag = 0;
@@ -110,6 +111,7 @@ public class DoorButton : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player 2")
             {
+                GlobalVariable.globalVariable.curDoorOpenValue++;
                 isPlayer2SetPosToDoor = true;
                 doorButtonIsDestroyed = true;
                 rbPlayer2.drag = 0;
