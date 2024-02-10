@@ -17,7 +17,7 @@ public class Player2Collision : MonoBehaviour
 
     [SerializeField] float crashForceValue;
 
-    [SerializeField] GameObject playerCrashObject;
+    [SerializeField] GameObject playerOutlineCollider;
 
     Rigidbody2D rb;
 
@@ -34,7 +34,7 @@ public class Player2Collision : MonoBehaviour
 
     private void Update()
     {
-        playerCrashObject.transform.position = transform.position;
+        playerOutlineCollider.transform.position = transform.position;
        
     }
 
@@ -59,7 +59,7 @@ public class Player2Collision : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.tag == "Player 1 Crash Trigger")
+        if (collision.gameObject.tag == "Player 1 Outline Collider")
         {
             if (!globalVariable.isTriggeredWithObstacle)
             {

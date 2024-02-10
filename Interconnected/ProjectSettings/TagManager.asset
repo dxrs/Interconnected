@@ -19,8 +19,6 @@ TagManager:
   - Spike
   - Player 2 Shield
   - Player 1 Shield
-  - Player 1 Crash Trigger
-  - Player 2 Crash Trigger
   - Trash Bin Stop Collider
   - Finish Point
   - Health Point
@@ -30,6 +28,9 @@ TagManager:
   - Circle Door Trigger
   - Garbage Spawner
   - Player Pull Up Object
+  - Garbage Collector
+  - Player 1 Outline Collider
+  - Player 2 Outline Collider
   layers:
   - Default
   - TransparentFX

@@ -13,8 +13,6 @@ public class Player1Ability : MonoBehaviour
     [SerializeField] Player1Movement player1Movement;
     [SerializeField] Player1Stamina player1Stamina;
 
-    [SerializeField] GameObject crashTriggerObject;
-
     [Header("Player Dash")]
     public bool isDashing;
     [SerializeField] float dashSpeed;
@@ -117,7 +115,7 @@ public class Player1Ability : MonoBehaviour
             && ReadyToStart.readyToStart.isGameStart
             && !globalVariable.isPlayerSharingLives) 
         {
-            if (Vector2.Distance(transform.position, player2.transform.position) > distanceFromPlayer2 && !linkRay.playerLinkedEachOther) 
+            if (Vector2.Distance(transform.position, player2.transform.position) > distanceFromPlayer2 && !linkRay.isPlayerLinkedEachOther) 
             {
                 if (context.performed)
                 {

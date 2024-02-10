@@ -16,38 +16,7 @@ public class BulletP2 : MonoBehaviour
     }
     private void Update()
     {
-        if (!LinkRay.linkRay.isLinkedToPlayer) 
-        {
-            float maxDistance = 6.5f;
-            GameObject nearestObstacle = null;
-            float nearestDistance = float.MaxValue;
-
-            for (int j = 0; j < targetToObstacleP2.Length; j++)
-            {
-                float distance = Vector2.Distance(transform.position, targetToObstacleP2[j].transform.position);
-
-                if (distance < nearestDistance)
-                {
-                    nearestObstacle = targetToObstacleP2[j];
-                    nearestDistance = distance;
-
-                }
-            }
-
-            if (nearestObstacle != null && nearestDistance < maxDistance
-                && !GlobalVariable.globalVariable.isTriggeredWithObstacle
-                        && !GlobalVariable.globalVariable.isNotShoot
-                        && !SceneSystem.sceneSystem.isExitScene
-                        && !SceneSystem.sceneSystem.isRestartScene)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, nearestObstacle.transform.position, bulletSpeed * Time.deltaTime);
-            }
-            else { Destroy(gameObject); }
-        }
-        else 
-        {
-            Destroy(gameObject);
-        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

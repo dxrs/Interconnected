@@ -13,7 +13,7 @@ public class Player2Ability : MonoBehaviour
     [SerializeField] Player2Stamina player2Stamina;
     [SerializeField] Player2Shield player2Shield;
 
-    [SerializeField] GameObject[] crashTriggerObject;
+    [SerializeField] GameObject[] playerOutlineCollider;
 
     [Header("Player Dash")]
     public bool isDashing;
@@ -54,10 +54,14 @@ public class Player2Ability : MonoBehaviour
     {
         if (isShielding)
         {
-            crashTriggerObject[0].SetActive(false);
-            crashTriggerObject[1].SetActive(false);
-            playerShield[0].SetActive(true);
-            playerShield[1].SetActive(true);
+            for(int k=0;k < playerOutlineCollider.Length; k++) 
+            {
+                playerOutlineCollider[k].SetActive(false);
+            }
+            for(int j = 0; j < playerShield.Length; j++) 
+            {
+                playerShield[j].SetActive(true);
+            }
             if (shieldDuration > 0)
             {
                 shieldDuration -= 1 * Time.deltaTime;
@@ -77,11 +81,16 @@ public class Player2Ability : MonoBehaviour
             {
                 player2Shield.playerShieldHealth[j] = 5;
             }
-            crashTriggerObject[0].SetActive(true);
-            crashTriggerObject[1].SetActive(true);
+            for (int k = 0; k < playerOutlineCollider.Length; k++)
+            {
+                playerOutlineCollider[k].SetActive(true);
+            }
+            for (int j = 0; j < playerShield.Length; j++)
+            {
+                playerShield[j].SetActive(false);
+            }
             shieldDuration = 10;
-            playerShield[0].SetActive(false);
-            playerShield[1].SetActive(false);
+
         }
     }
     //dash input
@@ -119,7 +128,7 @@ public class Player2Ability : MonoBehaviour
             && !Pause.pause.isGamePaused
             && ReadyToStart.readyToStart.isGameStart
             && !globalVariable.isPlayerSharingLives
-            && linkRay.playerLinkedEachOther)
+            && linkRay.isPlayerLinkedEachOther)
         {
             if (context.performed && !isShielding)
             {

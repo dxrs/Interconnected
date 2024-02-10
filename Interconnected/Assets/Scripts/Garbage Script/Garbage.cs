@@ -31,7 +31,7 @@ public class Garbage : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
-        garbageSpawner = GameObject.FindGameObjectWithTag("Garbage Spawner");
+        garbageSpawner = GameObject.FindGameObjectWithTag("Garbage Collector");
         randomGarbageScale = new Vector2(Random.Range(0.45f, maxGarbageScale.x), Random.Range(0.45f, maxGarbageScale.y));
         rb.drag = 5;
         angle = Random.Range(0f, 360f);
@@ -42,49 +42,52 @@ public class Garbage : MonoBehaviour
 
     private void Update()
     {
-        
-        if (isGarbageCollected) 
+        if(!GlobalVariable.globalVariable.isGameFinish || !GlobalVariable.globalVariable.isGameOver) 
         {
-            if(LinkRay.linkRay.playerLinkedEachOther && !GlobalVariable.globalVariable.isTriggeredWithObstacle) 
+            if (isGarbageCollected)
             {
-                garbagePosition = garbageSpawner.transform.position;
-
-                bc.enabled = false;
-
-                transform.localScale = minGarbageScale;
-
-                posX = garbagePosition.x + GarbageCollector.garbageCollector.radius * Mathf.Cos(Mathf.Deg2Rad * angle);
-                posY = garbagePosition.y + GarbageCollector.garbageCollector.radius * Mathf.Sin(Mathf.Deg2Rad * angle);
-
-                transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), lerpSpeed * Time.deltaTime);
-            }
-            if(!LinkRay.linkRay.playerLinkedEachOther || GlobalVariable.globalVariable.isTriggeredWithObstacle || Player2Movement.player2Movement.maxPlayerSpeed<=0) 
-            {
-                transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
-                StartCoroutine(garbageRigidBrake(1f));
-                Vector2 directionToCenter = (Vector2)transform.position - (Vector2)garbageSpawner.transform.position;
-                float distanceToCenter = directionToCenter.magnitude;
-
-
-                if (distanceToCenter > 0 && distanceToCenter < blastRadius)
+                if (LinkRay.linkRay.isPlayerLinkedEachOther && !GlobalVariable.globalVariable.isTriggeredWithObstacle)
                 {
-                    Vector2 blastForceVector = directionToCenter.normalized * blastForce;
-                    rb.AddForce(blastForceVector, ForceMode2D.Impulse);
+                    garbagePosition = garbageSpawner.transform.position;
+
+                    bc.enabled = false;
+
+                    transform.localScale = minGarbageScale;
+
+                    posX = garbagePosition.x + GarbageCollector.garbageCollector.radius * Mathf.Cos(Mathf.Deg2Rad * angle);
+                    posY = garbagePosition.y + GarbageCollector.garbageCollector.radius * Mathf.Sin(Mathf.Deg2Rad * angle);
+
+                    transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), lerpSpeed * Time.deltaTime);
                 }
-                isGarbageCollected = false;
+                if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isTriggeredWithObstacle || Player2Movement.player2Movement.maxPlayerSpeed <= 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+                    StartCoroutine(garbageRigidBrake(1f));
+                    Vector2 directionToCenter = (Vector2)transform.position - (Vector2)garbageSpawner.transform.position;
+                    float distanceToCenter = directionToCenter.magnitude;
+
+
+                    if (distanceToCenter > 0 && distanceToCenter < blastRadius)
+                    {
+                        Vector2 blastForceVector = directionToCenter.normalized * blastForce;
+                        rb.AddForce(blastForceVector, ForceMode2D.Impulse);
+                    }
+                    isGarbageCollected = false;
+                }
+
+
+
             }
+            if (!isGarbageCollected)
+            {
 
 
-
+                transform.localScale = Vector2.Lerp(transform.localScale, randomGarbageScale, 1f * Time.deltaTime);
+                bc.enabled = true;
+                StartCoroutine(garbageRigidBrake(1f));
+            }
         }
-        if (!isGarbageCollected) 
-        {
-            
-            
-            transform.localScale = Vector2.Lerp(transform.localScale, randomGarbageScale, 1f * Time.deltaTime);
-            bc.enabled = true;
-            StartCoroutine(garbageRigidBrake(1f));
-        }
+       
 
     }
     private void OnCollisionStay2D(Collision2D collision)
@@ -105,6 +108,13 @@ public class Garbage : MonoBehaviour
            
         }
 
+        if(collision.gameObject.tag=="Player 1 Outline Collider") 
+        {
+            Player1Stamina.player1Stamina.curStamina -= 5;
+            if (Player1Stamina.player1Stamina.curStamina < 0) { Player1Stamina.player1Stamina.curStamina = 0; }
+            Player1Stamina.player1Stamina.staminaFunctionCallback();
+        }
+
         if(collision.gameObject.tag=="Gear" || collision.gameObject.tag == "Spike")
         {
             Vector2 blastForceVector = (transform.position-collision.transform.position).normalized;
@@ -113,6 +123,11 @@ public class Garbage : MonoBehaviour
         }
 
        
+    }
+    IEnumerator delayColliderFalse() 
+    {
+        yield return new WaitForSeconds(.1f);
+        bc.enabled = false;
     }
     IEnumerator garbageRigidBrake(float delay)
     {

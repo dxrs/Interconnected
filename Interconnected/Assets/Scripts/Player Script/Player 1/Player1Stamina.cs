@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Player1Stamina : MonoBehaviour
 {
+    public static Player1Stamina player1Stamina;
+
     [SerializeField] Player1Ability player1Ability;
 
     [SerializeField] Image staminaImg;
@@ -16,7 +18,10 @@ public class Player1Stamina : MonoBehaviour
     public float staminaRegenRate;
 
     Coroutine staminaRegen;
-
+    private void Awake()
+    {
+        if (player1Stamina == null) { player1Stamina = this; }
+    }
     private void Start()
     {
         maxStamina = 100;

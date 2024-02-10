@@ -63,12 +63,12 @@ public class Player1Movement : MonoBehaviour
     {
         if (maxPlayerSpeed <= 0) 
         {
-            if(linkRay.playerLinkedEachOther && !globalVariable.isTriggeredWithObstacle) 
+            if(linkRay.isPlayerLinkedEachOther && !globalVariable.isTriggeredWithObstacle) 
             {
                 StartCoroutine(setMaxSpeedPlayer());
             }
         }
-        if (!linkRay.playerLinkedEachOther || globalVariable.isTriggeredWithObstacle) 
+        if (!linkRay.isPlayerLinkedEachOther || globalVariable.isTriggeredWithObstacle) 
         {
             maxPlayerSpeed = 5;
 

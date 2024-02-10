@@ -7,7 +7,6 @@ public class Door : MonoBehaviour
     public int id;
 
     [SerializeField] GameObject[] doorButton;
-    [SerializeField] GameObject circleDoorStop;
 
     [SerializeField] float doorMoveSpeed;
 
@@ -23,8 +22,7 @@ public class Door : MonoBehaviour
                 {
                     transform.position = Vector2.MoveTowards(transform.position,
                         doorMoveTarget, doorMoveSpeed * Time.deltaTime);
-                    circleDoorStop.SetActive(false);
-                    //Destroy(circleDoorStop, 60);
+                   
                 }
             }
         }

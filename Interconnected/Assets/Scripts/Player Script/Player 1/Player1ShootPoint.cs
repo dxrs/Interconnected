@@ -23,17 +23,15 @@ public class Player1ShootPoint : MonoBehaviour
     {
         while (true) 
         {
-            if (linkRay.isLinkedToPlayer)
-            {
-                if (linkRay.playerLinkedEachOther
+            if (linkRay.isPlayerLinkedEachOther
                     && !GlobalVariable.globalVariable.isTriggeredWithObstacle
                     && !GlobalVariable.globalVariable.isNotShoot
                     && !SceneSystem.sceneSystem.isExitScene
                     && !SceneSystem.sceneSystem.isRestartScene)
-                {
-                    Instantiate(player1Bullet, shootPoint.transform.position, Quaternion.identity);
-                }
+            {
+                Instantiate(player1Bullet, shootPoint.transform.position, Quaternion.identity);
             }
+           
             
             yield return new WaitForSeconds(waitToSpawn);
         }

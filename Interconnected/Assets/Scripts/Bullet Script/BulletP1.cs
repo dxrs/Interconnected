@@ -29,54 +29,26 @@ public class BulletP1 : MonoBehaviour
 
     private void Update()
     {
-       
-        if (LinkRay.linkRay.isLinkedToPlayer) 
-        {
-            if (targetToPlayer2 != null && !GlobalVariable.globalVariable.isTriggeredWithObstacle
+        if (targetToPlayer2 != null && !GlobalVariable.globalVariable.isTriggeredWithObstacle
                         && !GlobalVariable.globalVariable.isNotShoot
                         && !SceneSystem.sceneSystem.isExitScene
-                        && !SceneSystem.sceneSystem.isRestartScene) 
-            {
-                transform.position = Vector2.MoveTowards(transform.position, targetToPlayer2.transform.position, bulletSpeed * Time.deltaTime);
-
-                float distanceToPlayer2 = Vector2.Distance(transform.position, targetToPlayer2.transform.position);
-
-                float normalizedDistance = Mathf.Clamp01(distanceToPlayer2 / colorChangeDistanceThreshold);
-
-                Color currentColor = Color.Lerp(targetColor, defaultBulletColor, normalizedDistance);
-                sr.color = currentColor;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-
-        }
-        else 
+                        && !SceneSystem.sceneSystem.isRestartScene)
         {
-    
-            float maxDistance = 6.5f;
-            GameObject nearestObstacle = null;
-            float nearestDistance = float.MaxValue;
+            transform.position = Vector2.MoveTowards(transform.position, targetToPlayer2.transform.position, bulletSpeed * Time.deltaTime);
 
-            for (int j = 0; j < targetToObstacleP1.Length; j++)
-            {
-                float distance = Vector2.Distance(transform.position, targetToObstacleP1[j].transform.position);
+            float distanceToPlayer2 = Vector2.Distance(transform.position, targetToPlayer2.transform.position);
 
-                if (distance < nearestDistance)
-                {
-                    nearestObstacle = targetToObstacleP1[j];
-                    nearestDistance = distance;
-                    
-                }
-            }
+            float normalizedDistance = Mathf.Clamp01(distanceToPlayer2 / colorChangeDistanceThreshold);
 
-            if (nearestObstacle != null && nearestDistance < maxDistance)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, nearestObstacle.transform.position, bulletSpeed * Time.deltaTime);
-            }
-            else { Destroy(gameObject); }
+            Color currentColor = Color.Lerp(targetColor, defaultBulletColor, normalizedDistance);
+            sr.color = currentColor;
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        
        
     }
 
@@ -93,14 +65,11 @@ public class BulletP1 : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (LinkRay.linkRay.isLinkedToPlayer) 
+        if (collision.gameObject.tag == "Player 2" || collision.gameObject.tag == "Player 2 Shield")
         {
-            if(collision.gameObject.tag=="Player 2" || collision.gameObject.tag=="Player 2 Shield") 
-            {
-                Destroy(gameObject);
-            }
-            
+            Destroy(gameObject);
         }
+        
     }
 }
 

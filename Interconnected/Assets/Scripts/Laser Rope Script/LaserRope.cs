@@ -24,7 +24,7 @@ public class LaserRope : MonoBehaviour
         transform.position = playerObjectRotation.transform.position;
         transform.rotation = playerObjectRotation.transform.rotation;
 
-        if (LinkRay.linkRay.playerLinkedEachOther)
+        if (LinkRay.linkRay.isPlayerLinkedEachOther)
         {
             laerRope.SetActive(true);
             float beamDistance = Vector2.Distance(player1.transform.position, player2.transform.position);

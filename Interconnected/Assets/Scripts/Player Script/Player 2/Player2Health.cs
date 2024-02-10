@@ -42,6 +42,10 @@ public class Player2Health : MonoBehaviour // kurang slow motion
     private void Update()
     {
         shareLives();
+        if (curPlayer2Health <= 0)
+        {
+            globalVariable.isGameOver = true;
+        }
     }
 
     private void shareLives()
@@ -78,14 +82,14 @@ public class Player2Health : MonoBehaviour // kurang slow motion
             && !player2Ability.isDashing
             && globalVariable.waitTimeToShareLives <= 0)
         {
-            if (context.started && !Player1Health.player1Health.isSharingLivesToP2 && linkRay.playerLinkedEachOther)
+            if (context.started && !Player1Health.player1Health.isSharingLivesToP2 && linkRay.isPlayerLinkedEachOther)
             {
                 if (curPlayer2Health > 1 && Player1Health.player1Health.curPlayer1Health < maxPlayerHealth)
                 {
                     isSharingLivesToP1 = true;
                 }
             }
-            if (context.performed && linkRay.playerLinkedEachOther && isSharingLivesToP1)
+            if (context.performed && linkRay.isPlayerLinkedEachOther && isSharingLivesToP1)
             {
                 if (curPlayer2Health > 1 && Player1Health.player1Health.curPlayer1Health < maxPlayerHealth)
                 {
