@@ -28,7 +28,11 @@ public class MouseCursorActivated : MonoBehaviour
         else 
         {
             Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            if (!Cursor.visible) 
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+
             Vector2 currentMousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             if (currentMousePosition != lastMousePosition)
             {

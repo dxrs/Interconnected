@@ -117,6 +117,7 @@ public class Player1Movement : MonoBehaviour
         {
             if (context.performed)
             {
+                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
                 if (!isBrakingWithInput)
                 {
                     isBraking = false;
@@ -137,6 +138,7 @@ public class Player1Movement : MonoBehaviour
     {
         if (context.performed) 
         {
+            MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
             isBrakingWithInput = true;
 
         }
