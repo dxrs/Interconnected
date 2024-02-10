@@ -7,7 +7,7 @@ public class LevelStatus : MonoBehaviour
     public static LevelStatus levelStatus;
 
     public int levelID;
-   public enum statusLevel { Adventure, Survival, Boss }
+   public enum statusLevel { Adventure, Survival, Boss, Tutorial }
     public statusLevel levelStats;
 
     private void Awake()
@@ -30,6 +30,9 @@ public class LevelStatus : MonoBehaviour
         else if (levelStats == statusLevel.Boss)
         {
             levelID = 3;
+        } else if (levelStats == statusLevel.Tutorial)
+        {
+            levelID = 4;
         }
         else { Debug.Log("error"); }
     }

@@ -29,4 +29,14 @@ public class SceneSystem : MonoBehaviour
             // exit scene di sini aja
         }
     }
+
+    public void goingToTutorialScene() 
+    {
+        Debug.Log("ke scane tutorial");
+    }
+
+    public void goingToPrologueScene() 
+    {
+
+    }
 }

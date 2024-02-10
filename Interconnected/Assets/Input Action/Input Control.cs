@@ -457,6 +457,129 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Main Menu"",
+            ""id"": ""24337b30-d557-4f1b-ba02-7ad6fb29aead"",
+            ""actions"": [
+                {
+                    ""name"": ""Navigation Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""43265e41-01aa-4b34-a092-5202c14d27a1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Navigation Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""4cd2eac3-fae4-46e3-96a6-b34d0a37c2c7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Navigation Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""4b974cd3-af8d-4bf8-bece-161f8dd98bda"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""72687501-6554-4395-8b35-65c806f61032"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad Scheme"",
+                    ""action"": ""Navigation Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e9734f8-dd65-42bd-bd9f-b6e16326e0e3"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard Scheme"",
+                    ""action"": ""Navigation Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13a4ddc7-4488-438a-a405-6fe4169942d6"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard Scheme"",
+                    ""action"": ""Navigation Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""980faf86-e141-4f88-8a4c-62b7fb669717"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad Scheme"",
+                    ""action"": ""Navigation Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9fbe39d0-14d0-44a4-af5c-4ab421559d07"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard Scheme"",
+                    ""action"": ""Navigation Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e643ccd-1db8-4a00-a264-90eb7b1271b6"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard Scheme"",
+                    ""action"": ""Navigation Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b35cb2f-3450-4936-93c9-73852a03c037"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard Scheme"",
+                    ""action"": ""Navigation Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54357fcc-0ef8-4ec0-9189-9e9b420d072f"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad Scheme"",
+                    ""action"": ""Navigation Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -515,6 +638,11 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         m_InputPlayer2_Brake = m_InputPlayer2.FindAction("Brake", throwIfNotFound: true);
         m_InputPlayer2_BasicSkillDash = m_InputPlayer2.FindAction("Basic Skill Dash", throwIfNotFound: true);
         m_InputPlayer2_BasicSkillShield = m_InputPlayer2.FindAction("Basic Skill Shield", throwIfNotFound: true);
+        // Main Menu
+        m_MainMenu = asset.FindActionMap("Main Menu", throwIfNotFound: true);
+        m_MainMenu_NavigationUp = m_MainMenu.FindAction("Navigation Up", throwIfNotFound: true);
+        m_MainMenu_NavigationDown = m_MainMenu.FindAction("Navigation Down", throwIfNotFound: true);
+        m_MainMenu_NavigationConfirm = m_MainMenu.FindAction("Navigation Confirm", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -776,6 +904,68 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         }
     }
     public InputPlayer2Actions @InputPlayer2 => new InputPlayer2Actions(this);
+
+    // Main Menu
+    private readonly InputActionMap m_MainMenu;
+    private List<IMainMenuActions> m_MainMenuActionsCallbackInterfaces = new List<IMainMenuActions>();
+    private readonly InputAction m_MainMenu_NavigationUp;
+    private readonly InputAction m_MainMenu_NavigationDown;
+    private readonly InputAction m_MainMenu_NavigationConfirm;
+    public struct MainMenuActions
+    {
+        private @InputControl m_Wrapper;
+        public MainMenuActions(@InputControl wrapper) { m_Wrapper = wrapper; }
+        public InputAction @NavigationUp => m_Wrapper.m_MainMenu_NavigationUp;
+        public InputAction @NavigationDown => m_Wrapper.m_MainMenu_NavigationDown;
+        public InputAction @NavigationConfirm => m_Wrapper.m_MainMenu_NavigationConfirm;
+        public InputActionMap Get() { return m_Wrapper.m_MainMenu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MainMenuActions set) { return set.Get(); }
+        public void AddCallbacks(IMainMenuActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MainMenuActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MainMenuActionsCallbackInterfaces.Add(instance);
+            @NavigationUp.started += instance.OnNavigationUp;
+            @NavigationUp.performed += instance.OnNavigationUp;
+            @NavigationUp.canceled += instance.OnNavigationUp;
+            @NavigationDown.started += instance.OnNavigationDown;
+            @NavigationDown.performed += instance.OnNavigationDown;
+            @NavigationDown.canceled += instance.OnNavigationDown;
+            @NavigationConfirm.started += instance.OnNavigationConfirm;
+            @NavigationConfirm.performed += instance.OnNavigationConfirm;
+            @NavigationConfirm.canceled += instance.OnNavigationConfirm;
+        }
+
+        private void UnregisterCallbacks(IMainMenuActions instance)
+        {
+            @NavigationUp.started -= instance.OnNavigationUp;
+            @NavigationUp.performed -= instance.OnNavigationUp;
+            @NavigationUp.canceled -= instance.OnNavigationUp;
+            @NavigationDown.started -= instance.OnNavigationDown;
+            @NavigationDown.performed -= instance.OnNavigationDown;
+            @NavigationDown.canceled -= instance.OnNavigationDown;
+            @NavigationConfirm.started -= instance.OnNavigationConfirm;
+            @NavigationConfirm.performed -= instance.OnNavigationConfirm;
+            @NavigationConfirm.canceled -= instance.OnNavigationConfirm;
+        }
+
+        public void RemoveCallbacks(IMainMenuActions instance)
+        {
+            if (m_Wrapper.m_MainMenuActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMainMenuActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MainMenuActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MainMenuActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MainMenuActions @MainMenu => new MainMenuActions(this);
     private int m_KeyboardSchemeSchemeIndex = -1;
     public InputControlScheme KeyboardSchemeScheme
     {
@@ -824,5 +1014,11 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         void OnBrake(InputAction.CallbackContext context);
         void OnBasicSkillDash(InputAction.CallbackContext context);
         void OnBasicSkillShield(InputAction.CallbackContext context);
+    }
+    public interface IMainMenuActions
+    {
+        void OnNavigationUp(InputAction.CallbackContext context);
+        void OnNavigationDown(InputAction.CallbackContext context);
+        void OnNavigationConfirm(InputAction.CallbackContext context);
     }
 }
