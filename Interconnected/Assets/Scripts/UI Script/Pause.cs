@@ -135,7 +135,7 @@ public class Pause : MonoBehaviour
                 entry.callback.AddListener((data) => { buttonPauseHighlighted(buttonValue); });
                 eventTrigger.triggers.Add(entry);
             }
-        } while (isGamePaused);
+        } while (isGamePaused && !SceneSystem.sceneSystem.isChangeScene);
     }
     void buttonPauseHighlighted(int value)
     {
@@ -146,7 +146,7 @@ public class Pause : MonoBehaviour
 
     void pauseInputConfirmButton() 
     {
-        if (isGamePaused) 
+        if (isGamePaused && !SceneSystem.sceneSystem.isChangeScene) 
         {
             
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Gamepad Enter")) 
@@ -170,7 +170,7 @@ public class Pause : MonoBehaviour
 
     void pauseInputListSelection() 
     {
-        if (isGamePaused)
+        if (isGamePaused && !SceneSystem.sceneSystem.isChangeScene)
         {
             
             float inputDpadVertical = Input.GetAxis("Dpad Vertical");

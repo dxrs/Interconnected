@@ -165,10 +165,21 @@ public class MainMenu : MonoBehaviour
                 if (curValueButton == 4)
                 {
                     Debug.Log("4");
+                    Application.Quit();
                 }
             }
         }
         
     }
     #endregion
+
+    public void onClickToPrologue() 
+    {
+        SceneSystem.sceneSystem.goingToTutorialScene();
+        isMainMenuActive = false;
+    }
+    public void onClickQuitGame() 
+    {
+        Application.Quit();
+    }
 }

@@ -23,6 +23,7 @@ public class Finish : MonoBehaviour
     [SerializeField] int buttonHighlightedValue; // yang di highlight sama cursor mouse
 
     [SerializeField] Button[] listPauseButton;
+    [SerializeField] Button[] allButtonFinishDisable;
 
     [SerializeField] Vector2[] finishSelectorPos;
 
@@ -40,22 +41,23 @@ public class Finish : MonoBehaviour
     {
         if (globalVariable.isGameFinish) 
         {
+            if (SceneSystem.sceneSystem.isChangeScene) 
+            {
+                for (int k = 0; k < allButtonFinishDisable.Length; k++)
+                {
+                    allButtonFinishDisable[k].interactable = false;
+                }
+            }
             if (LevelStatus.levelStatus.levelID == 2) 
             {
-                textFinishStatusEnemyDestroy.text = EnemyTargetDestroy.enemyTargetDestroy.curValueEnemyDestroy + " Enemy Destroyed";
+                //textFinishStatusEnemyDestroy.text = EnemyTargetDestroy.enemyTargetDestroy.curValueEnemyDestroy + " Enemy Destroyed";
                 
             }
+            compareButtonValue();
             StartCoroutine(waitToActive());
-            if (MouseCursorActivated.mouseCursorActivated.isMouseActive)
-            {
-                curValueButton = buttonHighlightedValue;
-            }
-            else
-            {
-                buttonHighlightedValue = curValueButton;
-            }
+           
         }
-
+        
         finishInputConfirmButton();
         finishInputListSelection();
         selectorPos();
@@ -75,7 +77,7 @@ public class Finish : MonoBehaviour
                 entry.callback.AddListener((data) => { buttonPauseHighlighted(buttonValue); });
                 eventTrigger.triggers.Add(entry);
             }
-        } while (globalVariable.isGameFinish);
+        } while (globalVariable.isGameFinish && LevelStatus.levelStatus.levelID != 4 && !SceneSystem.sceneSystem.isChangeScene);
     }
 
     void buttonPauseHighlighted(int value)
@@ -83,109 +85,132 @@ public class Finish : MonoBehaviour
         buttonHighlightedValue = value;
     }
 
+    void compareButtonValue() 
+    {
+        if(LevelStatus.levelStatus.levelID != 4) 
+        {
+            if (MouseCursorActivated.mouseCursorActivated.isMouseActive)
+            {
+                curValueButton = buttonHighlightedValue;
+            }
+            else
+            {
+                buttonHighlightedValue = curValueButton;
+            }
+        }
+    }
+
     void finishInputConfirmButton()
     {
-        if (globalVariable.isGameFinish)
+        if (LevelStatus.levelStatus.levelID != 4) 
         {
-
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Gamepad Enter"))
+            if (globalVariable.isGameFinish && !SceneSystem.sceneSystem.isChangeScene)
             {
-
-                if (curValueButton == 1)
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Gamepad Enter"))
                 {
-                    sceneSystem.isRestartScene = true;
+                    if (curValueButton == 1)
+                    {
+                        sceneSystem.isRestartScene = true;
+                        //nanti di ubah ke next scene
+                    }
 
-                    // restart scene
-                }
-
-                if (curValueButton == 2)
-                {
-                    sceneSystem.isExitScene = true;
-                    //exit scene ke menu
+                    if (curValueButton == 2)
+                    {
+                        sceneSystem.isExitScene = true;
+                    }
                 }
             }
         }
+       
     }
 
     void finishInputListSelection()
     {
-        if (globalVariable.isGameFinish)
+        if (LevelStatus.levelStatus.levelID != 4) 
         {
+            if (globalVariable.isGameFinish && !SceneSystem.sceneSystem.isChangeScene)
+            {
 
-            float inputDpadVertical = Input.GetAxis("Dpad Vertical");
+                float inputDpadVertical = Input.GetAxis("Dpad Vertical");
 
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                curValueButton++;
-                if (curValueButton > maxListButton)
+                if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
-                    curValueButton = 1;
+                    curValueButton++;
+                    if (curValueButton > maxListButton)
+                    {
+                        curValueButton = 1;
+                    }
+                    MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
                 }
-                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
-            }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                curValueButton--;
-                if (curValueButton < 1)
+                if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
-                    curValueButton = maxListButton;
+                    curValueButton--;
+                    if (curValueButton < 1)
+                    {
+                        curValueButton = maxListButton;
+                    }
+                    MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
                 }
-                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
-            }
 
-            if (inputDpadVertical == 1 && !isDpadPressed)
-            {
-                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
-                curValueButton++;
-                if (curValueButton > maxListButton)
+                if (inputDpadVertical == 1 && !isDpadPressed)
                 {
-                    curValueButton = 1;
+                    MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+                    curValueButton++;
+                    if (curValueButton > maxListButton)
+                    {
+                        curValueButton = 1;
+                    }
+                    isDpadPressed = true;
                 }
-                isDpadPressed = true;
-            }
-            if (inputDpadVertical == -1 && !isDpadPressed)
-            {
-                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
-                curValueButton--;
-                if (curValueButton < 1)
+                if (inputDpadVertical == -1 && !isDpadPressed)
                 {
-                    curValueButton = maxListButton;
+                    MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+                    curValueButton--;
+                    if (curValueButton < 1)
+                    {
+                        curValueButton = maxListButton;
+                    }
+                    isDpadPressed = true;
                 }
-                isDpadPressed = true;
-            }
 
-            if (inputDpadVertical == 0)
-            {
-                isDpadPressed = false;
+                if (inputDpadVertical == 0)
+                {
+                    isDpadPressed = false;
+                }
             }
         }
+       
     }
 
     void selectorPos()
     {
-        if (!MouseCursorActivated.mouseCursorActivated.isMouseActive && globalVariable.isGameFinish)
+        if (LevelStatus.levelStatus.levelID != 4)
         {
-            for (int j = 0; j < finishSelectorPos.Length; j++)
+            if (!MouseCursorActivated.mouseCursorActivated.isMouseActive && globalVariable.isGameFinish)
             {
-                if (curValueButton == j + 1)
+                for (int j = 0; j < finishSelectorPos.Length; j++)
                 {
-                    finishSelector.transform.localPosition = finishSelectorPos[j];
+                    if (curValueButton == j + 1)
+                    {
+                        finishSelector.transform.localPosition = finishSelectorPos[j];
+                    }
+
                 }
 
             }
-
-        }
-        for (int i = 0; i < finishSelectorPos.Length; i++)
-        {
-            if (MouseCursorActivated.mouseCursorActivated.isMouseActive)
+            for (int i = 0; i < finishSelectorPos.Length; i++)
             {
-                if (buttonHighlightedValue == i + 1)
+                if (MouseCursorActivated.mouseCursorActivated.isMouseActive)
                 {
-                    finishSelector.transform.localPosition = finishSelectorPos[i];
-                }
+                    if (buttonHighlightedValue == i + 1)
+                    {
+                        finishSelector.transform.localPosition = finishSelectorPos[i];
+                    }
 
+                }
             }
         }
+        
     }
 
     IEnumerator waitToActive() 
@@ -195,11 +220,11 @@ public class Finish : MonoBehaviour
         inGameUI.SetActive(false);
     }
 
-    public void onClickRestart()
+    public void onClickContinue()
     {
         sceneSystem.isRestartScene = true;
 
-
+        // nanti ke next scene
 
     }
     public void onClickExit()

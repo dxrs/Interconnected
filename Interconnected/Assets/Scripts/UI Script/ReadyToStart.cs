@@ -52,8 +52,11 @@ public class ReadyToStart : MonoBehaviour
         else 
         {
             isGameStart = true;
-            inGameUI.SetActive(true);
-            startUI.SetActive(false);
+            if (isGameStart && !GlobalVariable.globalVariable.isGameFinish)
+            {
+                inGameUI.SetActive(true);
+                startUI.SetActive(false);
+            }
         }
       
     }

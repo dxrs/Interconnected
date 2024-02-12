@@ -21,8 +21,15 @@ public class GameFinish : MonoBehaviour
         {
             if (finishValue == 2 && GarbageCollector.garbageCollector.garbageCollected >= 5) 
             {
+                StartCoroutine(waitToFinish());
                 //Debug.Log("finish tutorial");
             }
         }
+    }
+
+    IEnumerator waitToFinish() 
+    {
+        yield return new WaitForSeconds(1);
+        GlobalVariable.globalVariable.isGameFinish = true;
     }
 }

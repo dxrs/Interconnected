@@ -358,7 +358,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Basic Skill Shield"",
+                    ""name"": ""Special Skill Shield"",
                     ""type"": ""Button"",
                     ""id"": ""4af3bff8-8a64-4d2f-9bd0-9ea63d615ebb"",
                     ""expectedControlType"": ""Button"",
@@ -408,7 +408,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad Scheme"",
-                    ""action"": ""Basic Skill Shield"",
+                    ""action"": ""Special Skill Shield"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -453,6 +453,34 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad Scheme"",
                     ""action"": ""Interact Tap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Game Pause"",
+            ""id"": ""a946c7a4-f708-44c4-980f-9ec3ce5101cf"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""e63eb022-1b76-45c3-9eec-e389113fd77b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4bba1dff-c86e-4624-b492-e61a7f8c179c"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""New control scheme"",
+                    ""action"": ""Pause Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -606,11 +634,11 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Mouse Scheme"",
-            ""bindingGroup"": ""Mouse Scheme"",
+            ""name"": ""New control scheme"",
+            ""bindingGroup"": ""New control scheme"",
             ""devices"": [
                 {
-                    ""devicePath"": ""<Mouse>"",
+                    ""devicePath"": ""<Keyboard>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -637,7 +665,10 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         m_InputPlayer2_GiveHealth = m_InputPlayer2.FindAction("Give Health", throwIfNotFound: true);
         m_InputPlayer2_Brake = m_InputPlayer2.FindAction("Brake", throwIfNotFound: true);
         m_InputPlayer2_BasicSkillDash = m_InputPlayer2.FindAction("Basic Skill Dash", throwIfNotFound: true);
-        m_InputPlayer2_BasicSkillShield = m_InputPlayer2.FindAction("Basic Skill Shield", throwIfNotFound: true);
+        m_InputPlayer2_SpecialSkillShield = m_InputPlayer2.FindAction("Special Skill Shield", throwIfNotFound: true);
+        // Game Pause
+        m_GamePause = asset.FindActionMap("Game Pause", throwIfNotFound: true);
+        m_GamePause_PauseClick = m_GamePause.FindAction("Pause Click", throwIfNotFound: true);
         // Main Menu
         m_MainMenu = asset.FindActionMap("Main Menu", throwIfNotFound: true);
         m_MainMenu_NavigationUp = m_MainMenu.FindAction("Navigation Up", throwIfNotFound: true);
@@ -813,7 +844,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_InputPlayer2_GiveHealth;
     private readonly InputAction m_InputPlayer2_Brake;
     private readonly InputAction m_InputPlayer2_BasicSkillDash;
-    private readonly InputAction m_InputPlayer2_BasicSkillShield;
+    private readonly InputAction m_InputPlayer2_SpecialSkillShield;
     public struct InputPlayer2Actions
     {
         private @InputControl m_Wrapper;
@@ -825,7 +856,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         public InputAction @GiveHealth => m_Wrapper.m_InputPlayer2_GiveHealth;
         public InputAction @Brake => m_Wrapper.m_InputPlayer2_Brake;
         public InputAction @BasicSkillDash => m_Wrapper.m_InputPlayer2_BasicSkillDash;
-        public InputAction @BasicSkillShield => m_Wrapper.m_InputPlayer2_BasicSkillShield;
+        public InputAction @SpecialSkillShield => m_Wrapper.m_InputPlayer2_SpecialSkillShield;
         public InputActionMap Get() { return m_Wrapper.m_InputPlayer2; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -856,9 +887,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @BasicSkillDash.started += instance.OnBasicSkillDash;
             @BasicSkillDash.performed += instance.OnBasicSkillDash;
             @BasicSkillDash.canceled += instance.OnBasicSkillDash;
-            @BasicSkillShield.started += instance.OnBasicSkillShield;
-            @BasicSkillShield.performed += instance.OnBasicSkillShield;
-            @BasicSkillShield.canceled += instance.OnBasicSkillShield;
+            @SpecialSkillShield.started += instance.OnSpecialSkillShield;
+            @SpecialSkillShield.performed += instance.OnSpecialSkillShield;
+            @SpecialSkillShield.canceled += instance.OnSpecialSkillShield;
         }
 
         private void UnregisterCallbacks(IInputPlayer2Actions instance)
@@ -884,9 +915,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @BasicSkillDash.started -= instance.OnBasicSkillDash;
             @BasicSkillDash.performed -= instance.OnBasicSkillDash;
             @BasicSkillDash.canceled -= instance.OnBasicSkillDash;
-            @BasicSkillShield.started -= instance.OnBasicSkillShield;
-            @BasicSkillShield.performed -= instance.OnBasicSkillShield;
-            @BasicSkillShield.canceled -= instance.OnBasicSkillShield;
+            @SpecialSkillShield.started -= instance.OnSpecialSkillShield;
+            @SpecialSkillShield.performed -= instance.OnSpecialSkillShield;
+            @SpecialSkillShield.canceled -= instance.OnSpecialSkillShield;
         }
 
         public void RemoveCallbacks(IInputPlayer2Actions instance)
@@ -904,6 +935,52 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         }
     }
     public InputPlayer2Actions @InputPlayer2 => new InputPlayer2Actions(this);
+
+    // Game Pause
+    private readonly InputActionMap m_GamePause;
+    private List<IGamePauseActions> m_GamePauseActionsCallbackInterfaces = new List<IGamePauseActions>();
+    private readonly InputAction m_GamePause_PauseClick;
+    public struct GamePauseActions
+    {
+        private @InputControl m_Wrapper;
+        public GamePauseActions(@InputControl wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PauseClick => m_Wrapper.m_GamePause_PauseClick;
+        public InputActionMap Get() { return m_Wrapper.m_GamePause; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GamePauseActions set) { return set.Get(); }
+        public void AddCallbacks(IGamePauseActions instance)
+        {
+            if (instance == null || m_Wrapper.m_GamePauseActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GamePauseActionsCallbackInterfaces.Add(instance);
+            @PauseClick.started += instance.OnPauseClick;
+            @PauseClick.performed += instance.OnPauseClick;
+            @PauseClick.canceled += instance.OnPauseClick;
+        }
+
+        private void UnregisterCallbacks(IGamePauseActions instance)
+        {
+            @PauseClick.started -= instance.OnPauseClick;
+            @PauseClick.performed -= instance.OnPauseClick;
+            @PauseClick.canceled -= instance.OnPauseClick;
+        }
+
+        public void RemoveCallbacks(IGamePauseActions instance)
+        {
+            if (m_Wrapper.m_GamePauseActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IGamePauseActions instance)
+        {
+            foreach (var item in m_Wrapper.m_GamePauseActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_GamePauseActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public GamePauseActions @GamePause => new GamePauseActions(this);
 
     // Main Menu
     private readonly InputActionMap m_MainMenu;
@@ -984,13 +1061,13 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_GamepadSchemeSchemeIndex];
         }
     }
-    private int m_MouseSchemeSchemeIndex = -1;
-    public InputControlScheme MouseSchemeScheme
+    private int m_NewcontrolschemeSchemeIndex = -1;
+    public InputControlScheme NewcontrolschemeScheme
     {
         get
         {
-            if (m_MouseSchemeSchemeIndex == -1) m_MouseSchemeSchemeIndex = asset.FindControlSchemeIndex("Mouse Scheme");
-            return asset.controlSchemes[m_MouseSchemeSchemeIndex];
+            if (m_NewcontrolschemeSchemeIndex == -1) m_NewcontrolschemeSchemeIndex = asset.FindControlSchemeIndex("New control scheme");
+            return asset.controlSchemes[m_NewcontrolschemeSchemeIndex];
         }
     }
     public interface IInputPlayer1Actions
@@ -1013,7 +1090,11 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         void OnGiveHealth(InputAction.CallbackContext context);
         void OnBrake(InputAction.CallbackContext context);
         void OnBasicSkillDash(InputAction.CallbackContext context);
-        void OnBasicSkillShield(InputAction.CallbackContext context);
+        void OnSpecialSkillShield(InputAction.CallbackContext context);
+    }
+    public interface IGamePauseActions
+    {
+        void OnPauseClick(InputAction.CallbackContext context);
     }
     public interface IMainMenuActions
     {

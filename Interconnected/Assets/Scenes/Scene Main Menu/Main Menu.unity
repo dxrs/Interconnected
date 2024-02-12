@@ -854,7 +854,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRestartScene: 0
   isExitScene: 0
+  isNextScene: 0
   isChangeScene: 0
+  delayTime: 0
 --- !u!4 &421272903
 Transform:
   m_ObjectHideFlags: 0
@@ -1196,7 +1198,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 514133324}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1767458153}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: onClickToPrologue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &514133324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1693,7 +1707,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1676384761}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1767458153}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: onClickQuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1676384761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1903,6 +1929,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4b974cd3-af8d-4bf8-bece-161f8dd98bda
     m_ActionName: Main Menu/Navigation Confrim[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e63eb022-1b76-45c3-9eec-e389113fd77b
+    m_ActionName: Game Pause/Pause Click[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Main Menu
