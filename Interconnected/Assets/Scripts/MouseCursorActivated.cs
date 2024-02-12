@@ -13,8 +13,8 @@ public class MouseCursorActivated : MonoBehaviour
     private void Awake()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         mouseCursorActivated = this;
-        lastMousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
     }
 
     
@@ -24,24 +24,12 @@ public class MouseCursorActivated : MonoBehaviour
         if (isMouseActive) 
         {
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None; 
         }
         else 
         {
             Cursor.visible = false;
-            if (!Cursor.visible) 
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-
-            Vector2 currentMousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-            if (currentMousePosition != lastMousePosition)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.lockState = CursorLockMode.None;
-                lastMousePosition = currentMousePosition;
-            }
+            Cursor.lockState = CursorLockMode.Locked;
         }
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
