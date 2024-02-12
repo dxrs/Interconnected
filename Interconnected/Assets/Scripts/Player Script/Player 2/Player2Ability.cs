@@ -96,51 +96,59 @@ public class Player2Ability : MonoBehaviour
     //dash input
     public void dashInput(InputAction.CallbackContext context)
     {
-        if (!globalVariable.isTriggeredWithObstacle
-            && !globalVariable.isGameFinish
-            && !globalVariable.isGameOver
-            && !Pause.pause.isGamePaused
-            && ReadyToStart.readyToStart.isGameStart
-            && !globalVariable.isPlayerSharingLives)
+        if (LevelStatus.levelStatus.levelID != 4) 
         {
-            if (context.performed
-                && !player2Movement.isBraking
-                && !player2Movement.isBrakingWithInput
-                && player2Movement.maxPlayerSpeed > 3)
+            if (!globalVariable.isTriggeredWithObstacle
+           && !globalVariable.isGameFinish
+           && !globalVariable.isGameOver
+           && !Pause.pause.isGamePaused
+           && ReadyToStart.readyToStart.isGameStart
+           && !globalVariable.isPlayerSharingLives)
             {
-                if (player2Stamina.curStamina > player2Stamina.shieldStaminaCost)
+                if (context.performed
+                    && !player2Movement.isBraking
+                    && !player2Movement.isBrakingWithInput
+                    && player2Movement.maxPlayerSpeed > 3)
                 {
-                    StartCoroutine(Dashing());
-                    player2Stamina.curStamina -= player2Stamina.dashStaminaCost;
-                    if (player2Stamina.curStamina < 0) { player2Stamina.curStamina = 0; }
-                    player2Stamina.staminaFunctionCallback();
+                    if (player2Stamina.curStamina > player2Stamina.shieldStaminaCost)
+                    {
+                        StartCoroutine(Dashing());
+                        player2Stamina.curStamina -= player2Stamina.dashStaminaCost;
+                        if (player2Stamina.curStamina < 0) { player2Stamina.curStamina = 0; }
+                        player2Stamina.staminaFunctionCallback();
+                    }
                 }
             }
         }
+           
     }
 
     //shield input
     public void shieldInput(InputAction.CallbackContext context)
     {
-        if (!globalVariable.isTriggeredWithObstacle
-            && !globalVariable.isGameFinish
-            && !globalVariable.isGameOver
-            && !Pause.pause.isGamePaused
-            && ReadyToStart.readyToStart.isGameStart
-            && !globalVariable.isPlayerSharingLives
-            && linkRay.isPlayerLinkedEachOther)
+        if (LevelStatus.levelStatus.levelID != 4) 
         {
-            if (context.performed && !isShielding)
+            if (!globalVariable.isTriggeredWithObstacle
+           && !globalVariable.isGameFinish
+           && !globalVariable.isGameOver
+           && !Pause.pause.isGamePaused
+           && ReadyToStart.readyToStart.isGameStart
+           && !globalVariable.isPlayerSharingLives
+           && linkRay.isPlayerLinkedEachOther)
             {
-                if (player2Stamina.curStamina > player2Stamina.shieldStaminaCost)
+                if (context.performed && !isShielding)
                 {
-                    isShielding = true;
-                    player2Stamina.curStamina -= player2Stamina.shieldStaminaCost;
-                    if (player2Stamina.curStamina < 0) { player2Stamina.curStamina = 0; }
-                    player2Stamina.staminaFunctionCallback();
+                    if (player2Stamina.curStamina > player2Stamina.shieldStaminaCost)
+                    {
+                        isShielding = true;
+                        player2Stamina.curStamina -= player2Stamina.shieldStaminaCost;
+                        if (player2Stamina.curStamina < 0) { player2Stamina.curStamina = 0; }
+                        player2Stamina.staminaFunctionCallback();
+                    }
                 }
             }
         }
+       
     }
 
 }

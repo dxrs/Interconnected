@@ -17,10 +17,6 @@ public class Timer : MonoBehaviour
     [SerializeField] SceneSystem sceneSystem;
 
     [SerializeField] TextMeshProUGUI textCurrentTimer;
-    [SerializeField] TextMeshProUGUI textPlayerTimer;
-    [SerializeField] TextMeshProUGUI[] textTargetTimer;
-
-    [SerializeField] float[] timerTargetValue;
 
     bool isTimerStop = false;
 
@@ -33,50 +29,29 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(timerCountUp());
+        
         StartCoroutine(timerCountDown());
     }
 
     private void Update()
     {
-        if (LevelStatus.levelStatus.levelID == 1)
+        if (LevelStatus.levelStatus.levelID != 4) 
         {
-            for (int i = 0; i < textTargetTimer.Length && i < timerTargetValue.Length; i++)
-            {
-                float targetTimer = timerTargetValue[i];
-                TimeSpan targetTimeSpan = TimeSpan.FromSeconds(targetTimer);
-                string targetTimerString = targetTimeSpan.ToString("mm':'ss':'ff");
-                textTargetTimer[i].text = targetTimerString;
-            }
-            if (globalVariable.isGameFinish)
-            {
-                float playerTimerValue = curTimerValue;
-                TimeSpan playerTimeSpan = TimeSpan.FromSeconds(playerTimerValue);
-                string playerTimer = playerTimeSpan.ToString("mm':'ss':'ff");
-                textPlayerTimer.text = playerTimer;
-            }
-            if (curTimerValue >= 86400) //24jam
+            if (curTimerValue <= 0)
             {
                 curTimerValue = 0;
-                isTimerStop = true;
-                globalVariable.isGameOver = true;
+                //globalVariable.isGameFinish = true;
             }
         }
-
-        if (LevelStatus.levelStatus.levelID == 2) 
-        {
-            if (curTimerValue <= 0) 
-            {
-                curTimerValue = 0;
-                globalVariable.isGameFinish = true;
-            }
-        }
+      
+        
        
         
     }
-    IEnumerator timerCountUp() 
+    
+    IEnumerator timerCountDown()
     {
-        while (true) 
+        while (true)
         {
             if (LevelStatus.levelStatus.levelID == 1) 
             {
@@ -86,31 +61,7 @@ public class Timer : MonoBehaviour
                 {
                     if (!isTimerStop)
                     {
-                        curTimerValue += Time.deltaTime;
-                        timerCount = TimeSpan.FromSeconds(curTimerValue);
-                        string timer = timerCount.ToString("mm':'ss':'ff");
-                        textCurrentTimer.text = timer;
-
-                    }
-                }
-            }
-            yield return null;
-        }
-    }
-    IEnumerator timerCountDown()
-    {
-        while (true)
-        {
-            if (LevelStatus.levelStatus.levelID == 2)
-            {
-                if (ReadyToStart.readyToStart.isGameStart
-                && !globalVariable.isGameFinish
-                && !globalVariable.isGameOver
-                && globalVariable.isTimerStart)
-                {
-                    if (!isTimerStop)
-                    {
-                        if (curTimerValue > 0) 
+                        if (curTimerValue > 0)
                         {
                             curTimerValue -= Time.deltaTime;
                         }
@@ -122,6 +73,29 @@ public class Timer : MonoBehaviour
                     }
                 }
             }
+            if (LevelStatus.levelStatus.levelID == 2) 
+            {
+                if (ReadyToStart.readyToStart.isGameStart
+               && !globalVariable.isGameFinish
+               && !globalVariable.isGameOver
+               && globalVariable.isTimerStart)
+                {
+                    if (!isTimerStop)
+                    {
+                        if (curTimerValue > 0)
+                        {
+                            curTimerValue -= Time.deltaTime;
+                        }
+
+                        timerCount = TimeSpan.FromSeconds(curTimerValue);
+                        string timer = timerCount.ToString("mm':'ss':'ff");
+                        textCurrentTimer.text = timer;
+
+                    }
+                }
+            }
+            
+            
             yield return null;
         }
     }

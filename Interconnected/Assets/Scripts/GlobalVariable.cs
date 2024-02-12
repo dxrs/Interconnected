@@ -12,11 +12,13 @@ public class GlobalVariable : MonoBehaviour
     public bool isTriggeredWithObstacle;
     public bool isNotShoot;
     public bool isTimerStart;
-    public bool[] isTrashBinOverlapWithPlayers;
     public bool isPlayerSharingLives;
+
+
 
     public int maxDoor;
     public int curDoorOpenValue;
+
     public int curEnemySpawn;
     public int maxEnemySpawn;
 
@@ -29,6 +31,9 @@ public class GlobalVariable : MonoBehaviour
 
     [SerializeField] CircleCollider2D p1cc;
     [SerializeField] CircleCollider2D p2cc;
+
+    [Header("Tutorial")]
+    public int cameraMovementValue;
 
     float maxDelayTime = 10;
 
@@ -44,36 +49,28 @@ public class GlobalVariable : MonoBehaviour
         player2 = GameObject.FindGameObjectWithTag("Player 2");
     }
 
-    public void delayTimeToShareLives() 
+    
+
+    private void Update()
+    {
+        partOfSharingLives();
+
+
+        partOfTriggerWithObstacle();
+      
+
+       
+
+        StartCoroutine(defaultValueCurDoorValue());
+    }
+    public void delayTimeToShareLives()
     {
         waitTimeToShareLives = maxDelayTime;
     }
 
-    private void Update()
+    private void partOfTriggerWithObstacle() 
     {
-        if (waitTimeToShareLives > 0)
-        {
-            waitTimeToShareLives -= 1 * Time.deltaTime;
-        }
-        if (waitTimeToShareLives <= 0)
-        {
-            waitTimeToShareLives = 0;
-        }
-
-        if (Player1Health.player1Health.isSharingLivesToP2 || Player2Health.player2Health.isSharingLivesToP1) 
-        {
-            isPlayerSharingLives = true;
-        }
-        else { isPlayerSharingLives = false; }
-        if (!Pause.pause.isGamePaused) 
-        {
-            if(Player1Health.player1Health.isSharingLivesToP2 || Player2Health.player2Health.isSharingLivesToP1)
-            {
-                Time.timeScale = 0.5f;
-            }
-            
-        }
-        if(player1 && player2 != null) 
+        if (player1 && player2 != null)
         {
             if (isTriggeredWithObstacle)
             {
@@ -90,28 +87,32 @@ public class GlobalVariable : MonoBehaviour
                 p2cc.enabled = true;
             }
         }
+    }
 
-        if (isTrashBinOverlapWithPlayers[0] || isTrashBinOverlapWithPlayers[1] == true) 
+    private void partOfSharingLives() 
+    {
+        if (waitTimeToShareLives > 0)
         {
-            isNotShoot = true;
+            waitTimeToShareLives -= 1 * Time.deltaTime;
         }
-        if (!isTrashBinOverlapWithPlayers[0] && !isTrashBinOverlapWithPlayers[1]) { isNotShoot = false; }
-       
-       
-
-        if (player1 == null || player2 == null) 
+        if (waitTimeToShareLives <= 0)
         {
-            isGameOver = true;
-        }
-
-        if (isGameOver) 
-        {
-            SceneSystem.sceneSystem.isRestartScene = true;
-            Destroy(player1);
-            Destroy(player2);
+            waitTimeToShareLives = 0;
         }
 
-        StartCoroutine(defaultValueCurDoorValue());
+        if (Player1Health.player1Health.isSharingLivesToP2 || Player2Health.player2Health.isSharingLivesToP1)
+        {
+            isPlayerSharingLives = true;
+        }
+        else { isPlayerSharingLives = false; }
+        if (!Pause.pause.isGamePaused)
+        {
+            if (Player1Health.player1Health.isSharingLivesToP2 || Player2Health.player2Health.isSharingLivesToP1)
+            {
+                Time.timeScale = 0.5f;
+            }
+
+        }
     }
 
     IEnumerator defaultValueCurDoorValue() 

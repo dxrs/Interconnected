@@ -82,93 +82,101 @@ public class Player1Ability : MonoBehaviour
     //dash input
     public void dashInput(InputAction.CallbackContext context) 
     {
-        if(!globalVariable.isTriggeredWithObstacle
+        if (LevelStatus.levelStatus.levelID != 4) 
+        {
+            if (!globalVariable.isTriggeredWithObstacle
             && !globalVariable.isGameFinish
             && !globalVariable.isGameOver
             && !Pause.pause.isGamePaused
             && ReadyToStart.readyToStart.isGameStart
-            && !globalVariable.isPlayerSharingLives) 
-        {
-            if(context.performed
-                && !player1Movement.isBraking
-                && !player1Movement.isBrakingWithInput
-                && player1Movement.maxPlayerSpeed > 3 ) 
+            && !globalVariable.isPlayerSharingLives)
             {
-                if (player1Stamina.curStamina > player1Stamina.dashStaminaCost) 
+                if (context.performed
+                    && !player1Movement.isBraking
+                    && !player1Movement.isBrakingWithInput
+                    && player1Movement.maxPlayerSpeed > 3)
                 {
-                    StartCoroutine(Dashing());
-                    player1Stamina.curStamina -= player1Stamina.dashStaminaCost;
-                    if (player1Stamina.curStamina < 0) { player1Stamina.curStamina = 0; }
-                    player1Stamina.staminaFunctionCallback();
+                    if (player1Stamina.curStamina > player1Stamina.dashStaminaCost)
+                    {
+                        StartCoroutine(Dashing());
+                        player1Stamina.curStamina -= player1Stamina.dashStaminaCost;
+                        if (player1Stamina.curStamina < 0) { player1Stamina.curStamina = 0; }
+                        player1Stamina.staminaFunctionCallback();
+                    }
                 }
             }
         }
+        
     }
    
-    //shield input
-    public void shieldInput(InputAction.CallbackContext context) 
+    //pull up
+    public void pullUpInput(InputAction.CallbackContext context) 
     {
-        if(!globalVariable.isTriggeredWithObstacle
-            && !globalVariable.isGameFinish
-            && !globalVariable.isGameOver
-            && !Pause.pause.isGamePaused
-            && ReadyToStart.readyToStart.isGameStart
-            && !globalVariable.isPlayerSharingLives) 
+        if (LevelStatus.levelStatus.levelID != 4) 
         {
-            if (Vector2.Distance(transform.position, player2.transform.position) > distanceFromPlayer2 && !linkRay.isPlayerLinkedEachOther) 
+            if (!globalVariable.isTriggeredWithObstacle
+           && !globalVariable.isGameFinish
+           && !globalVariable.isGameOver
+           && !Pause.pause.isGamePaused
+           && ReadyToStart.readyToStart.isGameStart
+           && !globalVariable.isPlayerSharingLives)
             {
-                if (context.performed)
+                if (Vector2.Distance(transform.position, player2.transform.position) > distanceFromPlayer2 && !linkRay.isPlayerLinkedEachOther)
                 {
-                    if (!isPullingUp)
+                    if (context.performed)
                     {
-                        if (pullUpProgress <= 2)
-                        {
-                            pullUpProgress++;
-
-                        }
-
-                        isPullingUp = true;
-
-                        if (pullUpProgress == 1)
-                        {
-                            pullUpObject.SetActive(true);
-                            pullUpObject.transform.position = transform.position;
-                        }
-                        if (player1Stamina.curStamina > player1Stamina.pullUpStaminaCost * 2)
-                        {
-                            player1Stamina.curStamina -= player1Stamina.pullUpStaminaCost;
-                            if (player1Stamina.curStamina < 0) { player1Stamina.curStamina = 0; }
-                            player1Stamina.staminaFunctionCallback();
-                        }
-                    }
-                    else
-                    {
-                        if (!isPlayer1SetPosToPullUpObject)
+                        if (!isPullingUp)
                         {
                             if (pullUpProgress <= 2)
                             {
                                 pullUpProgress++;
 
                             }
-                            if (pullUpProgress == 2)
+
+                            isPullingUp = true;
+
+                            if (pullUpProgress == 1)
                             {
-                                player2.transform.position = pullUpObject.transform.position;
+                                pullUpObject.SetActive(true);
+                                pullUpObject.transform.position = transform.position;
                             }
-                            if (player1Stamina.curStamina > player1Stamina.pullUpStaminaCost * 2) 
+                            if (player1Stamina.curStamina > player1Stamina.pullUpStaminaCost * 2)
                             {
                                 player1Stamina.curStamina -= player1Stamina.pullUpStaminaCost;
                                 if (player1Stamina.curStamina < 0) { player1Stamina.curStamina = 0; }
                                 player1Stamina.staminaFunctionCallback();
                             }
+                        }
+                        else
+                        {
+                            if (!isPlayer1SetPosToPullUpObject)
+                            {
+                                if (pullUpProgress <= 2)
+                                {
+                                    pullUpProgress++;
+
+                                }
+                                if (pullUpProgress == 2)
+                                {
+                                    player2.transform.position = pullUpObject.transform.position;
+                                }
+                                if (player1Stamina.curStamina > player1Stamina.pullUpStaminaCost * 2)
+                                {
+                                    player1Stamina.curStamina -= player1Stamina.pullUpStaminaCost;
+                                    if (player1Stamina.curStamina < 0) { player1Stamina.curStamina = 0; }
+                                    player1Stamina.staminaFunctionCallback();
+                                }
+
+                            }
 
                         }
 
                     }
-
                 }
+
             }
-           
         }
+       
     }
    
 }

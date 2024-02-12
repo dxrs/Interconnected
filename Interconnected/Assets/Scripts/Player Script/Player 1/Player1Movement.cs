@@ -73,7 +73,10 @@ public class Player1Movement : MonoBehaviour
             maxPlayerSpeed = 5;
 
         }
-        if(globalVariable.isTriggeredWithObstacle || globalVariable.isGameFinish || globalVariable.isPlayerSharingLives) 
+        if(globalVariable.isTriggeredWithObstacle 
+            || globalVariable.isGameFinish 
+            || globalVariable.isPlayerSharingLives
+            || player1Collision.isStopAtCameraTrigger) 
         {
             curPlayerSpeed = 0;
         }
@@ -85,18 +88,22 @@ public class Player1Movement : MonoBehaviour
 
     private void playerBraking() 
     {
-        if (!player1Collision.isCrashToOtherBoat) 
+        if (isBraking)
         {
-            if (isBraking || isBrakingWithInput)
-            {
-                rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, 1 * Time.deltaTime);
-            }
-            else { rb.drag = 0; }
+            float lerpSpeed = isBrakingWithInput ? 10f : 1f;
+            rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
         }
-        else 
+        else if (isBrakingWithInput)
         {
-            rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, 1 * Time.deltaTime);
+            rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, 5f * Time.deltaTime);
         }
+        else
+        {
+            rb.drag = 0;
+        }
+
+
+        
     }
 
     IEnumerator setMaxSpeedPlayer() 
@@ -108,28 +115,28 @@ public class Player1Movement : MonoBehaviour
     //movement input
     public void playerMovementInput(InputAction.CallbackContext context) 
     {
-        if(!globalVariable.isTriggeredWithObstacle
-            && !globalVariable.isGameFinish
-            && !globalVariable.isGameOver
-            && !Pause.pause.isGamePaused
-            && ReadyToStart.readyToStart.isGameStart
-            && !globalVariable.isPlayerSharingLives)
+        bool isLevel4 = LevelStatus.levelStatus.levelID == 4;
+
+        if (!isLevel4 || !player1Collision.isStopAtCameraTrigger)
         {
-            if (context.performed)
+            if (!globalVariable.isTriggeredWithObstacle
+                && !globalVariable.isGameFinish
+                && !globalVariable.isGameOver
+                && !Pause.pause.isGamePaused
+                && ReadyToStart.readyToStart.isGameStart
+                && !globalVariable.isPlayerSharingLives)
             {
-                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
-                if (!isBrakingWithInput)
+                if (context.performed)
                 {
+                    MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
                     isBraking = false;
                 }
+                else
+                {
+                    isBraking = true;
+                }
+                inputDir = context.ReadValue<Vector2>();
             }
-            else
-            {
-                isBraking = true;
-
-            }
-            inputDir = context.ReadValue<Vector2>();
-            
         }
     }
 

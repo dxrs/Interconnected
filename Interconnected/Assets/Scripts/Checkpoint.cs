@@ -25,7 +25,7 @@ public class Checkpoint : MonoBehaviour
 
     private void Update()
     {
-        if (LevelStatus.levelStatus.levelID == 1) 
+        if (LevelStatus.levelStatus.levelID != 2) 
         {
             if (GlobalVariable.globalVariable.isTriggeredWithObstacle)
             {

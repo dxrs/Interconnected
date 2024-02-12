@@ -21,6 +21,13 @@ public class CameraSystem : MonoBehaviour
 
     Vector3 cameraVelocity;
 
+    private void Start()
+    {
+        if (LevelStatus.levelStatus.levelID == 4) 
+        {
+            transform.position = new Vector2(-3, transform.position.y);
+        }
+    }
     private void LateUpdate()
     {
         if (cameraTargetObject == null) { return; }
@@ -41,6 +48,17 @@ public class CameraSystem : MonoBehaviour
                     }
                 }
 
+            }
+        }
+        if (LevelStatus.levelStatus.levelID == 4) 
+        {
+            if (Tutorial.tutorial.cameraMoveValue == 2) 
+            {
+                transform.position = Vector2.Lerp(transform.position, new Vector2(30,transform.position.y ), 1 * Time.deltaTime);
+            }
+            if (Tutorial.tutorial.cameraMoveValue == 3)
+            {
+                transform.position = Vector2.Lerp(transform.position, new Vector2(63, transform.position.y), 1 * Time.deltaTime);
             }
         }
         

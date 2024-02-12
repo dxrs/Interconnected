@@ -27,6 +27,8 @@ public class Player1Health : MonoBehaviour // kurang slow motion
 
     GameObject player2;
 
+    bool isPlayer1ShareLivesInTutorial = false;
+
     private void Awake()
     {
         if (player1Health == null) { player1Health = this; }
@@ -34,7 +36,12 @@ public class Player1Health : MonoBehaviour // kurang slow motion
 
     private void Start()
     {
-        curPlayer1Health = maxPlayerHealth;
+        if (LevelStatus.levelStatus.levelID != 4) 
+        {
+            curPlayer1Health = maxPlayerHealth;
+        }
+       
+
         player2 = GameObject.FindGameObjectWithTag("Player 2");
         curScalePlayer = transform.localScale;
     }
@@ -59,9 +66,20 @@ public class Player1Health : MonoBehaviour // kurang slow motion
         if (isSharingLivesToP2) 
         {
             transform.localScale = Vector3.Lerp(transform.localScale, maxScalePlayer, 1 * Time.unscaledDeltaTime);
+            if (!LinkRay.linkRay.isPlayerLinkedEachOther) 
+            {
+                isSharingLivesToP2 = false;
+                Time.timeScale = 1;
+            }
         }
         else 
         {
+            if (LevelStatus.levelStatus.levelID == 4 && isPlayer1ShareLivesInTutorial) 
+            {
+                Tutorial.tutorial.shareLiveProgress = 2;
+                isPlayer1ShareLivesInTutorial = false;
+
+            }
             transform.localScale = Vector3.Lerp(transform.localScale, curScalePlayer, 10 * Time.unscaledDeltaTime);
         }
     }
@@ -69,43 +87,87 @@ public class Player1Health : MonoBehaviour // kurang slow motion
     //input share lives
     public void shareLivesInput(InputAction.CallbackContext context) 
     {
-        if(!globalVariable.isTriggeredWithObstacle
-            && !globalVariable.isGameFinish
-            && !globalVariable.isGameOver
-            && !Pause.pause.isGamePaused
-            && ReadyToStart.readyToStart.isGameStart
-            && !player1Ability.isDashing
-            && !Player2Ability.player2Ability.isShielding
-            && globalVariable.waitTimeToShareLives <=0) 
+        if (LevelStatus.levelStatus.levelID != 4) 
         {
-            if (context.started && !Player2Health.player2Health.isSharingLivesToP1 && linkRay.isPlayerLinkedEachOther) 
+            if (!globalVariable.isTriggeredWithObstacle
+           && !globalVariable.isGameFinish
+           && !globalVariable.isGameOver
+           && !Pause.pause.isGamePaused
+           && ReadyToStart.readyToStart.isGameStart
+           && !player1Ability.isDashing
+           && !Player2Ability.player2Ability.isShielding
+           && globalVariable.waitTimeToShareLives <= 0)
             {
- 
-                if (curPlayer1Health > 1 && Player2Health.player2Health.curPlayer2Health < maxPlayerHealth) 
+                if (context.started && !Player2Health.player2Health.isSharingLivesToP1 && linkRay.isPlayerLinkedEachOther)
                 {
-                    isSharingLivesToP2 = true;
-                }
-            }
-            if (context.performed && linkRay.isPlayerLinkedEachOther && isSharingLivesToP2) 
-            {
- 
-                if (curPlayer1Health > 1 && Player2Health.player2Health.curPlayer2Health < maxPlayerHealth)
-                {
-                    Instantiate(healthPoint, transform.position, Quaternion.identity);
-                    globalVariable.delayTimeToShareLives();
-                    isSharingLivesToP2 = false;
-                    curPlayer1Health--;
-                    if (Player2Health.player2Health.curPlayer2Health < maxPlayerHealth && player2 != null)
+
+                    if (curPlayer1Health > 1 && Player2Health.player2Health.curPlayer2Health < maxPlayerHealth)
                     {
-                        Player2Health.player2Health.curPlayer2Health++;
+                        isSharingLivesToP2 = true;
                     }
                 }
-            }
-            if (context.canceled && isSharingLivesToP2) 
-            {
-                Time.timeScale = 1;
-                isSharingLivesToP2 = false;
+                if (context.performed && linkRay.isPlayerLinkedEachOther && isSharingLivesToP2)
+                {
+
+                    if (curPlayer1Health > 1 && Player2Health.player2Health.curPlayer2Health < maxPlayerHealth)
+                    {
+                        Instantiate(healthPoint, transform.position, Quaternion.identity);
+                        globalVariable.delayTimeToShareLives();
+                        isSharingLivesToP2 = false;
+                        curPlayer1Health--;
+                        if (Player2Health.player2Health.curPlayer2Health < maxPlayerHealth && player2 != null)
+                        {
+                            Player2Health.player2Health.curPlayer2Health++;
+                        }
+                    }
+                }
+                if (context.canceled && isSharingLivesToP2)
+                {
+                    Time.timeScale = 1;
+                    isSharingLivesToP2 = false;
+                }
             }
         }
+        else 
+        {
+            if (Tutorial.tutorial.cameraMoveValue == 2
+                && !globalVariable.isGameFinish
+                && !Pause.pause.isGamePaused
+                && globalVariable.waitTimeToShareLives <= 0
+                && Tutorial.tutorial.shareLiveProgress == 1)  
+            {
+                if (context.started && !Player2Health.player2Health.isSharingLivesToP1 && linkRay.isPlayerLinkedEachOther)
+                {
+
+                    if (curPlayer1Health > 1 && Player2Health.player2Health.curPlayer2Health < maxPlayerHealth)
+                    {
+                        isSharingLivesToP2 = true;
+                    }
+                }
+                if (context.performed && linkRay.isPlayerLinkedEachOther && isSharingLivesToP2)
+                {
+                    
+                    if (curPlayer1Health > 1 && Player2Health.player2Health.curPlayer2Health < maxPlayerHealth)
+                    {
+
+                        isPlayer1ShareLivesInTutorial = true;
+                        Instantiate(healthPoint, transform.position, Quaternion.identity);
+                        globalVariable.delayTimeToShareLives();
+                        isSharingLivesToP2 = false;
+                        curPlayer1Health--;
+                        if (Player2Health.player2Health.curPlayer2Health < maxPlayerHealth && player2 != null)
+                        {
+                            Player2Health.player2Health.curPlayer2Health++;
+                        }
+                    }
+                }
+                if (context.canceled && isSharingLivesToP2)
+                {
+                    Time.timeScale = 1;
+                    isSharingLivesToP2 = false;
+                }
+            }
+        }
+       
     }
 }

@@ -9,6 +9,8 @@ public class Player1Collision : MonoBehaviour
 
     public bool isCrashToOtherBoat;
 
+    public bool isStopAtCameraTrigger;
+
     [SerializeField] GlobalVariable globalVariable;
     [SerializeField] Player1Movement player1Movement;
     [SerializeField] Player1Ability player1Ability;
@@ -19,6 +21,7 @@ public class Player1Collision : MonoBehaviour
     [SerializeField] float crashForceValue;
 
     [SerializeField] GameObject playerOutlineCollider;
+
 
     Rigidbody2D rb;
 
@@ -43,7 +46,11 @@ public class Player1Collision : MonoBehaviour
         {
             if (!Player2Ability.player2Ability.isShielding)
             {
-                player1Health.curPlayer1Health--;
+                if (LevelStatus.levelStatus.levelID != 4)
+                {
+                    player1Health.curPlayer1Health--;
+                }
+
                 player1Movement.isBraking = true;
                 globalVariable.isTriggeredWithObstacle = true;
                 Instantiate(playerHitParticle, transform.position, Quaternion.identity);
@@ -73,7 +80,22 @@ public class Player1Collision : MonoBehaviour
 
         }
 
+        if(collision.gameObject.tag=="Camera Move Trigger") 
+        {
+          
+            isStopAtCameraTrigger = true;
+        }
+        if (LevelStatus.levelStatus.levelID == 4)
+        {
+            if (collision.gameObject.tag == "Braking Trigger")
+            {
+                Tutorial.tutorial.playerBrakingValue++;
+
+            }
+            
+        }
        
+
 
         if (collision.gameObject.tag == "Enemy") 
         {
@@ -91,6 +113,10 @@ public class Player1Collision : MonoBehaviour
             }
    
         }
+        if(collision.gameObject.tag== "Finish Point") 
+        {
+            GameFinish.gameFinish.finishValue++;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -98,6 +124,14 @@ public class Player1Collision : MonoBehaviour
         if (collision.gameObject.tag == "Player Pull Up Object")
         {
             player1Ability.isPlayer1SetPosToPullUpObject = false;
+        }
+        if (collision.gameObject.tag == "Camera Move Trigger")
+        {
+            isStopAtCameraTrigger = false;
+        }
+        if (collision.gameObject.tag == "Finish Point")
+        {
+            GameFinish.gameFinish.finishValue--;
         }
     }
 

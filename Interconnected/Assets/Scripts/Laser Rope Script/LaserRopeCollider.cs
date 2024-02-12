@@ -11,6 +11,7 @@ public class LaserRopeCollider : MonoBehaviour
     {
         if (collision.gameObject.tag == "Garbage" ) 
         {
+            GarbageCollector.garbageCollector.garbageCollected++;
             if (Player1Movement.player1Movement.maxPlayerSpeed > 0 && Player2Movement.player2Movement.maxPlayerSpeed > 0) 
             {
                 Player1Movement.player1Movement.maxPlayerSpeed -= 0.25f;

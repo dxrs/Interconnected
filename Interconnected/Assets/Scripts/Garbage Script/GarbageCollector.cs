@@ -8,6 +8,10 @@ public class GarbageCollector : MonoBehaviour
 
     public float radius;
 
+    public int garbageCollected;
+    public int currentGarbageStored;
+    public int maxGarbageStored;
+
     [SerializeField] Transform player1;
     [SerializeField] Transform player2;
 
@@ -24,5 +28,10 @@ public class GarbageCollector : MonoBehaviour
         Vector2 midPos = (posA + posB) / 2f;
 
         transform.position = midPos;
+
+        if(!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isTriggeredWithObstacle) 
+        {
+            garbageCollected = 0;
+        }
     }
 }

@@ -59,7 +59,7 @@ public class Garbage : MonoBehaviour
 
                     transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), lerpSpeed * Time.deltaTime);
                 }
-                if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isTriggeredWithObstacle || Player2Movement.player2Movement.maxPlayerSpeed <= 0)
+                if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isTriggeredWithObstacle )
                 {
                     transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
                     StartCoroutine(garbageRigidBrake(1f));

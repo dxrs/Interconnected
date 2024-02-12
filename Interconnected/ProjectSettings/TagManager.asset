@@ -31,6 +31,9 @@ TagManager:
   - Garbage Collector
   - Player 1 Outline Collider
   - Player 2 Outline Collider
+  - Camera Move Trigger
+  - Braking Trigger
+  - Share Lives Trigger
   layers:
   - Default
   - TransparentFX

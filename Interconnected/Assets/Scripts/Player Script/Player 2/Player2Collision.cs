@@ -8,6 +8,8 @@ public class Player2Collision : MonoBehaviour
 
     public bool isCrashToOtherBoat;
 
+    public bool isStopAtCameraTrigger;
+
     [SerializeField] GlobalVariable globalVariable;
     [SerializeField] Player2Movement player2Movement;
     [SerializeField] Player2Ability player2Ability;
@@ -37,14 +39,22 @@ public class Player2Collision : MonoBehaviour
         playerOutlineCollider.transform.position = transform.position;
        
     }
-
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        
+       
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag=="Spike" || collision.gameObject.tag == "Trap" || collision.gameObject.tag=="Gear") 
         {
             if (!player2Ability.isShielding) 
             {
-                player2Health.curPlayer2Health--;
+                if (LevelStatus.levelStatus.levelID != 4) 
+                {
+                    player2Health.curPlayer2Health--;
+                }
+     
                 player2Movement.isBraking = true;
                 globalVariable.isTriggeredWithObstacle = true;
                 Instantiate(playerHitParticle, transform.position, Quaternion.identity);
@@ -68,7 +78,22 @@ public class Player2Collision : MonoBehaviour
 
         }
 
+        if (collision.gameObject.tag == "Camera Move Trigger")
+        {
+            isStopAtCameraTrigger = true;
+        }
+        if (LevelStatus.levelStatus.levelID == 4)
+        {
+            if (collision.gameObject.tag == "Braking Trigger")
+            {
+                Tutorial.tutorial.playerBrakingValue++;
+
+            }
+            
+        }
        
+        
+
         if (collision.gameObject.tag == "Enemy")
         {
             if (!player2Ability.isShielding) 
@@ -78,13 +103,31 @@ public class Player2Collision : MonoBehaviour
             }
             else 
             {
-                if (!globalVariable.isTriggeredWithObstacle) 
+                if (!globalVariable.isTriggeredWithObstacle)
                 {
+                 
                     player2BouncedCollision(collision);
                 }
                
             }
    
+        }
+        if (collision.gameObject.tag == "Finish Point")
+        {
+            GameFinish.gameFinish.finishValue++;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Finish Point")
+        {
+            GameFinish.gameFinish.finishValue--;
+        }
+        if (collision.gameObject.tag == "Camera Move Trigger")
+        {
+  
+            isStopAtCameraTrigger = false;
         }
     }
 

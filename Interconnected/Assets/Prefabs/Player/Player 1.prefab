@@ -510,7 +510,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 534748682652801547}
         m_TargetAssemblyTypeName: Player1Ability, Assembly-CSharp
-        m_MethodName: shieldInput
+        m_MethodName: pullUpInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -526,6 +526,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4af3bff8-8a64-4d2f-9bd0-9ea63d615ebb
     m_ActionName: Input Player 2/Basic Skill Ghost
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 43265e41-01aa-4b34-a092-5202c14d27a1
+    m_ActionName: Main Menu/Navigation Up[/XInputControllerWindows/dpad/up,/Keyboard/upArrow,/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4cd2eac3-fae4-46e3-96a6-b34d0a37c2c7
+    m_ActionName: Main Menu/Navigation Down[/XInputControllerWindows/dpad/down,/Keyboard/downArrow,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4b974cd3-af8d-4bf8-bece-161f8dd98bda
+    m_ActionName: Main Menu/Navigation Confirm[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard Scheme
   m_DefaultActionMap: Input Player 1
