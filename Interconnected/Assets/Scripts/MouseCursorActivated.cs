@@ -8,8 +8,6 @@ public class MouseCursorActivated : MonoBehaviour
 
     public bool isMouseActive;
 
-    private Vector2 lastMousePosition;
-
     private void Awake()
     {
         Cursor.visible = false;

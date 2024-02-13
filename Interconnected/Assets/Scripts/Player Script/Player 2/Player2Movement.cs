@@ -59,8 +59,6 @@ public class Player2Movement : MonoBehaviour
         if (!linkRay.isPlayerLinkedEachOther || globalVariable.isTriggeredWithObstacle)
         {
             maxPlayerSpeed = 5;
-            // maxPlayerSpeed = 5;
-            //Player2Movement.player2Movement.maxPlayerSpeed = 5;
         }
         if (globalVariable.isTriggeredWithObstacle 
             || globalVariable.isGameFinish 
@@ -72,6 +70,11 @@ public class Player2Movement : MonoBehaviour
         else
         {
             curPlayerSpeed = maxPlayerSpeed;
+        }
+        if (globalVariable.isGameFinish)
+        {
+            isBraking = true;
+            rb.drag = 10;
         }
     }
 

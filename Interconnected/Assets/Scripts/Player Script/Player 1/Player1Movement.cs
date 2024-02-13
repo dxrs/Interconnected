@@ -84,6 +84,11 @@ public class Player1Movement : MonoBehaviour
         {
             curPlayerSpeed = maxPlayerSpeed;
         }
+        if (globalVariable.isGameFinish) 
+        {
+            isBraking = true;
+            rb.drag = 10;
+        }
     }
 
     private void playerBraking() 

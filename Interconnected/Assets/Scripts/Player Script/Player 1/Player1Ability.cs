@@ -85,11 +85,11 @@ public class Player1Ability : MonoBehaviour
         if (LevelStatus.levelStatus.levelID != 4) 
         {
             if (!globalVariable.isTriggeredWithObstacle
-            && !globalVariable.isGameFinish
-            && !globalVariable.isGameOver
-            && !Pause.pause.isGamePaused
-            && ReadyToStart.readyToStart.isGameStart
-            && !globalVariable.isPlayerSharingLives)
+                && !globalVariable.isGameFinish
+                && !globalVariable.isGameOver
+                && !Pause.pause.isGamePaused
+                && ReadyToStart.readyToStart.isGameStart
+                && !globalVariable.isPlayerSharingLives)
             {
                 if (context.performed
                     && !player1Movement.isBraking
@@ -115,11 +115,11 @@ public class Player1Ability : MonoBehaviour
         if (LevelStatus.levelStatus.levelID != 4) 
         {
             if (!globalVariable.isTriggeredWithObstacle
-           && !globalVariable.isGameFinish
-           && !globalVariable.isGameOver
-           && !Pause.pause.isGamePaused
-           && ReadyToStart.readyToStart.isGameStart
-           && !globalVariable.isPlayerSharingLives)
+               && !globalVariable.isGameFinish
+               && !globalVariable.isGameOver
+               && !Pause.pause.isGamePaused
+               && ReadyToStart.readyToStart.isGameStart
+               && !globalVariable.isPlayerSharingLives)
             {
                 if (Vector2.Distance(transform.position, player2.transform.position) > distanceFromPlayer2 && !linkRay.isPlayerLinkedEachOther)
                 {

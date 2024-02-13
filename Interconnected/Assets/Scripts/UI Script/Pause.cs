@@ -46,7 +46,7 @@ public class Pause : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
             {
-                //MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+               //MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
                 if (!isGamePaused)
                 {
                     isGamePaused = true;
