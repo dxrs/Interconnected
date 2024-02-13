@@ -7,7 +7,6 @@ public class Player1Collision : MonoBehaviour
 {
     public static Player1Collision player1Collision;
 
-    public bool isCrashToOtherBoat;
     public bool isStopAtCameraTrigger;
 
     [SerializeField] GlobalVariable globalVariable;
@@ -89,7 +88,7 @@ public class Player1Collision : MonoBehaviour
 
     private void handleOutlineColliderCollision(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player 2 Outline Collider" && !globalVariable.isTriggeredWithObstacle)
+        if (collision.gameObject.tag == "Player 2 Outline Collider" && rb.drag<1.3f)
             player1BoucedCollision(collision);
     }
 
@@ -136,20 +135,27 @@ public class Player1Collision : MonoBehaviour
 
     public void player1BoucedCollision(Collider2D collider)
     {
-        player1Movement.isBraking = false;
-        player1Movement.isBrakingWithInput = false;
         StartCoroutine(playerCrash());
+
+        // Mengurangi dampak pantulan jika isBrakingWithInput aktif
+        float adjustedCrashForce = player1Movement.isBraking ? crashForceValue * 0.5f : crashForceValue;
+
         Vector2 backwardMovePos = (transform.position - collider.transform.position).normalized;
-        rb.AddForce(backwardMovePos * crashForceValue, ForceMode2D.Impulse);
+        rb.AddForce(backwardMovePos * adjustedCrashForce, ForceMode2D.Impulse);
     }
 
     IEnumerator playerCrash()
     {
-        isCrashToOtherBoat = true;
-        yield return new WaitForSeconds(0.1f);
-        if (!player1Movement.isBraking)
-            player1Movement.isBraking = true;
+        // Menonaktifkan isBraking dan isBrakingWithInput selama beberapa waktu
+        player1Movement.isBraking = false;
+        player1Movement.isBrakingWithInput = false;
 
-        isCrashToOtherBoat = false;
+        yield return new WaitForSeconds(0.1f);
+
+        // Mengaktifkan kembali isBraking jika tidak ada input braking
+        if (!player1Movement.isBrakingWithInput)
+        {
+            player1Movement.isBraking = true;
+        }
     }
 }

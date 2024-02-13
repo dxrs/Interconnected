@@ -654,8 +654,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1680b77e951cc064a8fa1d6ca67a2386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGameOver: 0
-  isGameFinish: 0
   isTriggeredWithObstacle: 0
   isNotShoot: 0
   isTimerStart: 0
@@ -1556,6 +1554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f23d0d3b0da27747a9883cd178634f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameFinish: 0
   globalVariable: {fileID: 106151307}
   finishValue: 0
 --- !u!4 &335935408
@@ -1886,6 +1885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46cd458a506f591479a3a3dbbc119dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   globalVariable: {fileID: 106151307}
 --- !u!4 &425712195
 Transform:
@@ -8259,6 +8259,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 106151307}
     - target: {fileID: 534748682652801544, guid: b4124561063d0b347b501f6a08b8ca1f, type: 3}
+      propertyPath: crashForceValue
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 534748682652801544, guid: b4124561063d0b347b501f6a08b8ca1f, type: 3}
       propertyPath: playerOutlineCollider
       value: 
       objectReference: {fileID: 1724269295}
@@ -8752,6 +8756,10 @@ PrefabInstance:
       propertyPath: globalVariable
       value: 
       objectReference: {fileID: 106151307}
+    - target: {fileID: 5440666626104908102, guid: ae5984088c6a51249982fa5b339011c5, type: 3}
+      propertyPath: crashForceValue
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5440666626104908102, guid: ae5984088c6a51249982fa5b339011c5, type: 3}
       propertyPath: playerOutlineCollider
       value: 

@@ -95,7 +95,7 @@ public class Player1Movement : MonoBehaviour
     {
         if (isBraking)
         {
-            float lerpSpeed = isBrakingWithInput ? 10f : 1f;
+           float lerpSpeed = isBrakingWithInput ? 10f : 4f;
             rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
         }
         else if (isBrakingWithInput)
@@ -104,7 +104,17 @@ public class Player1Movement : MonoBehaviour
         }
         else
         {
-            rb.drag = 0;
+            // Menggunakan deltaTime untuk menjaga kecepatan yang konsisten
+            Vector2 force = inputDir * maxPlayerSpeed * Time.deltaTime;
+
+            // Menggunakan AddForce untuk memberikan kekuatan pada rigidbody
+            rb.AddForce(force, ForceMode2D.Impulse);
+
+            // Membatasi kecepatan agar tidak melebihi maksimum
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity, curPlayerSpeed);
+
+            rb.drag = 0; // Mengatur rb.drag menjadi 0 ketika tidak ada pengereman
+            return;
         }
 
 
