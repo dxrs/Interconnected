@@ -43,7 +43,7 @@ public class ReadyToStart : MonoBehaviour
             {
                 textTimerCountToStart.text = Mathf.RoundToInt(timerCountToStart).ToString();
             }
-            if (isGameStart && !GlobalVariable.globalVariable.isGameFinish)
+            if (isGameStart && !GameFinish.gameFinish.isGameFinish)
             {
                 inGameUI.SetActive(true);
                 startUI.SetActive(false);
@@ -52,7 +52,7 @@ public class ReadyToStart : MonoBehaviour
         else 
         {
             isGameStart = true;
-            if (isGameStart && !GlobalVariable.globalVariable.isGameFinish)
+            if (isGameStart && !GameFinish.gameFinish.isGameFinish)
             {
                 inGameUI.SetActive(true);
                 startUI.SetActive(false);

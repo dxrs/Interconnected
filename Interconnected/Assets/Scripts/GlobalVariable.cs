@@ -7,8 +7,8 @@ public class GlobalVariable : MonoBehaviour
 {
     public static GlobalVariable globalVariable;
 
-    public bool isGameOver;
-    public bool isGameFinish;
+
+    
     public bool isTriggeredWithObstacle;
     public bool isNotShoot;
     public bool isTimerStart;

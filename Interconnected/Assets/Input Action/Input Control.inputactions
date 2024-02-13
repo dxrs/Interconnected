@@ -437,34 +437,6 @@
             ]
         },
         {
-            "name": "Game Pause",
-            "id": "a946c7a4-f708-44c4-980f-9ec3ce5101cf",
-            "actions": [
-                {
-                    "name": "Pause Click",
-                    "type": "Button",
-                    "id": "e63eb022-1b76-45c3-9eec-e389113fd77b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "4bba1dff-c86e-4624-b492-e61a7f8c179c",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "New control scheme",
-                    "action": "Pause Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
             "name": "Main Menu",
             "id": "24337b30-d557-4f1b-ba02-7ad6fb29aead",
             "actions": [

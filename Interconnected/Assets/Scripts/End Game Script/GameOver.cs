@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
+    public static GameOver gameOver;
+
+    public bool isGameOver;
+
     [SerializeField] GlobalVariable globalVariable;
 
     GameObject player1, player2;
+
+    private void Awake()
+    {
+        gameOver = this;
+    }
 
     private void Start()
     {
@@ -18,14 +27,15 @@ public class GameOver : MonoBehaviour
     {
         if (player1 == null || player2 == null)
         {
-           globalVariable.isGameOver = true;
+           //globalVariable.isGameOver = true;
         }
 
-        if (globalVariable.isGameOver)
+        if (isGameOver)
         {
-            SceneSystem.sceneSystem.isRestartScene = true;
-            Destroy(player1);
-            Destroy(player2);
+            GlobalVariable.globalVariable.isTriggeredWithObstacle = true;
+            //SceneSystem.sceneSystem.isRestartScene = true;
+            //Destroy(player1);
+            //Destroy(player2);
         }
     }
 }

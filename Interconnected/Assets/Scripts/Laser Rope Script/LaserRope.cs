@@ -21,20 +21,27 @@ public class LaserRope : MonoBehaviour
 
     private void Update()
     {
-        transform.position = playerObjectRotation.transform.position;
-        transform.rotation = playerObjectRotation.transform.rotation;
-
-        if (LinkRay.linkRay.isPlayerLinkedEachOther)
+        if (playerObjectRotation != null) 
         {
-            laerRope.SetActive(true);
-            float beamDistance = Vector2.Distance(player1.transform.position, player2.transform.position);
-            maxDistanceBeam = beamDistance;
-            transform.localScale = new Vector3(.1f, maxDistanceBeam, transform.localScale.z);
+            transform.position = playerObjectRotation.transform.position;
+            transform.rotation = playerObjectRotation.transform.rotation;
         }
-        else
+       
+        if(player1 && player2 != null) 
         {
-            laerRope.SetActive(false);
+            if (LinkRay.linkRay.isPlayerLinkedEachOther)
+            {
+                laerRope.SetActive(true);
+                float beamDistance = Vector2.Distance(player1.transform.position, player2.transform.position);
+                maxDistanceBeam = beamDistance;
+                transform.localScale = new Vector3(.1f, maxDistanceBeam, transform.localScale.z);
+            }
+            else
+            {
+                laerRope.SetActive(false);
+            }
         }
+      
 
     }
 }

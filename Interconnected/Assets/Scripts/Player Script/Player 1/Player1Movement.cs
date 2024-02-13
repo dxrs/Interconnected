@@ -74,7 +74,7 @@ public class Player1Movement : MonoBehaviour
 
         }
         if(globalVariable.isTriggeredWithObstacle 
-            || globalVariable.isGameFinish 
+            || GameFinish.gameFinish.isGameFinish 
             || globalVariable.isPlayerSharingLives
             || player1Collision.isStopAtCameraTrigger) 
         {
@@ -84,7 +84,7 @@ public class Player1Movement : MonoBehaviour
         {
             curPlayerSpeed = maxPlayerSpeed;
         }
-        if (globalVariable.isGameFinish) 
+        if (GameFinish.gameFinish.isGameFinish) 
         {
             isBraking = true;
             rb.drag = 10;
@@ -125,8 +125,8 @@ public class Player1Movement : MonoBehaviour
         if (!isLevel4 || !player1Collision.isStopAtCameraTrigger)
         {
             if (!globalVariable.isTriggeredWithObstacle
-                && !globalVariable.isGameFinish
-                && !globalVariable.isGameOver
+                && !GameFinish.gameFinish.isGameFinish
+                && !GameOver.gameOver.isGameOver
                 && !Pause.pause.isGamePaused
                 && ReadyToStart.readyToStart.isGameStart
                 && !globalVariable.isPlayerSharingLives)

@@ -37,12 +37,12 @@ public class Player2Collision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        HandleObstacleCollision(collision);
-        HandleOutlineColliderCollision(collision);
-        HandleCameraMoveTriggerCollision(collision);
-        HandleBrakingTriggerCollision(collision);
-        HandleEnemyCollision(collision);
-        HandleFinishPointCollision(collision);
+        handleObstacleCollision(collision);
+        handleOutlineColliderCollision(collision);
+        handleCameraMoveTriggerCollision(collision);
+        handleBrakingTriggerCollision(collision);
+        handleEnemyCollision(collision);
+        handleFinishPointCollision(collision);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -54,7 +54,7 @@ public class Player2Collision : MonoBehaviour
             isStopAtCameraTrigger = false;
     }
 
-    private void HandleObstacleCollision(Collider2D collision)
+    private void handleObstacleCollision(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Gear"))
         {
@@ -76,25 +76,25 @@ public class Player2Collision : MonoBehaviour
         }
     }
 
-    private void HandleOutlineColliderCollision(Collider2D collision)
+    private void handleOutlineColliderCollision(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player 1 Outline Collider" && !globalVariable.isTriggeredWithObstacle)
             player2BouncedCollision(collision);
     }
 
-    private void HandleCameraMoveTriggerCollision(Collider2D collision)
+    private void handleCameraMoveTriggerCollision(Collider2D collision)
     {
         if (collision.gameObject.tag == "Camera Move Trigger")
             isStopAtCameraTrigger = true;
     }
 
-    private void HandleBrakingTriggerCollision(Collider2D collision)
+    private void handleBrakingTriggerCollision(Collider2D collision)
     {
         if (LevelStatus.levelStatus.levelID == 4 && collision.gameObject.tag == "Braking Trigger")
             Tutorial.tutorial.playerBrakingValue++;
     }
 
-    private void HandleEnemyCollision(Collider2D collision)
+    private void handleEnemyCollision(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
@@ -111,7 +111,7 @@ public class Player2Collision : MonoBehaviour
         }
     }
 
-    private void HandleFinishPointCollision(Collider2D collision)
+    private void handleFinishPointCollision(Collider2D collision)
     {
         if (collision.gameObject.tag == "Finish Point")
             GameFinish.gameFinish.finishValue++;

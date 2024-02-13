@@ -6,6 +6,8 @@ public class GameFinish : MonoBehaviour
 {
     public static GameFinish gameFinish;
 
+    public bool isGameFinish;
+
     [SerializeField] GlobalVariable globalVariable;
 
     public int finishValue;
@@ -30,6 +32,6 @@ public class GameFinish : MonoBehaviour
     IEnumerator waitToFinish() 
     {
         yield return new WaitForSeconds(1);
-        GlobalVariable.globalVariable.isGameFinish = true;
+        isGameFinish = true;
     }
 }

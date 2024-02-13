@@ -246,152 +246,6 @@ PolygonCollider2D:
       - {x: 0.42212355, y: 0.07476316}
       - {x: 0.52835345, y: 0.09430355}
       - {x: 0.5309312, y: 0.5669638}
---- !u!1 &15507022
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 15507024}
-  - component: {fileID: 15507023}
-  - component: {fileID: 15507025}
-  - component: {fileID: 15507027}
-  - component: {fileID: 15507028}
-  m_Layer: 0
-  m_Name: Laser Rope Collider
-  m_TagString: Laser Rope
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &15507023
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 15507022}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1f9fcf704e423dd47a0abab3995d390d, type: 3}
-  m_Color: {r: 1, g: 0.81131923, b: 0, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &15507024
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 15507022}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 3, y: 0.15, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 515792821}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &15507025
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 15507022}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.66, y: 8}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.66, y: 8}
-  m_EdgeRadius: 0
---- !u!50 &15507027
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 15507022}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &15507028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 15507022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96c8ac596dccd6447b2d7360ae098468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &53243436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -571,8 +425,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1680b77e951cc064a8fa1d6ca67a2386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGameOver: 0
-  isGameFinish: 0
   isTriggeredWithObstacle: 0
   isNotShoot: 0
   isTimerStart: 0
@@ -1197,10 +1049,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4b974cd3-af8d-4bf8-bece-161f8dd98bda
     m_ActionName: Main Menu/Navigation Confirm[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e63eb022-1b76-45c3-9eec-e389113fd77b
-    m_ActionName: Game Pause/Pause Click[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad Scheme
   m_DefaultActionMap: Input Player 2
@@ -1879,53 +1727,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7756265238510812881, guid: d006a6e8903a0104193994fdc7465165, type: 3}
   m_PrefabInstance: {fileID: 415354310}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &515792820
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 515792821}
-  - component: {fileID: 515792822}
-  m_Layer: 0
-  m_Name: Laser Rope
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &515792821
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 515792820}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 15507024}
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &515792822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 515792820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 873176180326ffc42b203f87b4fac4c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  laerRope: {fileID: 15507022}
-  playerObjectRotation: {fileID: 1553979020}
 --- !u!1 &527133861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1955,6 +1756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f23d0d3b0da27747a9883cd178634f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameFinish: 0
   globalVariable: {fileID: 106151307}
   finishValue: 0
 --- !u!4 &527133863
@@ -2207,10 +2009,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4b974cd3-af8d-4bf8-bece-161f8dd98bda
     m_ActionName: Main Menu/Navigation Confirm[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e63eb022-1b76-45c3-9eec-e389113fd77b
-    m_ActionName: Game Pause/Pause Click[/Keyboard/escape,/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard Scheme
   m_DefaultActionMap: Input Player 1
@@ -2586,7 +2384,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &777344157
 Transform:
   m_ObjectHideFlags: 0
@@ -3905,7 +3703,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRestartScene: 0
   isExitScene: 0
+  isNextScene: 0
   isChangeScene: 0
+  delayTime: 0
 --- !u!1 &1154285935
 GameObject:
   m_ObjectHideFlags: 0
@@ -3935,6 +3735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46cd458a506f591479a3a3dbbc119dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   globalVariable: {fileID: 106151307}
 --- !u!4 &1154285937
 Transform:
@@ -7057,6 +6858,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 106151307}
     - target: {fileID: 534748682652801544, guid: b4124561063d0b347b501f6a08b8ca1f, type: 3}
+      propertyPath: crashForceValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 534748682652801544, guid: b4124561063d0b347b501f6a08b8ca1f, type: 3}
       propertyPath: playerOutlineCollider
       value: 
       objectReference: {fileID: 1724269295}
@@ -7575,6 +7380,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 106151307}
     - target: {fileID: 5440666626104908102, guid: ae5984088c6a51249982fa5b339011c5, type: 3}
+      propertyPath: crashForceValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440666626104908102, guid: ae5984088c6a51249982fa5b339011c5, type: 3}
       propertyPath: playerOutlineCollider
       value: 
       objectReference: {fileID: 1676179322}
@@ -7637,6 +7446,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a3f4faedcda1b4893b97f6409f3d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &6866795343274165798
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6866795342845155728, guid: 1fb324ce585c80348b675e6341dc1dfa, type: 3}
+      propertyPath: playerObjectRotation
+      value: 
+      objectReference: {fileID: 1553979020}
+    - target: {fileID: 6866795342845155730, guid: 1fb324ce585c80348b675e6341dc1dfa, type: 3}
+      propertyPath: m_Name
+      value: Laser Rope
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866795342845155731, guid: 1fb324ce585c80348b675e6341dc1dfa, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866795342845155731, guid: 1fb324ce585c80348b675e6341dc1dfa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866795342845155731, guid: 1fb324ce585c80348b675e6341dc1dfa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866795342845155731, guid: 1fb324ce585c80348b675e6341dc1dfa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866795342845155731, guid: 1fb324ce585c80348b675e6341dc1dfa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866795342845155731, guid: 1fb324ce585c80348b675e6341dc1dfa, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866795342845155731, guid: 1fb324ce585c80348b675e6341dc1dfa, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866795342845155731, guid: 1fb324ce585c80348b675e6341dc1dfa, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866795342845155731, guid: 1fb324ce585c80348b675e6341dc1dfa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866795342845155731, guid: 1fb324ce585c80348b675e6341dc1dfa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866795342845155731, guid: 1fb324ce585c80348b675e6341dc1dfa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1fb324ce585c80348b675e6341dc1dfa, type: 3}
 --- !u!1001 &7153416724488036099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7644,6 +7514,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1489093269}
     m_Modifications:
+    - target: {fileID: 7153416723857358848, guid: 632dfa8700161e440965473eeee1aa1f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7153416723857358849, guid: 632dfa8700161e440965473eeee1aa1f, type: 3}
       propertyPath: m_Name
       value: Garbage

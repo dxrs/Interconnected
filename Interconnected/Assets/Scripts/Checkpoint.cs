@@ -27,7 +27,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (LevelStatus.levelStatus.levelID != 2) 
         {
-            if (GlobalVariable.globalVariable.isTriggeredWithObstacle)
+            if (GlobalVariable.globalVariable.isTriggeredWithObstacle && !GameOver.gameOver.isGameOver)
             {
                 StartCoroutine(moveToPos());
             }
@@ -42,8 +42,12 @@ public class Checkpoint : MonoBehaviour
 
         if (index >= 0 && index < player1CheckpintPos.Length)
         {
-            player1.transform.position = player1CheckpintPos[index].position;
-            player2.transform.position = player2CheckpintPos[index].position;
+            if(player1 && player2 != null) 
+            {
+                player1.transform.position = player1CheckpintPos[index].position;
+                player2.transform.position = player2CheckpintPos[index].position;
+            }
+
         }
 
 

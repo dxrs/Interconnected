@@ -42,7 +42,7 @@ public class Garbage : MonoBehaviour
 
     private void Update()
     {
-        if(!GlobalVariable.globalVariable.isGameFinish || !GlobalVariable.globalVariable.isGameOver) 
+        if(!GameFinish.gameFinish.isGameFinish || !GameOver.gameOver.isGameOver) 
         {
             if (isGarbageCollected)
             {
@@ -92,42 +92,26 @@ public class Garbage : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Gear" || collision.gameObject.tag == "Spike")
+        if (collision.gameObject.CompareTag("Gear")  || collision.gameObject.CompareTag("Spike"))
         {
             Vector2 blastForceVector = (transform.position - collision.transform.position).normalized;
             rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
             StartCoroutine(garbageRigidBrake(1f));
         }
+        
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag=="Laser Rope") 
+        if(collision.gameObject.CompareTag("Laser Rope")) 
         {
             isGarbageCollected = true;
             rb.drag = 0;
            
         }
 
-        if(collision.gameObject.tag=="Player 1 Outline Collider") 
-        {
-            Player1Stamina.player1Stamina.curStamina -= 5;
-            if (Player1Stamina.player1Stamina.curStamina < 0) { Player1Stamina.player1Stamina.curStamina = 0; }
-            Player1Stamina.player1Stamina.staminaFunctionCallback();
-        }
-
-        if(collision.gameObject.tag=="Gear" || collision.gameObject.tag == "Spike")
-        {
-            Vector2 blastForceVector = (transform.position-collision.transform.position).normalized;
-            rb.AddForce(blastForceVector*10, ForceMode2D.Impulse);
-            StartCoroutine(garbageRigidBrake(1f));
-        }
-
        
-    }
-    IEnumerator delayColliderFalse() 
-    {
-        yield return new WaitForSeconds(.1f);
-        bc.enabled = false;
+       
     }
     IEnumerator garbageRigidBrake(float delay)
     {

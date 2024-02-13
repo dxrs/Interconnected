@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class Player2OutlineCollider : MonoBehaviour
 {
-    [SerializeField] Player2Stamina player2Stamina;
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag=="Garbage" && LinkRay.linkRay.isPlayerLinkedEachOther) 
+        if (collision.gameObject.CompareTag("Garbage"))
         {
-            if (player2Stamina != null)
+            if (Player2Stamina.player2Stamina.curStamina > 0)
             {
-                player2Stamina.curStamina -= 5;
-                if (player2Stamina.curStamina < 0) { player2Stamina.curStamina = 0; }
-                player2Stamina.staminaFunctionCallback();
+                Player2Stamina.player2Stamina.curStamina -= 0.05f;
             }
+
+            if (Player2Stamina.player2Stamina.curStamina < 0) { Player2Stamina.player2Stamina.curStamina = 0; }
+            Player2Stamina.player2Stamina.staminaFunctionCallback();
         }
-       
     }
 }

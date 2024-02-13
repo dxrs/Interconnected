@@ -85,8 +85,8 @@ public class Player1Ability : MonoBehaviour
         if (LevelStatus.levelStatus.levelID != 4) 
         {
             if (!globalVariable.isTriggeredWithObstacle
-                && !globalVariable.isGameFinish
-                && !globalVariable.isGameOver
+                && !GameFinish.gameFinish.isGameFinish
+                && !GameOver.gameOver.isGameOver
                 && !Pause.pause.isGamePaused
                 && ReadyToStart.readyToStart.isGameStart
                 && !globalVariable.isPlayerSharingLives)
@@ -115,8 +115,8 @@ public class Player1Ability : MonoBehaviour
         if (LevelStatus.levelStatus.levelID != 4) 
         {
             if (!globalVariable.isTriggeredWithObstacle
-               && !globalVariable.isGameFinish
-               && !globalVariable.isGameOver
+               && !GameFinish.gameFinish.isGameFinish
+               && !GameOver.gameOver.isGameOver
                && !Pause.pause.isGamePaused
                && ReadyToStart.readyToStart.isGameStart
                && !globalVariable.isPlayerSharingLives)

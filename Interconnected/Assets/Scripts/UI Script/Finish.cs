@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class Finish : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class Finish : MonoBehaviour
 
     private void Update()
     {
-        if (globalVariable.isGameFinish) 
+        if (GameFinish.gameFinish.isGameFinish) 
         {
             if (SceneSystem.sceneSystem.isChangeScene) 
             {
@@ -77,7 +78,7 @@ public class Finish : MonoBehaviour
                 entry.callback.AddListener((data) => { buttonPauseHighlighted(buttonValue); });
                 eventTrigger.triggers.Add(entry);
             }
-        } while (globalVariable.isGameFinish && LevelStatus.levelStatus.levelID != 4 && !SceneSystem.sceneSystem.isChangeScene);
+        } while (GameFinish.gameFinish.isGameFinish && LevelStatus.levelStatus.levelID != 4 && !SceneSystem.sceneSystem.isChangeScene);
     }
 
     void buttonPauseHighlighted(int value)
@@ -104,7 +105,7 @@ public class Finish : MonoBehaviour
     {
         if (LevelStatus.levelStatus.levelID != 4) 
         {
-            if (globalVariable.isGameFinish && !SceneSystem.sceneSystem.isChangeScene)
+            if (GameFinish.gameFinish.isGameFinish && !SceneSystem.sceneSystem.isChangeScene)
             {
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Gamepad Enter"))
                 {
@@ -128,7 +129,7 @@ public class Finish : MonoBehaviour
     {
         if (LevelStatus.levelStatus.levelID != 4) 
         {
-            if (globalVariable.isGameFinish && !SceneSystem.sceneSystem.isChangeScene)
+            if (GameFinish.gameFinish.isGameFinish && !SceneSystem.sceneSystem.isChangeScene)
             {
 
                 float inputDpadVertical = Input.GetAxis("Dpad Vertical");
@@ -186,7 +187,7 @@ public class Finish : MonoBehaviour
     {
         if (LevelStatus.levelStatus.levelID != 4)
         {
-            if (!MouseCursorActivated.mouseCursorActivated.isMouseActive && globalVariable.isGameFinish)
+            if (!MouseCursorActivated.mouseCursorActivated.isMouseActive && GameFinish.gameFinish.isGameFinish)
             {
                 for (int j = 0; j < finishSelectorPos.Length; j++)
                 {
@@ -233,4 +234,6 @@ public class Finish : MonoBehaviour
 
 
     }
+
+   
 }

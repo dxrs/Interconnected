@@ -51,7 +51,7 @@ public class Player1Health : MonoBehaviour // kurang slow motion
         shareLives();
         if (curPlayer1Health <= 0) 
         {
-            globalVariable.isGameOver = true;
+            GameOver.gameOver.isGameOver = true;
         }
     }
 
@@ -89,8 +89,8 @@ public class Player1Health : MonoBehaviour // kurang slow motion
     {
         if ((LevelStatus.levelStatus.levelID != 4 &&
              !globalVariable.isTriggeredWithObstacle
-             && !globalVariable.isGameFinish
-             && !globalVariable.isGameOver
+             && !GameFinish.gameFinish.isGameFinish
+             && !GameOver.gameOver.isGameOver
              && !Pause.pause.isGamePaused
              && ReadyToStart.readyToStart.isGameStart
              && !player1Ability.isDashing
@@ -98,7 +98,7 @@ public class Player1Health : MonoBehaviour // kurang slow motion
              && globalVariable.waitTimeToShareLives <= 0) ||
              (LevelStatus.levelStatus.levelID == 4 && //<- tutorial
              Tutorial.tutorial.cameraMoveValue == 2
-             && !globalVariable.isGameFinish
+             && !GameFinish.gameFinish.isGameFinish
              && !Pause.pause.isGamePaused
              && globalVariable.waitTimeToShareLives <= 0
              && Tutorial.tutorial.shareLiveProgress == 1))

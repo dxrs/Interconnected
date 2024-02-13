@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class Pause : MonoBehaviour
 {
@@ -40,8 +41,8 @@ public class Pause : MonoBehaviour
     }
     private void Update()
     {
-       if(!globalVariable.isGameOver && 
-            !globalVariable.isGameFinish && 
+       if(!GameOver.gameOver.isGameOver && 
+            !GameFinish.gameFinish.isGameFinish && 
             ReadyToStart.readyToStart.isGameStart) 
         {
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
@@ -234,5 +235,13 @@ public class Pause : MonoBehaviour
         sceneSystem.isExitScene = true;
 
         isGamePaused = false;
+    }
+
+    public void ok(InputAction.CallbackContext context) 
+    {
+        if (context.performed) 
+        {
+            Debug.Log("pause");
+        }
     }
 }

@@ -22,12 +22,13 @@ public class GarbageCollector : MonoBehaviour
     }
     private void Update()
     {
-
-        Vector2 posA = player1.position;
-        Vector2 posB = player2.position;
-        Vector2 midPos = (posA + posB) / 2f;
-
-        transform.position = midPos;
+        if(player1 && player2 != null) 
+        {
+            Vector2 posA = player1.position;
+            Vector2 posB = player2.position;
+            Vector2 midPos = (posA + posB) / 2f;
+            transform.position = midPos;
+        }
 
         if(!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isTriggeredWithObstacle) 
         {

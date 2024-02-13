@@ -459,34 +459,6 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Game Pause"",
-            ""id"": ""a946c7a4-f708-44c4-980f-9ec3ce5101cf"",
-            ""actions"": [
-                {
-                    ""name"": ""Pause Click"",
-                    ""type"": ""Button"",
-                    ""id"": ""e63eb022-1b76-45c3-9eec-e389113fd77b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""4bba1dff-c86e-4624-b492-e61a7f8c179c"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""New control scheme"",
-                    ""action"": ""Pause Click"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
             ""name"": ""Main Menu"",
             ""id"": ""24337b30-d557-4f1b-ba02-7ad6fb29aead"",
             ""actions"": [
@@ -666,9 +638,6 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         m_InputPlayer2_Brake = m_InputPlayer2.FindAction("Brake", throwIfNotFound: true);
         m_InputPlayer2_BasicSkillDash = m_InputPlayer2.FindAction("Basic Skill Dash", throwIfNotFound: true);
         m_InputPlayer2_SpecialSkillShield = m_InputPlayer2.FindAction("Special Skill Shield", throwIfNotFound: true);
-        // Game Pause
-        m_GamePause = asset.FindActionMap("Game Pause", throwIfNotFound: true);
-        m_GamePause_PauseClick = m_GamePause.FindAction("Pause Click", throwIfNotFound: true);
         // Main Menu
         m_MainMenu = asset.FindActionMap("Main Menu", throwIfNotFound: true);
         m_MainMenu_NavigationUp = m_MainMenu.FindAction("Navigation Up", throwIfNotFound: true);
@@ -936,52 +905,6 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     }
     public InputPlayer2Actions @InputPlayer2 => new InputPlayer2Actions(this);
 
-    // Game Pause
-    private readonly InputActionMap m_GamePause;
-    private List<IGamePauseActions> m_GamePauseActionsCallbackInterfaces = new List<IGamePauseActions>();
-    private readonly InputAction m_GamePause_PauseClick;
-    public struct GamePauseActions
-    {
-        private @InputControl m_Wrapper;
-        public GamePauseActions(@InputControl wrapper) { m_Wrapper = wrapper; }
-        public InputAction @PauseClick => m_Wrapper.m_GamePause_PauseClick;
-        public InputActionMap Get() { return m_Wrapper.m_GamePause; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(GamePauseActions set) { return set.Get(); }
-        public void AddCallbacks(IGamePauseActions instance)
-        {
-            if (instance == null || m_Wrapper.m_GamePauseActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_GamePauseActionsCallbackInterfaces.Add(instance);
-            @PauseClick.started += instance.OnPauseClick;
-            @PauseClick.performed += instance.OnPauseClick;
-            @PauseClick.canceled += instance.OnPauseClick;
-        }
-
-        private void UnregisterCallbacks(IGamePauseActions instance)
-        {
-            @PauseClick.started -= instance.OnPauseClick;
-            @PauseClick.performed -= instance.OnPauseClick;
-            @PauseClick.canceled -= instance.OnPauseClick;
-        }
-
-        public void RemoveCallbacks(IGamePauseActions instance)
-        {
-            if (m_Wrapper.m_GamePauseActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IGamePauseActions instance)
-        {
-            foreach (var item in m_Wrapper.m_GamePauseActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_GamePauseActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public GamePauseActions @GamePause => new GamePauseActions(this);
-
     // Main Menu
     private readonly InputActionMap m_MainMenu;
     private List<IMainMenuActions> m_MainMenuActionsCallbackInterfaces = new List<IMainMenuActions>();
@@ -1091,10 +1014,6 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         void OnBrake(InputAction.CallbackContext context);
         void OnBasicSkillDash(InputAction.CallbackContext context);
         void OnSpecialSkillShield(InputAction.CallbackContext context);
-    }
-    public interface IGamePauseActions
-    {
-        void OnPauseClick(InputAction.CallbackContext context);
     }
     public interface IMainMenuActions
     {

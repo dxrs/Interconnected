@@ -30,8 +30,8 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             if (ReadyToStart.readyToStart.isGameStart
-                && !GlobalVariable.globalVariable.isGameFinish
-                && !GlobalVariable.globalVariable.isGameOver
+                && !GameFinish.gameFinish.isGameFinish
+                && !GameOver.gameOver.isGameOver
                 && !Pause.pause.isGamePaused) 
             {
                 if (!isEnemyDelayToSpawn) 

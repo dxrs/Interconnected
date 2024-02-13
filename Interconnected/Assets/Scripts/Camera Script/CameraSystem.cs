@@ -34,7 +34,7 @@ public class CameraSystem : MonoBehaviour
 
         if (LevelStatus.levelStatus.levelID == 1) 
         {
-            if (!GlobalVariable.globalVariable.isGameOver
+            if (!GameOver.gameOver.isGameOver
             && !GlobalVariable.globalVariable.isTriggeredWithObstacle
             && ReadyToStart.readyToStart.isGameStart)
             {
@@ -48,6 +48,17 @@ public class CameraSystem : MonoBehaviour
                     }
                 }
 
+            }
+            if (GameOver.gameOver.isGameOver) 
+            {
+                if (Player1Health.player1Health.curPlayer1Health <= 0) 
+                {
+                    // zoom in dan fokus ke cameraTargetObject[0]
+                }
+                if (Player2Health.player2Health.curPlayer2Health <= 0) 
+                {
+                    // zoom in dan fokus ke cameraTargetObject[1]
+                }
             }
         }
         if (LevelStatus.levelStatus.levelID == 4) 

@@ -56,8 +56,8 @@ public class Timer : MonoBehaviour
             if (LevelStatus.levelStatus.levelID == 1) 
             {
                 if (ReadyToStart.readyToStart.isGameStart
-                && !globalVariable.isGameFinish
-                && !globalVariable.isGameOver)
+                    && !GameFinish.gameFinish.isGameFinish
+                    && !GameOver.gameOver.isGameOver)
                 {
                     if (!isTimerStop)
                     {
@@ -76,9 +76,9 @@ public class Timer : MonoBehaviour
             if (LevelStatus.levelStatus.levelID == 2) 
             {
                 if (ReadyToStart.readyToStart.isGameStart
-               && !globalVariable.isGameFinish
-               && !globalVariable.isGameOver
-               && globalVariable.isTimerStart)
+                   && !GameFinish.gameFinish.isGameFinish
+                   && !GameOver.gameOver.isGameOver
+                   && globalVariable.isTimerStart)
                 {
                     if (!isTimerStop)
                     {

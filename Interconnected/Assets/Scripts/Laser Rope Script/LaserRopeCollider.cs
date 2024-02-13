@@ -9,7 +9,7 @@ public class LaserRopeCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Garbage" ) 
+        if (collision.gameObject.CompareTag("Garbage")) 
         {
             GarbageCollector.garbageCollector.garbageCollected++;
             if (Player1Movement.player1Movement.maxPlayerSpeed > 0 && Player2Movement.player2Movement.maxPlayerSpeed > 0) 
