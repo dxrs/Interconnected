@@ -78,7 +78,7 @@ public class Player2Collision : MonoBehaviour
 
     private void handleOutlineColliderCollision(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player 1 Outline Collider" && rb.drag < 1.3f)
+        if (collision.gameObject.tag == "Player 1 Outline Collider" )
             player2BouncedCollision(collision);
     }
 
@@ -122,7 +122,7 @@ public class Player2Collision : MonoBehaviour
         StartCoroutine(playerCrash());
 
         // Mengurangi dampak pantulan jika isBrakingWithInput aktif
-        float adjustedCrashForce = player2Movement.isBraking ? crashForceValue * 0.5f : crashForceValue;
+        float adjustedCrashForce = player2Movement.isBrakingWithInput ? crashForceValue * 0.5f : crashForceValue;
 
         Vector2 backwardMovePos = (transform.position - collider.transform.position).normalized;
         rb.AddForce(backwardMovePos * adjustedCrashForce, ForceMode2D.Impulse);
@@ -133,13 +133,14 @@ public class Player2Collision : MonoBehaviour
         // Menonaktifkan isBraking dan isBrakingWithInput selama beberapa waktu
         player2Movement.isBraking = false;
         player2Movement.isBrakingWithInput = false;
-
-        yield return new WaitForSeconds(0.1f);
-
+        isCrashToOtherBoat = true;
+        yield return new WaitForSeconds(.5f);
+        isCrashToOtherBoat = false;
         // Mengaktifkan kembali isBraking jika tidak ada input braking
         if (!player2Movement.isBrakingWithInput)
         {
-            player2Movement.isBraking = true;
+            
+            //player2Movement.isBraking = true;
         }
 
 

@@ -8260,7 +8260,7 @@ PrefabInstance:
       objectReference: {fileID: 106151307}
     - target: {fileID: 534748682652801544, guid: b4124561063d0b347b501f6a08b8ca1f, type: 3}
       propertyPath: crashForceValue
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 534748682652801544, guid: b4124561063d0b347b501f6a08b8ca1f, type: 3}
       propertyPath: playerOutlineCollider
@@ -8758,7 +8758,7 @@ PrefabInstance:
       objectReference: {fileID: 106151307}
     - target: {fileID: 5440666626104908102, guid: ae5984088c6a51249982fa5b339011c5, type: 3}
       propertyPath: crashForceValue
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5440666626104908102, guid: ae5984088c6a51249982fa5b339011c5, type: 3}
       propertyPath: playerOutlineCollider

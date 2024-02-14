@@ -7,6 +7,7 @@ public class Player1Collision : MonoBehaviour
 {
     public static Player1Collision player1Collision;
 
+    public bool isCrashToOtherBoat;
     public bool isStopAtCameraTrigger;
 
     [SerializeField] GlobalVariable globalVariable;
@@ -88,7 +89,7 @@ public class Player1Collision : MonoBehaviour
 
     private void handleOutlineColliderCollision(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player 2 Outline Collider" && rb.drag<1.3f)
+        if (collision.gameObject.tag == "Player 2 Outline Collider" )
             player1BoucedCollision(collision);
     }
 
@@ -138,7 +139,8 @@ public class Player1Collision : MonoBehaviour
         StartCoroutine(playerCrash());
 
         // Mengurangi dampak pantulan jika isBrakingWithInput aktif
-        float adjustedCrashForce = player1Movement.isBraking ? crashForceValue * 0.5f : crashForceValue;
+        float adjustedCrashForce = player1Movement.isBrakingWithInput ? crashForceValue * 0.5f : crashForceValue;
+        Debug.Log($"crashForceValue: {crashForceValue}, adjustedCrashForce: {adjustedCrashForce}");
 
         Vector2 backwardMovePos = (transform.position - collider.transform.position).normalized;
         rb.AddForce(backwardMovePos * adjustedCrashForce, ForceMode2D.Impulse);
@@ -149,13 +151,13 @@ public class Player1Collision : MonoBehaviour
         // Menonaktifkan isBraking dan isBrakingWithInput selama beberapa waktu
         player1Movement.isBraking = false;
         player1Movement.isBrakingWithInput = false;
-
-        yield return new WaitForSeconds(0.1f);
-
+        isCrashToOtherBoat = true;
+        yield return new WaitForSeconds(.5f);
+        isCrashToOtherBoat = false;
         // Mengaktifkan kembali isBraking jika tidak ada input braking
         if (!player1Movement.isBrakingWithInput)
         {
-            player1Movement.isBraking = true;
+            //player1Movement.isBraking = true;
         }
     }
 }

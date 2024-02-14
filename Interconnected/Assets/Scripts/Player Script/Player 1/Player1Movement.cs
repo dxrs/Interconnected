@@ -93,7 +93,7 @@ public class Player1Movement : MonoBehaviour
 
     private void playerBraking() 
     {
-        if (isBraking)
+        if (isBraking || player1Collision.isCrashToOtherBoat)
         {
            float lerpSpeed = isBrakingWithInput ? 10f : 4f;
             rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
