@@ -136,14 +136,6 @@ public class Player2Collision : MonoBehaviour
         isCrashToOtherBoat = true;
         yield return new WaitForSeconds(.5f);
         isCrashToOtherBoat = false;
-        // Mengaktifkan kembali isBraking jika tidak ada input braking
-        if (!player2Movement.isBrakingWithInput)
-        {
-            
-            //player2Movement.isBraking = true;
-        }
-
-
     }
 
     IEnumerator player2SetPosToCheckpoint()

@@ -152,7 +152,7 @@ public class Pause : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Gamepad Enter")) 
             {
-                isGamePaused = false;
+                //isGamePaused = false;
                 if (curValueButton == 1) 
                 {
                     sceneSystem.isRestartScene = true;
@@ -227,14 +227,14 @@ public class Pause : MonoBehaviour
     {
         sceneSystem.isRestartScene = true;
 
-        isGamePaused = false;
+        //isGamePaused = false;
 
     }
     public void onClickExit() 
     {
         sceneSystem.isExitScene = true;
 
-        isGamePaused = false;
+        //isGamePaused = false;
     }
 
     public void ok(InputAction.CallbackContext context) 

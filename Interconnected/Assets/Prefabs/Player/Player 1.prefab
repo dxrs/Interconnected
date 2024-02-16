@@ -114,7 +114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &534748682283207491
 Transform:
   m_ObjectHideFlags: 0
@@ -356,11 +356,12 @@ MonoBehaviour:
   globalVariable: {fileID: 0}
   player1Ability: {fileID: 534748682652801547}
   player1Collision: {fileID: 534748682652801544}
+  isMoving: 0
   isBraking: 0
   isBrakingWithInput: 0
   maxPlayerSpeed: 5
   curPlayerSpeed: 0
-  playerBrakingPower: 4
+  playerBrakingPower: 5
   inputDir: {x: 0, y: 0}
 --- !u!114 &534748682652801547
 MonoBehaviour:
@@ -426,7 +427,7 @@ MonoBehaviour:
   player1Ability: {fileID: 534748682652801547}
   player1Health: {fileID: 534748682652801550}
   playerHitParticle: {fileID: 1374567328952284614, guid: 9856a747321fd2c46adbde3bc5a9016c, type: 3}
-  crashForceValue: 50
+  crashForceValue: 10
   playerOutlineCollider: {fileID: 0}
 --- !u!114 &534748682652801550
 MonoBehaviour:

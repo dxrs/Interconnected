@@ -143,21 +143,15 @@ public class Player1Collision : MonoBehaviour
         Debug.Log($"crashForceValue: {crashForceValue}, adjustedCrashForce: {adjustedCrashForce}");
 
         Vector2 backwardMovePos = (transform.position - collider.transform.position).normalized;
-        rb.AddForce(backwardMovePos * adjustedCrashForce, ForceMode2D.Impulse);
+        rb.AddForce(backwardMovePos * adjustedCrashForce, ForceMode2D.Impulse); // sedang konflik dgn void playerMovement
     }
 
     IEnumerator playerCrash()
     {
-        // Menonaktifkan isBraking dan isBrakingWithInput selama beberapa waktu
         player1Movement.isBraking = false;
         player1Movement.isBrakingWithInput = false;
         isCrashToOtherBoat = true;
         yield return new WaitForSeconds(.5f);
         isCrashToOtherBoat = false;
-        // Mengaktifkan kembali isBraking jika tidak ada input braking
-        if (!player1Movement.isBrakingWithInput)
-        {
-            //player1Movement.isBraking = true;
-        }
     }
 }

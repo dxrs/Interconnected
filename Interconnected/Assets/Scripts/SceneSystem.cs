@@ -55,7 +55,7 @@ public class SceneSystem : MonoBehaviour
 
     IEnumerator waitToRestartScene() 
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(1);
         int currentRestartScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentRestartScene);
     }

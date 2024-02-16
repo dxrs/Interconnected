@@ -13,6 +13,7 @@ public class Player2Movement : MonoBehaviour
     [SerializeField] Player2Ability player2Ability;
     [SerializeField] Player2Collision player2Collision;
 
+    public bool isMoving;
     public bool isBraking;
     public bool isBrakingWithInput;
 
@@ -73,8 +74,8 @@ public class Player2Movement : MonoBehaviour
         }
         if (GameFinish.gameFinish.isGameFinish)
         {
-            isBraking = true;
-            rb.drag = 10;
+            maxPlayerSpeed = Mathf.Lerp(maxPlayerSpeed, 0, 5 * Time.deltaTime);
+            rb.drag = Mathf.Lerp(rb.drag, 10, 6 * Time.deltaTime);
         }
     }
 
@@ -90,29 +91,32 @@ public class Player2Movement : MonoBehaviour
 
     private void playerBraking()
     {
-        if (isBraking || player2Collision.isCrashToOtherBoat)
+        if (!GameFinish.gameFinish.isGameFinish) 
         {
-            float lerpSpeed = isBrakingWithInput ? 10f : 4f;
-            rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
+            if (isBraking || player2Collision.isCrashToOtherBoat)
+            {
+                float lerpSpeed = isBrakingWithInput ? 10f : 2.5f;
+                rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
+            }
+            else if (isBrakingWithInput)
+            {
+                rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, 5f * Time.deltaTime);
+            }
+            else
+            {
+                Vector2 force = inputDir * maxPlayerSpeed * Time.deltaTime;
+
+                rb.AddForce(force, ForceMode2D.Impulse);
+                rb.velocity = Vector2.ClampMagnitude(rb.velocity, curPlayerSpeed);
+
+                rb.drag = 0; 
+            }
         }
-        else if (isBrakingWithInput)
+        if (isMoving)
         {
-            rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, 5f * Time.deltaTime);
+            isBraking = false;
         }
-        else
-        {
-            // Menggunakan deltaTime untuk menjaga kecepatan yang konsisten
-            Vector2 force = inputDir * maxPlayerSpeed * Time.deltaTime;
-
-            // Menggunakan AddForce untuk memberikan kekuatan pada rigidbody
-            rb.AddForce(force, ForceMode2D.Impulse);
-
-            // Membatasi kecepatan agar tidak melebihi maksimum
-            rb.velocity = Vector2.ClampMagnitude(rb.velocity, curPlayerSpeed);
-
-            rb.drag = 0; // Mengatur rb.drag menjadi 0 ketika tidak ada pengereman
-            return;
-        }
+        if (!isMoving) { isBraking = true; }
     }
 
     IEnumerator setMaxSpeedPlayer()
@@ -121,7 +125,6 @@ public class Player2Movement : MonoBehaviour
         maxPlayerSpeed = 5;
     }
 
-    //movement input
     public void playerMovementInput(InputAction.CallbackContext context)
     {
         bool isLevel4 = LevelStatus.levelStatus.levelID == 4;
@@ -138,11 +141,11 @@ public class Player2Movement : MonoBehaviour
                 if (context.performed)
                 {
                     MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
-                    isBraking = false;
+                    isMoving = true;
                 }
                 else
                 {
-                    isBraking = true;
+                    isMoving = false;
                 }
                 inputDir = context.ReadValue<Vector2>();
             }

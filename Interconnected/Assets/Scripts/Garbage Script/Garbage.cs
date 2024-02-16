@@ -110,8 +110,13 @@ public class Garbage : MonoBehaviour
            
         }
 
-       
-       
+        if (collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Spike"))
+        {
+            Vector2 blastForceVector = (transform.position - collision.transform.position).normalized;
+            rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
+            StartCoroutine(garbageRigidBrake(1f));
+        }
+
     }
     IEnumerator garbageRigidBrake(float delay)
     {
