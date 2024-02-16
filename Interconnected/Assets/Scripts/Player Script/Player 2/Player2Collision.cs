@@ -52,6 +52,9 @@ public class Player2Collision : MonoBehaviour
 
         if (collision.gameObject.tag == "Camera Move Trigger")
             isStopAtCameraTrigger = false;
+
+        if (LevelStatus.levelStatus.levelID == 4 && collision.gameObject.tag == "Braking Trigger")
+            Tutorial.tutorial.playerBrakingValue--;
     }
 
     private void handleObstacleCollision(Collider2D collision)

@@ -57,6 +57,9 @@ public class Player1Collision : MonoBehaviour
 
         if (collision.gameObject.tag == "Finish Point")
             GameFinish.gameFinish.finishValue--;
+
+        if (LevelStatus.levelStatus.levelID == 4 && collision.gameObject.tag == "Braking Trigger")
+            Tutorial.tutorial.playerBrakingValue--;
     }
 
     private void handleObstacleCollision(Collider2D collision)
