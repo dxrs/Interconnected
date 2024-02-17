@@ -175,10 +175,10 @@ GameObject:
   - component: {fileID: 5440666626104908096}
   - component: {fileID: 5440666626104908125}
   - component: {fileID: 5440666626104908124}
+  - component: {fileID: 5440666626104908100}
   - component: {fileID: 5440666626104908103}
   - component: {fileID: 5440666626104908102}
   - component: {fileID: 5440666626104908101}
-  - component: {fileID: 5440666626104908100}
   - component: {fileID: 5440666626104908099}
   m_Layer: 6
   m_Name: Player 2
@@ -293,6 +293,28 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.7
+--- !u!114 &5440666626104908100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5440666626104908123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a3f4faedcda1b4893b97f6409f3d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkRay: {fileID: 0}
+  globalVariable: {fileID: 0}
+  player2Ability: {fileID: 5440666626104908103}
+  player2Collision: {fileID: 5440666626104908102}
+  isMoving: 0
+  isBraking: 0
+  isBrakingWithInput: 0
+  maxPlayerSpeed: 5
+  playerBrakingPower: 5
+  inputDir: {x: 0, y: 0}
 --- !u!114 &5440666626104908103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,29 +387,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   healthPoint: {fileID: 3049922895871073084, guid: 27eb201c7dd70d7479eb355d88e3ea08, type: 3}
---- !u!114 &5440666626104908100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5440666626104908123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3a3f4faedcda1b4893b97f6409f3d98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linkRay: {fileID: 0}
-  globalVariable: {fileID: 0}
-  player2Ability: {fileID: 5440666626104908103}
-  player2Collision: {fileID: 5440666626104908102}
-  isMoving: 0
-  isBraking: 0
-  isBrakingWithInput: 0
-  maxPlayerSpeed: 5
-  curPlayerSpeed: 5
-  playerBrakingPower: 5
-  inputDir: {x: 0, y: 0}
 --- !u!114 &5440666626104908099
 MonoBehaviour:
   m_ObjectHideFlags: 0

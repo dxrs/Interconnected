@@ -28,6 +28,7 @@ public class Player2Collision : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
     }
 
     private void Update()
@@ -66,6 +67,8 @@ public class Player2Collision : MonoBehaviour
                 if (LevelStatus.levelStatus.levelID != 4)
                     player2Health.curPlayer2Health--;
 
+                rb.simulated = false;
+                player2Movement.isMoving = false;
                 player2Movement.isBraking = true;
                 globalVariable.isTriggeredWithObstacle = true;
                 Instantiate(playerHitParticle, transform.position, Quaternion.identity);
@@ -144,6 +147,7 @@ public class Player2Collision : MonoBehaviour
     IEnumerator player2SetPosToCheckpoint()
     {
         yield return new WaitForSeconds(0.5f);
+        rb.simulated = true;
         globalVariable.isTriggeredWithObstacle = false;
     }
 }

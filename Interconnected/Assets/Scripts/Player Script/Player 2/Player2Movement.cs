@@ -18,11 +18,12 @@ public class Player2Movement : MonoBehaviour
     public bool isBrakingWithInput;
 
     public float maxPlayerSpeed;
-    [SerializeField] float curPlayerSpeed;
     [SerializeField] float playerBrakingPower;
 
     [HideInInspector]
     public Vector2 inputDir;
+
+    float curMaxSpeed = 8;
 
     Rigidbody2D rb;
 
@@ -34,6 +35,7 @@ public class Player2Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         isBraking = true;
+        maxPlayerSpeed = curMaxSpeed;
     }
 
     private void Update()
@@ -43,6 +45,7 @@ public class Player2Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log(inputDir);
         if (player2Ability.isDashing) { return; }
         playerMovement();
         playerBraking();
@@ -59,70 +62,82 @@ public class Player2Movement : MonoBehaviour
         }
         if (!linkRay.isPlayerLinkedEachOther || globalVariable.isTriggeredWithObstacle)
         {
-            maxPlayerSpeed = 5;
+            maxPlayerSpeed = curMaxSpeed;
         }
         if (globalVariable.isTriggeredWithObstacle 
             || GameFinish.gameFinish.isGameFinish 
             || globalVariable.isPlayerSharingLives
             || player2Collision.isStopAtCameraTrigger)
         {
-            curPlayerSpeed = 0;
+            maxPlayerSpeed = 0;
         }
         else
         {
-            curPlayerSpeed = maxPlayerSpeed;
+            maxPlayerSpeed = curMaxSpeed;
         }
         if (GameFinish.gameFinish.isGameFinish)
         {
+            isMoving = false;
             maxPlayerSpeed = Mathf.Lerp(maxPlayerSpeed, 0, 5 * Time.deltaTime);
             rb.drag = Mathf.Lerp(rb.drag, 10, 6 * Time.deltaTime);
+            rb.simulated = false;
         }
     }
 
     private void playerMovement()
     {
-        if (!isBraking && !isBrakingWithInput)
+        if (!globalVariable.isTriggeredWithObstacle) 
         {
-            rb.AddForce(inputDir * maxPlayerSpeed);
-            rb.velocity = Vector2.ClampMagnitude(rb.velocity, curPlayerSpeed);
+            if (!isBraking && !isBrakingWithInput)
+            {
+                rb.AddForce(inputDir * maxPlayerSpeed);
+                rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxPlayerSpeed);
+            }
+
         }
+     
 
     }
 
     private void playerBraking()
     {
-        if (!GameFinish.gameFinish.isGameFinish) 
+        if (!GameFinish.gameFinish.isGameFinish)
         {
-            if (isBraking || player2Collision.isCrashToOtherBoat)
+            if (isMoving)
             {
-                float lerpSpeed = isBrakingWithInput ? 10f : 2.5f;
-                rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
+                isBraking = false;
             }
-            else if (isBrakingWithInput)
+            if (!isMoving) { isBraking = true; }
+            if (!globalVariable.isTriggeredWithObstacle) 
             {
-                rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, 5f * Time.deltaTime);
-            }
-            else
-            {
-                Vector2 force = inputDir * maxPlayerSpeed * Time.deltaTime;
+                if (isBraking || player2Collision.isCrashToOtherBoat)
+                {
+                    float lerpSpeed = isBrakingWithInput ? 10f : 3.5f;
+                    rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
+                }
+                else if (isBrakingWithInput)
+                {
+                    rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, 5f * Time.deltaTime);
+                }
+                else
+                {
+                    Vector2 force = inputDir * maxPlayerSpeed * Time.deltaTime;
 
-                rb.AddForce(force, ForceMode2D.Impulse);
-                rb.velocity = Vector2.ClampMagnitude(rb.velocity, curPlayerSpeed);
+                    rb.AddForce(force, ForceMode2D.Impulse);
+                    rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxPlayerSpeed);
 
-                rb.drag = 0; 
+                    rb.drag = 0;
+                }
             }
+
         }
-        if (isMoving)
-        {
-            isBraking = false;
-        }
-        if (!isMoving) { isBraking = true; }
+       
     }
 
     IEnumerator setMaxSpeedPlayer()
     {
-        yield return new WaitForSeconds(1);
-        maxPlayerSpeed = 5;
+        yield return new WaitForSeconds(.5f);
+        maxPlayerSpeed = curMaxSpeed;
     }
 
     public void playerMovementInput(InputAction.CallbackContext context)

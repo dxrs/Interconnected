@@ -72,19 +72,22 @@ public class GlobalVariable : MonoBehaviour
     {
         if (player1 && player2 != null)
         {
-            if (isTriggeredWithObstacle)
+            if (!isTriggeredWithObstacle)
             {
-                p1Sr.enabled = false;
-                p2Sr.enabled = false;
-                p1cc.enabled = false;
-                p2cc.enabled = false;
-            }
-            else
-            {
-                p1Sr.enabled = true;
-                p2Sr.enabled = true;
+                StartCoroutine(ty());
+
                 p1cc.enabled = true;
                 p2cc.enabled = true;
+                p1Sr.enabled = true;
+                p2Sr.enabled = true;
+            }
+            if(isTriggeredWithObstacle)
+            {
+                 p1Sr.enabled = false;
+                 p2Sr.enabled = false;
+                 p1cc.enabled = false;
+                 p2cc.enabled = false;
+
             }
         }
     }
@@ -115,6 +118,12 @@ public class GlobalVariable : MonoBehaviour
         }
     }
 
+
+    IEnumerator ty() 
+    {
+        yield return new WaitForSeconds(.4f);
+      
+    }
     IEnumerator defaultValueCurDoorValue() 
     {
         

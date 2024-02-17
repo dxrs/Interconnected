@@ -20,11 +20,12 @@ public class Player1Movement : MonoBehaviour
     public bool isBrakingWithInput;
 
     public float maxPlayerSpeed;
-    [SerializeField] float curPlayerSpeed;
     [SerializeField] float playerBrakingPower;
 
     [HideInInspector]
     public Vector2 inputDir;
+
+    float curMaxSpeed = 8;
 
     Rigidbody2D rb;
 
@@ -37,6 +38,7 @@ public class Player1Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         isBraking = true;
+        maxPlayerSpeed = curMaxSpeed;
     }
 
     private void Update()
@@ -53,11 +55,15 @@ public class Player1Movement : MonoBehaviour
 
     private void playerMovement() 
     {
-        if (!isBraking && !isBrakingWithInput) 
+        if (!globalVariable.isTriggeredWithObstacle) 
         {
-            rb.AddForce(inputDir * maxPlayerSpeed);
-            rb.velocity = Vector2.ClampMagnitude(rb.velocity, curPlayerSpeed);
+            if (!isBraking && !isBrakingWithInput)
+            {
+                rb.AddForce(inputDir * maxPlayerSpeed);
+                rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxPlayerSpeed);
+            }
         }
+       
 
     }
 
@@ -72,7 +78,7 @@ public class Player1Movement : MonoBehaviour
         }
         if (!linkRay.isPlayerLinkedEachOther || globalVariable.isTriggeredWithObstacle) 
         {
-            maxPlayerSpeed = 5;
+            maxPlayerSpeed = curMaxSpeed;
 
         }
         if(globalVariable.isTriggeredWithObstacle 
@@ -80,16 +86,18 @@ public class Player1Movement : MonoBehaviour
             || globalVariable.isPlayerSharingLives
             || player1Collision.isStopAtCameraTrigger) 
         {
-            curPlayerSpeed = 0;
+            maxPlayerSpeed = 0;
         }
         else 
         {
-            curPlayerSpeed = maxPlayerSpeed;
+            maxPlayerSpeed = curMaxSpeed;
         }
         if (GameFinish.gameFinish.isGameFinish) 
         {
+            isMoving = false;
             maxPlayerSpeed = Mathf.Lerp(maxPlayerSpeed,0,5*Time.deltaTime);
             rb.drag = Mathf.Lerp(rb.drag, 10, 6 * Time.deltaTime);
+            rb.simulated = false;
         }
     }
 
@@ -97,38 +105,38 @@ public class Player1Movement : MonoBehaviour
     {
         if (!GameFinish.gameFinish.isGameFinish) 
         {
-            if (isBraking || player1Collision.isCrashToOtherBoat)
+            if (!globalVariable.isTriggeredWithObstacle) 
             {
-                float lerpSpeed = isBrakingWithInput ? 10f : 2.5f;
-                rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
+                if (isBraking || player1Collision.isCrashToOtherBoat)
+                {
+                    float lerpSpeed = isBrakingWithInput ? 10f : 3.5f;
+                    rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
+                }
+                else if (isBrakingWithInput)
+                {
+                    rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, 5f * Time.deltaTime);
+                }
+                else
+                {
+                    Vector2 force = inputDir * maxPlayerSpeed * Time.deltaTime;
+
+                    rb.AddForce(force, ForceMode2D.Impulse);
+                    rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxPlayerSpeed);
+
+                    rb.drag = 0; // Mengatur rb.drag menjadi 0 ketika tidak ada pengereman
+                }
             }
-            else if (isBrakingWithInput)
+            if (isMoving)
             {
-                rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, 5f * Time.deltaTime);
+                isBraking = false;
             }
-            else
-            {
-                // Menggunakan deltaTime untuk menjaga kecepatan yang konsisten
-                Vector2 force = inputDir * maxPlayerSpeed * Time.deltaTime;
+            if (!isMoving) { isBraking = true; }
 
-                // Menggunakan AddForce untuk memberikan kekuatan pada rigidbody
-                rb.AddForce(force, ForceMode2D.Impulse);
-
-                // Membatasi kecepatan agar tidak melebihi maksimum
-                rb.velocity = Vector2.ClampMagnitude(rb.velocity, curPlayerSpeed);
-
-                rb.drag = 0; // Mengatur rb.drag menjadi 0 ketika tidak ada pengereman
-                //return;
-            }
         }
-
-
-        if (isMoving)
-        {
-            isBraking = false;
-        }
-        if (!isMoving) { isBraking = true; }
+       
+       
     }
+
 
     IEnumerator setMaxSpeedPlayer() 
     {
@@ -153,12 +161,10 @@ public class Player1Movement : MonoBehaviour
                 if (context.performed)
                 {
                     MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
-                    //isBraking = false;
                     isMoving = true;
                 }
                 else
                 {
-                    //isBraking = true;
                     isMoving = false;
                 }
                 inputDir = context.ReadValue<Vector2>();

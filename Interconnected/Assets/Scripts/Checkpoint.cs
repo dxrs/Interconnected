@@ -25,11 +25,19 @@ public class Checkpoint : MonoBehaviour
 
     private void Update()
     {
-        if (LevelStatus.levelStatus.levelID != 2) 
+        if (LevelStatus.levelStatus.levelID != 3) 
         {
             if (GlobalVariable.globalVariable.isTriggeredWithObstacle && !GameOver.gameOver.isGameOver)
             {
                 StartCoroutine(moveToPos());
+            }
+        }
+        if (LevelStatus.levelStatus.levelID == 4) 
+        {
+            if (Tutorial.tutorial.cameraMoveValue == 3) 
+            {
+                player1CheckpintPos[0].position = new Vector2(51.4f, -2.29f);
+                player2CheckpintPos[0].position = new Vector2(70.1f, -12.25f);
             }
         }
        

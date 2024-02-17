@@ -68,9 +68,11 @@ public class Player1Collision : MonoBehaviour
         {
             if (!Player2Ability.player2Ability.isShielding)
             {
-                if (LevelStatus.levelStatus.levelID != 4)
+                if (LevelStatus.levelStatus.levelID != 4) 
                     player1Health.curPlayer1Health--;
 
+                rb.simulated = false;
+                player1Movement.isMoving = false;
                 player1Movement.isBraking = true;
                 globalVariable.isTriggeredWithObstacle = true;
                 Instantiate(playerHitParticle, transform.position, Quaternion.identity);
@@ -134,7 +136,10 @@ public class Player1Collision : MonoBehaviour
     IEnumerator player1SetPosToCheckpoint()
     {
         yield return new WaitForSeconds(0.5f);
+        rb.simulated = true;
         globalVariable.isTriggeredWithObstacle = false;
+
+
     }
 
     public void player1BoucedCollision(Collider2D collider)
