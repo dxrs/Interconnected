@@ -26,6 +26,10 @@ public class Player1Movement : MonoBehaviour
     [HideInInspector]
     public Vector2 inputDir;
 
+    [SerializeField] Transform playerSprite;
+    bool isFacingRight;
+    float faceDirection;
+
     Rigidbody2D rb;
 
     private void Awake()
@@ -42,6 +46,16 @@ public class Player1Movement : MonoBehaviour
     private void Update()
     {
         playerSpeedComparison();
+        print(inputDir);
+        faceDirection = inputDir.x;
+        if(faceDirection > 0 && isFacingRight )
+        {
+            flip();
+        }
+        if(faceDirection < 0 && !isFacingRight )
+        {
+            flip();
+        }
     }
 
     private void FixedUpdate()
@@ -176,6 +190,14 @@ public class Player1Movement : MonoBehaviour
 
         }
         else { isBrakingWithInput = false; }
+    }
+
+
+    //buat hadap spite
+    private void flip()
+    {
+        isFacingRight = !isFacingRight;
+        playerSprite.transform.Rotate(0,180,0);
     }
 
    
