@@ -45,7 +45,6 @@ public class Player2Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(inputDir);
         if (player2Ability.isDashing) { return; }
         playerMovement();
         playerBraking();
@@ -55,17 +54,16 @@ public class Player2Movement : MonoBehaviour
     {
         if (maxPlayerSpeed <= 0)
         {
-            if (linkRay.isPlayerLinkedEachOther && !globalVariable.isTriggeredWithObstacle)
+            if (linkRay.isPlayerLinkedEachOther && !globalVariable.isPlayerDestroyed)
             {
                 StartCoroutine(setMaxSpeedPlayer());
             }
         }
-        if (!linkRay.isPlayerLinkedEachOther || globalVariable.isTriggeredWithObstacle)
+        if (!linkRay.isPlayerLinkedEachOther || globalVariable.isPlayerDestroyed)
         {
             maxPlayerSpeed = curMaxSpeed;
         }
-        if (globalVariable.isTriggeredWithObstacle 
-            || GameFinish.gameFinish.isGameFinish 
+        if (globalVariable.isPlayerDestroyed 
             || globalVariable.isPlayerSharingLives
             || player2Collision.isStopAtCameraTrigger)
         {
@@ -86,7 +84,7 @@ public class Player2Movement : MonoBehaviour
 
     private void playerMovement()
     {
-        if (!globalVariable.isTriggeredWithObstacle) 
+        if (!globalVariable.isPlayerDestroyed) 
         {
             if (!isBraking && !isBrakingWithInput)
             {
@@ -108,7 +106,7 @@ public class Player2Movement : MonoBehaviour
                 isBraking = false;
             }
             if (!isMoving) { isBraking = true; }
-            if (!globalVariable.isTriggeredWithObstacle) 
+            if (!globalVariable.isPlayerDestroyed) 
             {
                 if (isBraking || player2Collision.isCrashToOtherBoat)
                 {
@@ -146,7 +144,7 @@ public class Player2Movement : MonoBehaviour
 
         if (!isLevel4 || !player2Collision.isStopAtCameraTrigger)
         {
-            if (!globalVariable.isTriggeredWithObstacle
+            if (!globalVariable.isPlayerDestroyed
                 && !GameFinish.gameFinish.isGameFinish
                 && !GameOver.gameOver.isGameOver
                 && !Pause.pause.isGamePaused
@@ -156,7 +154,11 @@ public class Player2Movement : MonoBehaviour
                 if (context.performed)
                 {
                     MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
-                    isMoving = true;
+                    if (globalVariable.isPlayerDestroyed)
+                    {
+                        isMoving = false;
+                    }
+                    else { isMoving = true; }
                 }
                 else
                 {
@@ -171,7 +173,7 @@ public class Player2Movement : MonoBehaviour
     //braking input
     public void playerBrakeInput(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !globalVariable.isPlayerDestroyed)
         {
             isBrakingWithInput = true;
 

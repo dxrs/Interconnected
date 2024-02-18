@@ -17,7 +17,7 @@ public class PlayerShield : MonoBehaviour
     void Update()
     {
         transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
-        if (GlobalVariable.globalVariable.isTriggeredWithObstacle) 
+        if (GlobalVariable.globalVariable.isPlayerDestroyed) 
         {
             sr.enabled = false;
         }

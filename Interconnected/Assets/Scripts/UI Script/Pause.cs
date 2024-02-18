@@ -47,7 +47,6 @@ public class Pause : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
             {
-               //MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
                 if (!isGamePaused)
                 {
                     isGamePaused = true;
@@ -67,7 +66,7 @@ public class Pause : MonoBehaviour
     {
         if (isGamePaused)
         {
-        
+            pauseUI.SetActive(true);
             if (MouseCursorActivated.mouseCursorActivated.isMouseActive)
             {
                 curValueButton = buttonHighlightedValue;
@@ -92,7 +91,7 @@ public class Pause : MonoBehaviour
         
         if(isGamePaused || sceneSystem.isRestartScene || sceneSystem.isExitScene) 
         {
-            pauseUI.SetActive(true);
+            
         }
     }
     void selectorPos() 
@@ -152,7 +151,6 @@ public class Pause : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Gamepad Enter")) 
             {
-                //isGamePaused = false;
                 if (curValueButton == 1) 
                 {
                     sceneSystem.isRestartScene = true;
@@ -226,22 +224,9 @@ public class Pause : MonoBehaviour
     public void onClickRestart() 
     {
         sceneSystem.isRestartScene = true;
-
-        //isGamePaused = false;
-
     }
     public void onClickExit() 
     {
         sceneSystem.isExitScene = true;
-
-        //isGamePaused = false;
-    }
-
-    public void ok(InputAction.CallbackContext context) 
-    {
-        if (context.performed) 
-        {
-            Debug.Log("pause");
-        }
     }
 }

@@ -88,7 +88,7 @@ public class Player1Health : MonoBehaviour // kurang slow motion
     public void shareLivesInput(InputAction.CallbackContext context) 
     {
         if ((LevelStatus.levelStatus.levelID != 4 &&
-             !globalVariable.isTriggeredWithObstacle
+             !globalVariable.isPlayerDestroyed
              && !GameFinish.gameFinish.isGameFinish
              && !GameOver.gameOver.isGameOver
              && !Pause.pause.isGamePaused

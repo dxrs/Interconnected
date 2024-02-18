@@ -74,13 +74,20 @@ public class Player1Collision : MonoBehaviour
                 rb.simulated = false;
                 player1Movement.isMoving = false;
                 player1Movement.isBraking = true;
-                globalVariable.isTriggeredWithObstacle = true;
+                globalVariable.playerInvisible();
+                if (player1Health.curPlayer1Health >= 1) 
+                {
+                    globalVariable.isRopeVisible = false;
+                    globalVariable.isPlayerDestroyed = true;
+                    StartCoroutine(player1SetPosToCheckpoint());
+                }
+
                 Instantiate(playerHitParticle, transform.position, Quaternion.identity);
-                StartCoroutine(player1SetPosToCheckpoint());
+                
             }
             else
             {
-                if (!globalVariable.isTriggeredWithObstacle)
+                if (!globalVariable.isPlayerDestroyed)
                     player1BoucedCollision(collision);
             }
         }
@@ -121,7 +128,7 @@ public class Player1Collision : MonoBehaviour
             }
             else
             {
-                if (!globalVariable.isTriggeredWithObstacle)
+                if (!globalVariable.isPlayerDestroyed)
                     player1BoucedCollision(collision);
             }
         }
@@ -133,14 +140,7 @@ public class Player1Collision : MonoBehaviour
             GameFinish.gameFinish.finishValue++;
     }
 
-    IEnumerator player1SetPosToCheckpoint()
-    {
-        yield return new WaitForSeconds(0.5f);
-        rb.simulated = true;
-        globalVariable.isTriggeredWithObstacle = false;
-
-
-    }
+   
 
     public void player1BoucedCollision(Collider2D collider)
     {
@@ -148,7 +148,7 @@ public class Player1Collision : MonoBehaviour
 
         // Mengurangi dampak pantulan jika isBrakingWithInput aktif
         float adjustedCrashForce = player1Movement.isBrakingWithInput ? crashForceValue * 0.5f : crashForceValue;
-        Debug.Log($"crashForceValue: {crashForceValue}, adjustedCrashForce: {adjustedCrashForce}");
+        //Debug.Log($"crashForceValue: {crashForceValue}, adjustedCrashForce: {adjustedCrashForce}");
 
         Vector2 backwardMovePos = (transform.position - collider.transform.position).normalized;
         rb.AddForce(backwardMovePos * adjustedCrashForce, ForceMode2D.Impulse); // sedang konflik dgn void playerMovement
@@ -161,5 +161,17 @@ public class Player1Collision : MonoBehaviour
         isCrashToOtherBoat = true;
         yield return new WaitForSeconds(.5f);
         isCrashToOtherBoat = false;
+        
+    }
+
+    IEnumerator player1SetPosToCheckpoint()
+    {
+        yield return new WaitForSeconds(0.5f);
+        rb.simulated = true;
+        globalVariable.isPlayerDestroyed = false;
+        yield return new WaitForSeconds(.5f);
+        globalVariable.playerVisible();
+        globalVariable.isRopeVisible = true;
+
     }
 }

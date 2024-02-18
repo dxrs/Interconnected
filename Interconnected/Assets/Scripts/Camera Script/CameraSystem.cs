@@ -17,8 +17,6 @@ public class CameraSystem : MonoBehaviour
     [SerializeField] float cameraMaxZoom;
     [SerializeField] float cameraZoomLimiter;
 
-    [SerializeField] BoxCollider2D cameraCollider;
-
     Vector3 cameraVelocity;
 
     private void Start()
@@ -35,7 +33,7 @@ public class CameraSystem : MonoBehaviour
         if (LevelStatus.levelStatus.levelID == 1) 
         {
             if (!GameOver.gameOver.isGameOver
-            && !GlobalVariable.globalVariable.isTriggeredWithObstacle
+            && !GlobalVariable.globalVariable.isPlayerDestroyed
             && ReadyToStart.readyToStart.isGameStart)
             {
                 if (cameraTargetObject[0] != null && cameraTargetObject[1] != null)
@@ -44,21 +42,27 @@ public class CameraSystem : MonoBehaviour
                     {
                         cameraZoom();
                         cameraMovement();
-                        UpdateCameraCollider();
                     }
                 }
 
             }
             if (GameOver.gameOver.isGameOver) 
             {
-                if (Player1Health.player1Health.curPlayer1Health <= 0) 
+                for(int k = 0; k < cameraTargetObject.Count; k++) 
                 {
-                    // zoom in dan fokus ke cameraTargetObject[0]
+                    if (cameraTargetObject[k] != null) 
+                    {
+                        if (Player1Health.player1Health.curPlayer1Health <= 0)
+                        {
+                            focusOnNoobPlayer(cameraTargetObject[0]);
+                        }
+                        if (Player2Health.player2Health.curPlayer2Health <= 0)
+                        {
+                            focusOnNoobPlayer(cameraTargetObject[1]);
+                        }
+                    }
                 }
-                if (Player2Health.player2Health.curPlayer2Health <= 0) 
-                {
-                    // zoom in dan fokus ke cameraTargetObject[1]
-                }
+                
             }
         }
         if (LevelStatus.levelStatus.levelID == 4) 
@@ -117,11 +121,14 @@ public class CameraSystem : MonoBehaviour
         return bounds.center;
     }
 
-    private void UpdateCameraCollider()
+    private void focusOnNoobPlayer(Transform playerTransform)
     {
-        // Sesuaikan ukuran collider sesuai dengan orthographic size
-        cameraCollider.size = new Vector2(cam.orthographicSize * cam.aspect * 2f, cam.orthographicSize * 2f);
-    }
+        // Tentukan posisi dan zoom baru untuk fokus pada pemain
+        Vector3 newCameraPosition = playerTransform.position + cameraOffset;
+        float newZoom = Mathf.Lerp(cameraMaxZoom, 1f, camBoundDistance() / cameraZoomLimiter);
 
-    
+        // Set posisi dan zoom kamera dengan perlahan
+        transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition, ref cameraVelocity, smoothCameraTimeMovemement);
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
+    }
 }

@@ -20,6 +20,8 @@ public class Player2Collision : MonoBehaviour
 
     Rigidbody2D rb;
 
+    
+
     private void Awake()
     {
         if (player2Collision == null) { player2Collision = this; }
@@ -67,16 +69,18 @@ public class Player2Collision : MonoBehaviour
                 if (LevelStatus.levelStatus.levelID != 4)
                     player2Health.curPlayer2Health--;
 
+  
                 rb.simulated = false;
                 player2Movement.isMoving = false;
                 player2Movement.isBraking = true;
-                globalVariable.isTriggeredWithObstacle = true;
+                globalVariable.playerInvisible();
+                globalVariable.isPlayerDestroyed = true;
                 Instantiate(playerHitParticle, transform.position, Quaternion.identity);
                 StartCoroutine(player2SetPosToCheckpoint());
             }
             else
             {
-                if (!globalVariable.isTriggeredWithObstacle)
+                if (!globalVariable.isPlayerDestroyed)
                     player2BouncedCollision(collision);
             }
         }
@@ -111,7 +115,7 @@ public class Player2Collision : MonoBehaviour
             }
             else
             {
-                if (!globalVariable.isTriggeredWithObstacle)
+                if (!globalVariable.isPlayerDestroyed)
                     player2BouncedCollision(collision);
             }
         }
@@ -148,6 +152,8 @@ public class Player2Collision : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         rb.simulated = true;
-        globalVariable.isTriggeredWithObstacle = false;
+        globalVariable.isPlayerDestroyed = false;
+        yield return new WaitForSeconds(.5f);
+        globalVariable.playerVisible();
     }
 }

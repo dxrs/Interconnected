@@ -59,7 +59,7 @@ public class Tutorial : MonoBehaviour
            
         }
 
-        if (GlobalVariable.globalVariable.isTriggeredWithObstacle) 
+        if (GlobalVariable.globalVariable.isPlayerDestroyed) 
         {
             playerBrakingValue = 0;
         }

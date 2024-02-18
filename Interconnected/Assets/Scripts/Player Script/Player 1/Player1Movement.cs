@@ -55,7 +55,7 @@ public class Player1Movement : MonoBehaviour
 
     private void playerMovement() 
     {
-        if (!globalVariable.isTriggeredWithObstacle) 
+        if (!globalVariable.isPlayerDestroyed) 
         {
             if (!isBraking && !isBrakingWithInput)
             {
@@ -71,18 +71,17 @@ public class Player1Movement : MonoBehaviour
     {
         if (maxPlayerSpeed <= 0) 
         {
-            if(linkRay.isPlayerLinkedEachOther && !globalVariable.isTriggeredWithObstacle) 
+            if(linkRay.isPlayerLinkedEachOther && !globalVariable.isPlayerDestroyed) 
             {
                 StartCoroutine(setMaxSpeedPlayer());
             }
         }
-        if (!linkRay.isPlayerLinkedEachOther || globalVariable.isTriggeredWithObstacle) 
+        if (!linkRay.isPlayerLinkedEachOther || globalVariable.isPlayerDestroyed) 
         {
             maxPlayerSpeed = curMaxSpeed;
 
         }
-        if(globalVariable.isTriggeredWithObstacle 
-            || GameFinish.gameFinish.isGameFinish 
+        if(globalVariable.isPlayerDestroyed 
             || globalVariable.isPlayerSharingLives
             || player1Collision.isStopAtCameraTrigger) 
         {
@@ -99,14 +98,26 @@ public class Player1Movement : MonoBehaviour
             rb.drag = Mathf.Lerp(rb.drag, 10, 6 * Time.deltaTime);
             rb.simulated = false;
         }
+        if (GameOver.gameOver.isGameOver) 
+        {
+            maxPlayerSpeed = 0;
+            isMoving = false;
+            rb.simulated = false;
+        }
     }
 
     private void playerBraking() 
     {
         if (!GameFinish.gameFinish.isGameFinish) 
         {
-            if (!globalVariable.isTriggeredWithObstacle) 
+            if (!globalVariable.isPlayerDestroyed) 
             {
+                if (isMoving)
+                {
+                    isBraking = false;
+                }
+                if (!isMoving) { isBraking = true; }
+
                 if (isBraking || player1Collision.isCrashToOtherBoat)
                 {
                     float lerpSpeed = isBrakingWithInput ? 10f : 3.5f;
@@ -126,12 +137,7 @@ public class Player1Movement : MonoBehaviour
                     rb.drag = 0; // Mengatur rb.drag menjadi 0 ketika tidak ada pengereman
                 }
             }
-            if (isMoving)
-            {
-                isBraking = false;
-            }
-            if (!isMoving) { isBraking = true; }
-
+            
         }
        
        
@@ -151,7 +157,7 @@ public class Player1Movement : MonoBehaviour
 
         if (!isLevel4 || !player1Collision.isStopAtCameraTrigger)
         {
-            if (!globalVariable.isTriggeredWithObstacle
+            if (!globalVariable.isPlayerDestroyed
                 && !GameFinish.gameFinish.isGameFinish
                 && !GameOver.gameOver.isGameOver
                 && !Pause.pause.isGamePaused
@@ -161,7 +167,12 @@ public class Player1Movement : MonoBehaviour
                 if (context.performed)
                 {
                     MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
-                    isMoving = true;
+                    if (globalVariable.isPlayerDestroyed) 
+                    {
+                        isMoving = false;
+                    }
+                    else { isMoving = true; }
+                    
                 }
                 else
                 {
@@ -175,7 +186,7 @@ public class Player1Movement : MonoBehaviour
     //braking input
     public void playerBrakeInput(InputAction.CallbackContext context) 
     {
-        if (context.performed) 
+        if (context.performed && !globalVariable.isPlayerDestroyed) 
         {
             MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
             isBrakingWithInput = true;

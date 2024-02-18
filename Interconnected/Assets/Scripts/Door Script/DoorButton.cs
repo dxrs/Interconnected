@@ -17,7 +17,7 @@ public class DoorButton : MonoBehaviour
 
     private void Update()
     {
-        if (!GlobalVariable.globalVariable.isTriggeredWithObstacle) 
+        if (!GlobalVariable.globalVariable.isPlayerDestroyed) 
         {
             for (int i = 1; i <= GlobalVariable.globalVariable.maxDoor; i++)
             {
@@ -86,9 +86,11 @@ public class DoorButton : MonoBehaviour
 
         }
 
+    }
 
-        
-
+    private void OnDestroy()
+    {
+        //Checkpoint.checkpoint.curCheckpointValue++;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

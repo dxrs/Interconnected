@@ -30,7 +30,7 @@ public class GarbageCollector : MonoBehaviour
             transform.position = midPos;
         }
 
-        if(!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isTriggeredWithObstacle) 
+        if(!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isPlayerDestroyed) 
         {
             garbageCollected = 0;
         }

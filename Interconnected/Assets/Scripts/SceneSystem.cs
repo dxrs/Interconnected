@@ -12,7 +12,9 @@ public class SceneSystem : MonoBehaviour
     public bool isNextScene;
     public bool isChangeScene;
 
-    [SerializeField] float delayTime;
+    [SerializeField] float delayTimeRestart;
+    [SerializeField] float delayTimeExit;
+    [SerializeField] float delayTimeNextScene;
 
     private void Awake()
     {
@@ -55,21 +57,21 @@ public class SceneSystem : MonoBehaviour
 
     IEnumerator waitToRestartScene() 
     {
-        yield return new WaitForSecondsRealtime(1);
+        yield return new WaitForSecondsRealtime(delayTimeRestart);
         int currentRestartScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentRestartScene);
     }
 
     IEnumerator waitToExitScene() 
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(delayTimeExit);
         SceneManager.LoadScene(0); // ke select level nanti
                                    // exit scene di sini aja
     }
 
     IEnumerator waitToNextScene() 
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(delayTimeNextScene);
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene + 1);
 

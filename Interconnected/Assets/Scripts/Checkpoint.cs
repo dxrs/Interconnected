@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+    public static Checkpoint checkpoint;
+
     public int curCheckpointValue;
 
     [SerializeField] int maxCheckpointValue;
@@ -14,7 +16,10 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] GameObject player1;
     [SerializeField] GameObject player2;
 
-   
+    private void Awake()
+    {
+        checkpoint = this;
+    }
     private void Start()
     {
         curCheckpointValue = 1;
@@ -25,38 +30,42 @@ public class Checkpoint : MonoBehaviour
 
     private void Update()
     {
-        if (LevelStatus.levelStatus.levelID != 3) 
+
+        if (LevelStatus.levelStatus.levelID != 3)
         {
-            if (GlobalVariable.globalVariable.isTriggeredWithObstacle && !GameOver.gameOver.isGameOver)
+            if (GlobalVariable.globalVariable.isPlayerDestroyed && !GameOver.gameOver.isGameOver)
             {
                 StartCoroutine(moveToPos());
             }
         }
-        if (LevelStatus.levelStatus.levelID == 4) 
+        if (LevelStatus.levelStatus.levelID == 4)
         {
-            if (Tutorial.tutorial.cameraMoveValue == 3) 
+            if (Tutorial.tutorial.cameraMoveValue == 3)
             {
                 player1CheckpintPos[0].position = new Vector2(51.4f, -2.29f);
                 player2CheckpintPos[0].position = new Vector2(70.1f, -12.25f);
             }
         }
-       
     }
 
     IEnumerator moveToPos()
     {
-        yield return new WaitForSeconds(.5f);
-        int index = curCheckpointValue - 1;
-
-        if (index >= 0 && index < player1CheckpintPos.Length)
+        if (!GameOver.gameOver.isGameOver) 
         {
-            if(player1 && player2 != null) 
-            {
-                player1.transform.position = player1CheckpintPos[index].position;
-                player2.transform.position = player2CheckpintPos[index].position;
-            }
+            yield return new WaitForSeconds(.5f);
+            int index = curCheckpointValue - 1;
 
+            if (index >= 0 && index < player1CheckpintPos.Length)
+            {
+                if (player1 && player2 != null)
+                {
+                    player1.transform.position = player1CheckpintPos[index].position;
+                    player2.transform.position = player2CheckpintPos[index].position;
+                }
+
+            }
         }
+       
 
 
     }

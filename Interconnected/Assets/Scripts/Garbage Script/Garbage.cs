@@ -46,7 +46,7 @@ public class Garbage : MonoBehaviour
         {
             if (isGarbageCollected)
             {
-                if (LinkRay.linkRay.isPlayerLinkedEachOther && !GlobalVariable.globalVariable.isTriggeredWithObstacle)
+                if (LinkRay.linkRay.isPlayerLinkedEachOther && !GlobalVariable.globalVariable.isPlayerDestroyed)
                 {
                     garbagePosition = garbageSpawner.transform.position;
 
@@ -59,7 +59,7 @@ public class Garbage : MonoBehaviour
 
                     transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), lerpSpeed * Time.deltaTime);
                 }
-                if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isTriggeredWithObstacle )
+                if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isPlayerDestroyed)
                 {
                     transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
                     StartCoroutine(garbageRigidBrake(1f));

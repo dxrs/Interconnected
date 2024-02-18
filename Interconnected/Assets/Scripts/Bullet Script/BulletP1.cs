@@ -29,10 +29,10 @@ public class BulletP1 : MonoBehaviour
 
     private void Update()
     {
-        if (targetToPlayer2 != null && !GlobalVariable.globalVariable.isTriggeredWithObstacle
-                        && !GlobalVariable.globalVariable.isNotShoot
+        if (targetToPlayer2 != null && !GlobalVariable.globalVariable.isPlayerDestroyed
                         && !SceneSystem.sceneSystem.isExitScene
-                        && !SceneSystem.sceneSystem.isRestartScene)
+                        && !SceneSystem.sceneSystem.isRestartScene
+                        && !GameOver.gameOver.isGameOver)
         {
             transform.position = Vector2.MoveTowards(transform.position, targetToPlayer2.transform.position, bulletSpeed * Time.deltaTime);
 
@@ -48,13 +48,15 @@ public class BulletP1 : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
+        if (GlobalVariable.globalVariable.isRopeVisible) 
+        {
+            sr.enabled = true;
+        }
+        else 
+        {
+            sr.enabled = false;
+        }
        
-    }
-
-    private float GetDistanceToPlayer2()
-    {
-        return Vector2.Distance(transform.position, targetToPlayer2.transform.position);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
