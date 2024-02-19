@@ -99,16 +99,15 @@ public class Garbage : MonoBehaviour
        
 
     }
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Gear")  || collision.gameObject.CompareTag("Spike"))
+        if (collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Spike"))
         {
+            Debug.Log("kena");
             Vector2 blastForceVector = (transform.position - collision.transform.position).normalized;
             rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
             StartCoroutine(garbageRigidBrake(1f));
         }
-        
-        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

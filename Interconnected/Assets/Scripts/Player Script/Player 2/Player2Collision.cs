@@ -8,7 +8,6 @@ public class Player2Collision : MonoBehaviour
 
     public bool isCrashToOtherBoat;
     public bool isStopAtCameraTrigger;
-    public bool isStopAtDumpPoint;
 
     [SerializeField] GlobalVariable globalVariable;
     [SerializeField] Player2Movement player2Movement;
@@ -20,8 +19,6 @@ public class Player2Collision : MonoBehaviour
     [SerializeField] GameObject playerOutlineCollider;
 
     Rigidbody2D rb;
-
-    
 
     private void Awake()
     {

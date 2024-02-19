@@ -10,7 +10,6 @@ public class Player1Collision : MonoBehaviour
 
     public bool isCrashToOtherBoat;
     public bool isStopAtCameraTrigger;
-    public bool isStopAtDumpPoint;
 
     [SerializeField] GlobalVariable globalVariable;
     [SerializeField] Player1Movement player1Movement;
@@ -170,6 +169,7 @@ public class Player1Collision : MonoBehaviour
     {
         if (context.performed) 
         {
+            /*
             if (isStopAtDumpPoint) 
             {
                 if (GarbageCollector.garbageCollector.playerReadyToStoreValue[0] == 0)
@@ -182,6 +182,7 @@ public class Player1Collision : MonoBehaviour
                     GarbageCollector.garbageCollector.playerReadyToStoreValue[0] = 0;
                 }
             }
+            */
            
         }
     }

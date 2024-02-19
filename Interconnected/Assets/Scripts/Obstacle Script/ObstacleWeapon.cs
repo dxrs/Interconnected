@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObstacleWeapon : MonoBehaviour
@@ -19,29 +18,62 @@ public class ObstacleWeapon : MonoBehaviour
         StartCoroutine(setWeaponSpawn());
     }
 
-    IEnumerator setWeaponSpawn() 
+    IEnumerator setWeaponSpawn()
     {
+        Camera mainCamera = Camera.main;
+
         if (isBurstSpawn)
         {
             yield return new WaitForSeconds(burstDelayObjectSpawn);
         }
-        while (true) 
+
+        while (true)
         {
             float waitForNextSpawn = distanceBurstBulletSpawn / burstObjectCount;
-            if (isBurstSpawn) 
+
+            if (isBurstSpawn)
             {
-                for(int j=0; j < burstObjectCount; j++) 
+                for (int j = 0; j < burstObjectCount; j++)
                 {
-                    Instantiate(weaponBullet, bulletSpawner.transform.position, Quaternion.identity);
-                    yield return new WaitForSeconds(waitForNextSpawn);
+                    GameObject bullet = Instantiate(weaponBullet, bulletSpawner.transform.position, Quaternion.identity);
+
+                    // Periksa apakah peluru yang diinstansiasi terlihat oleh kamera
+                    if (IsObjectVisible(bullet, mainCamera))
+                    {
+                        yield return new WaitForSeconds(waitForNextSpawn);
+                    }
+                    else
+                    {
+                        // Jika tidak terlihat, hancurkan peluru
+                        Destroy(bullet);
+                    }
                 }
             }
-            else 
+            else
             {
-                Instantiate(weaponBullet, bulletSpawner.transform.position, Quaternion.identity);
+                GameObject bullet = Instantiate(weaponBullet, bulletSpawner.transform.position, Quaternion.identity);
+
+                if (!IsObjectVisible(bullet, mainCamera))
+                {
+                    Destroy(bullet);
+                }
             }
 
             yield return new WaitForSeconds(delayTime);
         }
+    }
+
+    bool IsObjectVisible(GameObject obj, Camera camera)
+    {
+        Renderer renderer = obj.GetComponent<Renderer>();
+
+        if (renderer != null)
+        {
+            Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
+            return GeometryUtility.TestPlanesAABB(planes, renderer.bounds);
+        }
+
+        // Jika objek tidak memiliki renderer, anggap objek tersebut terlihat
+        return true;
     }
 }

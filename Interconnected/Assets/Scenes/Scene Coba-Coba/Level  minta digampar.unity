@@ -1939,6 +1939,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &451268647 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2429221714610454707, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+  m_PrefabInstance: {fileID: 1361415948}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &458815152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3736,6 +3741,7 @@ Transform:
   - {fileID: 2046338045}
   - {fileID: 1069541511}
   - {fileID: 2112679833}
+  - {fileID: 451268647}
   m_Father: {fileID: 838206333}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6910,6 +6916,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7673157337343952067, guid: b3b9a778a8683bf4690278dd92f24eba, type: 3}
   m_PrefabInstance: {fileID: 7673157338148944022}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1361415948
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 777344157}
+    m_Modifications:
+    - target: {fileID: 2429221714610454706, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: m_Name
+      value: Wall Sine (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429221714610454707, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429221714610454707, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7538173
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429221714610454707, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.6289935
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429221714610454707, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429221714610454707, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.395
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429221714610454707, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429221714610454707, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429221714610454707, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429221714610454707, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429221714610454707, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429221714610454707, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429221714610454707, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429221714610454707, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429221714610456398, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: sineID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429221714610456398, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: sinePower
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429221714610456398, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: sineSpeed
+      value: -2.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
 --- !u!1 &1376623488
 GameObject:
   m_ObjectHideFlags: 0
@@ -10961,7 +11044,7 @@ MonoBehaviour:
   playerReadyToStoreValue: 0000000000000000
   garbageCollected: 0
   currentGarbageStored: 0
-  maxGarbageStored: 0
+  targetGarbageStored: 0
   player1: {fileID: 2097847137}
   player2: {fileID: 814672465}
 --- !u!1001 &2343648084958215712

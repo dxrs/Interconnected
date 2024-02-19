@@ -6995,7 +6995,7 @@ MonoBehaviour:
   playerReadyToStoreValue: 0000000000000000
   garbageCollected: 0
   currentGarbageStored: 0
-  maxGarbageStored: 0
+  targetGarbageStored: 0
   player1: {fileID: 2097847137}
   player2: {fileID: 814672465}
 --- !u!1001 &2216184236674110478
@@ -7706,7 +7706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7606320907494012610, guid: dc1b6d038fd81794ba874fdea47fc06a, type: 3}
       propertyPath: cameraMaxZoom
-      value: 3.4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7606320907494012610, guid: dc1b6d038fd81794ba874fdea47fc06a, type: 3}
       propertyPath: cameraMinZoom

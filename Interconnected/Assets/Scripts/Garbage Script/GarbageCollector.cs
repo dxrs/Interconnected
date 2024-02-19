@@ -15,7 +15,7 @@ public class GarbageCollector : MonoBehaviour
 
     public int garbageCollected;
     public int currentGarbageStored;
-    public int maxGarbageStored;
+    public int targetGarbageStored;
 
     [SerializeField] Transform player1;
     [SerializeField] Transform player2;
@@ -26,7 +26,7 @@ public class GarbageCollector : MonoBehaviour
     {
         garbageCollector = this;
         GameObject[] currentGarbageFloating = GameObject.FindGameObjectsWithTag("Garbage");
-        maxGarbageStored = currentGarbageFloating.Length;
+        targetGarbageStored = currentGarbageFloating.Length;
     }
     private void Update()
     {
