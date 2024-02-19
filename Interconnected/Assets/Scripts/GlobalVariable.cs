@@ -8,12 +8,10 @@ public class GlobalVariable : MonoBehaviour
     public static GlobalVariable globalVariable;
 
 
-    
-    public bool isTriggeredWithObstacle;
-    public bool isNotShoot;
+    public bool isPlayerDestroyed;
     public bool isTimerStart;
     public bool isPlayerSharingLives;
-
+    public bool isRopeVisible;
 
 
     public int maxDoor;
@@ -39,6 +37,8 @@ public class GlobalVariable : MonoBehaviour
 
     GameObject player1, player2;
 
+    bool isAddingCheckpointValue = false;
+
     private void Awake()
     {
         globalVariable = this;
@@ -47,19 +47,23 @@ public class GlobalVariable : MonoBehaviour
     {
         player1 = GameObject.FindGameObjectWithTag("Player 1");
         player2 = GameObject.FindGameObjectWithTag("Player 2");
+        isRopeVisible = true;
     }
 
     
 
     private void Update()
     {
+        if (isPlayerDestroyed) 
+        {
+            curDoorOpenValue = 0;
+        }
+        if (curDoorOpenValue == 2 && !isAddingCheckpointValue) 
+        {
+            //Checkpoint.checkpoint.curCheckpointValue++;
+            isAddingCheckpointValue = true;
+        }
         partOfSharingLives();
-
-
-        partOfTriggerWithObstacle();
-      
-
-       
 
         StartCoroutine(defaultValueCurDoorValue());
     }
@@ -68,25 +72,27 @@ public class GlobalVariable : MonoBehaviour
         waitTimeToShareLives = maxDelayTime;
     }
 
-    private void partOfTriggerWithObstacle() 
+    public void playerVisible() 
+    {
+        if(player1 && player2 != null) 
+        {
+            p1cc.enabled = true;
+            p2cc.enabled = true;
+            p1Sr.enabled = true;
+            p2Sr.enabled = true;
+        }
+       
+    }
+    public void playerInvisible()
     {
         if (player1 && player2 != null)
         {
-            if (isTriggeredWithObstacle)
-            {
-                p1Sr.enabled = false;
-                p2Sr.enabled = false;
-                p1cc.enabled = false;
-                p2cc.enabled = false;
-            }
-            else
-            {
-                p1Sr.enabled = true;
-                p2Sr.enabled = true;
-                p1cc.enabled = true;
-                p2cc.enabled = true;
-            }
+            p1Sr.enabled = false;
+            p2Sr.enabled = false;
+            p1cc.enabled = false;
+            p2cc.enabled = false;
         }
+       
     }
 
     private void partOfSharingLives() 
@@ -115,6 +121,12 @@ public class GlobalVariable : MonoBehaviour
         }
     }
 
+
+    IEnumerator ty() 
+    {
+        yield return new WaitForSeconds(.4f);
+      
+    }
     IEnumerator defaultValueCurDoorValue() 
     {
         
@@ -122,6 +134,7 @@ public class GlobalVariable : MonoBehaviour
         {
             yield return new WaitForSeconds(3);
             curDoorOpenValue = 0;
+            isAddingCheckpointValue = false;
         }
     }
 }

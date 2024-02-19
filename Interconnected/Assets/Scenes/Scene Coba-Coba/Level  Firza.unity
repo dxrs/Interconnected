@@ -425,10 +425,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1680b77e951cc064a8fa1d6ca67a2386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggeredWithObstacle: 0
-  isNotShoot: 0
+  isPlayerDestroyed: 0
   isTimerStart: 0
   isPlayerSharingLives: 0
+  isRopeVisible: 0
   maxDoor: 10
   curDoorOpenValue: 0
   curEnemySpawn: 0
@@ -1564,11 +1564,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9081289969987928055, guid: 0f8e527881b2d9044b25b72edf3b492a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.5
+      value: 97.6
       objectReference: {fileID: 0}
     - target: {fileID: 9081289969987928055, guid: 0f8e527881b2d9044b25b72edf3b492a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.35
+      value: 59.6
       objectReference: {fileID: 0}
     - target: {fileID: 9081289969987928055, guid: 0f8e527881b2d9044b25b72edf3b492a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3705,7 +3705,9 @@ MonoBehaviour:
   isExitScene: 0
   isNextScene: 0
   isChangeScene: 0
-  delayTime: 0
+  delayTimeRestart: 1.5
+  delayTimeExit: 1
+  delayTimeNextScene: 1
 --- !u!1 &1154285935
 GameObject:
   m_ObjectHideFlags: 0
@@ -4870,7 +4872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1397957811}
   m_Layer: 0
-  m_Name: DOOR
+  m_Name: Door Folder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5112,7 +5114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1489093269}
   m_Layer: 0
-  m_Name: GARBAGE OBJECT
+  m_Name: Garbage Folder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5968,7 +5970,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1785029592}
   m_Layer: 0
-  m_Name: OBSTACLE
+  m_Name: Obstacle Folder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6232,7 +6234,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834331225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 58.12, y: 14.42, z: 0}
+  m_LocalPosition: {x: 55.81, y: 14.59, z: 0}
   m_LocalScale: {x: 1.4693617, y: 1.6410059, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6456,7 +6458,7 @@ GameObject:
   - component: {fileID: 2029332840}
   - component: {fileID: 2029332839}
   m_Layer: 0
-  m_Name: Checkpoint
+  m_Name: Player Checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7103,9 +7105,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0.3
+  isGarbageStored: 0
+  playerReadyToStoreValue: 0000000000000000
   garbageCollected: 0
   currentGarbageStored: 0
-  maxGarbageStored: 0
+  targetGarbageStored: 0
   player1: {fileID: 2097847137}
   player2: {fileID: 814672465}
 --- !u!1001 &2216184236674110478
@@ -7824,7 +7828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7606320907494012610, guid: dc1b6d038fd81794ba874fdea47fc06a, type: 3}
       propertyPath: cameraMaxZoom
-      value: 3.4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7606320907494012610, guid: dc1b6d038fd81794ba874fdea47fc06a, type: 3}
       propertyPath: cameraMinZoom

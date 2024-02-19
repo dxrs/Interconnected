@@ -20,11 +20,14 @@ public class Player1Movement : MonoBehaviour
     public bool isBrakingWithInput;
 
     public float maxPlayerSpeed;
-    [SerializeField] float curPlayerSpeed;
+
     [SerializeField] float playerBrakingPower;
+    [SerializeField] float totalMaxSpeedPlayer1;
 
     [HideInInspector]
     public Vector2 inputDir;
+    [HideInInspector]
+    public float curMaxSpeed;
 
     [SerializeField] Transform playerSprite;
     bool isFacingRight;
@@ -35,12 +38,14 @@ public class Player1Movement : MonoBehaviour
     private void Awake()
     {
         if (player1Movement == null) { player1Movement = this; }
+        curMaxSpeed = totalMaxSpeedPlayer1;
     }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         isBraking = true;
+        maxPlayerSpeed = curMaxSpeed;
     }
 
     private void Update()
@@ -67,11 +72,15 @@ public class Player1Movement : MonoBehaviour
 
     private void playerMovement() 
     {
-        if (!isBraking && !isBrakingWithInput) 
+        if (!globalVariable.isPlayerDestroyed) 
         {
-            rb.AddForce(inputDir * maxPlayerSpeed);
-            rb.velocity = Vector2.ClampMagnitude(rb.velocity, curPlayerSpeed);
+            if (!isBraking && !isBrakingWithInput)
+            {
+                rb.AddForce(inputDir * maxPlayerSpeed);
+                rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxPlayerSpeed);
+            }
         }
+       
 
     }
 
@@ -79,31 +88,39 @@ public class Player1Movement : MonoBehaviour
     {
         if (maxPlayerSpeed <= 0) 
         {
-            if(linkRay.isPlayerLinkedEachOther && !globalVariable.isTriggeredWithObstacle) 
+            if(linkRay.isPlayerLinkedEachOther && !globalVariable.isPlayerDestroyed) 
             {
                 StartCoroutine(setMaxSpeedPlayer());
             }
         }
-        if (!linkRay.isPlayerLinkedEachOther || globalVariable.isTriggeredWithObstacle) 
+        if (!linkRay.isPlayerLinkedEachOther || globalVariable.isPlayerDestroyed || GarbageCollector.garbageCollector.garbageCollected == 0) 
         {
-            maxPlayerSpeed = 5;
+            curMaxSpeed = totalMaxSpeedPlayer1;
+            maxPlayerSpeed = curMaxSpeed;
 
         }
-        if(globalVariable.isTriggeredWithObstacle 
-            || GameFinish.gameFinish.isGameFinish 
+        if(globalVariable.isPlayerDestroyed 
             || globalVariable.isPlayerSharingLives
             || player1Collision.isStopAtCameraTrigger) 
         {
-            curPlayerSpeed = 0;
+            maxPlayerSpeed = 0;
         }
         else 
         {
-            curPlayerSpeed = maxPlayerSpeed;
+            maxPlayerSpeed = curMaxSpeed;
         }
         if (GameFinish.gameFinish.isGameFinish) 
         {
+            isMoving = false;
             maxPlayerSpeed = Mathf.Lerp(maxPlayerSpeed,0,5*Time.deltaTime);
             rb.drag = Mathf.Lerp(rb.drag, 10, 6 * Time.deltaTime);
+            rb.simulated = false;
+        }
+        if (GameOver.gameOver.isGameOver) 
+        {
+            maxPlayerSpeed = 0;
+            isMoving = false;
+            rb.simulated = false;
         }
     }
 
@@ -111,38 +128,39 @@ public class Player1Movement : MonoBehaviour
     {
         if (!GameFinish.gameFinish.isGameFinish) 
         {
-            if (isBraking || player1Collision.isCrashToOtherBoat)
+            if (!globalVariable.isPlayerDestroyed) 
             {
-                float lerpSpeed = isBrakingWithInput ? 10f : 2.5f;
-                rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
-            }
-            else if (isBrakingWithInput)
-            {
-                rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, 5f * Time.deltaTime);
-            }
-            else
-            {
-                // Menggunakan deltaTime untuk menjaga kecepatan yang konsisten
-                Vector2 force = inputDir * maxPlayerSpeed * Time.deltaTime;
+                if (isMoving)
+                {
+                    isBraking = false;
+                }
+                if (!isMoving) { isBraking = true; }
 
-                // Menggunakan AddForce untuk memberikan kekuatan pada rigidbody
-                rb.AddForce(force, ForceMode2D.Impulse);
+                if (isBraking || player1Collision.isCrashToOtherBoat)
+                {
+                    float lerpSpeed = isBrakingWithInput ? 10f : 3.5f;
+                    rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
+                }
+                else if (isBrakingWithInput)
+                {
+                    rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, 5f * Time.deltaTime);
+                }
+                else
+                {
+                    Vector2 force = inputDir * maxPlayerSpeed * Time.deltaTime;
 
-                // Membatasi kecepatan agar tidak melebihi maksimum
-                rb.velocity = Vector2.ClampMagnitude(rb.velocity, curPlayerSpeed);
+                    rb.AddForce(force, ForceMode2D.Impulse);
+                    rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxPlayerSpeed);
 
-                rb.drag = 0; // Mengatur rb.drag menjadi 0 ketika tidak ada pengereman
-                //return;
+                    rb.drag = 0; // Mengatur rb.drag menjadi 0 ketika tidak ada pengereman
+                }
             }
+            
         }
-
-
-        if (isMoving)
-        {
-            isBraking = false;
-        }
-        if (!isMoving) { isBraking = true; }
+       
+       
     }
+
 
     IEnumerator setMaxSpeedPlayer() 
     {
@@ -157,7 +175,7 @@ public class Player1Movement : MonoBehaviour
 
         if (!isLevel4 || !player1Collision.isStopAtCameraTrigger)
         {
-            if (!globalVariable.isTriggeredWithObstacle
+            if (!globalVariable.isPlayerDestroyed
                 && !GameFinish.gameFinish.isGameFinish
                 && !GameOver.gameOver.isGameOver
                 && !Pause.pause.isGamePaused
@@ -167,12 +185,15 @@ public class Player1Movement : MonoBehaviour
                 if (context.performed)
                 {
                     MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
-                    //isBraking = false;
-                    isMoving = true;
+                    if (globalVariable.isPlayerDestroyed) 
+                    {
+                        isMoving = false;
+                    }
+                    else { isMoving = true; }
+                    
                 }
                 else
                 {
-                    //isBraking = true;
                     isMoving = false;
                 }
                 inputDir = context.ReadValue<Vector2>();
@@ -183,7 +204,7 @@ public class Player1Movement : MonoBehaviour
     //braking input
     public void playerBrakeInput(InputAction.CallbackContext context) 
     {
-        if (context.performed) 
+        if (context.performed && !globalVariable.isPlayerDestroyed) 
         {
             MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
             isBrakingWithInput = true;

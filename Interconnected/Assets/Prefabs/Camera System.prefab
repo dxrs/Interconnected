@@ -210,7 +210,6 @@ MonoBehaviour:
   cameraOffset: {x: 0, y: 0, z: -10}
   distanceBetween2Player: 15
   smoothCameraTimeMovemement: 0.5
-  cameraMinZoom: 12
-  cameraMaxZoom: 3
-  cameraZoomLimiter: 12
-  cameraCollider: {fileID: 7606320907253082926}
+  cameraMinZoom: 15
+  cameraMaxZoom: 6
+  cameraZoomLimiter: 20

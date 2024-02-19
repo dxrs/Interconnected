@@ -50,7 +50,7 @@ public class Tutorial : MonoBehaviour
         {
             if(rbPlayer1 && rbPlayer2 != null) 
             {
-                if (rbPlayer1.drag > 3 && rbPlayer2.drag > 3)
+                if (rbPlayer1.drag > 4.9f && rbPlayer2.drag > 4.9f)
                 {
                     Destroy(spikeWall);
                     Destroy(brakingTrigger,0.5f);
@@ -59,7 +59,7 @@ public class Tutorial : MonoBehaviour
            
         }
 
-        if (GlobalVariable.globalVariable.isTriggeredWithObstacle) 
+        if (GlobalVariable.globalVariable.isPlayerDestroyed) 
         {
             playerBrakingValue = 0;
         }

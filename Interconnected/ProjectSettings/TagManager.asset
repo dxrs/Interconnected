@@ -34,6 +34,8 @@ TagManager:
   - Camera Move Trigger
   - Braking Trigger
   - Share Lives Trigger
+  - Garbage Center Point
+  - Gun Bullet
   layers:
   - Default
   - TransparentFX

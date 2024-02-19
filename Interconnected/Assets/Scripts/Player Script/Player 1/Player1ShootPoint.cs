@@ -24,10 +24,10 @@ public class Player1ShootPoint : MonoBehaviour
         while (true) 
         {
             if (linkRay.isPlayerLinkedEachOther
-                    && !GlobalVariable.globalVariable.isTriggeredWithObstacle
-                    && !GlobalVariable.globalVariable.isNotShoot
+                    && GlobalVariable.globalVariable.isRopeVisible
                     && !SceneSystem.sceneSystem.isExitScene
-                    && !SceneSystem.sceneSystem.isRestartScene)
+                    && !SceneSystem.sceneSystem.isRestartScene
+                    && !GameOver.gameOver.isGameOver)
             {
                 Instantiate(player1Bullet, shootPoint.transform.position, Quaternion.identity);
             }

@@ -25,17 +25,17 @@ public class GameOver : MonoBehaviour
 
     private void Update()
     {
-        if (player1 == null || player2 == null)
-        {
-           //globalVariable.isGameOver = true;
-        }
-
         if (isGameOver)
         {
-            GlobalVariable.globalVariable.isTriggeredWithObstacle = true;
+            GlobalVariable.globalVariable.playerInvisible();
             //SceneSystem.sceneSystem.isRestartScene = true;
-            //Destroy(player1);
-            //Destroy(player2);
+            Destroy(player1,1);
+            Destroy(player2,1);
+            SceneSystem.sceneSystem.isRestartScene = true;
+            if (player1 && player2 == null) 
+            {
+                
+            }
         }
     }
 }

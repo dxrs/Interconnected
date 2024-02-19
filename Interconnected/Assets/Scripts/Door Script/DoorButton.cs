@@ -17,7 +17,7 @@ public class DoorButton : MonoBehaviour
 
     private void Update()
     {
-        if (!GlobalVariable.globalVariable.isTriggeredWithObstacle) 
+        if (!GlobalVariable.globalVariable.isPlayerDestroyed) 
         {
             for (int i = 1; i <= GlobalVariable.globalVariable.maxDoor; i++)
             {
@@ -43,6 +43,7 @@ public class DoorButton : MonoBehaviour
                             GameObject player1;
                             player1 = GameObject.FindGameObjectWithTag("Player 1");
                             player1.transform.position = transform.position;
+                            Player1Movement.player1Movement.isMoving = false;
 
 
                         }
@@ -68,7 +69,7 @@ public class DoorButton : MonoBehaviour
                             GameObject player2;
                             player2 = GameObject.FindGameObjectWithTag("Player 2");
                             player2.transform.position = transform.position;
-
+                            Player2Movement.player2Movement.isMoving = false;
                         }
 
                     }
@@ -86,9 +87,11 @@ public class DoorButton : MonoBehaviour
 
         }
 
+    }
 
-        
-
+    private void OnDestroy()
+    {
+        //Checkpoint.checkpoint.curCheckpointValue++;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

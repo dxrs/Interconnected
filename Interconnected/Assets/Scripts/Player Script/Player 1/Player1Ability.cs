@@ -84,7 +84,7 @@ public class Player1Ability : MonoBehaviour
     {
         if (LevelStatus.levelStatus.levelID != 4) 
         {
-            if (!globalVariable.isTriggeredWithObstacle
+            if (!globalVariable.isPlayerDestroyed
                 && !GameFinish.gameFinish.isGameFinish
                 && !GameOver.gameOver.isGameOver
                 && !Pause.pause.isGamePaused
@@ -114,7 +114,7 @@ public class Player1Ability : MonoBehaviour
     {
         if (LevelStatus.levelStatus.levelID != 4) 
         {
-            if (!globalVariable.isTriggeredWithObstacle
+            if (!globalVariable.isPlayerDestroyed
                && !GameFinish.gameFinish.isGameFinish
                && !GameOver.gameOver.isGameOver
                && !Pause.pause.isGamePaused

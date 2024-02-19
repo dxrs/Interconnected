@@ -46,20 +46,29 @@ public class Garbage : MonoBehaviour
         {
             if (isGarbageCollected)
             {
-                if (LinkRay.linkRay.isPlayerLinkedEachOther && !GlobalVariable.globalVariable.isTriggeredWithObstacle)
+                if (!GarbageCollector.garbageCollector.isGarbageStored) 
                 {
-                    garbagePosition = garbageSpawner.transform.position;
+                    if (LinkRay.linkRay.isPlayerLinkedEachOther && !GlobalVariable.globalVariable.isPlayerDestroyed)
+                    {
+                        garbagePosition = garbageSpawner.transform.position;
 
-                    bc.enabled = false;
+                        bc.enabled = false;
 
-                    transform.localScale = minGarbageScale;
+                        transform.localScale = minGarbageScale;
 
-                    posX = garbagePosition.x + GarbageCollector.garbageCollector.radius * Mathf.Cos(Mathf.Deg2Rad * angle);
-                    posY = garbagePosition.y + GarbageCollector.garbageCollector.radius * Mathf.Sin(Mathf.Deg2Rad * angle);
+                        posX = garbagePosition.x + GarbageCollector.garbageCollector.radius * Mathf.Cos(Mathf.Deg2Rad * angle);
+                        posY = garbagePosition.y + GarbageCollector.garbageCollector.radius * Mathf.Sin(Mathf.Deg2Rad * angle);
 
-                    transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), lerpSpeed * Time.deltaTime);
+                        transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), lerpSpeed * Time.deltaTime);
+                    }
                 }
-                if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isTriggeredWithObstacle )
+                else 
+                {
+                    StartCoroutine(garbageIsStoring());
+                 
+                }
+                
+                if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isPlayerDestroyed)
                 {
                     transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
                     StartCoroutine(garbageRigidBrake(1f));
@@ -90,16 +99,15 @@ public class Garbage : MonoBehaviour
        
 
     }
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Gear")  || collision.gameObject.CompareTag("Spike"))
+        if (collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Spike"))
         {
+            Debug.Log("kena");
             Vector2 blastForceVector = (transform.position - collision.transform.position).normalized;
             rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
             StartCoroutine(garbageRigidBrake(1f));
         }
-        
-        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -125,5 +133,12 @@ public class Garbage : MonoBehaviour
         
         rb.drag = Mathf.Lerp(rb.drag,5,0.1f*Time.deltaTime);
        
+    }
+
+    IEnumerator garbageIsStoring() 
+    {
+        yield return new WaitForSeconds(.1f);
+        Destroy(gameObject,0.5f);
+        GarbageCollector.garbageCollector.garbageCollected = 0;
     }
 }
