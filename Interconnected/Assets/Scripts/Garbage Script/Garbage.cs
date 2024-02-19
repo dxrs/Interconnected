@@ -46,19 +46,28 @@ public class Garbage : MonoBehaviour
         {
             if (isGarbageCollected)
             {
-                if (LinkRay.linkRay.isPlayerLinkedEachOther && !GlobalVariable.globalVariable.isPlayerDestroyed)
+                if (!GarbageCollector.garbageCollector.isGarbageStored) 
                 {
-                    garbagePosition = garbageSpawner.transform.position;
+                    if (LinkRay.linkRay.isPlayerLinkedEachOther && !GlobalVariable.globalVariable.isPlayerDestroyed)
+                    {
+                        garbagePosition = garbageSpawner.transform.position;
 
-                    bc.enabled = false;
+                        bc.enabled = false;
 
-                    transform.localScale = minGarbageScale;
+                        transform.localScale = minGarbageScale;
 
-                    posX = garbagePosition.x + GarbageCollector.garbageCollector.radius * Mathf.Cos(Mathf.Deg2Rad * angle);
-                    posY = garbagePosition.y + GarbageCollector.garbageCollector.radius * Mathf.Sin(Mathf.Deg2Rad * angle);
+                        posX = garbagePosition.x + GarbageCollector.garbageCollector.radius * Mathf.Cos(Mathf.Deg2Rad * angle);
+                        posY = garbagePosition.y + GarbageCollector.garbageCollector.radius * Mathf.Sin(Mathf.Deg2Rad * angle);
 
-                    transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), lerpSpeed * Time.deltaTime);
+                        transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), lerpSpeed * Time.deltaTime);
+                    }
                 }
+                else 
+                {
+                    StartCoroutine(garbageIsStoring());
+                 
+                }
+                
                 if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isPlayerDestroyed)
                 {
                     transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
@@ -125,5 +134,12 @@ public class Garbage : MonoBehaviour
         
         rb.drag = Mathf.Lerp(rb.drag,5,0.1f*Time.deltaTime);
        
+    }
+
+    IEnumerator garbageIsStoring() 
+    {
+        yield return new WaitForSeconds(.1f);
+        Destroy(gameObject,0.5f);
+        GarbageCollector.garbageCollector.garbageCollected = 0;
     }
 }

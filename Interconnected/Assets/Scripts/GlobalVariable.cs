@@ -54,9 +54,13 @@ public class GlobalVariable : MonoBehaviour
 
     private void Update()
     {
+        if (isPlayerDestroyed) 
+        {
+            curDoorOpenValue = 0;
+        }
         if (curDoorOpenValue == 2 && !isAddingCheckpointValue) 
         {
-            Checkpoint.checkpoint.curCheckpointValue++;
+            //Checkpoint.checkpoint.curCheckpointValue++;
             isAddingCheckpointValue = true;
         }
         partOfSharingLives();

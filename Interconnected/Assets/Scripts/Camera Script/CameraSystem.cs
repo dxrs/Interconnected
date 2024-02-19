@@ -92,9 +92,6 @@ public class CameraSystem : MonoBehaviour
     {
         float newZoom = Mathf.Lerp(cameraMaxZoom, cameraMinZoom, camBoundDistance() / cameraZoomLimiter);
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
-        
-        
-        
     }
 
     float camBoundDistance() 
@@ -123,11 +120,9 @@ public class CameraSystem : MonoBehaviour
 
     private void focusOnNoobPlayer(Transform playerTransform)
     {
-        // Tentukan posisi dan zoom baru untuk fokus pada pemain
         Vector3 newCameraPosition = playerTransform.position + cameraOffset;
         float newZoom = Mathf.Lerp(cameraMaxZoom, 1f, camBoundDistance() / cameraZoomLimiter);
 
-        // Set posisi dan zoom kamera dengan perlahan
         transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition, ref cameraVelocity, smoothCameraTimeMovemement);
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
     }

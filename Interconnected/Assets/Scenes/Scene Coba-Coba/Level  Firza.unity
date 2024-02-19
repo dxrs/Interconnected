@@ -6991,6 +6991,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0.3
+  isGarbageStored: 0
+  playerReadyToStoreValue: 0000000000000000
   garbageCollected: 0
   currentGarbageStored: 0
   maxGarbageStored: 0

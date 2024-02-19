@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player1Collision : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Player1Collision : MonoBehaviour
 
     public bool isCrashToOtherBoat;
     public bool isStopAtCameraTrigger;
+    public bool isStopAtDumpPoint;
 
     [SerializeField] GlobalVariable globalVariable;
     [SerializeField] Player1Movement player1Movement;
@@ -38,6 +40,7 @@ public class Player1Collision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        handleDumpPointCollision(collision);
         handleObstacleCollision(collision);
         handlePullUpObjectCollision(collision);
         handleOutlineColliderCollision(collision);
@@ -58,13 +61,16 @@ public class Player1Collision : MonoBehaviour
         if (collision.gameObject.tag == "Finish Point")
             GameFinish.gameFinish.finishValue--;
 
+        if (collision.gameObject.tag == "Garbage Center Point")
+            GarbageCollector.garbageCollector.playerReadyToStoreValue[0] = 0;
+
         if (LevelStatus.levelStatus.levelID == 4 && collision.gameObject.tag == "Braking Trigger")
             Tutorial.tutorial.playerBrakingValue--;
     }
 
     private void handleObstacleCollision(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Gear"))
+        if (collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Gun Bullet"))
         {
             if (!Player2Ability.player2Ability.isShielding)
             {
@@ -91,6 +97,12 @@ public class Player1Collision : MonoBehaviour
                     player1BoucedCollision(collision);
             }
         }
+    }
+
+    private void handleDumpPointCollision(Collider2D collision) 
+    {
+        if (collision.gameObject.tag == "Garbage Center Point")
+            GarbageCollector.garbageCollector.playerReadyToStoreValue[0] = 1;
     }
 
     private void handlePullUpObjectCollision(Collider2D collision)
@@ -152,6 +164,26 @@ public class Player1Collision : MonoBehaviour
 
         Vector2 backwardMovePos = (transform.position - collider.transform.position).normalized;
         rb.AddForce(backwardMovePos * adjustedCrashForce, ForceMode2D.Impulse); // sedang konflik dgn void playerMovement
+    }
+
+    public void inputReadyToStoreGarbage(InputAction.CallbackContext context) 
+    {
+        if (context.performed) 
+        {
+            if (isStopAtDumpPoint) 
+            {
+                if (GarbageCollector.garbageCollector.playerReadyToStoreValue[0] == 0)
+                {
+                    player1Movement.isMoving = false;
+                    GarbageCollector.garbageCollector.playerReadyToStoreValue[0] = 1;
+                }
+                else
+                {
+                    GarbageCollector.garbageCollector.playerReadyToStoreValue[0] = 0;
+                }
+            }
+           
+        }
     }
 
     IEnumerator playerCrash()

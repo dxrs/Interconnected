@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletP1 : MonoBehaviour
+public class PlayerBullet : MonoBehaviour
 {
 
     [SerializeField] float bulletSpeed;
     [SerializeField] float colorChangeDistanceThreshold;
 
     GameObject targetToPlayer2;
-    GameObject[] targetToObstacleP1;
 
     [SerializeField] Color defaultBulletColor;
     [SerializeField] Color targetColor;
@@ -24,7 +23,6 @@ public class BulletP1 : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         sr.color = defaultBulletColor;
         targetToPlayer2 = GameObject.FindGameObjectWithTag("Player 2");
-        targetToObstacleP1 = GameObject.FindGameObjectsWithTag("Obstacle P1");
     }
 
     private void Update()

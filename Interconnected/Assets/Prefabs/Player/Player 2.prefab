@@ -314,7 +314,9 @@ MonoBehaviour:
   isBrakingWithInput: 0
   maxPlayerSpeed: 5
   playerBrakingPower: 5
+  totalMaxSpeedPlayer2: 8
   inputDir: {x: 0, y: 0}
+  curMaxSpeed: 0
 --- !u!114 &5440666626104908103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCrashToOtherBoat: 0
   isStopAtCameraTrigger: 0
+  isStopAtDumpPoint: 0
   globalVariable: {fileID: 0}
   player2Movement: {fileID: 5440666626104908100}
   player2Ability: {fileID: 5440666626104908103}

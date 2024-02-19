@@ -8,6 +8,7 @@ public class Player2Collision : MonoBehaviour
 
     public bool isCrashToOtherBoat;
     public bool isStopAtCameraTrigger;
+    public bool isStopAtDumpPoint;
 
     [SerializeField] GlobalVariable globalVariable;
     [SerializeField] Player2Movement player2Movement;
@@ -40,6 +41,7 @@ public class Player2Collision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        handleDumpPointCollision(collision);
         handleObstacleCollision(collision);
         handleOutlineColliderCollision(collision);
         handleCameraMoveTriggerCollision(collision);
@@ -56,13 +58,16 @@ public class Player2Collision : MonoBehaviour
         if (collision.gameObject.tag == "Camera Move Trigger")
             isStopAtCameraTrigger = false;
 
+        if (collision.gameObject.tag == "Garbage Center Point")
+            GarbageCollector.garbageCollector.playerReadyToStoreValue[1] = 0;
+
         if (LevelStatus.levelStatus.levelID == 4 && collision.gameObject.tag == "Braking Trigger")
             Tutorial.tutorial.playerBrakingValue--;
     }
 
     private void handleObstacleCollision(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Gear"))
+        if (collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Gun Bullet"))
         {
             if (!player2Ability.isShielding)
             {
@@ -74,9 +79,13 @@ public class Player2Collision : MonoBehaviour
                 player2Movement.isMoving = false;
                 player2Movement.isBraking = true;
                 globalVariable.playerInvisible();
-                globalVariable.isPlayerDestroyed = true;
+                if (player2Health.curPlayer2Health >= 1)
+                {
+                    globalVariable.isRopeVisible = false;
+                    globalVariable.isPlayerDestroyed = true;
+                    StartCoroutine(player2SetPosToCheckpoint());
+                }
                 Instantiate(playerHitParticle, transform.position, Quaternion.identity);
-                StartCoroutine(player2SetPosToCheckpoint());
             }
             else
             {
@@ -86,6 +95,11 @@ public class Player2Collision : MonoBehaviour
         }
     }
 
+    private void handleDumpPointCollision(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Garbage Center Point")
+            GarbageCollector.garbageCollector.playerReadyToStoreValue[1] = 1;
+    }
     private void handleOutlineColliderCollision(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player 1 Outline Collider" )
@@ -155,5 +169,6 @@ public class Player2Collision : MonoBehaviour
         globalVariable.isPlayerDestroyed = false;
         yield return new WaitForSeconds(.5f);
         globalVariable.playerVisible();
+        globalVariable.isRopeVisible = true;
     }
 }

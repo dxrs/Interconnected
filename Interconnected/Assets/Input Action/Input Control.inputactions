@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Interact Press",
+                    "name": "Garbage Store",
                     "type": "Button",
                     "id": "d00c6259-4f03-44f9-aeb1-587ce289e2c2",
                     "expectedControlType": "Button",
@@ -247,11 +247,11 @@
                 {
                     "name": "",
                     "id": "e1955c86-45ea-4472-94d1-c65d0cbbc2c3",
-                    "path": "",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Interact Press",
+                    "groups": "Keyboard Scheme",
+                    "action": "Garbage Store",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -282,7 +282,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Interact Press",
+                    "name": "Garbage Store",
                     "type": "Button",
                     "id": "ad4d6e57-d202-4205-a368-a4255c91da3f",
                     "expectedControlType": "Button",
@@ -415,11 +415,11 @@
                 {
                     "name": "",
                     "id": "9c242eb3-6fb0-4342-b54d-bd658226a76a",
-                    "path": "",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Interact Press",
+                    "groups": "Gamepad Scheme",
+                    "action": "Garbage Store",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

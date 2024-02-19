@@ -37,7 +37,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Interact Press"",
+                    ""name"": ""Garbage Store"",
                     ""type"": ""Button"",
                     ""id"": ""d00c6259-4f03-44f9-aeb1-587ce289e2c2"",
                     ""expectedControlType"": ""Button"",
@@ -269,11 +269,11 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e1955c86-45ea-4472-94d1-c65d0cbbc2c3"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact Press"",
+                    ""groups"": ""Keyboard Scheme"",
+                    ""action"": ""Garbage Store"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -304,7 +304,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Interact Press"",
+                    ""name"": ""Garbage Store"",
                     ""type"": ""Button"",
                     ""id"": ""ad4d6e57-d202-4205-a368-a4255c91da3f"",
                     ""expectedControlType"": ""Button"",
@@ -437,11 +437,11 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9c242eb3-6fb0-4342-b54d-bd658226a76a"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact Press"",
+                    ""groups"": ""Gamepad Scheme"",
+                    ""action"": ""Garbage Store"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -621,7 +621,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         // Input Player 1
         m_InputPlayer1 = asset.FindActionMap("Input Player 1", throwIfNotFound: true);
         m_InputPlayer1_Movement = m_InputPlayer1.FindAction("Movement", throwIfNotFound: true);
-        m_InputPlayer1_InteractPress = m_InputPlayer1.FindAction("Interact Press", throwIfNotFound: true);
+        m_InputPlayer1_GarbageStore = m_InputPlayer1.FindAction("Garbage Store", throwIfNotFound: true);
         m_InputPlayer1_InteractTap = m_InputPlayer1.FindAction("Interact Tap", throwIfNotFound: true);
         m_InputPlayer1_InteractHold = m_InputPlayer1.FindAction("Interact Hold", throwIfNotFound: true);
         m_InputPlayer1_GiveHealth = m_InputPlayer1.FindAction("Give Health", throwIfNotFound: true);
@@ -631,7 +631,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         // Input Player 2
         m_InputPlayer2 = asset.FindActionMap("Input Player 2", throwIfNotFound: true);
         m_InputPlayer2_Movement = m_InputPlayer2.FindAction("Movement", throwIfNotFound: true);
-        m_InputPlayer2_InteractPress = m_InputPlayer2.FindAction("Interact Press", throwIfNotFound: true);
+        m_InputPlayer2_GarbageStore = m_InputPlayer2.FindAction("Garbage Store", throwIfNotFound: true);
         m_InputPlayer2_InteractTap = m_InputPlayer2.FindAction("Interact Tap", throwIfNotFound: true);
         m_InputPlayer2_InteractHold = m_InputPlayer2.FindAction("Interact Hold", throwIfNotFound: true);
         m_InputPlayer2_GiveHealth = m_InputPlayer2.FindAction("Give Health", throwIfNotFound: true);
@@ -705,7 +705,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_InputPlayer1;
     private List<IInputPlayer1Actions> m_InputPlayer1ActionsCallbackInterfaces = new List<IInputPlayer1Actions>();
     private readonly InputAction m_InputPlayer1_Movement;
-    private readonly InputAction m_InputPlayer1_InteractPress;
+    private readonly InputAction m_InputPlayer1_GarbageStore;
     private readonly InputAction m_InputPlayer1_InteractTap;
     private readonly InputAction m_InputPlayer1_InteractHold;
     private readonly InputAction m_InputPlayer1_GiveHealth;
@@ -717,7 +717,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         private @InputControl m_Wrapper;
         public InputPlayer1Actions(@InputControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_InputPlayer1_Movement;
-        public InputAction @InteractPress => m_Wrapper.m_InputPlayer1_InteractPress;
+        public InputAction @GarbageStore => m_Wrapper.m_InputPlayer1_GarbageStore;
         public InputAction @InteractTap => m_Wrapper.m_InputPlayer1_InteractTap;
         public InputAction @InteractHold => m_Wrapper.m_InputPlayer1_InteractHold;
         public InputAction @GiveHealth => m_Wrapper.m_InputPlayer1_GiveHealth;
@@ -736,9 +736,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
-            @InteractPress.started += instance.OnInteractPress;
-            @InteractPress.performed += instance.OnInteractPress;
-            @InteractPress.canceled += instance.OnInteractPress;
+            @GarbageStore.started += instance.OnGarbageStore;
+            @GarbageStore.performed += instance.OnGarbageStore;
+            @GarbageStore.canceled += instance.OnGarbageStore;
             @InteractTap.started += instance.OnInteractTap;
             @InteractTap.performed += instance.OnInteractTap;
             @InteractTap.canceled += instance.OnInteractTap;
@@ -764,9 +764,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
-            @InteractPress.started -= instance.OnInteractPress;
-            @InteractPress.performed -= instance.OnInteractPress;
-            @InteractPress.canceled -= instance.OnInteractPress;
+            @GarbageStore.started -= instance.OnGarbageStore;
+            @GarbageStore.performed -= instance.OnGarbageStore;
+            @GarbageStore.canceled -= instance.OnGarbageStore;
             @InteractTap.started -= instance.OnInteractTap;
             @InteractTap.performed -= instance.OnInteractTap;
             @InteractTap.canceled -= instance.OnInteractTap;
@@ -807,7 +807,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_InputPlayer2;
     private List<IInputPlayer2Actions> m_InputPlayer2ActionsCallbackInterfaces = new List<IInputPlayer2Actions>();
     private readonly InputAction m_InputPlayer2_Movement;
-    private readonly InputAction m_InputPlayer2_InteractPress;
+    private readonly InputAction m_InputPlayer2_GarbageStore;
     private readonly InputAction m_InputPlayer2_InteractTap;
     private readonly InputAction m_InputPlayer2_InteractHold;
     private readonly InputAction m_InputPlayer2_GiveHealth;
@@ -819,7 +819,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         private @InputControl m_Wrapper;
         public InputPlayer2Actions(@InputControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_InputPlayer2_Movement;
-        public InputAction @InteractPress => m_Wrapper.m_InputPlayer2_InteractPress;
+        public InputAction @GarbageStore => m_Wrapper.m_InputPlayer2_GarbageStore;
         public InputAction @InteractTap => m_Wrapper.m_InputPlayer2_InteractTap;
         public InputAction @InteractHold => m_Wrapper.m_InputPlayer2_InteractHold;
         public InputAction @GiveHealth => m_Wrapper.m_InputPlayer2_GiveHealth;
@@ -838,9 +838,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
-            @InteractPress.started += instance.OnInteractPress;
-            @InteractPress.performed += instance.OnInteractPress;
-            @InteractPress.canceled += instance.OnInteractPress;
+            @GarbageStore.started += instance.OnGarbageStore;
+            @GarbageStore.performed += instance.OnGarbageStore;
+            @GarbageStore.canceled += instance.OnGarbageStore;
             @InteractTap.started += instance.OnInteractTap;
             @InteractTap.performed += instance.OnInteractTap;
             @InteractTap.canceled += instance.OnInteractTap;
@@ -866,9 +866,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
-            @InteractPress.started -= instance.OnInteractPress;
-            @InteractPress.performed -= instance.OnInteractPress;
-            @InteractPress.canceled -= instance.OnInteractPress;
+            @GarbageStore.started -= instance.OnGarbageStore;
+            @GarbageStore.performed -= instance.OnGarbageStore;
+            @GarbageStore.canceled -= instance.OnGarbageStore;
             @InteractTap.started -= instance.OnInteractTap;
             @InteractTap.performed -= instance.OnInteractTap;
             @InteractTap.canceled -= instance.OnInteractTap;
@@ -996,7 +996,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     public interface IInputPlayer1Actions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnInteractPress(InputAction.CallbackContext context);
+        void OnGarbageStore(InputAction.CallbackContext context);
         void OnInteractTap(InputAction.CallbackContext context);
         void OnInteractHold(InputAction.CallbackContext context);
         void OnGiveHealth(InputAction.CallbackContext context);
@@ -1007,7 +1007,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     public interface IInputPlayer2Actions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnInteractPress(InputAction.CallbackContext context);
+        void OnGarbageStore(InputAction.CallbackContext context);
         void OnInteractTap(InputAction.CallbackContext context);
         void OnInteractHold(InputAction.CallbackContext context);
         void OnGiveHealth(InputAction.CallbackContext context);

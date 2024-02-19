@@ -20,18 +20,21 @@ public class Player1Movement : MonoBehaviour
     public bool isBrakingWithInput;
 
     public float maxPlayerSpeed;
+
     [SerializeField] float playerBrakingPower;
+    [SerializeField] float totalMaxSpeedPlayer1;
 
     [HideInInspector]
     public Vector2 inputDir;
-
-    float curMaxSpeed = 8;
+    [HideInInspector]
+    public float curMaxSpeed;
 
     Rigidbody2D rb;
 
     private void Awake()
     {
         if (player1Movement == null) { player1Movement = this; }
+        curMaxSpeed = totalMaxSpeedPlayer1;
     }
 
     private void Start()
@@ -76,8 +79,9 @@ public class Player1Movement : MonoBehaviour
                 StartCoroutine(setMaxSpeedPlayer());
             }
         }
-        if (!linkRay.isPlayerLinkedEachOther || globalVariable.isPlayerDestroyed) 
+        if (!linkRay.isPlayerLinkedEachOther || globalVariable.isPlayerDestroyed || GarbageCollector.garbageCollector.garbageCollected == 0) 
         {
+            curMaxSpeed = totalMaxSpeedPlayer1;
             maxPlayerSpeed = curMaxSpeed;
 
         }
