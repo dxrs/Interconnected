@@ -214,7 +214,7 @@ public class Player1Movement : MonoBehaviour
     }
 
 
-    //buat hadap spite
+    //buat hadap sprite
     private void flip()
     {
         isFacingRight = !isFacingRight;

@@ -36,7 +36,7 @@ public class Garbage : MonoBehaviour
         rb.drag = 5;
         angle = Random.Range(0f, 360f);
         lerpSpeed = Random.Range(4.5f, 6.5f);
-        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+        // transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
         transform.localScale = maxGarbageScale;
     }
 
@@ -70,7 +70,7 @@ public class Garbage : MonoBehaviour
                 
                 if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isPlayerDestroyed)
                 {
-                    transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+                    // transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
                     StartCoroutine(garbageRigidBrake(1f));
                     Vector2 directionToCenter = (Vector2)transform.position - (Vector2)garbageSpawner.transform.position;
                     float distanceToCenter = directionToCenter.magnitude;
