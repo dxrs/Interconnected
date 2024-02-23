@@ -1092,7 +1092,7 @@ GameObject:
   - component: {fileID: 236783379}
   - component: {fileID: 236783381}
   m_Layer: 0
-  m_Name: Tempat Store Sampah
+  m_Name: Tempat Buang Sampah
   m_TagString: Garbage Center Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

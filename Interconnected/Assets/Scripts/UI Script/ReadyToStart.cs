@@ -54,7 +54,7 @@ public class ReadyToStart : MonoBehaviour
             isGameStart = true;
             if (isGameStart && !GameFinish.gameFinish.isGameFinish)
             {
-                if (Tutorial.tutorial.cameraMoveValue == 2) 
+                if (Tutorial.tutorial.cameraMoveValue == 3) 
                 {
                     inGameUI.SetActive(true);
                 }

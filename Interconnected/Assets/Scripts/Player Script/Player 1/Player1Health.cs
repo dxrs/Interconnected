@@ -27,8 +27,6 @@ public class Player1Health : MonoBehaviour // kurang slow motion
 
     GameObject player2;
 
-    bool isPlayer1ShareLivesInTutorial = false;
-
     private void Awake()
     {
         if (player1Health == null) { player1Health = this; }
@@ -74,12 +72,6 @@ public class Player1Health : MonoBehaviour // kurang slow motion
         }
         else 
         {
-            if (LevelStatus.levelStatus.levelID == 4 && isPlayer1ShareLivesInTutorial) 
-            {
-                Tutorial.tutorial.shareLiveProgress = 2;
-                isPlayer1ShareLivesInTutorial = false;
-
-            }
             transform.localScale = Vector3.Lerp(transform.localScale, curScalePlayer, 10 * Time.unscaledDeltaTime);
         }
     }
@@ -97,11 +89,10 @@ public class Player1Health : MonoBehaviour // kurang slow motion
              && !Player2Ability.player2Ability.isShielding
              && globalVariable.waitTimeToShareLives <= 0) ||
              (LevelStatus.levelStatus.levelID == 4 && //<- tutorial
-             Tutorial.tutorial.cameraMoveValue == 2
+             Tutorial.tutorial.isPlayerCanShareLives
              && !GameFinish.gameFinish.isGameFinish
              && !Pause.pause.isGamePaused
-             && globalVariable.waitTimeToShareLives <= 0
-             && Tutorial.tutorial.shareLiveProgress == 1))
+             && globalVariable.waitTimeToShareLives <= 0))
         {
             if (context.started && !Player2Health.player2Health.isSharingLivesToP1 && linkRay.isPlayerLinkedEachOther)
             {
@@ -114,7 +105,6 @@ public class Player1Health : MonoBehaviour // kurang slow motion
             {
                 if (curPlayer1Health > 1 && Player2Health.player2Health.curPlayer2Health < maxPlayerHealth)
                 {
-                    isPlayer1ShareLivesInTutorial = true;
                     Instantiate(healthPoint, transform.position, Quaternion.identity);
                     globalVariable.delayTimeToShareLives();
                     isSharingLivesToP2 = false;
@@ -122,6 +112,10 @@ public class Player1Health : MonoBehaviour // kurang slow motion
                     if (Player2Health.player2Health.curPlayer2Health < maxPlayerHealth && player2 != null)
                     {
                         Player2Health.player2Health.curPlayer2Health++;
+                    }
+                    if (LevelStatus.levelStatus.levelID == 4)
+                    {
+                        if (Tutorial.tutorial.shareLiveProgress == 0) { Tutorial.tutorial.shareLiveProgress = 1; }
                     }
                 }
             }

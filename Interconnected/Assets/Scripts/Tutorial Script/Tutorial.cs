@@ -18,10 +18,12 @@ public class Tutorial : MonoBehaviour
     [SerializeField] Rigidbody2D rbPlayer1;
     [SerializeField] Rigidbody2D rbPlayer2;
 
-    [SerializeField] TextMeshProUGUI textShareLivesPlayer2;
+    [SerializeField] TextMeshProUGUI[] textShareLivesPlayer;
     [SerializeField] TextMeshProUGUI textShareLivesCount;
     [SerializeField] TextMeshProUGUI textPlayerConnected;
     [SerializeField] TextMeshProUGUI textGarbageCollected;
+
+    public bool isPlayerCanShareLives;
 
     public int playerBrakingValue;
     public int cameraMoveValue;
@@ -34,12 +36,15 @@ public class Tutorial : MonoBehaviour
     private void Start()
     {
         cameraMoveValue = 1;
-        shareLiveProgress = 1;
+        for(int j = 0; j < wallBlock.Length; j++) 
+        {
+            wallBlock[j].SetActive(false);
+        }
     }
 
     private void Update()
     {
-        textGarbageCollected.text = GarbageCollector.garbageCollector.garbageCollected.ToString() + "/5";
+        textGarbageCollected.text = GarbageCollector.garbageCollector.currentGarbageStored.ToString() + "/5";
         if (LinkRay.linkRay.isPlayerLinkedEachOther)
         {
             textPlayerConnected.text = "Connected";
@@ -65,30 +70,62 @@ public class Tutorial : MonoBehaviour
         }
 
         
-        if (shareLiveProgress == 3)
+        if (shareLiveProgress == 1)
         {
             Destroy(shareLivesWall, 1);
         }
-        if (shareLiveProgress == 2) 
+
+        if (isPlayerCanShareLives) 
         {
-            textShareLivesPlayer2.enabled = true;
+            textShareLivesCount.text = Mathf.RoundToInt(GlobalVariable.globalVariable.waitTimeToShareLives).ToString();
             textShareLivesCount.enabled = true;
-            textShareLivesCount.text = "Share Lives available in " +
-                Mathf.RoundToInt(GlobalVariable.globalVariable.waitTimeToShareLives).ToString();
+            if (Player1Health.player1Health.curPlayer1Health == 1) 
+            {
+                if (GlobalVariable.globalVariable.waitTimeToShareLives <= 0) 
+                {
+                    textShareLivesPlayer[0].enabled = false;
+                    textShareLivesPlayer[1].enabled = true;
+                }
+               
+            }
+            if (Player2Health.player2Health.curPlayer2Health == 1)
+            {
+                if (GlobalVariable.globalVariable.waitTimeToShareLives <= 0)
+                {
+                    textShareLivesPlayer[1].enabled = false;
+                    textShareLivesPlayer[0].enabled = true;
+                }
+               
+            }
         }
-        else { textShareLivesCount.enabled = false; }
-        
+
+        /*
+  if (shareLiveProgress == 2) 
+  {
+
+      textShareLivesPlayer2.enabled = true;
+      textShareLivesCount.enabled = true;
+      textShareLivesCount.text = "Share Lives available in " +
+          Mathf.RoundToInt(GlobalVariable.globalVariable.waitTimeToShareLives).ToString();
+  }
+  else { textShareLivesCount.enabled = false; }
+      */
+
 
         if (cameraMoveValue >= 2) 
         {
-            wallBlock[0].SetActive(true);
-            
+
+            StartCoroutine(wallBlocker1Active());
 
         }
-        if (cameraMoveValue == 3) 
+        if (cameraMoveValue >= 3) 
         {
             wallBlock[1].SetActive(true);
-            statusPlayerConnect.transform.localPosition = new Vector2(57, -15.71f);
+            //statusPlayerConnect.transform.localPosition = new Vector2(57, -15.71f);
+        }
+        if (cameraMoveValue >= 4) 
+        {
+            wallBlock[2].SetActive(true);
         }
 
         
@@ -99,5 +136,9 @@ public class Tutorial : MonoBehaviour
         SceneSystem.sceneSystem.isNextScene = true;
     }
 
-
+    IEnumerator wallBlocker1Active() 
+    {
+        yield return new WaitForSeconds(1f);
+        wallBlock[0].SetActive(true);
+    }
 }

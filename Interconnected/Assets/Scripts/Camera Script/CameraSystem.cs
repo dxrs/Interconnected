@@ -17,13 +17,16 @@ public class CameraSystem : MonoBehaviour
     [SerializeField] float cameraMaxZoom;
     [SerializeField] float cameraZoomLimiter;
 
+    [Header("Tutorial Only")]
+    [SerializeField] float[] camPosX;
+
     Vector3 cameraVelocity;
 
     private void Start()
     {
         if (LevelStatus.levelStatus.levelID == 4) 
         {
-            transform.position = new Vector2(-3, transform.position.y);
+            transform.position = new Vector2(camPosX[0], transform.position.y);
         }
     }
     private void LateUpdate()
@@ -69,11 +72,15 @@ public class CameraSystem : MonoBehaviour
         {
             if (Tutorial.tutorial.cameraMoveValue == 2) 
             {
-                transform.position = Vector2.Lerp(transform.position, new Vector2(30,transform.position.y ), 1 * Time.deltaTime);
+                transform.position = Vector2.Lerp(transform.position, new Vector2(camPosX[1],transform.position.y ), 4 * Time.deltaTime);
             }
             if (Tutorial.tutorial.cameraMoveValue == 3)
             {
-                transform.position = Vector2.Lerp(transform.position, new Vector2(63, transform.position.y), 1 * Time.deltaTime);
+                transform.position = Vector2.Lerp(transform.position, new Vector2(camPosX[2], transform.position.y), 4 * Time.deltaTime);
+            }
+            if (Tutorial.tutorial.cameraMoveValue == 4) 
+            {
+                transform.position = Vector2.Lerp(transform.position, new Vector2(camPosX[3], transform.position.y), 4 * Time.deltaTime);
             }
         }
         

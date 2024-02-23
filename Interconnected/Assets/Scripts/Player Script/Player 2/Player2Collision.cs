@@ -72,7 +72,7 @@ public class Player2Collision : MonoBehaviour
                     player2Health.curPlayer2Health--;
 
   
-                rb.simulated = false;
+                rb.simulated = false; //bug nanti diperbaiki note
                 player2Movement.isMoving = false;
                 player2Movement.isBraking = true;
                 globalVariable.playerInvisible();

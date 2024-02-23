@@ -292,7 +292,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 634f8575942d3ad48a4a6ff5f7210f84, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b94ed403db786bd44a57728f181a396a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -364,6 +364,7 @@ MonoBehaviour:
   totalMaxSpeedPlayer1: 8
   inputDir: {x: 0, y: 0}
   curMaxSpeed: 0
+  playerSprite: {fileID: 534748682652801539}
 --- !u!114 &534748682652801547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,7 +424,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCrashToOtherBoat: 0
   isStopAtCameraTrigger: 0
-  isStopAtDumpPoint: 0
   globalVariable: {fileID: 0}
   player1Movement: {fileID: 534748682652801541}
   player1Ability: {fileID: 534748682652801547}

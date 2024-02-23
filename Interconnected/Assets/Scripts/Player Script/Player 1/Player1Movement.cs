@@ -51,7 +51,6 @@ public class Player1Movement : MonoBehaviour
     private void Update()
     {
         playerSpeedComparison();
-        print(inputDir);
         faceDirection = inputDir.x;
         if(faceDirection > 0 && isFacingRight )
         {
@@ -65,6 +64,7 @@ public class Player1Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log(Vector2.ClampMagnitude(rb.velocity, maxPlayerSpeed));
         if (player1Ability.isDashing) { return; }
         playerMovement();
         playerBraking();
@@ -78,6 +78,7 @@ public class Player1Movement : MonoBehaviour
             {
                 rb.AddForce(inputDir * maxPlayerSpeed);
                 rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxPlayerSpeed);
+                
             }
         }
        

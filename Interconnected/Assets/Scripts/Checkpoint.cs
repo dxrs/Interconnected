@@ -23,9 +23,12 @@ public class Checkpoint : MonoBehaviour
     private void Start()
     {
         curCheckpointValue = 1;
-
-        player1.transform.position = player1CheckpintPos[0].position;
-        player2.transform.position = player2CheckpintPos[0].position;
+        if (LevelStatus.levelStatus.levelID != 3 && LevelStatus.levelStatus.levelID != 4) 
+        {
+            player1.transform.position = player1CheckpintPos[0].position;
+            player2.transform.position = player2CheckpintPos[0].position;
+        }
+      
     }
 
     private void Update()
@@ -38,14 +41,15 @@ public class Checkpoint : MonoBehaviour
                 StartCoroutine(moveToPos());
             }
         }
-        if (LevelStatus.levelStatus.levelID == 4)
+       
+        if(LevelStatus.levelStatus.levelID==4 && Tutorial.tutorial.cameraMoveValue == 2) 
         {
-            if (Tutorial.tutorial.cameraMoveValue == 3)
+            if (GlobalVariable.globalVariable.isPlayerDestroyed && !GameOver.gameOver.isGameOver)
             {
-                player1CheckpintPos[0].position = new Vector2(51.4f, -2.29f);
-                player2CheckpintPos[0].position = new Vector2(70.1f, -12.25f);
+                StartCoroutine(moveToPos());
             }
         }
+       
     }
 
     IEnumerator moveToPos()
@@ -61,12 +65,12 @@ public class Checkpoint : MonoBehaviour
                 {
                     player1.transform.position = player1CheckpintPos[index].position;
                     player2.transform.position = player2CheckpintPos[index].position;
+                   
+                 
                 }
 
             }
         }
-       
-
 
     }
 

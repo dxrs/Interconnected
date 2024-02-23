@@ -76,7 +76,7 @@ public class Player1Collision : MonoBehaviour
                 if (LevelStatus.levelStatus.levelID != 4) 
                     player1Health.curPlayer1Health--;
 
-                rb.simulated = false;
+                rb.simulated = false; //bug nanti diperbaiki note
                 player1Movement.isMoving = false;
                 player1Movement.isBraking = true;
                 globalVariable.playerInvisible();

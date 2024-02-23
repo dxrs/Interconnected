@@ -19,11 +19,15 @@ public class GameFinish : MonoBehaviour
 
     private void Update()
     {
-        if (LevelStatus.levelStatus.levelID == 4) 
+        if (LevelStatus.levelStatus.levelID != 3) 
         {
+            if (GarbageCollector.garbageCollector.currentGarbageStored >= GarbageCollector.garbageCollector.targetGarbageStored) 
+            {
+                isGameFinish = true;
+            }
             if (finishValue == 2 && GarbageCollector.garbageCollector.garbageCollected >= 5) 
             {
-                StartCoroutine(waitToFinish());
+                //StartCoroutine(waitToFinish());
                 //Debug.Log("finish tutorial");
             }
         }

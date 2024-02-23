@@ -40,14 +40,18 @@ public class GarbageCollector : MonoBehaviour
             }
            
         }
-        if (playerReadyToStoreValue[0] == 1 && playerReadyToStoreValue[1] == 1) 
+        if (playerReadyToStoreValue.Length != 0) 
         {
-            StartCoroutine(setIsGarbageStoredTtrue());
+            if (playerReadyToStoreValue[0] == 1 && playerReadyToStoreValue[1] == 1)
+            {
+                StartCoroutine(setIsGarbageStoredTtrue());
+            }
+            else
+            {
+                isGarbageStored = false;
+            }
         }
-        else 
-        {
-            isGarbageStored = false;
-        }
+        
         if(player1 && player2 != null) 
         {
             Vector2 posA = player1.position;
