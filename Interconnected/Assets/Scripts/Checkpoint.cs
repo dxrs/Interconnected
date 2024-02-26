@@ -41,15 +41,6 @@ public class Checkpoint : MonoBehaviour
                 StartCoroutine(moveToPos());
             }
         }
-       
-        if(LevelStatus.levelStatus.levelID==4 && Tutorial.tutorial.cameraMoveValue == 2) 
-        {
-            if (GlobalVariable.globalVariable.isPlayerDestroyed && !GameOver.gameOver.isGameOver)
-            {
-                StartCoroutine(moveToPos());
-            }
-        }
-       
     }
 
     IEnumerator moveToPos()
@@ -65,8 +56,6 @@ public class Checkpoint : MonoBehaviour
                 {
                     player1.transform.position = player1CheckpintPos[index].position;
                     player2.transform.position = player2CheckpintPos[index].position;
-                   
-                 
                 }
 
             }

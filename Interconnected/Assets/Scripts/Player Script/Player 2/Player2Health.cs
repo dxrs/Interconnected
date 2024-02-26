@@ -8,6 +8,7 @@ public class Player2Health : MonoBehaviour // kurang slow motion
 {
     public static Player2Health player2Health;
 
+    [SerializeField] Player2Movement player2Movement;
     [SerializeField] Player2Ability player2Ability;
     [SerializeField] GlobalVariable globalVariable;
     [SerializeField] LinkRay linkRay;
@@ -93,12 +94,12 @@ public class Player2Health : MonoBehaviour // kurang slow motion
             && ReadyToStart.readyToStart.isGameStart
             && !player2Ability.isShielding
             && !player2Ability.isDashing
-            && globalVariable.waitTimeToShareLives <= 0) ||
+            && globalVariable.curShareLivesDelayTime <= 0) ||
             (LevelStatus.levelStatus.levelID == 4 &&
-            Tutorial.tutorial.isPlayerCanShareLives
+            Tutorial.tutorial.isReadyToShareLives
             && !GameFinish.gameFinish.isGameFinish
             && !Pause.pause.isGamePaused
-            && globalVariable.waitTimeToShareLives <= 0))
+            && globalVariable.curShareLivesDelayTime <= 0))
         {
             if (context.started && !Player1Health.player1Health.isSharingLivesToP2 && linkRay.isPlayerLinkedEachOther)
             {
@@ -111,6 +112,7 @@ public class Player2Health : MonoBehaviour // kurang slow motion
             {
                 if (curPlayer2Health > 1 && Player1Health.player1Health.curPlayer1Health < maxPlayerHealth)
                 {
+                    player2Movement.isMoving = false;
                     Instantiate(healthPoint, transform.position, Quaternion.identity);
                     globalVariable.delayTimeToShareLives();
                     isSharingLivesToP1 = false;
@@ -121,7 +123,7 @@ public class Player2Health : MonoBehaviour // kurang slow motion
                     }
                     if (LevelStatus.levelStatus.levelID == 4) 
                     {
-                        if (Tutorial.tutorial.shareLiveProgress == 0) { Tutorial.tutorial.shareLiveProgress = 1; }
+                        Tutorial.tutorial.shareLivesProgress++;
                     }
                 }
             }

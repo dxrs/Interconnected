@@ -70,18 +70,25 @@ public class CameraSystem : MonoBehaviour
         }
         if (LevelStatus.levelStatus.levelID == 4) 
         {
-            if (Tutorial.tutorial.cameraMoveValue == 2) 
+
+            if (Tutorial.tutorial.tutorialProgress == 2) 
             {
-                transform.position = Vector2.Lerp(transform.position, new Vector2(camPosX[1],transform.position.y ), 4 * Time.deltaTime);
+                if (cameraTargetObject[0].position.x > 6 || cameraTargetObject[1].position.x > 6) 
+                {
+                    transform.position = Vector2.Lerp(transform.position, new Vector2(camPosX[1], transform.position.y), 2 * Time.deltaTime);
+                }
+                
             }
-            if (Tutorial.tutorial.cameraMoveValue == 3)
+            if (Tutorial.tutorial.tutorialProgress == 3)
             {
-                transform.position = Vector2.Lerp(transform.position, new Vector2(camPosX[2], transform.position.y), 4 * Time.deltaTime);
+                if (cameraTargetObject[0].position.x > 49.6f || cameraTargetObject[1].position.x > 49.6f) 
+                {
+                    transform.position = Vector2.Lerp(transform.position, new Vector2(camPosX[2], transform.position.y), 2 * Time.deltaTime);
+                }
+
             }
-            if (Tutorial.tutorial.cameraMoveValue == 4) 
-            {
-                transform.position = Vector2.Lerp(transform.position, new Vector2(camPosX[3], transform.position.y), 4 * Time.deltaTime);
-            }
+           
+
         }
         
         

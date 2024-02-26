@@ -18,7 +18,7 @@ public class Player1Collision : MonoBehaviour
 
     [SerializeField] ParticleSystem playerHitParticle;
     [SerializeField] float crashForceValue;
-    [SerializeField] GameObject playerOutlineCollider;
+    
 
     Rigidbody2D rb;
 
@@ -32,10 +32,7 @@ public class Player1Collision : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
-    {
-        playerOutlineCollider.transform.position = transform.position;
-    }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -63,8 +60,8 @@ public class Player1Collision : MonoBehaviour
         if (collision.gameObject.tag == "Garbage Center Point")
             GarbageCollector.garbageCollector.playerReadyToStoreValue[0] = 0;
 
-        if (LevelStatus.levelStatus.levelID == 4 && collision.gameObject.tag == "Braking Trigger")
-            Tutorial.tutorial.playerBrakingValue--;
+       // if (LevelStatus.levelStatus.levelID == 4 && collision.gameObject.tag == "Braking Trigger")
+           // Tutorial.tutorial.playerBrakingValue--;
     }
 
     private void handleObstacleCollision(Collider2D collision)
@@ -124,8 +121,8 @@ public class Player1Collision : MonoBehaviour
 
     private void handleBrakingTriggerCollision(Collider2D collision)
     {
-        if (LevelStatus.levelStatus.levelID == 4 && collision.gameObject.tag == "Braking Trigger")
-            Tutorial.tutorial.playerBrakingValue++;
+        //if (LevelStatus.levelStatus.levelID == 4 && collision.gameObject.tag == "Braking Trigger")
+            //Tutorial.tutorial.playerBrakingValue++;
     }
 
     private void handleEnemyCollision(Collider2D collision)

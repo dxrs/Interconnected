@@ -19,31 +19,25 @@ public class EnemyTutorial : MonoBehaviour
 
     private void Update()
     {
-        if (Tutorial.tutorial.cameraMoveValue == 3) 
+        if (Tutorial.tutorial.isEnemyReadyToShoot) 
         {
-            StartCoroutine(waitToMoveToward());
+            if (randomTargetValue == 0)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, player1.transform.position, moveSpeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.position = Vector2.MoveTowards(transform.position, player2.transform.position, moveSpeed * Time.deltaTime);
+            }
         }
        
-    }
-
-    IEnumerator waitToMoveToward() 
-    {
-        yield return new WaitForSeconds(1f);
-        if (randomTargetValue == 0)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, player1.transform.position, moveSpeed * Time.deltaTime);
-        }
-        else
-        {
-            transform.position = Vector2.MoveTowards(transform.position, player2.transform.position, moveSpeed * Time.deltaTime);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player 1") || collision.gameObject.CompareTag("Player 2")) 
         {
-            Tutorial.tutorial.isPlayerCanShareLives = true;
+            Tutorial.tutorial.isReadyToShareLives = true;
             Destroy(gameObject);
         }
     }

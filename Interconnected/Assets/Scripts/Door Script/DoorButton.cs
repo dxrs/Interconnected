@@ -12,8 +12,7 @@ public class DoorButton : MonoBehaviour
     [SerializeField] bool isPlayer2SetPosToDoor;
     [SerializeField] bool doorButtonIsDestroyed;
 
-    [SerializeField] Rigidbody2D rbPlayer1;
-    [SerializeField] Rigidbody2D rbPlayer2;
+    [SerializeField] Rigidbody2D playerRb;
 
     private void Update()
     {
@@ -30,7 +29,7 @@ public class DoorButton : MonoBehaviour
                         {
                             if (GlobalVariable.globalVariable.curDoorOpenValue == 2) 
                             {
-                                transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0, 0), 2.5f * Time.deltaTime);
+                                transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0, 0), 4.5f * Time.deltaTime);
                                 if (transform.localScale.x < 0.01f)
                                 {
                                     Destroy(gameObject);
@@ -55,7 +54,7 @@ public class DoorButton : MonoBehaviour
                         {
                             if (GlobalVariable.globalVariable.curDoorOpenValue == 2) 
                             {
-                                transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0, 0), 2.5f * Time.deltaTime);
+                                transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0, 0), 4.5f * Time.deltaTime);
                                 if (transform.localScale.x < 0.01f)
                                 {
                                     Destroy(gameObject);
@@ -107,7 +106,7 @@ public class DoorButton : MonoBehaviour
                 GlobalVariable.globalVariable.curDoorOpenValue++;
                 isPlayer1SetPosToDoor = true;
                 doorButtonIsDestroyed = true;
-                rbPlayer1.drag = 0;
+                playerRb.drag = 0;
             }
         }
         if (doorPlayer == "Player 2")
@@ -117,7 +116,7 @@ public class DoorButton : MonoBehaviour
                 GlobalVariable.globalVariable.curDoorOpenValue++;
                 isPlayer2SetPosToDoor = true;
                 doorButtonIsDestroyed = true;
-                rbPlayer2.drag = 0;
+                playerRb.drag = 0;
             }
         }
        

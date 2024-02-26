@@ -8,38 +8,35 @@ public class PlayerBullet : MonoBehaviour
     [SerializeField] float bulletSpeed;
     [SerializeField] float colorChangeDistanceThreshold;
 
-    GameObject targetToPlayer2;
-
-    [SerializeField] Color defaultBulletColor;
-    [SerializeField] Color targetColor;
+    GameObject player1, player2;
 
     SpriteRenderer sr;
-
-    CircleCollider2D cc;
-    Color currentColor;
 
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-        sr.color = defaultBulletColor;
-        targetToPlayer2 = GameObject.FindGameObjectWithTag("Player 2");
+        player2 = GameObject.FindGameObjectWithTag("Player 2");
+        player1 = GameObject.FindGameObjectWithTag("Player 1");
     }
 
     private void Update()
     {
-        if (targetToPlayer2 != null && !GlobalVariable.globalVariable.isPlayerDestroyed
+        if (player2 && player1 != null && !GlobalVariable.globalVariable.isPlayerDestroyed
                         && !SceneSystem.sceneSystem.isExitScene
                         && !SceneSystem.sceneSystem.isRestartScene
                         && !GameOver.gameOver.isGameOver)
         {
-            transform.position = Vector2.MoveTowards(transform.position, targetToPlayer2.transform.position, bulletSpeed * Time.deltaTime);
+            float distanceToPlayer2 = Vector2.Distance(player1.transform.position, player2.transform.position);
 
-            float distanceToPlayer2 = Vector2.Distance(transform.position, targetToPlayer2.transform.position);
+            // Ubah warna berdasarkan jarak
+            if (distanceToPlayer2 >= 10f)
+            {
+                float t = Mathf.InverseLerp(10f, LinkRay.linkRay.maxLinkDistance, distanceToPlayer2);
+                Color newColor = Color.Lerp(Color.white, Color.red, t);
+                sr.color = newColor;
+            }
 
-            float normalizedDistance = Mathf.Clamp01(distanceToPlayer2 / colorChangeDistanceThreshold);
-
-            Color currentColor = Color.Lerp(targetColor, defaultBulletColor, normalizedDistance);
-            sr.color = currentColor;
+            transform.position = Vector2.MoveTowards(transform.position, player2.transform.position, bulletSpeed * Time.deltaTime);
         }
         else
         {

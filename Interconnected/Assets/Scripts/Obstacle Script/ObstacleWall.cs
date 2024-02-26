@@ -15,15 +15,32 @@ public class ObstacleWall : MonoBehaviour
     float xSinePos;
     float ySinePos;
 
-    [Header("Move Towards Wall")]
+    [Header("Waypoint Movement Wall")]
     [SerializeField] Transform pathWall;
     [SerializeField] float moveSpeed;
     [SerializeField] float delayTime;
 
+    [Header("Move Toward Wall")]
+    [SerializeField] int moveTowardID;
+    [SerializeField] bool isMovingX;
+    [SerializeField] float moveTowardSpeed;
+    [SerializeField] float moveXTarget;
+    [SerializeField] float moveYTarget;
+
+    [Header("Rotate Wall")]
+    [SerializeField] bool isRotateClockwise;
+    [SerializeField] float rotationSpeed;
+
     Vector2 pos;
+
+    GameObject player1, player2;
+
+
 
     private void Start()
     {
+        player1 = GameObject.FindGameObjectWithTag("Player 1");
+        player2 = GameObject.FindGameObjectWithTag("Player 2");
         if (wallType == "Sine") 
         {
             pos = transform.position;
@@ -43,14 +60,72 @@ public class ObstacleWall : MonoBehaviour
     }
     private void Update()
     {
-        if (wallType == "Sine") 
+        wallSine();
+        wallMoveTowardTutorial();
+
+        if (wallType == "Rotate") 
         {
-            if (sineID == 1) 
+            transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+        }
+    }
+
+    private void wallMoveTowardTutorial() 
+    {
+        if (LevelStatus.levelStatus.levelID == 4)
+        {
+            if (Tutorial.tutorial.tutorialProgress >= 2)
+            {
+                if (moveTowardID == 1)
+                {
+                    if (player1.transform.position.x >= 6 || player2.transform.position.x >= 6)
+                    {
+                        if (isMovingX)
+                        {
+                            transform.position = Vector2.MoveTowards(transform.position, new Vector2(moveXTarget, transform.position.y), moveTowardSpeed * Time.deltaTime);
+                        }
+                    }
+                }
+                if (moveTowardID == 3)
+                {
+                    if (Tutorial.tutorial.shareLivesProgress == 1)
+                    {
+                        if (isMovingX)
+                        {
+                            transform.position = Vector2.MoveTowards(transform.position, new Vector2(moveXTarget, transform.position.y), moveTowardSpeed * Time.deltaTime);
+                        }
+                    }
+                }
+
+
+            }
+            if (Tutorial.tutorial.tutorialProgress >= 3)
+            {
+                if (moveTowardID == 2)
+                {
+                    if (player1.transform.position.x >= 50 || player2.transform.position.x >= 50)
+                    {
+                        if (isMovingX)
+                        {
+                            transform.position = Vector2.MoveTowards(transform.position, new Vector2(moveXTarget, transform.position.y), moveTowardSpeed * Time.deltaTime);
+                        }
+                    }
+                }
+
+
+            }
+        }
+    }
+
+    private void wallSine() 
+    {
+        if (wallType == "Sine")
+        {
+            if (sineID == 1)
             {
                 transform.position = new Vector2(pos.x + Mathf.Sin(sineSpeed * Time.time) * sinePower,
        transform.position.y);
             }
-            if (sineID == 2) 
+            if (sineID == 2)
             {
                 transform.position = new Vector2(transform.position.x, pos.y + (Mathf.Sin(sineSpeed * Time.time) * sinePower));
             }

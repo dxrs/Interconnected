@@ -44,7 +44,7 @@ public class Player1Ability : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, player2.transform.position) > distanceFromPlayer2) 
         {
-            Debug.Log("jauh");
+            //Debug.Log("jauh");
         }
         if (isPullingUp) 
         {

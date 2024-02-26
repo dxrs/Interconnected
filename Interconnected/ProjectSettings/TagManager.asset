@@ -36,6 +36,7 @@ TagManager:
   - Share Lives Trigger
   - Garbage Center Point
   - Gun Bullet
+  - Level Bound
   layers:
   - Default
   - TransparentFX
@@ -49,7 +50,7 @@ TagManager:
   - Player 1
   - Player 2
   - Background
-  - Trash Bin
+  - Raycast Blocker
   - 
   - 
   - 

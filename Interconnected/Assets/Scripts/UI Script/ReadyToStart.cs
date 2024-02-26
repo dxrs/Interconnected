@@ -54,7 +54,7 @@ public class ReadyToStart : MonoBehaviour
             isGameStart = true;
             if (isGameStart && !GameFinish.gameFinish.isGameFinish)
             {
-                if (Tutorial.tutorial.cameraMoveValue == 3) 
+                if (Tutorial.tutorial.tutorialProgress == 2) 
                 {
                     inGameUI.SetActive(true);
                 }
@@ -88,6 +88,4 @@ public class ReadyToStart : MonoBehaviour
             textTimerCountToStart.text = "Let's go !";
         }
     }
-
-    
 }

@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2862454965114613572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2862454965114613570}
+  - component: {fileID: 2862454965114613573}
+  m_Layer: 0
+  m_Name: Global Variable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2862454965114613570
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2862454965114613572}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2862454965114613573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2862454965114613572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1680b77e951cc064a8fa1d6ca67a2386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerDestroyed: 0
+  isTimerStart: 0
+  isPlayerSharingLives: 0
+  isRopeVisible: 0
+  maxDoor: 10
+  curDoorOpenValue: 0
+  curEnemySpawn: 0
+  maxEnemySpawn: 0
+  playerShieldTagCollision:
+  - Spike
+  - Trap
+  - Enemy
+  - Gear
+  curShareLivesDelayTime: 0
+  spriteRendererPlayer1: {fileID: 0}
+  spriteRendererPlayer2: {fileID: 0}
+  player1Collider: {fileID: 0}
+  player2Collider: {fileID: 0}

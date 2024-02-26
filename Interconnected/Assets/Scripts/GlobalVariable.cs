@@ -13,7 +13,6 @@ public class GlobalVariable : MonoBehaviour
     public bool isPlayerSharingLives;
     public bool isRopeVisible;
 
-
     public int maxDoor;
     public int curDoorOpenValue;
 
@@ -22,18 +21,16 @@ public class GlobalVariable : MonoBehaviour
 
     public string[] playerShieldTagCollision;
 
-    public float waitTimeToShareLives;
+    public float curShareLivesDelayTime;
 
-    [SerializeField] SpriteRenderer p1Sr;
-    [SerializeField] SpriteRenderer p2Sr;
+    [SerializeField] SpriteRenderer spriteRendererPlayer1;
+    [SerializeField] SpriteRenderer spriteRendererPlayer2;
 
-    [SerializeField] CircleCollider2D p1cc;
-    [SerializeField] CircleCollider2D p2cc;
+    [SerializeField] PolygonCollider2D player1Collider;
+    [SerializeField] PolygonCollider2D player2Collider;
 
-    [Header("Tutorial")]
-    public int cameraMovementValue;
 
-    float maxDelayTime = 10;
+    float maxShareLivesDelayTime = 10;
 
     GameObject player1, player2;
 
@@ -61,25 +58,30 @@ public class GlobalVariable : MonoBehaviour
         if (curDoorOpenValue == 2 && !isAddingCheckpointValue) 
         {
             //Checkpoint.checkpoint.curCheckpointValue++;
-            isAddingCheckpointValue = true;
+            if (LevelStatus.levelStatus.levelID == 4) 
+            {
+                Tutorial.tutorial.tutorialProgress++;
+                isAddingCheckpointValue = true;
+            }
+            
         }
         partOfSharingLives();
 
-        StartCoroutine(defaultValueCurDoorValue());
+        StartCoroutine(setDefaultValueCurDoorValue());
     }
     public void delayTimeToShareLives()
     {
-        waitTimeToShareLives = maxDelayTime;
+        curShareLivesDelayTime = maxShareLivesDelayTime;
     }
 
     public void playerVisible() 
     {
         if(player1 && player2 != null) 
         {
-            p1cc.enabled = true;
-            p2cc.enabled = true;
-            p1Sr.enabled = true;
-            p2Sr.enabled = true;
+            player1Collider.enabled = true;
+            player2Collider.enabled = true;
+            spriteRendererPlayer1.enabled = true;
+            spriteRendererPlayer2.enabled = true;
         }
        
     }
@@ -87,23 +89,24 @@ public class GlobalVariable : MonoBehaviour
     {
         if (player1 && player2 != null)
         {
-            p1Sr.enabled = false;
-            p2Sr.enabled = false;
-            p1cc.enabled = false;
-            p2cc.enabled = false;
+            player1Collider.enabled = false;
+            player2Collider.enabled = false;
+            spriteRendererPlayer1.enabled = false;
+            spriteRendererPlayer1.enabled = false;
+
         }
        
     }
 
     private void partOfSharingLives() 
     {
-        if (waitTimeToShareLives > 0)
+        if (curShareLivesDelayTime > 0)
         {
-            waitTimeToShareLives -= 1 * Time.deltaTime;
+            curShareLivesDelayTime -= 1 * Time.deltaTime;
         }
-        if (waitTimeToShareLives <= 0)
+        if (curShareLivesDelayTime <= 0)
         {
-            waitTimeToShareLives = 0;
+            curShareLivesDelayTime = 0;
         }
 
         if (Player1Health.player1Health.isSharingLivesToP2 || Player2Health.player2Health.isSharingLivesToP1)
@@ -121,15 +124,8 @@ public class GlobalVariable : MonoBehaviour
         }
     }
 
-
-    IEnumerator ty() 
+    IEnumerator setDefaultValueCurDoorValue() 
     {
-        yield return new WaitForSeconds(.4f);
-      
-    }
-    IEnumerator defaultValueCurDoorValue() 
-    {
-        
         if (curDoorOpenValue >= 2) 
         {
             yield return new WaitForSeconds(3);

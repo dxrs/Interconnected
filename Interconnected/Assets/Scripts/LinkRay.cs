@@ -10,16 +10,13 @@ public class LinkRay : MonoBehaviour
 
     public bool isPlayerLinkedEachOther;
 
-    [SerializeField] float linkDistanceToPlayer;
+    public float maxLinkDistance;
 
     [SerializeField] GameObject[] player; // array for link point player 1 and player 2
 
     [SerializeField] LayerMask layerMask;
 
-    [SerializeField] string[] playerObstacleTag;
     [SerializeField] string[] obstacleTag;
- 
-
 
     private void Awake()
     {
@@ -55,7 +52,7 @@ public class LinkRay : MonoBehaviour
                 }
             }
             if (isObstacleHit ||
-                Vector2.Distance(player[0].transform.position, player[1].transform.position) >= linkDistanceToPlayer)
+                Vector2.Distance(player[0].transform.position, player[1].transform.position) >= maxLinkDistance)
             {
                 isPlayerLinkedEachOther = false;
                 Debug.DrawLine(player[0].transform.position, player[1].transform.position, Color.red);

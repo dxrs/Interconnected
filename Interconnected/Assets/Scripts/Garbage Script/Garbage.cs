@@ -12,10 +12,14 @@ public class Garbage : MonoBehaviour
     [SerializeField] float blastForce;  
     [SerializeField] float blastRadius;
 
+    [SerializeField] bool isGarbageDestroying;
+    [SerializeField] bool isRotate;
+
     float lerpSpeed;
     float posX;
     float posY;
     float angle;
+    float flushLerpSpeed;
 
     Rigidbody2D rb;
 
@@ -36,15 +40,28 @@ public class Garbage : MonoBehaviour
         rb.drag = 5;
         angle = Random.Range(0f, 360f);
         lerpSpeed = Random.Range(4.5f, 6.5f);
-        // transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+        flushLerpSpeed = Random.Range(0.8f, 1.2f);
+        if (isRotate) 
+        {
+            transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+        }
+
         transform.localScale = maxGarbageScale;
     }
 
     private void Update()
     {
+        if (isGarbageCollected && isGarbageDestroying) 
+        {
+            transform.localScale = Vector2.Lerp(transform.localScale, Vector2.zero, flushLerpSpeed * Time.deltaTime);
+            if (transform.localScale.x <= 0.02f)
+            {
+                Destroy(gameObject);
+            }
+        }
         if(!GameFinish.gameFinish.isGameFinish || !GameOver.gameOver.isGameOver) 
         {
-            if (isGarbageCollected)
+            if (isGarbageCollected && !isGarbageDestroying)
             {
                 if (!GarbageCollector.garbageCollector.isGarbageStored) 
                 {
@@ -64,13 +81,17 @@ public class Garbage : MonoBehaviour
                 }
                 else 
                 {
+                    isGarbageDestroying = true;
+                    
                     StartCoroutine(garbageIsStoring());
-                 
                 }
                 
                 if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isPlayerDestroyed)
                 {
-                    // transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+                    if (isRotate)
+                    {
+                        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+                    }
                     StartCoroutine(garbageRigidBrake(1f));
                     Vector2 directionToCenter = (Vector2)transform.position - (Vector2)garbageSpawner.transform.position;
                     float distanceToCenter = directionToCenter.magnitude;
@@ -89,8 +110,6 @@ public class Garbage : MonoBehaviour
             }
             if (!isGarbageCollected)
             {
-
-
                 transform.localScale = Vector2.Lerp(transform.localScale, randomGarbageScale, 1f * Time.deltaTime);
                 bc.enabled = true;
                 StartCoroutine(garbageRigidBrake(1f));
@@ -138,7 +157,7 @@ public class Garbage : MonoBehaviour
     IEnumerator garbageIsStoring() 
     {
         yield return new WaitForSeconds(.1f);
-        Destroy(gameObject,0.5f);
+        
         GarbageCollector.garbageCollector.garbageCollected = 0;
     }
 }

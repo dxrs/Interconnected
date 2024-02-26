@@ -22,7 +22,7 @@ public class CameraMovePosTrigger : MonoBehaviour
 
         if (player1Collision && player2Collision)
         {
-            Tutorial.tutorial.cameraMoveValue++;
+            //Tutorial.tutorial.cameraMoveValue++;
             player1Collision = false;
             player2Collision = false;
             StartCoroutine(destroyed());

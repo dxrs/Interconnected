@@ -27,9 +27,6 @@ public class Player2Movement : MonoBehaviour
     [HideInInspector]
     public float curMaxSpeed;
 
-    [SerializeField] Transform playerSprite;
-    bool isFacingRight;
-    float faceDirection;
 
     Rigidbody2D rb;
 
@@ -48,15 +45,7 @@ public class Player2Movement : MonoBehaviour
     private void Update()
     {
         playerSpeedComparison();
-        faceDirection = inputDir.x;
-        if(faceDirection > 0 && isFacingRight )
-        {
-            flip();
-        }
-        if(faceDirection < 0 && !isFacingRight )
-        {
-            flip();
-        }
+       
     }
 
     private void FixedUpdate()
@@ -95,7 +84,7 @@ public class Player2Movement : MonoBehaviour
             isMoving = false;
             maxPlayerSpeed = Mathf.Lerp(maxPlayerSpeed, 0, 5 * Time.deltaTime);
             rb.drag = Mathf.Lerp(rb.drag, 10, 6 * Time.deltaTime);
-            rb.simulated = false;
+            StartCoroutine(setSimulatedRigidbody());
         }
     }
 
@@ -149,6 +138,13 @@ public class Player2Movement : MonoBehaviour
        
     }
 
+    IEnumerator setSimulatedRigidbody()
+    {
+        yield return new WaitForSeconds(.5f);
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+    }
+
     IEnumerator setMaxSpeedPlayer()
     {
         yield return new WaitForSeconds(.5f);
@@ -196,12 +192,5 @@ public class Player2Movement : MonoBehaviour
 
         }
         else { isBrakingWithInput = false; }
-    }
-
-    //buat hadap sprite
-    private void flip()
-    {
-        isFacingRight = !isFacingRight;
-        playerSprite.transform.Rotate(0,180,0);
     }
 }

@@ -8,137 +8,46 @@ public class Tutorial : MonoBehaviour
 {
     public static Tutorial tutorial;
 
-    [SerializeField] GameObject spikeWall;
-    [SerializeField] GameObject shareLivesWall;
-    [SerializeField] GameObject brakingTrigger;
-    [SerializeField] GameObject[] wallBlock;
-    [SerializeField] GameObject statusPlayerConnect;
+    public int tutorialProgress;
+    public int shareLivesProgress;
 
+    public bool isEnemyReadyToShoot;
+    public bool isReadyToShareLives;
 
-    [SerializeField] Rigidbody2D rbPlayer1;
-    [SerializeField] Rigidbody2D rbPlayer2;
+    [SerializeField] GameObject wallBlocker;
+    [SerializeField] GameObject wallStatic;
 
-    [SerializeField] TextMeshProUGUI[] textShareLivesPlayer;
-    [SerializeField] TextMeshProUGUI textShareLivesCount;
-    [SerializeField] TextMeshProUGUI textPlayerConnected;
-    [SerializeField] TextMeshProUGUI textGarbageCollected;
-
-    public bool isPlayerCanShareLives;
-
-    public int playerBrakingValue;
-    public int cameraMoveValue;
-    public int shareLiveProgress;
+    GameObject player1, player2;
 
     private void Awake()
     {
         tutorial = this;
     }
+
     private void Start()
     {
-        cameraMoveValue = 1;
-        for(int j = 0; j < wallBlock.Length; j++) 
-        {
-            wallBlock[j].SetActive(false);
-        }
+        tutorialProgress = 1;
+        player1 = GameObject.FindGameObjectWithTag("Player 1");
+        player2 = GameObject.FindGameObjectWithTag("Player 2");
     }
 
     private void Update()
     {
-        textGarbageCollected.text = GarbageCollector.garbageCollector.currentGarbageStored.ToString() + "/5";
-        if (LinkRay.linkRay.isPlayerLinkedEachOther)
+        if (tutorialProgress >= 2) 
         {
-            textPlayerConnected.text = "Connected";
-        }
-        else { textPlayerConnected.text = "Not Connect"; }
-        
-        if (playerBrakingValue >= 2) 
-        {
-            if(rbPlayer1 && rbPlayer2 != null) 
+            if(player1.transform.position.x >= 7.5f && player2.transform.position.x >= 7.5f) 
             {
-                if (rbPlayer1.drag > 4.9f && rbPlayer2.drag > 4.9f)
-                {
-                    Destroy(spikeWall);
-                    Destroy(brakingTrigger,0.5f);
-                }
+                isEnemyReadyToShoot = true;
             }
-           
-        }
-
-        if (GlobalVariable.globalVariable.isPlayerDestroyed) 
-        {
-            playerBrakingValue = 0;
-        }
-
-        
-        if (shareLiveProgress == 1)
-        {
-            Destroy(shareLivesWall, 1);
-        }
-
-        if (isPlayerCanShareLives) 
-        {
-            textShareLivesCount.text = Mathf.RoundToInt(GlobalVariable.globalVariable.waitTimeToShareLives).ToString();
-            textShareLivesCount.enabled = true;
-            if (Player1Health.player1Health.curPlayer1Health == 1) 
+            if (shareLivesProgress >= 2) 
             {
-                if (GlobalVariable.globalVariable.waitTimeToShareLives <= 0) 
-                {
-                    textShareLivesPlayer[0].enabled = false;
-                    textShareLivesPlayer[1].enabled = true;
-                }
-               
-            }
-            if (Player2Health.player2Health.curPlayer2Health == 1)
-            {
-                if (GlobalVariable.globalVariable.waitTimeToShareLives <= 0)
-                {
-                    textShareLivesPlayer[1].enabled = false;
-                    textShareLivesPlayer[0].enabled = true;
-                }
-               
+                Destroy(wallStatic);
             }
         }
-
-        /*
-  if (shareLiveProgress == 2) 
-  {
-
-      textShareLivesPlayer2.enabled = true;
-      textShareLivesCount.enabled = true;
-      textShareLivesCount.text = "Share Lives available in " +
-          Mathf.RoundToInt(GlobalVariable.globalVariable.waitTimeToShareLives).ToString();
-  }
-  else { textShareLivesCount.enabled = false; }
-      */
-
-
-        if (cameraMoveValue >= 2) 
+        if (tutorialProgress >= 3) 
         {
-
-            StartCoroutine(wallBlocker1Active());
-
+            wallBlocker.SetActive(true);
         }
-        if (cameraMoveValue >= 3) 
-        {
-            wallBlock[1].SetActive(true);
-            //statusPlayerConnect.transform.localPosition = new Vector2(57, -15.71f);
-        }
-        if (cameraMoveValue >= 4) 
-        {
-            wallBlock[2].SetActive(true);
-        }
-
-        
     }
-
-    public void onClickNextScene() 
-    {
-        SceneSystem.sceneSystem.isNextScene = true;
-    }
-
-    IEnumerator wallBlocker1Active() 
-    {
-        yield return new WaitForSeconds(1f);
-        wallBlock[0].SetActive(true);
-    }
+    
 }

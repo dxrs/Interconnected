@@ -8,6 +8,7 @@ public class Player1Health : MonoBehaviour // kurang slow motion
 {
     public static Player1Health player1Health;
 
+    [SerializeField] Player1Movement player1Movement;
     [SerializeField] Player1Ability player1Ability;
     [SerializeField] GlobalVariable globalVariable;
     [SerializeField] LinkRay linkRay;
@@ -87,12 +88,12 @@ public class Player1Health : MonoBehaviour // kurang slow motion
              && ReadyToStart.readyToStart.isGameStart
              && !player1Ability.isDashing
              && !Player2Ability.player2Ability.isShielding
-             && globalVariable.waitTimeToShareLives <= 0) ||
+             && globalVariable.curShareLivesDelayTime <= 0) ||
              (LevelStatus.levelStatus.levelID == 4 && //<- tutorial
-             Tutorial.tutorial.isPlayerCanShareLives
+             Tutorial.tutorial.isReadyToShareLives
              && !GameFinish.gameFinish.isGameFinish
              && !Pause.pause.isGamePaused
-             && globalVariable.waitTimeToShareLives <= 0))
+             && globalVariable.curShareLivesDelayTime <= 0))
         {
             if (context.started && !Player2Health.player2Health.isSharingLivesToP1 && linkRay.isPlayerLinkedEachOther)
             {
@@ -105,6 +106,7 @@ public class Player1Health : MonoBehaviour // kurang slow motion
             {
                 if (curPlayer1Health > 1 && Player2Health.player2Health.curPlayer2Health < maxPlayerHealth)
                 {
+                    player1Movement.isMoving = false;
                     Instantiate(healthPoint, transform.position, Quaternion.identity);
                     globalVariable.delayTimeToShareLives();
                     isSharingLivesToP2 = false;
@@ -115,7 +117,7 @@ public class Player1Health : MonoBehaviour // kurang slow motion
                     }
                     if (LevelStatus.levelStatus.levelID == 4)
                     {
-                        if (Tutorial.tutorial.shareLiveProgress == 0) { Tutorial.tutorial.shareLiveProgress = 1; }
+                        Tutorial.tutorial.shareLivesProgress++;
                     }
                 }
             }
