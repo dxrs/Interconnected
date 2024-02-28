@@ -57,9 +57,9 @@ public class GarbageCollector : MonoBehaviour
         if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isPlayerDestroyed) 
         {
             garbageCollected = 0;
-            sr.enabled = false;
+           // sr.enabled = false;
         }
-        else { sr.enabled = true; }
+       // else { sr.enabled = true; }
     }
 
     

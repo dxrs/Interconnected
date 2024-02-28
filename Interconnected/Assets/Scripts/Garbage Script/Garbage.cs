@@ -45,7 +45,7 @@ public class Garbage : MonoBehaviour
         lerpSpeed = Random.Range(4.5f, 6.5f);
         flushLerpSpeed = Random.Range(0.8f, 1.2f);
         randomRadius = Random.Range(0.3f, 2f);
-        randomDestroyTime = Random.Range(3.5f, 5f);
+        randomDestroyTime = Random.Range(1.5f, 2.5f);
         if (isRotate) 
         {
             transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));

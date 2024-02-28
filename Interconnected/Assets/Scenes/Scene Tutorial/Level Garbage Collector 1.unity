@@ -3961,6 +3961,10 @@ PrefabInstance:
       propertyPath: linkRay
       value: 
       objectReference: {fileID: 1708332662}
+    - target: {fileID: 108566020804737186, guid: c29bae584c7231e45847d69b40e36588, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 108566022316443695, guid: c29bae584c7231e45847d69b40e36588, type: 3}
       propertyPath: playerLookAt
       value: 
