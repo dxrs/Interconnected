@@ -1605,6 +1605,27 @@ PolygonCollider2D:
   m_CorrespondingSourceObject: {fileID: 74277217981580468, guid: 281f6ccc00e123f47aa2f9d844f4f728, type: 3}
   m_PrefabInstance: {fileID: 74277217168568044}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &814672477
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814672459}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 048d55febbfd1a44f89ed706dd0fe2ac, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &835679579 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2772721481137595803, guid: 461f05013ce57c742a8a90baa1345af3, type: 3}
@@ -3798,6 +3819,27 @@ PolygonCollider2D:
   m_CorrespondingSourceObject: {fileID: 108566022860834252, guid: c29bae584c7231e45847d69b40e36588, type: 3}
   m_PrefabInstance: {fileID: 108566020897545889}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &2097847154
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097847136}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 71157b99adc49ea48b58b9856afd9911, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &2129032146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2772721481137595803, guid: 461f05013ce57c742a8a90baa1345af3, type: 3}
@@ -3888,6 +3930,22 @@ PrefabInstance:
       propertyPath: playerOutlineCollider.Array.data[1]
       value: 
       objectReference: {fileID: 1676179322}
+    - target: {fileID: 74277217981580476, guid: 281f6ccc00e123f47aa2f9d844f4f728, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b78505d9065a08544978e009a4811cc1, type: 3}
+    - target: {fileID: 74277217981580476, guid: 281f6ccc00e123f47aa2f9d844f4f728, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 74277217981580476, guid: 281f6ccc00e123f47aa2f9d844f4f728, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 74277217981580476, guid: 281f6ccc00e123f47aa2f9d844f4f728, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 74277217981580477, guid: 281f6ccc00e123f47aa2f9d844f4f728, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -4176,6 +4234,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 333539067}
     m_Modifications:
+    - target: {fileID: 2772721480829339614, guid: 461f05013ce57c742a8a90baa1345af3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 2772721480829339614, guid: 461f05013ce57c742a8a90baa1345af3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 2772721480829339614, guid: 461f05013ce57c742a8a90baa1345af3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.29
+      objectReference: {fileID: 0}
     - target: {fileID: 2772721481137595803, guid: 461f05013ce57c742a8a90baa1345af3, type: 3}
       propertyPath: m_RootOrder
       value: 0

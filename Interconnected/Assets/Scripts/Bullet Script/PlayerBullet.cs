@@ -23,7 +23,6 @@ public class PlayerBullet : MonoBehaviour
 
     private void Update()
     {
-        transform.LookAt(player2.transform.position);
         if (player2 && player1 != null && !GlobalVariable.globalVariable.isPlayerDestroyed
                         && !SceneSystem.sceneSystem.isExitScene
                         && !SceneSystem.sceneSystem.isRestartScene
