@@ -23,7 +23,7 @@ public class GameFinish : MonoBehaviour
         {
             if (GarbageCollector.garbageCollector.currentGarbageStored >= GarbageCollector.garbageCollector.targetGarbageStored) 
             {
-                isGameFinish = true;
+                //isGameFinish = true;
             }
             if (finishValue == 2 && GarbageCollector.garbageCollector.garbageCollected >= 5) 
             {

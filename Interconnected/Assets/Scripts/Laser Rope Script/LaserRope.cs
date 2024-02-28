@@ -34,14 +34,12 @@ public class LaserRope : MonoBehaviour
                 laerRope.SetActive(true);
                 float beamDistance = Vector2.Distance(player1.transform.position, player2.transform.position);
                 maxDistanceBeam = beamDistance;
-                transform.localScale = new Vector3(.1f, maxDistanceBeam, transform.localScale.z);
+                transform.localScale = new Vector2(.1f, maxDistanceBeam);
             }
             else
             {
                 laerRope.SetActive(false);
             }
         }
-      
-
     }
 }

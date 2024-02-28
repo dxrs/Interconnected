@@ -636,6 +636,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &307111660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8516829927780075818, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+  m_PrefabInstance: {fileID: 9218205164494279012}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &324336053 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2772721481137595803, guid: 461f05013ce57c742a8a90baa1345af3, type: 3}
@@ -1535,7 +1540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &804037541
 Transform:
   m_ObjectHideFlags: 0
@@ -4197,6 +4202,10 @@ PrefabInstance:
       value: Garbage Collector
       objectReference: {fileID: 0}
     - target: {fileID: 2998148965684358438, guid: 00120826c093a6349916affb7ecf8332, type: 3}
+      propertyPath: radius
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998148965684358438, guid: 00120826c093a6349916affb7ecf8332, type: 3}
       propertyPath: player1
       value: 
       objectReference: {fileID: 2097847137}
@@ -4578,6 +4587,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: World Space UI
       objectReference: {fileID: 0}
+    - target: {fileID: 8310842935753784860, guid: 2cd320f67ed757548bba3f4ec5f7e135, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8310842935753784861, guid: 2cd320f67ed757548bba3f4ec5f7e135, type: 3}
       propertyPath: m_Camera
       value: 
@@ -4756,6 +4769,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1489093269}
     m_Modifications:
+    - target: {fileID: 3746362868045808933, guid: e3c996ae7a9af224a9f06827432065f6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8774739259674710819, guid: e3c996ae7a9af224a9f06827432065f6, type: 3}
       propertyPath: m_Name
       value: Garbage Center Point
@@ -4910,6 +4927,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8516829927780075818, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218205163490194625, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: finishUI
+      value: 
+      objectReference: {fileID: 307111660}
     - target: {fileID: 9218205163490194625, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
       propertyPath: sceneSystem
       value: 

@@ -37,6 +37,7 @@ TagManager:
   - Garbage Center Point
   - Gun Bullet
   - Level Bound
+  - Garbage Whirlpool
   layers:
   - Default
   - TransparentFX

@@ -20,8 +20,6 @@ public class GarbageCollector : MonoBehaviour
     [SerializeField] Transform player1;
     [SerializeField] Transform player2;
 
-    bool isCountGarbage = false;
-
     private void Start()
     {
         garbageCollector = this;
@@ -30,16 +28,7 @@ public class GarbageCollector : MonoBehaviour
     }
     private void Update()
     {
-        if (garbageCollected > 0 && !isCountGarbage) 
-        {
-            if (isGarbageStored) 
-            {
-                isCountGarbage = true;
-                currentGarbageStored += garbageCollected;
-                StartCoroutine(setBoolFalse());
-            }
-           
-        }
+        
         if (playerReadyToStoreValue.Length != 0) 
         {
             if (playerReadyToStoreValue[0] == 1 && playerReadyToStoreValue[1] == 1)
@@ -66,11 +55,7 @@ public class GarbageCollector : MonoBehaviour
         }
     }
 
-    IEnumerator setBoolFalse() 
-    {
-        yield return new WaitForSeconds(.1f);
-        isCountGarbage = false;
-    }
+    
 
     IEnumerator setIsGarbageStoredTtrue() 
     {
