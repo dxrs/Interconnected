@@ -26,7 +26,7 @@ public class Player1ShootPoint : MonoBehaviour
                     && !SceneSystem.sceneSystem.isRestartScene
                     && !GameOver.gameOver.isGameOver)
             {
-                Instantiate(playerBullet, shootPoint.transform.position, Quaternion.identity);
+                Instantiate(playerBullet, shootPoint.transform.position, transform.rotation);
             }
            
             

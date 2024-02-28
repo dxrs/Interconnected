@@ -23,6 +23,7 @@ public class PlayerBullet : MonoBehaviour
 
     private void Update()
     {
+        transform.LookAt(player2.transform.position);
         if (player2 && player1 != null && !GlobalVariable.globalVariable.isPlayerDestroyed
                         && !SceneSystem.sceneSystem.isExitScene
                         && !SceneSystem.sceneSystem.isRestartScene
@@ -38,7 +39,7 @@ public class PlayerBullet : MonoBehaviour
                 sr.color = newColor;
             }
 
-            transform.position = Vector2.MoveTowards(transform.position, garbageCollector.transform.position, bulletSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player2.transform.position, bulletSpeed * Time.deltaTime);
         }
         else
         {
@@ -64,7 +65,7 @@ public class PlayerBullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (collision.gameObject.CompareTag("Garbage Collector"))
+        if (collision.gameObject.CompareTag("Player 2"))
         {
             Destroy(gameObject);
         }
