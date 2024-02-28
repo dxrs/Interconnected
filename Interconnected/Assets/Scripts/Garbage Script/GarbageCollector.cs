@@ -20,9 +20,15 @@ public class GarbageCollector : MonoBehaviour
     [SerializeField] Transform player1;
     [SerializeField] Transform player2;
 
-    private void Start()
+    SpriteRenderer sr;
+
+    private void Awake()
     {
         garbageCollector = this;
+    }
+    private void Start()
+    {
+        sr = GetComponent<SpriteRenderer>();
         GameObject[] currentGarbageFloating = GameObject.FindGameObjectsWithTag("Garbage");
         targetGarbageStored = currentGarbageFloating.Length;
     }
@@ -40,8 +46,7 @@ public class GarbageCollector : MonoBehaviour
                 isGarbageStored = false;
             }
         }
-        
-        if(player1 && player2 != null) 
+        if (player1 && player2 != null)
         {
             Vector2 posA = player1.position;
             Vector2 posB = player2.position;
@@ -49,10 +54,12 @@ public class GarbageCollector : MonoBehaviour
             transform.position = midPos;
         }
 
-        if(!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isPlayerDestroyed) 
+        if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isPlayerDestroyed) 
         {
             garbageCollected = 0;
+            sr.enabled = false;
         }
+        else { sr.enabled = true; }
     }
 
     

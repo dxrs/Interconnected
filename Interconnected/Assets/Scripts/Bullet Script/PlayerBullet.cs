@@ -9,6 +9,7 @@ public class PlayerBullet : MonoBehaviour
     [SerializeField] float colorChangeDistanceThreshold;
 
     GameObject player1, player2;
+    GameObject garbageCollector;
 
     SpriteRenderer sr;
 
@@ -17,6 +18,7 @@ public class PlayerBullet : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         player2 = GameObject.FindGameObjectWithTag("Player 2");
         player1 = GameObject.FindGameObjectWithTag("Player 1");
+        garbageCollector = GameObject.FindGameObjectWithTag("Garbage Collector");
     }
 
     private void Update()
@@ -36,7 +38,7 @@ public class PlayerBullet : MonoBehaviour
                 sr.color = newColor;
             }
 
-            transform.position = Vector2.MoveTowards(transform.position, player2.transform.position, bulletSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, garbageCollector.transform.position, bulletSpeed * Time.deltaTime);
         }
         else
         {
@@ -62,7 +64,7 @@ public class PlayerBullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (collision.gameObject.tag == "Player 2" || collision.gameObject.tag == "Player 2 Shield")
+        if (collision.gameObject.CompareTag("Garbage Collector"))
         {
             Destroy(gameObject);
         }

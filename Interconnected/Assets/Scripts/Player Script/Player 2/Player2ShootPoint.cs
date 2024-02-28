@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player1ShootPoint : MonoBehaviour
+public class Player2ShootPoint : MonoBehaviour
 {
     [SerializeField] LinkRay linkRay;
 
@@ -13,12 +13,12 @@ public class Player1ShootPoint : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(bulletP1Spawn());
+        StartCoroutine(bulletP2Spawn());
     }
 
-    IEnumerator bulletP1Spawn() 
+    IEnumerator bulletP2Spawn()
     {
-        while (true) 
+        while (true)
         {
             if (linkRay.isPlayerLinkedEachOther
                     && GlobalVariable.globalVariable.isRopeVisible
@@ -28,8 +28,8 @@ public class Player1ShootPoint : MonoBehaviour
             {
                 Instantiate(playerBullet, shootPoint.transform.position, Quaternion.identity);
             }
-           
-            
+
+
             yield return new WaitForSeconds(waitToSpawn);
         }
 
