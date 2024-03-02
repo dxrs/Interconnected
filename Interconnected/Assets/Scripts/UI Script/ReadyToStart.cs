@@ -70,7 +70,6 @@ public class ReadyToStart : MonoBehaviour
         
         if (timerCountToStart > 0)
         {
-
             timerCountToStart -= 1 * Time.deltaTime;
         }
         if (timerCountToStart <= 0) 

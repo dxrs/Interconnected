@@ -3965,6 +3965,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 108566020804737186, guid: c29bae584c7231e45847d69b40e36588, type: 3}
+      propertyPath: waitToSpawn
+      value: 0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 108566022316443695, guid: c29bae584c7231e45847d69b40e36588, type: 3}
       propertyPath: playerLookAt
       value: 

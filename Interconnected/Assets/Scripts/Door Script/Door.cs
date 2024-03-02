@@ -14,17 +14,27 @@ public class Door : MonoBehaviour
 
     private void Update()
     {
-        for(int j = 1; j <= GlobalVariable.globalVariable.maxDoor; j++) 
+        if (GlobalVariable.globalVariable.curDoorOpenValue == 2)
         {
-            if (id == j) 
+            
+            for (int j = 1; j <= GlobalVariable.globalVariable.maxDoor; j++)
             {
-                if (doorButton[0] == null && doorButton[1] == null)
+                if (id == j)
                 {
                     transform.position = Vector2.MoveTowards(transform.position,
-                        doorMoveTarget, doorMoveSpeed * Time.deltaTime);
-                   
+                doorMoveTarget, doorMoveSpeed * Time.deltaTime);
+                    /*
+                    if (doorButton[0] == null && doorButton[1] == null)
+                    {
+                        transform.position = Vector2.MoveTowards(transform.position,
+                            doorMoveTarget, doorMoveSpeed * Time.deltaTime);
+
+                    }
+                    */
+
                 }
             }
         }
+        
     }
 }

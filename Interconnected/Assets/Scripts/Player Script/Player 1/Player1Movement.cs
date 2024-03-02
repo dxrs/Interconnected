@@ -153,8 +153,7 @@ public class Player1Movement : MonoBehaviour
     IEnumerator setSimulatedRigidbody() 
     {
         yield return new WaitForSeconds(.5f);
-        rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
     }
 
     IEnumerator setMaxSpeedPlayer() 

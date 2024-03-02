@@ -9,7 +9,6 @@ public class PlayerBullet : MonoBehaviour
     [SerializeField] float colorChangeDistanceThreshold;
 
     GameObject player1, player2;
-    GameObject garbageCollector;
 
     SpriteRenderer sr;
 
@@ -18,7 +17,6 @@ public class PlayerBullet : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         player2 = GameObject.FindGameObjectWithTag("Player 2");
         player1 = GameObject.FindGameObjectWithTag("Player 1");
-        garbageCollector = GameObject.FindGameObjectWithTag("Garbage Collector");
     }
 
     private void Update()
@@ -34,7 +32,8 @@ public class PlayerBullet : MonoBehaviour
             if (distanceToPlayer2 >= 10f)
             {
                 float t = Mathf.InverseLerp(10f, LinkRay.linkRay.maxLinkDistance, distanceToPlayer2);
-                Color newColor = Color.Lerp(Color.white, Color.red, t);
+                Color newColor = sr.color; // Salin warna saat ini
+                newColor.a = Mathf.Lerp(1f, 0f, t); // Ubah komponen alpha (transparansi)
                 sr.color = newColor;
             }
 

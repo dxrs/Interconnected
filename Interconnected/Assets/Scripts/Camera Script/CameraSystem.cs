@@ -90,9 +90,7 @@ public class CameraSystem : MonoBehaviour
            
 
         }
-        
-        
-       
+      
     }
 
     private void cameraMovement() 
