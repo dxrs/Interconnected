@@ -12,29 +12,47 @@ public class Door : MonoBehaviour
 
     [SerializeField] Vector2 doorMoveTarget;
 
+    [SerializeField] bool isDoorOpen;
+
     private void Update()
     {
-        if (GlobalVariable.globalVariable.curDoorOpenValue == 2)
+        for (int j = 1; j <= GlobalVariable.globalVariable.maxDoor; j++)
         {
-            
-            for (int j = 1; j <= GlobalVariable.globalVariable.maxDoor; j++)
+            if (id == j)
             {
-                if (id == j)
+
+                if (isDoorOpen)
                 {
-                    transform.position = Vector2.MoveTowards(transform.position,
-                doorMoveTarget, doorMoveSpeed * Time.deltaTime);
-                    /*
-                    if (doorButton[0] == null && doorButton[1] == null)
+                    transform.localPosition = Vector2.MoveTowards(transform.localPosition,
+                     doorMoveTarget, doorMoveSpeed * Time.deltaTime);
+                    
+
+                    if(Mathf.Approximately(transform.localPosition.x, doorMoveTarget.x) && Mathf.Approximately(transform.localPosition.y, doorMoveTarget.y)) 
                     {
-                        transform.position = Vector2.MoveTowards(transform.position,
-                            doorMoveTarget, doorMoveSpeed * Time.deltaTime);
+                        if (doorButton[0] && doorButton[1] != null) 
+                        {
+                            for(int k = 0; k < doorButton.Length; k++) 
+                            {
+                                doorButton[k].transform.position = transform.position;
+                            }
+                        }
 
+                        Destroy(gameObject,5);
+                        for (int k = 0; k < doorButton.Length; k++)
+                        {
+                            Destroy(doorButton[k], 5);
+                        }
                     }
-                    */
-
                 }
+                if (doorButton[0] && doorButton[1] != null) 
+                {
+                    if (doorButton[0].transform.localScale.x <= 0.1f && doorButton[1].transform.localScale.x <= 0.1f)
+                    {
+                        isDoorOpen = true;
+                    }
+                }
+               
             }
         }
-        
     }
 }

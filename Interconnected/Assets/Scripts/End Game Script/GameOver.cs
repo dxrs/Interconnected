@@ -25,17 +25,17 @@ public class GameOver : MonoBehaviour
 
     private void Update()
     {
+        if ((Player1Health.player1Health.curPlayer1Health <= 0 || Player2Health.player2Health.curPlayer2Health <= 0)
+            || (Timer.timerInstance.isTimerLevel && Timer.timerInstance.curTimerValue <= 0))
+        {
+            isGameOver = true;
+        }
         if (isGameOver)
         {
             GlobalVariable.globalVariable.playerInvisible();
-            //SceneSystem.sceneSystem.isRestartScene = true;
             Destroy(player1,1);
             Destroy(player2,1);
             SceneSystem.sceneSystem.isRestartScene = true;
-            if (player1 && player2 == null) 
-            {
-                
-            }
         }
     }
 }

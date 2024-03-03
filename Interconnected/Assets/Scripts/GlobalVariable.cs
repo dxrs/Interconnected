@@ -34,7 +34,7 @@ public class GlobalVariable : MonoBehaviour
 
     GameObject player1, player2;
 
-    bool isAddingCheckpointValue = false;
+    [SerializeField] bool isAddingCheckpointValue = false;
 
     private void Awake()
     {
@@ -66,12 +66,18 @@ public class GlobalVariable : MonoBehaviour
             
         }
         partOfSharingLives();
-
         StartCoroutine(setDefaultValueCurDoorValue());
+       
     }
     public void delayTimeToShareLives()
     {
         curShareLivesDelayTime = maxShareLivesDelayTime;
+    }
+
+    public void colliderInactive() 
+    {
+        player1Collider.enabled = false;
+        player2Collider.enabled = false;
     }
 
     public void playerVisible() 
@@ -92,7 +98,7 @@ public class GlobalVariable : MonoBehaviour
             player1Collider.enabled = false;
             player2Collider.enabled = false;
             spriteRendererPlayer1.enabled = false;
-            spriteRendererPlayer1.enabled = false;
+            spriteRendererPlayer2.enabled = false;
 
         }
        
@@ -126,11 +132,12 @@ public class GlobalVariable : MonoBehaviour
 
     IEnumerator setDefaultValueCurDoorValue() 
     {
-        if (curDoorOpenValue >= 2) 
+        if (curDoorOpenValue == 2) 
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1);
             curDoorOpenValue = 0;
             isAddingCheckpointValue = false;
         }
     }
+   
 }

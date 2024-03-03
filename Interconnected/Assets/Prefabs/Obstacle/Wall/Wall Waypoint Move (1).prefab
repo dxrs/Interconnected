@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d95cc0fac5da9e4d9d1c6c1ea33b8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallType: Move Towards
+  wallType: Waypoint Movement
   sineID: 0
   sineSpeed: 0
   sinePower: 0
@@ -132,6 +132,13 @@ MonoBehaviour:
   pathWall: {fileID: 7673157337343952067}
   moveSpeed: 4
   delayTime: 0.2
+  moveTowardID: 0
+  isMovingX: 0
+  moveTowardSpeed: 0
+  moveXTarget: 0
+  moveYTarget: 0
+  isRotateClockwise: 0
+  rotationSpeed: 0
 --- !u!1 &7673157337343952066
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7673157337941757969}
   m_Layer: 0
-  m_Name: Wall Move Towards
+  m_Name: Wall Waypoint Move (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

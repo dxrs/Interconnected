@@ -25,17 +25,11 @@ public class GameFinish : MonoBehaviour
             {
                 isGameFinish = true;
             }
-            if (finishValue == 2 && GarbageCollector.garbageCollector.garbageCollected >= 5) 
-            {
-                //StartCoroutine(waitToFinish());
-                //Debug.Log("finish tutorial");
-            }
+            
         }
-    }
-
-    IEnumerator waitToFinish() 
-    {
-        yield return new WaitForSeconds(1);
-        isGameFinish = true;
+        if (isGameFinish) 
+        {
+            GlobalVariable.globalVariable.colliderInactive();
+        }
     }
 }

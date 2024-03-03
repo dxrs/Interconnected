@@ -51,20 +51,44 @@ public class CameraSystem : MonoBehaviour
             }
             if (GameOver.gameOver.isGameOver) 
             {
-                for(int k = 0; k < cameraTargetObject.Count; k++) 
+                if (Timer.timerInstance.isTimerLevel) 
                 {
-                    if (cameraTargetObject[k] != null) 
+                    if(Timer.timerInstance.curTimerValue > 0) 
                     {
-                        if (Player1Health.player1Health.curPlayer1Health <= 0)
+                        for (int k = 0; k < cameraTargetObject.Count; k++)
                         {
-                            focusOnNoobPlayer(cameraTargetObject[0]);
-                        }
-                        if (Player2Health.player2Health.curPlayer2Health <= 0)
-                        {
-                            focusOnNoobPlayer(cameraTargetObject[1]);
+                            if (cameraTargetObject[k] != null)
+                            {
+                                if (Player1Health.player1Health.curPlayer1Health <= 0)
+                                {
+                                    focusOnNoobPlayer(cameraTargetObject[0]);
+                                }
+                                if (Player2Health.player2Health.curPlayer2Health <= 0)
+                                {
+                                    focusOnNoobPlayer(cameraTargetObject[1]);
+                                }
+                            }
                         }
                     }
                 }
+                else 
+                {
+                    for (int k = 0; k < cameraTargetObject.Count; k++)
+                    {
+                        if (cameraTargetObject[k] != null)
+                        {
+                            if (Player1Health.player1Health.curPlayer1Health <= 0)
+                            {
+                                focusOnNoobPlayer(cameraTargetObject[0]);
+                            }
+                            if (Player2Health.player2Health.curPlayer2Health <= 0)
+                            {
+                                focusOnNoobPlayer(cameraTargetObject[1]);
+                            }
+                        }
+                    }
+                }
+               
                 
             }
         }

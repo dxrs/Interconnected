@@ -349,6 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCrashToOtherBoat: 0
   isStopAtCameraTrigger: 0
+  isHitDorrButton: 0
   globalVariable: {fileID: 0}
   player2Movement: {fileID: 74277217981580472}
   player2Ability: {fileID: 74277217981580475}

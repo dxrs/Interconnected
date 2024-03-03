@@ -103,13 +103,13 @@ public class Player1Movement : MonoBehaviour
             isMoving = false;
             maxPlayerSpeed = Mathf.Lerp(maxPlayerSpeed,0,5*Time.deltaTime);
             rb.drag = Mathf.Lerp(rb.drag, 10, 6 * Time.deltaTime);
-            StartCoroutine(setSimulatedRigidbody());
+            StartCoroutine(setConstRigidbody());
         }
         if (GameOver.gameOver.isGameOver) 
         {
             maxPlayerSpeed = 0;
             isMoving = false;
-            rb.simulated = false;
+            StartCoroutine(setConstRigidbody());
         }
     }
 
@@ -125,12 +125,12 @@ public class Player1Movement : MonoBehaviour
                 }
                 if (!isMoving) { isBraking = true; }
 
-                if (isBraking || player1Collision.isCrashToOtherBoat)
+                if (isBraking || player1Collision.isCrashToOtherBoat || player1Collision.isHitDorrButton)
                 {
-                    float lerpSpeed = isBrakingWithInput ? 10f : 3.5f;
+                    float lerpSpeed = player1Collision.isHitDorrButton ? 8f : 3.5f;
                     rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
                 }
-                else if (isBrakingWithInput)
+                else if (player1Collision.isHitDorrButton)
                 {
                     rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, 5f * Time.deltaTime);
                 }
@@ -150,7 +150,7 @@ public class Player1Movement : MonoBehaviour
        
     }
 
-    IEnumerator setSimulatedRigidbody() 
+    IEnumerator setConstRigidbody() 
     {
         yield return new WaitForSeconds(.5f);
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;

@@ -48,7 +48,7 @@ public class ObstacleWall : MonoBehaviour
             ySinePos = transform.position.y;
         }
 
-        if(wallType=="Move Towards") 
+        if(wallType=="Waypoint Movement") 
         {
             Vector2[] waypoint = new Vector2[pathWall.childCount];
             for(int i = 0; i < waypoint.Length; i++) 
@@ -153,7 +153,7 @@ public class ObstacleWall : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if(wallType=="Move Towards") 
+        if(wallType== "Waypoint Movement") 
         {
             Vector2 startPos = pathWall.GetChild(0).position;
             Vector2 prevPos = startPos;

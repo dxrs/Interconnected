@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
-using Unity.VisualScripting;
 
 public class Timer : MonoBehaviour
 {
     public static Timer timerInstance;
 
+    public bool isTimerLevel;
 
     public float curTimerValue;
 
@@ -40,18 +40,23 @@ public class Timer : MonoBehaviour
             if (curTimerValue <= 0)
             {
                 curTimerValue = 0;
-                //globalVariable.isGameFinish = true;
             }
         }
-      
-        
-       
+
+        if (isTimerLevel) 
+        {
+            textCurrentTimer.enabled = true;
+        }
+        else 
+        {
+            textCurrentTimer.enabled = false;
+        }
         
     }
     
     IEnumerator timerCountDown()
     {
-        while (true)
+        while (isTimerLevel)
         {
             if (LevelStatus.levelStatus.levelID == 1) 
             {
