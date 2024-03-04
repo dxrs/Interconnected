@@ -26,14 +26,14 @@ public class CameraSystem : MonoBehaviour
     {
         if (LevelStatus.levelStatus.levelID == 4) 
         {
-            transform.position = new Vector2(camPosX[0], transform.position.y);
+            
+            transform.position = new Vector3(camPosX[0], transform.position.y,-10);
         }
     }
     private void LateUpdate()
     {
         if (cameraTargetObject == null) { return; }
-
-        if (LevelStatus.levelStatus.levelID == 1) 
+        if (LevelStatus.levelStatus.levelID == 1)
         {
             if (!GameOver.gameOver.isGameOver
             && !GlobalVariable.globalVariable.isPlayerDestroyed
@@ -49,11 +49,11 @@ public class CameraSystem : MonoBehaviour
                 }
 
             }
-            if (GameOver.gameOver.isGameOver) 
+            if (GameOver.gameOver.isGameOver)
             {
-                if (Timer.timerInstance.isTimerLevel) 
+                if (Timer.timerInstance.isTimerLevel)
                 {
-                    if(Timer.timerInstance.curTimerValue > 0) 
+                    if (Timer.timerInstance.curTimerValue > 0)
                     {
                         for (int k = 0; k < cameraTargetObject.Count; k++)
                         {
@@ -71,7 +71,7 @@ public class CameraSystem : MonoBehaviour
                         }
                     }
                 }
-                else 
+                else
                 {
                     for (int k = 0; k < cameraTargetObject.Count; k++)
                     {
@@ -88,8 +88,8 @@ public class CameraSystem : MonoBehaviour
                         }
                     }
                 }
-               
-                
+
+
             }
         }
         if (LevelStatus.levelStatus.levelID == 4) 
@@ -99,7 +99,7 @@ public class CameraSystem : MonoBehaviour
             {
                 if (cameraTargetObject[0].position.x > 6 || cameraTargetObject[1].position.x > 6) 
                 {
-                    transform.position = Vector2.Lerp(transform.position, new Vector2(camPosX[1], transform.position.y), 2 * Time.deltaTime);
+                    transform.position = Vector3.Lerp(transform.position, new Vector3(camPosX[1], transform.position.y,-10), 2 * Time.deltaTime);
                 }
                 
             }
@@ -107,7 +107,7 @@ public class CameraSystem : MonoBehaviour
             {
                 if (cameraTargetObject[0].position.x > 49.6f || cameraTargetObject[1].position.x > 49.6f) 
                 {
-                    transform.position = Vector2.Lerp(transform.position, new Vector2(camPosX[2], transform.position.y), 2 * Time.deltaTime);
+                    transform.position = Vector3.Lerp(transform.position, new Vector3(camPosX[2], transform.position.y, -10), 2 * Time.deltaTime);
                 }
 
             }

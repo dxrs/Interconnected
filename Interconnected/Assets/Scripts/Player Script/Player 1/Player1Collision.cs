@@ -1,3 +1,4 @@
+using EZCameraShake;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -83,6 +84,7 @@ public class Player1Collision : MonoBehaviour
         {
             if (!Player2Ability.player2Ability.isShielding)
             {
+                CameraShaker.Instance.ShakeOnce(8, 4, 0.1f, 1f);
                 if (LevelStatus.levelStatus.levelID != 4) 
                     player1Health.curPlayer1Health--;
 

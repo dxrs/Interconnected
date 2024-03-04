@@ -35,7 +35,6 @@ public class GameOver : MonoBehaviour
             GlobalVariable.globalVariable.playerInvisible();
             Destroy(player1,1);
             Destroy(player2,1);
-            SceneSystem.sceneSystem.isRestartScene = true;
         }
     }
 }
