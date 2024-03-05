@@ -14,8 +14,8 @@ public class LaserRopeCollider : MonoBehaviour
             GarbageCollector.garbageCollector.garbageCollected++;
             if (Player1Movement.player1Movement.curMaxSpeed > 1 && Player2Movement.player2Movement.curMaxSpeed > 1) 
             {
-                Player1Movement.player1Movement.curMaxSpeed -= 0.5f;
-                Player2Movement.player2Movement.curMaxSpeed -= 0.5f;
+                Player1Movement.player1Movement.curMaxSpeed -= 0.25f;
+                Player2Movement.player2Movement.curMaxSpeed -= 0.25f;
             }
 
 

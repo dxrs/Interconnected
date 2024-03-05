@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class MainMenu : MonoBehaviour
 {
@@ -18,8 +19,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField] int maxListButton;
     [SerializeField] int buttonHighlightedValue;
 
+    [SerializeField] bool isTransitionSceneActive;
+
     [SerializeField] Button[] listMainMenuButton;
 
+    [SerializeField] GameObject imageTransition;
     [SerializeField] GameObject mainMenuSelector;
 
     [SerializeField] Vector2[] mainMenuSelectorPosY;
@@ -39,6 +43,15 @@ public class MainMenu : MonoBehaviour
     private void Update()
     {
         mainMenuValue();
+
+        if (isTransitionSceneActive) 
+        {
+            imageTransition.transform.localPosition = Vector2.MoveTowards(imageTransition.transform.localPosition, new Vector2(imageTransition.transform.localPosition.x, 0), 2000 * Time.deltaTime);
+            if (imageTransition.transform.localPosition.y == 0) 
+            {
+                SceneSystem.sceneSystem.isNextScene = true;
+            }
+        }
     }
 
     private void mainMenuValue() 
@@ -106,6 +119,8 @@ public class MainMenu : MonoBehaviour
        
     }
 
+    
+
     #region input system navigation
     private void buttonMainMenuHighlighted(int value) 
     {
@@ -122,7 +137,6 @@ public class MainMenu : MonoBehaviour
             {
                 curValueButton = maxListButton;
             }
-
         }
     }
 
@@ -136,7 +150,6 @@ public class MainMenu : MonoBehaviour
             {
                 curValueButton = 1;
             }
-            
         }
     }
 
@@ -151,7 +164,8 @@ public class MainMenu : MonoBehaviour
                     Debug.Log("1");
 
                     //jika tidak ada data
-                    SceneSystem.sceneSystem.goingToTutorialScene();
+                    //SceneSystem.sceneSystem.goingToTutorialScene();
+                    isTransitionSceneActive = true;
                     isMainMenuActive = false;
                 }
                 if (curValueButton == 2)
@@ -175,7 +189,7 @@ public class MainMenu : MonoBehaviour
 
     public void onClickToPrologue() 
     {
-        SceneSystem.sceneSystem.goingToTutorialScene();
+        isTransitionSceneActive = true;
         isMainMenuActive = false;
     }
     public void onClickQuitGame() 

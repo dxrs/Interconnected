@@ -45,7 +45,7 @@ public class DoorButton : MonoBehaviour
         if(collision.gameObject.tag=="Player 1"||collision.gameObject.tag=="Player 2") 
         {
             isButtonPressed = true;
-            GlobalVariable.globalVariable.curDoorOpenValue++;
+           
         }
        
     }
@@ -55,7 +55,7 @@ public class DoorButton : MonoBehaviour
         if (collision.gameObject.tag == "Player 1" || collision.gameObject.tag == "Player 2")
         {
             isButtonPressed = false;
-            GlobalVariable.globalVariable.curDoorOpenValue--;
+            
         }
     }
 }

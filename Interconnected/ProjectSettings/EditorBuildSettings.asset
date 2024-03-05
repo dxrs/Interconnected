@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene Tutorial/Level Tutorial.unity
     guid: 65b4cf1c63ed0434888fd1bb4ef46e53
   - enabled: 1
-    path: Assets/Scenes/Scene Garbage Collector/Level Garbage Collector Debug.unity
-    guid: 9600a4b841fb307439763e49491ff800
+    path: Assets/Scenes/Scene Garbage Collector/Level Garbage Collector 1.unity
+    guid: 6c6f0833de1f26244ae89c9d1bc10e02
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 8ceffad9d85043543a3bee22719a7b9b, type: 2}

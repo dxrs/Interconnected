@@ -121,14 +121,27 @@ public class Garbage : MonoBehaviour
                 StartCoroutine(garbageRigidBrake(1f));
             }
         }
+        if (GameOver.gameOver.isGameOver) 
+        {
+            StartCoroutine(garbageRigidBrake(1f));
+            Vector2 directionToCenter = (Vector2)transform.position - (Vector2)garbageColldector.transform.position;
+            float distanceToCenter = directionToCenter.magnitude;
+
+
+            if (distanceToCenter > 0 && distanceToCenter < blastRadius)
+            {
+                Vector2 blastForceVector = directionToCenter.normalized * blastForce;
+                rb.AddForce(blastForceVector, ForceMode2D.Impulse);
+            }
+            isGarbageCollected = false;
+        }
        
 
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Spike"))
+        if (collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Garbage Bounce Collider"))
         {
-            Debug.Log("kena");
             Vector2 blastForceVector = (transform.position - collision.transform.position).normalized;
             rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
             StartCoroutine(garbageRigidBrake(1f));
@@ -144,8 +157,12 @@ public class Garbage : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Laser Rope")) 
         {
-            isGarbageCollected = true;
-            rb.drag = 0;
+            if(Player1Movement.player1Movement.curMaxSpeed > 1 && Player2Movement.player2Movement.curMaxSpeed > 1) 
+            {
+                isGarbageCollected = true;
+                rb.drag = 0;
+            }
+           
         }
 
         if(collision.gameObject.CompareTag("Garbage Center Point")) 
@@ -155,7 +172,7 @@ public class Garbage : MonoBehaviour
             bc.enabled = false;
         }
 
-        if (collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Spike"))
+        if (collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Garbage Bounce Collider"))
         {
             Vector2 blastForceVector = (transform.position - collision.transform.position).normalized;
             rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);

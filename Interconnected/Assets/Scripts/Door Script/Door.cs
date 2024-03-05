@@ -46,7 +46,7 @@ public class Door : MonoBehaviour
                 }
                 if (doorButton[0] && doorButton[1] != null) 
                 {
-                    if (doorButton[0].transform.localScale.x <= 0.1f && doorButton[1].transform.localScale.x <= 0.1f)
+                    if (doorButton[0].transform.localScale.x <= 0.8f && doorButton[1].transform.localScale.x <= 0.8f)
                     {
                         isDoorOpen = true;
                     }

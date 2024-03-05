@@ -39,6 +39,7 @@ TagManager:
   - Level Bound
   - Garbage Whirlpool
   - Door Button
+  - Garbage Bounce Collider
   layers:
   - Default
   - TransparentFX

@@ -1,7 +1,7 @@
-using EZCameraShake;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class Player2Collision : MonoBehaviour
 {
@@ -69,7 +69,10 @@ public class Player2Collision : MonoBehaviour
             GarbageCollector.garbageCollector.playerReadyToStoreValue[1] = 0;
 
         if (collision.gameObject.tag == "Door Button")
+        {
             isHitDorrButton = false;
+            globalVariable.isDoorButtonPressed[1] = false;
+        }
     }
 
     private void handleObstacleCollision(Collider2D collision)
@@ -121,7 +124,10 @@ public class Player2Collision : MonoBehaviour
     private void handleDoorButtonCollision(Collider2D collision)
     {
         if (collision.gameObject.tag == "Door Button")
+        {
             isHitDorrButton = true;
+            globalVariable.isDoorButtonPressed[1] = true;
+        }
     }
 
     private void handleEnemyCollision(Collider2D collision)

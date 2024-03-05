@@ -122,12 +122,28 @@ public class ObstacleWall : MonoBehaviour
         {
             if (sineID == 1)
             {
-                transform.position = new Vector2(pos.x + Mathf.Sin(sineSpeed * Time.time) * sinePower,
-       transform.position.y);
+                if (isSineRandomOffset) 
+                {
+                    transform.position = new Vector2(pos.x + Mathf.Sin(sineSpeed * Time.time + randomOffsetSinePos) * sinePower, transform.position.y);
+                }
+                else 
+                {
+                    transform.position = new Vector2(pos.x + Mathf.Sin(sineSpeed * Time.time) * sinePower, transform.position.y);
+
+                }
+         
             }
             if (sineID == 2)
             {
-                transform.position = new Vector2(transform.position.x, pos.y + (Mathf.Sin(sineSpeed * Time.time) * sinePower));
+                if (isSineRandomOffset) 
+                {
+                    transform.position = new Vector2(transform.position.x, pos.y + (Mathf.Sin(sineSpeed * Time.time + randomOffsetSinePos) * sinePower));
+                }
+                else 
+                {
+                    transform.position = new Vector2(transform.position.x, pos.y + (Mathf.Sin(sineSpeed * Time.time) * sinePower));
+                }
+                
             }
         }
     }

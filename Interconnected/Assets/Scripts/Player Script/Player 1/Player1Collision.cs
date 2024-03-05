@@ -1,9 +1,7 @@
-using EZCameraShake;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using EZCameraShake;
 
 public class Player1Collision : MonoBehaviour
 {
@@ -74,8 +72,12 @@ public class Player1Collision : MonoBehaviour
         if (collision.gameObject.tag == "Garbage Center Point")
             GarbageCollector.garbageCollector.playerReadyToStoreValue[0] = 0;
 
-        if (collision.gameObject.tag == "Door Button")
+        if (collision.gameObject.tag == "Door Button") 
+        {
             isHitDorrButton = false;
+            globalVariable.isDoorButtonPressed[0] = false;
+        }
+            
     }
 
     private void handleObstacleCollision(Collider2D collision)
@@ -134,8 +136,12 @@ public class Player1Collision : MonoBehaviour
 
     private void handleDoorButtonCollision(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Door Button")
+        if (collision.gameObject.tag == "Door Button") 
+        {
             isHitDorrButton = true;
+            globalVariable.isDoorButtonPressed[0] = true;
+        }
+      
     }
 
     private void handleEnemyCollision(Collider2D collision)
@@ -177,28 +183,6 @@ public class Player1Collision : MonoBehaviour
             rb.AddForce(backwardMovePos * adjustedCrashForce, ForceMode2D.Impulse); // sedang konflik dgn void playerMovement
         }
        
-    }
-
-    public void inputReadyToStoreGarbage(InputAction.CallbackContext context) 
-    {
-        if (context.performed) 
-        {
-            /*
-            if (isStopAtDumpPoint) 
-            {
-                if (GarbageCollector.garbageCollector.playerReadyToStoreValue[0] == 0)
-                {
-                    player1Movement.isMoving = false;
-                    GarbageCollector.garbageCollector.playerReadyToStoreValue[0] = 1;
-                }
-                else
-                {
-                    GarbageCollector.garbageCollector.playerReadyToStoreValue[0] = 0;
-                }
-            }
-            */
-           
-        }
     }
 
     IEnumerator playerCrash()
