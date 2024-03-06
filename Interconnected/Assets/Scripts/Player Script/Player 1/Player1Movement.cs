@@ -90,7 +90,7 @@ public class Player1Movement : MonoBehaviour
         }
         if(globalVariable.isPlayerDestroyed 
             || globalVariable.isPlayerSharingLives
-            || player1Collision.isStopAtCameraTrigger) 
+            || player1Collision.isHitCameraBound) 
         {
             maxPlayerSpeed = 0;
         }
@@ -111,6 +111,15 @@ public class Player1Movement : MonoBehaviour
             isMoving = false;
             StartCoroutine(setConstRigidbody());
         }
+        if (player1Collision.isHitCameraBound) 
+        {
+            isMoving = false;
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+        }
+        else 
+        {
+            rb.constraints = ~RigidbodyConstraints2D.FreezePositionX & ~RigidbodyConstraints2D.FreezePositionY;
+        }
     }
 
     private void playerBraking() 
@@ -125,12 +134,12 @@ public class Player1Movement : MonoBehaviour
                 }
                 if (!isMoving) { isBraking = true; }
 
-                if (isBraking || player1Collision.isCrashToOtherBoat || player1Collision.isHitDorrButton)
+                if (isBraking || player1Collision.isCrashToOtherBoat || player1Collision.isHitDoorButton)
                 {
-                    float lerpSpeed = player1Collision.isHitDorrButton ? 8f : 3.5f;
+                    float lerpSpeed = player1Collision.isHitDoorButton ? 8f : 3.5f;
                     rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
                 }
-                else if (player1Collision.isHitDorrButton)
+                else if (player1Collision.isHitDoorButton)
                 {
                     rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, 5f * Time.deltaTime);
                 }
@@ -167,14 +176,15 @@ public class Player1Movement : MonoBehaviour
     {
         bool isLevel4 = LevelStatus.levelStatus.levelID == 4;
 
-        if (!isLevel4 || !player1Collision.isStopAtCameraTrigger)
+        if (!isLevel4)
         {
             if (!globalVariable.isPlayerDestroyed
                 && !GameFinish.gameFinish.isGameFinish
                 && !GameOver.gameOver.isGameOver
                 && !Pause.pause.isGamePaused
                 && ReadyToStart.readyToStart.isGameStart
-                && !globalVariable.isPlayerSharingLives)
+                && !globalVariable.isPlayerSharingLives
+                && !player1Collision.isHitCameraBound)
             {
                 if (context.performed)
                 {

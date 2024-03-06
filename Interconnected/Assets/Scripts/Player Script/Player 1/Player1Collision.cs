@@ -8,8 +8,8 @@ public class Player1Collision : MonoBehaviour
     public static Player1Collision player1Collision;
 
     public bool isCrashToOtherBoat;
-    public bool isStopAtCameraTrigger;
-    public bool isHitDorrButton;
+    public bool isHitDoorButton;
+    public bool isHitCameraBound;
 
     [SerializeField] GlobalVariable globalVariable;
     [SerializeField] Player1Movement player1Movement;
@@ -52,28 +52,23 @@ public class Player1Collision : MonoBehaviour
         handleObstacleCollision(collision);
         handlePullUpObjectCollision(collision);
         handleOutlineColliderCollision(collision);
-        handleCameraMoveTriggerCollision(collision);
+        handleCameraBoundCollision(collision);
         handleDoorButtonCollision(collision);
         handleEnemyCollision(collision);
         handleFinishPointCollision(collision);
-
-        if (collision.gameObject.tag == "Camera Boundaries") 
-        {
-            Debug.Log("kena");
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Camera Boundaries")
-        {
-            Debug.Log("tidak kena");
-        }
         if (collision.gameObject.tag == "Player Pull Up Object")
             player1Ability.isPlayer1SetPosToPullUpObject = false;
 
-        if (collision.gameObject.tag == "Camera Move Trigger")
-            isStopAtCameraTrigger = false;
+        if (collision.gameObject.tag == "Camera Boundaries") 
+        {
+            isHitCameraBound = false;
+            globalVariable.colliderActive();
+        }
+            
 
         if (collision.gameObject.tag == "Finish Point")
             GameFinish.gameFinish.finishValue--;
@@ -83,7 +78,7 @@ public class Player1Collision : MonoBehaviour
 
         if (collision.gameObject.tag == "Door Button") 
         {
-            isHitDorrButton = false;
+            isHitDoorButton = false;
             globalVariable.isDoorButtonPressed[0] = false;
         }
             
@@ -137,17 +132,20 @@ public class Player1Collision : MonoBehaviour
             player1BoucedCollision(collision);
     }
 
-    private void handleCameraMoveTriggerCollision(Collider2D collision)
+    private void handleCameraBoundCollision(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Camera Move Trigger")
-            isStopAtCameraTrigger = true;
+        if (collision.gameObject.tag == "Camera Boundaries")
+        {
+            isHitCameraBound = true;
+            globalVariable.colliderInactive();
+        }
     }
 
     private void handleDoorButtonCollision(Collider2D collision)
     {
         if (collision.gameObject.tag == "Door Button") 
         {
-            isHitDorrButton = true;
+            isHitDoorButton = true;
             globalVariable.isDoorButtonPressed[0] = true;
         }
       
@@ -186,7 +184,7 @@ public class Player1Collision : MonoBehaviour
         float adjustedCrashForce = player1Movement.isBrakingWithInput ? crashForceValue * 0.5f : crashForceValue;
         //Debug.Log($"crashForceValue: {crashForceValue}, adjustedCrashForce: {adjustedCrashForce}");
 
-        if (!isHitDorrButton) 
+        if (!isHitDoorButton) 
         {
             Vector2 backwardMovePos = (transform.position - collider.transform.position).normalized;
             rb.AddForce(backwardMovePos * adjustedCrashForce, ForceMode2D.Impulse); // sedang konflik dgn void playerMovement

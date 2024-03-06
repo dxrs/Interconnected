@@ -89,6 +89,12 @@ public class GlobalVariable : MonoBehaviour
         player2Collider.isTrigger = true;
     }
 
+    public void colliderActive() 
+    {
+        player1Collider.isTrigger = false;
+        player2Collider.isTrigger = false;
+    }
+
     public void playerVisible() 
     {
         if(player1 && player2 != null) 
