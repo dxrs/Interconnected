@@ -12,6 +12,7 @@ public class GlobalVariable : MonoBehaviour
     public bool isTimerStart;
     public bool isPlayerSharingLives;
     public bool isRopeVisible;
+    public bool isCameraBoundariesActive;
     public bool[] isDoorButtonPressed;
 
     public int maxDoor;

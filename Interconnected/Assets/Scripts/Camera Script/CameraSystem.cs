@@ -20,18 +20,48 @@ public class CameraSystem : MonoBehaviour
     [Header("Tutorial Only")]
     [SerializeField] float[] camPosX;
 
+    [SerializeField] GameObject camBoundaries;
+
     Vector3 cameraVelocity;
+
+    Vector2 camBoundariesScale;
 
     private void Start()
     {
         if (LevelStatus.levelStatus.levelID == 4) 
         {
-            
             transform.position = new Vector3(camPosX[0], transform.position.y,-10);
         }
+        camBoundariesScale = camBoundaries.transform.localScale;
+        camBoundaries.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (LevelStatus.levelStatus.levelID == 1) 
+        {
+            if (GlobalVariable.globalVariable.isCameraBoundariesActive)
+            {
+                StartCoroutine(waitCamBoundActive());
+            }
+            else
+            {
+                camBoundaries.SetActive(false);
+            }
+        }
+        else { camBoundaries.SetActive(false); }
+       
     }
     private void LateUpdate()
     {
+        if (LevelStatus.levelStatus.levelID == 1) 
+        {
+            float newScaleX = cam.orthographicSize * (cam.aspect / 2f);
+            float newScaleY = cam.orthographicSize / 2f;
+
+            transform.localScale = new Vector3(newScaleX / camBoundariesScale.x, newScaleY / camBoundariesScale.y, 1f);
+        }
+       
         if (cameraTargetObject == null) { return; }
         if (LevelStatus.levelStatus.levelID == 1)
         {
@@ -111,7 +141,6 @@ public class CameraSystem : MonoBehaviour
                 }
 
             }
-           
 
         }
       
@@ -161,5 +190,11 @@ public class CameraSystem : MonoBehaviour
 
         transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition, ref cameraVelocity, smoothCameraTimeMovemement);
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
+    }
+
+    IEnumerator waitCamBoundActive() 
+    {
+        yield return new WaitForSeconds(3);
+        camBoundaries.SetActive(true);
     }
 }

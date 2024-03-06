@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Garbage : MonoBehaviour
@@ -22,13 +23,12 @@ public class Garbage : MonoBehaviour
 
     Rigidbody2D rb;
 
-    BoxCollider2D bc;
+    PolygonCollider2D pc;
 
     GameObject garbageColldector;
     GameObject garbageWhirlpool;
 
     Vector2 garbagePosition;
-    Vector2 randomGarbageScale;
 
     Vector2 maxGarbageScale = new Vector2(0.6f, 0.6f);
     Vector2 minGarbageScale = new Vector2(0.3f, 0.3f);
@@ -36,10 +36,9 @@ public class Garbage : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<BoxCollider2D>();
+        pc = GetComponent<PolygonCollider2D>();
         garbageColldector = GameObject.FindGameObjectWithTag("Garbage Collector");
         garbageWhirlpool = GameObject.FindGameObjectWithTag("Garbage Whirlpool");
-        randomGarbageScale = new Vector2(Random.Range(0.45f, maxGarbageScale.x), Random.Range(0.45f, maxGarbageScale.y));
         rb.drag = 5;
         angle = Random.Range(0f, 360f);
         lerpSpeed = Random.Range(4.5f, 6.5f);
@@ -75,7 +74,7 @@ public class Garbage : MonoBehaviour
                     {
                         garbagePosition = garbageColldector.transform.position;
 
-                        bc.enabled = false;
+                        pc.enabled = false;
 
                         transform.localScale = minGarbageScale;
 
@@ -116,8 +115,8 @@ public class Garbage : MonoBehaviour
             }
             if (!isGarbageCollected)
             {
-                transform.localScale = Vector2.Lerp(transform.localScale, randomGarbageScale, 1f * Time.deltaTime);
-                bc.enabled = true;
+                transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(.6f,.6f), 1f * Time.deltaTime);
+                pc.enabled = true;
                 StartCoroutine(garbageRigidBrake(1f));
             }
         }
@@ -150,7 +149,7 @@ public class Garbage : MonoBehaviour
         {
             isGarbageDestroying = true;
             isGarbageCollected = true;
-            bc.enabled = false;
+            pc.enabled = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -169,7 +168,7 @@ public class Garbage : MonoBehaviour
         {
             isGarbageDestroying = true;
             isGarbageCollected = true;
-            bc.enabled = false;
+            pc.enabled = false;
         }
 
         if (collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Garbage Bounce Collider"))
@@ -180,6 +179,7 @@ public class Garbage : MonoBehaviour
         }
 
     }
+    
     IEnumerator garbageRigidBrake(float delay)
     {
         yield return new WaitForSeconds(delay);

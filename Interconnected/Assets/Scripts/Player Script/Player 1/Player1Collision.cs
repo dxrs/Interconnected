@@ -56,10 +56,19 @@ public class Player1Collision : MonoBehaviour
         handleDoorButtonCollision(collision);
         handleEnemyCollision(collision);
         handleFinishPointCollision(collision);
+
+        if (collision.gameObject.tag == "Camera Boundaries") 
+        {
+            Debug.Log("kena");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "Camera Boundaries")
+        {
+            Debug.Log("tidak kena");
+        }
         if (collision.gameObject.tag == "Player Pull Up Object")
             player1Ability.isPlayer1SetPosToPullUpObject = false;
 
@@ -124,7 +133,7 @@ public class Player1Collision : MonoBehaviour
 
     private void handleOutlineColliderCollision(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player 2 Outline Collider" )
+        if (collision.gameObject.tag == "Player 2 Outline Collider")
             player1BoucedCollision(collision);
     }
 

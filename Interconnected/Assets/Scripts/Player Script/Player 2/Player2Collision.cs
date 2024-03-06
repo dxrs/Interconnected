@@ -111,7 +111,7 @@ public class Player2Collision : MonoBehaviour
     }
     private void handleOutlineColliderCollision(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player 1 Outline Collider" )
+        if (collision.gameObject.tag == "Player 1 Outline Collider")
             player2BouncedCollision(collision);
     }
 

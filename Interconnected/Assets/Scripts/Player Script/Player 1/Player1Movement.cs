@@ -178,6 +178,7 @@ public class Player1Movement : MonoBehaviour
             {
                 if (context.performed)
                 {
+                    globalVariable.isCameraBoundariesActive = true;
                     MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
                     if (globalVariable.isPlayerDestroyed) 
                     {
