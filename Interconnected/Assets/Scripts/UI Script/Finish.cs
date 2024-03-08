@@ -110,7 +110,7 @@ public class Finish : MonoBehaviour
                 {
                     if (curValueButton == 1)
                     {
-                        sceneSystem.isRestartScene = true;
+                        sceneSystem.isNextScene = true;
                         //nanti di ubah ke next scene
                     }
 
@@ -222,7 +222,7 @@ public class Finish : MonoBehaviour
 
     public void onClickContinue()
     {
-        sceneSystem.isRestartScene = true;
+        sceneSystem.isNextScene = true;
 
         // nanti ke next scene
 

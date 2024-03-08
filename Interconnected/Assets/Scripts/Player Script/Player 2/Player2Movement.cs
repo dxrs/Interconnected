@@ -71,7 +71,8 @@ public class Player2Movement : MonoBehaviour
         }
         if (globalVariable.isPlayerDestroyed 
             || globalVariable.isPlayerSharingLives
-            || player2Collision.isHitCameraBound)
+            || player2Collision.isHitCameraBound
+            || DialogueManager.dialogueManager.isDialogueActive)
         {
             maxPlayerSpeed = 0;
         }
@@ -94,14 +95,17 @@ public class Player2Movement : MonoBehaviour
             StartCoroutine(setConstRigidbody());
         }
 
-        if (player2Collision.isHitCameraBound)
+        if (player2Collision.isHitCameraBound || DialogueManager.dialogueManager.isDialogueActive)
         {
             isMoving = false;
             rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
         }
         else
         {
-            rb.constraints = ~RigidbodyConstraints2D.FreezePositionX & ~RigidbodyConstraints2D.FreezePositionY;
+            if (!GameFinish.gameFinish.isGameFinish)
+            {
+                rb.constraints = ~RigidbodyConstraints2D.FreezePositionX & ~RigidbodyConstraints2D.FreezePositionY;
+            }
         }
     }
 
@@ -169,34 +173,30 @@ public class Player2Movement : MonoBehaviour
 
     public void playerMovementInput(InputAction.CallbackContext context)
     {
-        bool isLevel4 = LevelStatus.levelStatus.levelID == 4;
-
-        if (!isLevel4)
-        {
-            if (!globalVariable.isPlayerDestroyed
+        if (!globalVariable.isPlayerDestroyed
                 && !GameFinish.gameFinish.isGameFinish
                 && !GameOver.gameOver.isGameOver
                 && !Pause.pause.isGamePaused
                 && ReadyToStart.readyToStart.isGameStart
                 && !globalVariable.isPlayerSharingLives
-                && !player2Collision.isHitCameraBound)
+                && !player2Collision.isHitCameraBound
+                && !DialogueManager.dialogueManager.isDialogueActive)
+        {
+            if (context.performed)
             {
-                if (context.performed)
-                {
-                    globalVariable.isCameraBoundariesActive = true;
-                    MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
-                    if (globalVariable.isPlayerDestroyed)
-                    {
-                        isMoving = false;
-                    }
-                    else { isMoving = true; }
-                }
-                else
+                globalVariable.isCameraBoundariesActive = true;
+                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+                if (globalVariable.isPlayerDestroyed)
                 {
                     isMoving = false;
                 }
-                inputDir = context.ReadValue<Vector2>();
+                else { isMoving = true; }
             }
+            else
+            {
+                isMoving = false;
+            }
+            inputDir = context.ReadValue<Vector2>();
         }
 
     }

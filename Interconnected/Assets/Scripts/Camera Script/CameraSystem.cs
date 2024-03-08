@@ -135,7 +135,7 @@ public class CameraSystem : MonoBehaviour
             }
             if (Tutorial.tutorial.tutorialProgress == 3)
             {
-                if (cameraTargetObject[0].position.x > 49.6f || cameraTargetObject[1].position.x > 49.6f) 
+                if (Tutorial.tutorial.isPlayersEnterGarbageArea[0] || Tutorial.tutorial.isPlayersEnterGarbageArea[1]) 
                 {
                     transform.position = Vector3.Lerp(transform.position, new Vector3(camPosX[2], transform.position.y, -10), 2 * Time.deltaTime);
                 }

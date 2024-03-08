@@ -102,7 +102,7 @@ public class ObstacleWall : MonoBehaviour
             {
                 if (moveTowardID == 2)
                 {
-                    if (player1.transform.position.x >= 50 || player2.transform.position.x >= 50)
+                    if (Tutorial.tutorial.isPlayersEnterGarbageArea[0] || Tutorial.tutorial.isPlayersEnterGarbageArea[1])
                     {
                         if (isMovingX)
                         {

@@ -55,6 +55,13 @@ public class Player2Collision : MonoBehaviour
         handleDoorButtonCollision(collision);
         handleEnemyCollision(collision);
         handleFinishPointCollision(collision);
+        if(collision.gameObject.tag=="Garbage Area") 
+        {
+            if (LevelStatus.levelStatus.levelID == 4) 
+            {
+                Tutorial.tutorial.isPlayersEnterGarbageArea[0] = true;
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

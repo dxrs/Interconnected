@@ -54,10 +54,7 @@ public class ReadyToStart : MonoBehaviour
             isGameStart = true;
             if (isGameStart && !GameFinish.gameFinish.isGameFinish)
             {
-                if (Tutorial.tutorial.tutorialProgress == 2) 
-                {
-                    inGameUI.SetActive(true);
-                }
+                inGameUI.SetActive(true);
                 startUI.SetActive(false);
             }
         }

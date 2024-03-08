@@ -41,6 +41,7 @@ TagManager:
   - Door Button
   - Garbage Bounce Collider
   - Camera Boundaries
+  - Garbage Area
   layers:
   - Default
   - TransparentFX
