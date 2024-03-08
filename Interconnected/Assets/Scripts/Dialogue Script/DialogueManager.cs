@@ -31,7 +31,11 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        textDialogue.text = listDialogueString[0];
+        if (isDialogueActive) 
+        {
+            textDialogue.text = listDialogueString[0];
+        }
+
         StartCoroutine(typingText());
     }
 
@@ -68,10 +72,17 @@ public class DialogueManager : MonoBehaviour
         }
         else 
         {
-            textDialogue.enabled = false;
-            buttonDialogue.interactable = false;
-            dialoguePanel.SetActive(false);
-            dialogueObject.SetActive(false);
+            if(textDialogue!=null
+                && buttonDialogue!=null
+                && dialoguePanel!=null
+                && dialogueObject != null) 
+            {
+                textDialogue.enabled = false;
+                buttonDialogue.interactable = false;
+                dialoguePanel.SetActive(false);
+                dialogueObject.SetActive(false);
+            }
+           
         }
        
         if (LevelStatus.levelStatus.levelID == 4)

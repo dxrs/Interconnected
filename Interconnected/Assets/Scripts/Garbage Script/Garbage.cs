@@ -42,9 +42,9 @@ public class Garbage : MonoBehaviour
         rb.drag = 5;
         angle = Random.Range(0f, 360f);
         lerpSpeed = Random.Range(4.5f, 6.5f);
-        flushLerpSpeed = Random.Range(2.2f, 3f);
+        flushLerpSpeed = Random.Range(3.2f, 5f);
         randomRadius = Random.Range(0.3f, 2f);
-        randomDestroyTime = Random.Range(1f, 2f);
+        randomDestroyTime = Random.Range(.2f, 1f);
         if (isRotate) 
         {
             transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
