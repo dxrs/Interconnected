@@ -12,6 +12,8 @@ public class GameOver : MonoBehaviour
 
     GameObject player1, player2;
 
+    bool isSlowTime=false;
+
     private void Awake()
     {
         gameOver = this;
@@ -41,11 +43,23 @@ public class GameOver : MonoBehaviour
             }
             if(Player1Health.player1Health.curPlayer1Health <= 0 || Player2Health.player2Health.curPlayer2Health <= 0) 
             {
+                Debug.Log(Time.timeScale);
                 globalVariable.playerInvisible();
+                if(!isSlowTime)
+                {
+                    Time.timeScale=.3f;
+                    isSlowTime=true;
+                }
+                StartCoroutine(setDefaultTimeScale());
                 Destroy(player1, 1);
                 Destroy(player2, 1);
             }
             
         }
+    }
+    IEnumerator setDefaultTimeScale()
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        Time.timeScale=1;
     }
 }

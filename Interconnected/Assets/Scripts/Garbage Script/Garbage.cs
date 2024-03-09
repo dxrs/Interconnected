@@ -40,11 +40,7 @@ public class Garbage : MonoBehaviour
         garbageColldector = GameObject.FindGameObjectWithTag("Garbage Collector");
         garbageWhirlpool = GameObject.FindGameObjectWithTag("Garbage Whirlpool");
         rb.drag = 5;
-        angle = Random.Range(0f, 360f);
-        lerpSpeed = Random.Range(4.5f, 6.5f);
-        flushLerpSpeed = Random.Range(3.2f, 5f);
-        randomRadius = Random.Range(0.3f, 2f);
-        randomDestroyTime = Random.Range(.2f, 1f);
+        randomValue();
         if (isRotate) 
         {
             transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
@@ -55,15 +51,7 @@ public class Garbage : MonoBehaviour
 
     private void Update()
     {
-        if (isGarbageCollected && isGarbageDestroying) 
-        {
-            garbagePosition = garbageWhirlpool.transform.position;
-            posX = garbagePosition.x + randomRadius * Mathf.Cos(Mathf.Deg2Rad * angle);
-            posY = garbagePosition.y + randomRadius * Mathf.Sin(Mathf.Deg2Rad * angle);
-            transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), 2 * Time.deltaTime);
-            StartCoroutine(garbageDestroying());
-          
-        }
+        garbageDestroyingFunction();
         if(!GameFinish.gameFinish.isGameFinish || !GameOver.gameOver.isGameOver) 
         {
             if (isGarbageCollected && !isGarbageDestroying)
@@ -135,20 +123,37 @@ public class Garbage : MonoBehaviour
         }
         isGarbageCollected = false;
     }
+
+    private void garbageDestroyingFunction()
+    {
+        if (isGarbageCollected && isGarbageDestroying) 
+        {
+            garbagePosition = garbageWhirlpool.transform.position;
+            posX = garbagePosition.x + randomRadius * Mathf.Cos(Mathf.Deg2Rad * angle);
+            posY = garbagePosition.y + randomRadius * Mathf.Sin(Mathf.Deg2Rad * angle);
+            transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), 2 * Time.deltaTime);
+            StartCoroutine(garbageDestroying());
+          
+        }
+    }
+
+    void randomValue()
+    {
+        angle = Random.Range(0f, 360f);
+        lerpSpeed = Random.Range(4.5f, 6.5f);
+        flushLerpSpeed = Random.Range(3.2f, 5f);
+        randomRadius = Random.Range(0.3f, 2f);
+        randomDestroyTime = Random.Range(.2f, 1f);
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Garbage Bounce Collider"))
         {
             Vector2 blastForceVector = (transform.position - collision.transform.position).normalized;
             rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
-            StartCoroutine(garbageRigidBrake(1f));
         }
-        if (collision.gameObject.CompareTag("Garbage Center Point"))
-        {
-            isGarbageDestroying = true;
-            isGarbageCollected = true;
-            pc.enabled = false;
-        }
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -163,17 +168,15 @@ public class Garbage : MonoBehaviour
         }
 
         if(collision.gameObject.CompareTag("Garbage Center Point")) 
-        {
-            isGarbageDestroying = true;
-            isGarbageCollected = true;
-            pc.enabled = false;
+        { 
+            Vector2 blastForceVector = (transform.position - collision.transform.position).normalized;
+            rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
         }
 
         if (collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Garbage Bounce Collider"))
         {
             Vector2 blastForceVector = (transform.position - collision.transform.position).normalized;
             rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
-            StartCoroutine(garbageRigidBrake(1f));
         }
 
     }
@@ -181,9 +184,7 @@ public class Garbage : MonoBehaviour
     IEnumerator garbageRigidBrake(float delay)
     {
         yield return new WaitForSeconds(delay);
-
-        
-        rb.drag = Mathf.Lerp(rb.drag,5,0.1f*Time.deltaTime);
+        rb.drag = Mathf.Lerp(rb.drag,5,.1f*Time.deltaTime);
        
     }
 

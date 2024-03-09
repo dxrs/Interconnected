@@ -19,8 +19,6 @@ public class Tutorial : MonoBehaviour
     [SerializeField] GameObject wallStatic;
     [SerializeField] GameObject garbages;
     [SerializeField] GameObject[] shareLivesProgressObject;
-
-    [SerializeField] TextMeshProUGUI textWaitShareLives;
     [SerializeField] TextMeshProUGUI textShareLivesCount;
     [SerializeField] TextMeshProUGUI[] textGarbages;
 
@@ -46,23 +44,16 @@ public class Tutorial : MonoBehaviour
     {
         if (isReadyToShareLives) 
         {
-            if (shareLivesProgress >= 1) 
-            {
-                textWaitShareLives.enabled = true;
-            }
+            
             if (tutorialProgress <= 2) 
             {
                 textShareLivesCount.enabled = true;
             }
  
-            textWaitShareLives.text = Mathf.RoundToInt(GlobalVariable.globalVariable.curShareLivesDelayTime).ToString();
+           
             textShareLivesCount.text = shareLivesProgress.ToString();
         }
-        else 
-        {
-            
-            textWaitShareLives.enabled = false;
-        }
+       
         if (tutorialProgress == 2) 
         {
             if (isReadyToShareLives) 

@@ -188,7 +188,7 @@ public class CameraSystem : MonoBehaviour
         float newZoom = Mathf.Lerp(cameraMaxZoom, 1f, camBoundDistance() / cameraZoomLimiter);
 
         transform.position = Vector3.SmoothDamp(transform.position, newCameraPosition, ref cameraVelocity, smoothCameraTimeMovemement);
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.unscaledDeltaTime);
     }
 
     IEnumerator waitCamBoundActive() 

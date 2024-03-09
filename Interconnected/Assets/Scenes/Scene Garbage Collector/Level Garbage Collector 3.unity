@@ -4877,7 +4877,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3326990768907537700, guid: 96e9f8820c0cd274aaf53a244c7ba9b4, type: 3}
       propertyPath: rotationSpeed
-      value: 60
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 3326990768907537702, guid: 96e9f8820c0cd274aaf53a244c7ba9b4, type: 3}
       propertyPath: m_Name

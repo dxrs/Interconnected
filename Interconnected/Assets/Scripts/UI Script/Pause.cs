@@ -76,8 +76,11 @@ public class Pause : MonoBehaviour
             {
                 buttonHighlightedValue = curValueButton;
             }
+            if(!GameOver.gameOver.isGameOver)
+            {
+                Time.timeScale = 0;
+            }
 
-            Time.timeScale = 0;
         }
         else
         {
@@ -85,7 +88,10 @@ public class Pause : MonoBehaviour
             curValueButton = 1;
             if(!Player1Health.player1Health.isSharingLivesToP2 && !Player2Health.player2Health.isSharingLivesToP1) 
             {
-                Time.timeScale = 1;
+                if(!GameOver.gameOver.isGameOver)
+                {
+                    Time.timeScale = 1;
+                }
             }
 
         }

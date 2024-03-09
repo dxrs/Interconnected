@@ -39,6 +39,14 @@ public class Player2Collision : MonoBehaviour
             rb.simulated = true;
         }
 
+        if(globalVariable.isPlayerDestroyed)
+        {
+            if(isHitDoorButton)
+            {
+                isHitDoorButton=false;
+            }
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -84,6 +92,7 @@ public class Player2Collision : MonoBehaviour
             if (!player2Ability.isShielding)
             {
                 CameraShaker.Instance.ShakeOnce(8, 4, 0.1f, 1f);
+                LinkRay.linkRay.isPlayerLinkedEachOther=false;
                 if (LevelStatus.levelStatus.levelID != 4)
                     player2Health.curPlayer2Health--;
 
@@ -160,7 +169,7 @@ public class Player2Collision : MonoBehaviour
         StartCoroutine(playerCrash());
 
         // Mengurangi dampak pantulan jika isBrakingWithInput aktif
-        float adjustedCrashForce = player2Movement.isBrakingWithInput ? crashForceValue * 0.5f : crashForceValue;
+        float adjustedCrashForce = player2Movement.isBraking ? crashForceValue * 0.5f : crashForceValue;
 
         if (!isHitDoorButton)
         {
