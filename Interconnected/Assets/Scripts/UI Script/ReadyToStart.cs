@@ -37,7 +37,6 @@ public class ReadyToStart : MonoBehaviour
         if (LevelStatus.levelStatus.levelID != 4) 
         {
             StartCoroutine(waitToCount());
-            //StartCoroutine(setTextTimer());
 
             if (timerCountToStart > 1)
             {
@@ -74,15 +73,6 @@ public class ReadyToStart : MonoBehaviour
             textTimerCountToStart.text = "Let's go !";
             yield return new WaitForSeconds(.7f);
             isGameStart = true;
-        }
-    }
-    IEnumerator setTextTimer() 
-    {
-        
-        if (timerCountToStart <= 0)
-        {
-            yield return new WaitForSeconds(1);
-            
         }
     }
 }

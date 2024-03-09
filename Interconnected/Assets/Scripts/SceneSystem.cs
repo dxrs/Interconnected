@@ -10,6 +10,7 @@ public class SceneSystem : MonoBehaviour
     public bool isRestartScene;
     public bool isExitScene;
     public bool isNextScene;
+    public bool isPreviousScene;
     public bool isChangeScene;
 
     [SerializeField] float delayTimeRestart;
@@ -46,11 +47,12 @@ public class SceneSystem : MonoBehaviour
         // dari scene prologue
         // kalau tidak ada data gamenya atau new game
         Debug.Log("ke scane tutorial");
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     public void goingToPrologueScene() 
     {
+        Debug.Log("ok");
         //dari main menu
         // kalau tidak ada data gamenya atau new game
     }
@@ -65,7 +67,7 @@ public class SceneSystem : MonoBehaviour
     IEnumerator waitToExitScene() 
     {
         yield return new WaitForSecondsRealtime(delayTimeExit);
-        SceneManager.LoadScene(0); // ke select level nanti
+        SceneManager.LoadScene("Main Menu"); // ke select level nanti
                                    // exit scene di sini aja
     }
 
