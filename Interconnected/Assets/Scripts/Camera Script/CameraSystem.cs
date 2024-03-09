@@ -66,8 +66,7 @@ public class CameraSystem : MonoBehaviour
         if (LevelStatus.levelStatus.levelID == 1)
         {
             if (!GameOver.gameOver.isGameOver
-            && !GlobalVariable.globalVariable.isPlayerDestroyed
-            && ReadyToStart.readyToStart.isGameStart)
+            && !GlobalVariable.globalVariable.isPlayerDestroyed)
             {
                 if (cameraTargetObject[0] != null && cameraTargetObject[1] != null)
                 {

@@ -97,17 +97,7 @@ public class Garbage : MonoBehaviour
                     {
                         transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
                     }
-                    StartCoroutine(garbageRigidBrake(1f));
-                    Vector2 directionToCenter = (Vector2)transform.position - (Vector2)garbageColldector.transform.position;
-                    float distanceToCenter = directionToCenter.magnitude;
-
-
-                    if (distanceToCenter > 0 && distanceToCenter < blastRadius)
-                    {
-                        Vector2 blastForceVector = directionToCenter.normalized * blastForce;
-                        rb.AddForce(blastForceVector, ForceMode2D.Impulse);
-                    }
-                    isGarbageCollected = false;
+                    garbageBlast();
                 }
 
 
@@ -122,20 +112,28 @@ public class Garbage : MonoBehaviour
         }
         if (GameOver.gameOver.isGameOver) 
         {
-            StartCoroutine(garbageRigidBrake(1f));
-            Vector2 directionToCenter = (Vector2)transform.position - (Vector2)garbageColldector.transform.position;
-            float distanceToCenter = directionToCenter.magnitude;
-
-
-            if (distanceToCenter > 0 && distanceToCenter < blastRadius)
+            if (Player1Health.player1Health.curPlayer1Health <= 0 || Player2Health.player2Health.curPlayer2Health <= 0)
             {
-                Vector2 blastForceVector = directionToCenter.normalized * blastForce;
-                rb.AddForce(blastForceVector, ForceMode2D.Impulse);
+                garbageBlast();
             }
-            isGarbageCollected = false;
         }
        
 
+    }
+
+    private void garbageBlast() 
+    {
+        StartCoroutine(garbageRigidBrake(1f));
+        Vector2 directionToCenter = (Vector2)transform.position - (Vector2)garbageColldector.transform.position;
+        float distanceToCenter = directionToCenter.magnitude;
+
+
+        if (distanceToCenter > 0 && distanceToCenter < blastRadius)
+        {
+            Vector2 blastForceVector = directionToCenter.normalized * blastForce;
+            rb.AddForce(blastForceVector, ForceMode2D.Impulse);
+        }
+        isGarbageCollected = false;
     }
     private void OnTriggerStay2D(Collider2D collision)
     {

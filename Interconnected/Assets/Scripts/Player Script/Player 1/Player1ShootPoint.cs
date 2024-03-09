@@ -20,11 +20,13 @@ public class Player1ShootPoint : MonoBehaviour
     {
         while (true) 
         {
+            
             if (linkRay.isPlayerLinkedEachOther
                     && GlobalVariable.globalVariable.isRopeVisible
                     && !SceneSystem.sceneSystem.isExitScene
                     && !SceneSystem.sceneSystem.isRestartScene
-                    && !GameOver.gameOver.isGameOver)
+                    && Player1Health.player1Health.curPlayer1Health > 0
+                    && Player2Health.player2Health.curPlayer2Health > 0)
             {
                 Instantiate(playerBullet, shootPoint.transform.position, Quaternion.identity);
             }

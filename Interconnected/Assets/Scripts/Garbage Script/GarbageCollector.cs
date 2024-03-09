@@ -34,7 +34,11 @@ public class GarbageCollector : MonoBehaviour
     }
     private void Update()
     {
-        
+        if (LevelStatus.levelStatus.levelID == 4) 
+        {
+            GameObject[] currentGarbageFloating = GameObject.FindGameObjectsWithTag("Garbage");
+            targetGarbageStored = currentGarbageFloating.Length;
+        }
         if (playerReadyToStoreValue.Length != 0) 
         {
             if (playerReadyToStoreValue[0] == 1 && playerReadyToStoreValue[1] == 1)

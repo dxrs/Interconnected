@@ -32,9 +32,20 @@ public class GameOver : MonoBehaviour
         }
         if (isGameOver)
         {
-            GlobalVariable.globalVariable.playerInvisible();
-            Destroy(player1,1);
-            Destroy(player2,1);
+            if (Timer.timerInstance.isTimerLevel) 
+            {
+                if (Timer.timerInstance.curTimerValue <= 0) 
+                {
+                    globalVariable.colliderInactive();
+                }
+            }
+            if(Player1Health.player1Health.curPlayer1Health <= 0 || Player2Health.player2Health.curPlayer2Health <= 0) 
+            {
+                globalVariable.playerInvisible();
+                Destroy(player1, 1);
+                Destroy(player2, 1);
+            }
+            
         }
     }
 }

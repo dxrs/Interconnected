@@ -20,16 +20,11 @@ public class Player1Collision : MonoBehaviour
     [SerializeField] float crashForceValue;
     
 
-    Rigidbody2D rb;
+    [SerializeField] Rigidbody2D rb;
 
     private void Awake()
     {
         if (player1Collision == null) { player1Collision = this; }
-    }
-
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()

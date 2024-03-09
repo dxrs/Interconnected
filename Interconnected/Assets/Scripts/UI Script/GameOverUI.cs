@@ -45,7 +45,7 @@ public class GameOverUI : MonoBehaviour
                     allButtonDisable[k].interactable = false;
                 }
             }
-
+            gameOverStatus();
             compareButtonValue();
             StartCoroutine(waiToActive());
         }
@@ -96,6 +96,26 @@ public class GameOverUI : MonoBehaviour
 
                 }
             }
+        }
+
+    }
+
+    void gameOverStatus() 
+    {
+        if (Timer.timerInstance.isTimerLevel) 
+        {
+            if (Timer.timerInstance.curTimerValue <= 0)
+            {
+                textGameOverStatus.text = "Time is Over";
+            }
+        }
+        if (Player1Health.player1Health.curPlayer1Health <= 0) 
+        {
+            textGameOverStatus.text = "Player 1 Destroyed";
+        }
+        if (Player2Health.player2Health.curPlayer2Health <= 0) 
+        {
+            textGameOverStatus.text = "Player 2 Destroyed";
         }
 
     }

@@ -65,12 +65,19 @@ public class GlobalVariable : MonoBehaviour
         }
         if (isDoorButtonPressed[0] && isDoorButtonPressed[1] && !isAddingCheckpointValue) 
         {
-            //Checkpoint.checkpoint.curCheckpointValue++;
+            
             if (LevelStatus.levelStatus.levelID == 4) 
             {
-                //Checkpoint.checkpoint.curCheckpointValue++;
                 Tutorial.tutorial.tutorialProgress++;
                 isAddingCheckpointValue = true;
+            }
+            else 
+            {
+                if (!Timer.timerInstance.isTimerLevel) 
+                {
+                    Checkpoint.checkpoint.curCheckpointValue++;
+                    isAddingCheckpointValue = true;
+                }
             }
             
         }

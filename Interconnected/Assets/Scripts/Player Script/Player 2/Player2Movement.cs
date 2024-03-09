@@ -72,7 +72,8 @@ public class Player2Movement : MonoBehaviour
         if (globalVariable.isPlayerDestroyed 
             || globalVariable.isPlayerSharingLives
             || player2Collision.isHitCameraBound
-            || DialogueManager.dialogueManager.isDialogueActive)
+            || DialogueManager.dialogueManager.isDialogueActive
+            || Pause.pause.isGamePaused)
         {
             maxPlayerSpeed = 0;
         }
@@ -95,7 +96,7 @@ public class Player2Movement : MonoBehaviour
             StartCoroutine(setConstRigidbody());
         }
 
-        if (player2Collision.isHitCameraBound || DialogueManager.dialogueManager.isDialogueActive)
+        if (player2Collision.isHitCameraBound || DialogueManager.dialogueManager.isDialogueActive || Pause.pause.isGamePaused)
         {
             isMoving = false;
             rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;

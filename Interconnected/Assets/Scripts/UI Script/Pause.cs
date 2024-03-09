@@ -43,7 +43,8 @@ public class Pause : MonoBehaviour
     {
        if(!GameOver.gameOver.isGameOver && 
             !GameFinish.gameFinish.isGameFinish && 
-            ReadyToStart.readyToStart.isGameStart) 
+            ReadyToStart.readyToStart.isGameStart &&
+            !DialogueManager.dialogueManager.isDialogueActive) 
         {
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
             {

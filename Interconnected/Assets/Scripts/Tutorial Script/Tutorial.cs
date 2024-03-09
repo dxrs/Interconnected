@@ -17,6 +17,7 @@ public class Tutorial : MonoBehaviour
 
     [SerializeField] GameObject wallBlocker;
     [SerializeField] GameObject wallStatic;
+    [SerializeField] GameObject garbages;
     [SerializeField] GameObject[] shareLivesProgressObject;
 
     [SerializeField] TextMeshProUGUI textWaitShareLives;
@@ -89,6 +90,10 @@ public class Tutorial : MonoBehaviour
             for(int j = 0; j < shareLivesProgressObject.Length; j++) 
             {
                 shareLivesProgressObject[j].SetActive(false);
+            }
+            if (DialogueManager.dialogueManager.curTextValue >= 19) 
+            {
+                garbages.SetActive(true);
             }
             if (DialogueManager.dialogueManager.curTextValue >= 21 && !DialogueManager.dialogueManager.isDialogueActive) 
             {

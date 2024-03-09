@@ -41,6 +41,7 @@ public class ObstacleWall : MonoBehaviour
     {
         player1 = GameObject.FindGameObjectWithTag("Player 1");
         player2 = GameObject.FindGameObjectWithTag("Player 2");
+        randomOffsetSinePos = Random.Range(0, 2);
         if (wallType == "Sine") 
         {
             pos = transform.position;
@@ -144,6 +145,11 @@ public class ObstacleWall : MonoBehaviour
                     transform.position = new Vector2(transform.position.x, pos.y + (Mathf.Sin(sineSpeed * Time.time) * sinePower));
                 }
                 
+            }
+            if (sineID == 3) 
+            {
+                transform.position = pos + new Vector2(Mathf.Sin(-sineSpeed * Time.time) * sinePower,
+                     Mathf.Sin(sineSpeed * Time.time) * sinePower);
             }
         }
     }

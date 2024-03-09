@@ -21,10 +21,12 @@ public class PlayerBullet : MonoBehaviour
 
     private void Update()
     {
+
         if (player2 && player1 != null && !GlobalVariable.globalVariable.isPlayerDestroyed
                         && !SceneSystem.sceneSystem.isExitScene
                         && !SceneSystem.sceneSystem.isRestartScene
-                        && !GameOver.gameOver.isGameOver)
+                        && Player1Health.player1Health.curPlayer1Health > 0
+                        && Player2Health.player2Health.curPlayer2Health > 0)
         {
             float distanceToPlayer2 = Vector2.Distance(player1.transform.position, player2.transform.position);
 

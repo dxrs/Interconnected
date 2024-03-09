@@ -19,7 +19,7 @@ public class GameFinish : MonoBehaviour
 
     private void Update()
     {
-        if (LevelStatus.levelStatus.levelID != 3) 
+        if (LevelStatus.levelStatus.levelID != 4) 
         {
             if (GarbageCollector.garbageCollector.currentGarbageStored >= GarbageCollector.garbageCollector.targetGarbageStored) 
             {
@@ -27,9 +27,23 @@ public class GameFinish : MonoBehaviour
             }
             
         }
+        else 
+        {
+            if (Tutorial.tutorial.tutorialProgress >= 3) 
+            {
+                if (DialogueManager.dialogueManager.curTextValue > 20 && !DialogueManager.dialogueManager.isDialogueActive) 
+                {
+                    if (GarbageCollector.garbageCollector.currentGarbageStored >= GarbageCollector.garbageCollector.targetGarbageStored)
+                    {
+                        isGameFinish = true;
+                    }
+                }
+            } 
+           
+        }
         if (isGameFinish) 
         {
-            GlobalVariable.globalVariable.colliderInactive();
+            globalVariable.colliderInactive();
         }
     }
 }

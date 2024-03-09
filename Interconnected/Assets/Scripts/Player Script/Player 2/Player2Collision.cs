@@ -19,18 +19,13 @@ public class Player2Collision : MonoBehaviour
     [SerializeField] ParticleSystem playerHitParticle;
     [SerializeField] float crashForceValue;
 
-    Rigidbody2D rb;
+    [SerializeField] Rigidbody2D rb;
 
     private void Awake()
     {
         if (player2Collision == null) { player2Collision = this; }
     }
 
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-
-    }
     private void Update()
     {
         if (globalVariable.isPlayerDestroyed) 
