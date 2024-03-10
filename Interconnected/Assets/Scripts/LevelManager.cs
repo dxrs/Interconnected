@@ -6,7 +6,6 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager levelManager;
 
-    public int currentLevelValue;
     public int totalLevel;
     public int[] totalLevelPerChapter;
 

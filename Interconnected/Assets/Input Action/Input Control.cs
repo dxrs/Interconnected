@@ -602,6 +602,15 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Navigation Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""7df178a9-3366-44b1-89a1-3f8cde080d5b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -646,6 +655,17 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard Scheme"",
                     ""action"": ""Navigation RIght"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b3a7781-1c5c-4725-a40c-b5dcdaee12a7"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard Scheme"",
+                    ""action"": ""Navigation Confirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -717,6 +737,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         m_SelectLevel = asset.FindActionMap("Select Level", throwIfNotFound: true);
         m_SelectLevel_NavigationLeft = m_SelectLevel.FindAction("Navigation Left", throwIfNotFound: true);
         m_SelectLevel_NavigationRIght = m_SelectLevel.FindAction("Navigation RIght", throwIfNotFound: true);
+        m_SelectLevel_NavigationConfirm = m_SelectLevel.FindAction("Navigation Confirm", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1046,12 +1067,14 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     private List<ISelectLevelActions> m_SelectLevelActionsCallbackInterfaces = new List<ISelectLevelActions>();
     private readonly InputAction m_SelectLevel_NavigationLeft;
     private readonly InputAction m_SelectLevel_NavigationRIght;
+    private readonly InputAction m_SelectLevel_NavigationConfirm;
     public struct SelectLevelActions
     {
         private @InputControl m_Wrapper;
         public SelectLevelActions(@InputControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @NavigationLeft => m_Wrapper.m_SelectLevel_NavigationLeft;
         public InputAction @NavigationRIght => m_Wrapper.m_SelectLevel_NavigationRIght;
+        public InputAction @NavigationConfirm => m_Wrapper.m_SelectLevel_NavigationConfirm;
         public InputActionMap Get() { return m_Wrapper.m_SelectLevel; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1067,6 +1090,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @NavigationRIght.started += instance.OnNavigationRIght;
             @NavigationRIght.performed += instance.OnNavigationRIght;
             @NavigationRIght.canceled += instance.OnNavigationRIght;
+            @NavigationConfirm.started += instance.OnNavigationConfirm;
+            @NavigationConfirm.performed += instance.OnNavigationConfirm;
+            @NavigationConfirm.canceled += instance.OnNavigationConfirm;
         }
 
         private void UnregisterCallbacks(ISelectLevelActions instance)
@@ -1077,6 +1103,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @NavigationRIght.started -= instance.OnNavigationRIght;
             @NavigationRIght.performed -= instance.OnNavigationRIght;
             @NavigationRIght.canceled -= instance.OnNavigationRIght;
+            @NavigationConfirm.started -= instance.OnNavigationConfirm;
+            @NavigationConfirm.performed -= instance.OnNavigationConfirm;
+            @NavigationConfirm.canceled -= instance.OnNavigationConfirm;
         }
 
         public void RemoveCallbacks(ISelectLevelActions instance)
@@ -1153,5 +1182,6 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     {
         void OnNavigationLeft(InputAction.CallbackContext context);
         void OnNavigationRIght(InputAction.CallbackContext context);
+        void OnNavigationConfirm(InputAction.CallbackContext context);
     }
 }

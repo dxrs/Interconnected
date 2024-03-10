@@ -158,6 +158,7 @@ public class Pause : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Gamepad Enter")) 
             {
+                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
                 if (curValueButton == 1) 
                 {
                     sceneSystem.isRestartScene = true;

@@ -49,7 +49,7 @@ public class MainMenu : MonoBehaviour
             imageTransition.transform.localPosition = Vector2.MoveTowards(imageTransition.transform.localPosition, new Vector2(imageTransition.transform.localPosition.x, 0), 2000 * Time.deltaTime);
             if (imageTransition.transform.localPosition.y == 0) 
             {
-                SceneSystem.sceneSystem.isNextScene = true;
+                SceneSystem.sceneSystem.goingToPrologueScene();
             }
         }
     }
@@ -114,6 +114,7 @@ public class MainMenu : MonoBehaviour
                 entry.callback.AddListener((data) => { buttonMainMenuHighlighted(buttonValue); });
                 eventTrigger.triggers.Add(entry);
             }
+
            
         }
        

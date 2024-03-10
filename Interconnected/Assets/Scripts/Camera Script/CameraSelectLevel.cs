@@ -12,11 +12,14 @@ public class CameraSelectLevel : MonoBehaviour
 
     private void Update()
     {
-        
+        compareCamPosX();
+    }
 
+    private void compareCamPosX() 
+    {
         for (int i = 0; i < camPosX.Length; i++)
         {
-            if (selectLevel.curSelectLevelValue == i)
+            if (selectLevel.curLevelSectionValue == i)
             {
                 float targetX = camPosX[i];
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetX, transform.position.y, transform.position.z), camMoveSpeed * Time.deltaTime);
@@ -25,14 +28,12 @@ public class CameraSelectLevel : MonoBehaviour
                 {
                     selectLevel.isCameraNotMoving = true;
                 }
-                else 
+                else
                 {
                     selectLevel.isCameraNotMoving = false;
                 }
-                break;  
+                break;
             }
         }
-
-        Debug.Log(selectLevel.isCameraNotMoving ? "true" : "false");
     }
 }
