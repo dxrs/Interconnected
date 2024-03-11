@@ -77,7 +77,17 @@ public class SelectLevel : MonoBehaviour
             }
         }
     }
+      private void OnButtonPointerEnter()
+    {
+        Debug.Log("true - Highlighted Button Value: ");
+        isLevelButtonHighlighted = true;
+    }
 
+    private void OnButtonPointerExit()
+    {
+        Debug.Log("false - Unhighlighted Button Value: ");
+        isLevelButtonHighlighted = false;
+    }
     private void compareSectionValue() 
     {
         if (isInputKeyboardChoose) 
@@ -102,20 +112,45 @@ public class SelectLevel : MonoBehaviour
        
     }
 
-    private void OnButtonPointerEnter()
-    {
-        Debug.Log("true - Highlighted Button Value: ");
-        isLevelButtonHighlighted = true;
-    }
-
-    private void OnButtonPointerExit()
-    {
-        Debug.Log("false - Unhighlighted Button Value: ");
-        isLevelButtonHighlighted = false;
-    }
+  
 
     private void compareLevelTypeValue() 
     {
+
+        for (int i = 0; i < typeLevelObject.Length; i++)
+        {
+            typeLevelObject[i].SetActive(buttonHighlightedValue == i && listLevelButton[i].enabled);
+        }
+
+        /*
+        if(buttonHighlightedValue==0 && listLevelButton[0].enabled == true) 
+        {
+            typeLevelObject[0].SetActive(true);
+        }
+        else 
+        {
+            typeLevelObject[0].SetActive(false);
+        }
+
+        if (buttonHighlightedValue == 1 && listLevelButton[1].enabled == true)
+        {
+            typeLevelObject[1].SetActive(true);
+        }
+        else
+        {
+            typeLevelObject[1].SetActive(false);
+        }
+
+        if (buttonHighlightedValue == 2 && listLevelButton[2].enabled == true)
+        {
+            typeLevelObject[2].SetActive(true);
+        }
+        else
+        {
+            typeLevelObject[2].SetActive(false);
+        }
+
+        
         for (int i = 0; i < typeLevelObject.Length; i++)
         {
             if (!SceneSystem.sceneSystem.isChangeScene) 
@@ -125,11 +160,16 @@ public class SelectLevel : MonoBehaviour
             
             
         }
+        */
     }
 
     private void buttonMainMenuHighlighted(int value)
     {
-        buttonHighlightedValue = value;
+        if (LevelManager.levelManager.totalLevelUnlocked <= 5) 
+        {
+            buttonHighlightedValue = value;
+        }
+        
     }
 
 
