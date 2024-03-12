@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene Garbage Collector/Level Garbage Collector 4.unity
     guid: 610e56c3203a4364190c819ee23af79f
   - enabled: 1
+    path: Assets/Scenes/Scene Garbage Collector/Level Garbage Collector 5.unity
+    guid: dfce74c69646df340b80867fbd030556
+  - enabled: 1
     path: Assets/Scenes/Scene Main Menu/Main Menu.unity
     guid: dec819342e2f43b4a9c16c6018bada88
   - enabled: 1

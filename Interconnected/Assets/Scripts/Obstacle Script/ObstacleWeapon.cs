@@ -5,11 +5,11 @@ public class ObstacleWeapon : MonoBehaviour
 {
     [SerializeField] GameObject weaponBullet;
     [SerializeField] GameObject bulletSpawner;
+    [SerializeField] GameObject gunCore;
 
     [SerializeField] bool isBurstSpawn;
 
-    [SerializeField] float burstDelayObjectSpawn;
-    [SerializeField] float delayTime;
+    [Range(0.02f,0.5f)] [SerializeField] float delayTime;
     [SerializeField] float distanceBurstBulletSpawn;
     [SerializeField] int burstObjectCount;
 
@@ -18,62 +18,47 @@ public class ObstacleWeapon : MonoBehaviour
         StartCoroutine(setWeaponSpawn());
     }
 
+    private void Update()
+    {
+        if (gunCore.transform.localScale.x >= 0.4f) 
+        {
+            gunCore.transform.localScale = Vector2.zero;
+
+        }
+        if(gunCore.transform.localScale.x >= 0) 
+        {
+            gunCore.transform.localScale = Vector2.MoveTowards(gunCore.transform.localScale, new Vector2(0.4f, 0.4f), delayTime * Time.deltaTime);
+        }
+    }
     IEnumerator setWeaponSpawn()
     {
-        Camera mainCamera = Camera.main;
-
-        if (isBurstSpawn)
-        {
-            yield return new WaitForSeconds(burstDelayObjectSpawn);
-        }
 
         while (true)
         {
             float waitForNextSpawn = distanceBurstBulletSpawn / burstObjectCount;
 
-            if (isBurstSpawn)
+            if (gunCore.transform.localScale.x >= 0.4f)
             {
-                for (int j = 0; j < burstObjectCount; j++)
+                if (isBurstSpawn)
                 {
-                    GameObject bullet = Instantiate(weaponBullet, bulletSpawner.transform.position, Quaternion.identity);
-
-                    // Periksa apakah peluru yang diinstansiasi terlihat oleh kamera
-                    if (IsObjectVisible(bullet, mainCamera))
+                    for (int j = 0; j < burstObjectCount; j++)
                     {
+                        spawnBullet();
                         yield return new WaitForSeconds(waitForNextSpawn);
                     }
-                    else
-                    {
-                        // Jika tidak terlihat, hancurkan peluru
-                        Destroy(bullet);
-                    }
                 }
-            }
-            else
-            {
-                GameObject bullet = Instantiate(weaponBullet, bulletSpawner.transform.position, Quaternion.identity);
-
-                if (!IsObjectVisible(bullet, mainCamera))
+                else
                 {
-                    Destroy(bullet);
+                    spawnBullet();
                 }
             }
 
-            yield return new WaitForSeconds(delayTime);
+            yield return null;
         }
     }
 
-    bool IsObjectVisible(GameObject obj, Camera camera)
+    private void spawnBullet()
     {
-        Renderer renderer = obj.GetComponent<Renderer>();
-
-        if (renderer != null)
-        {
-            Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
-            return GeometryUtility.TestPlanesAABB(planes, renderer.bounds);
-        }
-
-        // Jika objek tidak memiliki renderer, anggap objek tersebut terlihat
-        return true;
+        Instantiate(weaponBullet, bulletSpawner.transform.position, Quaternion.identity);
     }
 }

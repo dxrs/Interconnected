@@ -483,6 +483,11 @@ MonoBehaviour:
   isCrashToOtherBoat: 0
   isHitCameraBound: 0
   isHitDoorButton: 0
+  playerDestroyCollision:
+  - Spike
+  - Gear
+  - Gun Bullet
+  - Trap
   globalVariable: {fileID: 0}
   player2Movement: {fileID: 74277217981580472}
   player2Ability: {fileID: 74277217981580475}

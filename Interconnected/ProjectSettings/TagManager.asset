@@ -42,6 +42,7 @@ TagManager:
   - Garbage Bounce Collider
   - Camera Boundaries
   - Garbage Area
+  - Trap
   layers:
   - Default
   - TransparentFX

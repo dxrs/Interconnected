@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonSelectLevel : MonoBehaviour
 {
+
     [SerializeField] SelectLevel selectLevel;
+
+    [SerializeField] int idLevel;
 
     [SerializeField] bool isButtonLocked;
 
     [SerializeField] Button buttonSelectLevel;
+
+    [SerializeField] TextMeshProUGUI textStatusLevel;
+
 
     private void Update()
     {
@@ -29,5 +36,24 @@ public class ButtonSelectLevel : MonoBehaviour
             }
             
         }
+
+        if (LevelManager.levelManager.totalLevelUnlocked >= idLevel) 
+        {
+            isButtonLocked = false;
+        }
+        else 
+        {
+            isButtonLocked = true;
+        }
+
+        if (isButtonLocked)
+        {
+            textStatusLevel.text = "Locked";
+        }
+        else 
+        {
+            textStatusLevel.text = idLevel.ToString();
+        }
+        
     }
 }

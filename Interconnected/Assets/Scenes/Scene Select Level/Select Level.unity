@@ -269,13 +269,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.6
-  m_fontSizeBase: 11.6
+  m_fontSize: 5
+  m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -373,6 +373,10 @@ PrefabInstance:
     - target: {fileID: 3042558454376722764, guid: 5fbbcefa02ff3a0419161cde2bcb4f73, type: 3}
       propertyPath: m_Name
       value: Level Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952732781539411342, guid: 5fbbcefa02ff3a0419161cde2bcb4f73, type: 3}
+      propertyPath: totalLevelUnlocked
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4952732781539411342, guid: 5fbbcefa02ff3a0419161cde2bcb4f73, type: 3}
       propertyPath: totalLevelPerChapter.Array.size
@@ -473,13 +477,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.6
-  m_fontSizeBase: 11.6
+  m_fontSize: 5
+  m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -608,13 +612,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.6
-  m_fontSizeBase: 11.6
+  m_fontSize: 5
+  m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1115,13 +1119,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.6
-  m_fontSizeBase: 11.6
+  m_fontSize: 5
+  m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1449,8 +1453,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
+  idLevel: 2
   isButtonLocked: 0
   buttonSelectLevel: {fileID: 519158050}
+  textStatusLevel: {fileID: 464338177}
 --- !u!1 &522060290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1600,8 +1606,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
+  idLevel: 3
   isButtonLocked: 0
   buttonSelectLevel: {fileID: 522060292}
+  textStatusLevel: {fileID: 314177611}
 --- !u!1001 &592993993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1812,13 +1820,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.6
-  m_fontSizeBase: 11.6
+  m_fontSize: 5
+  m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1949,8 +1957,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 4
-  m_fontSizeBase: 4
+  m_fontSize: 5
+  m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2054,8 +2062,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
+  idLevel: 5
   isButtonLocked: 1
   buttonSelectLevel: {fileID: 729883002}
+  textStatusLevel: {fileID: 660895707}
 --- !u!114 &729883002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2443,7 +2453,6 @@ GameObject:
   - component: {fileID: 1286639649}
   - component: {fileID: 1286639648}
   - component: {fileID: 1286639647}
-  - component: {fileID: 1286639650}
   m_Layer: 5
   m_Name: Button Level (0)
   m_TagString: Untagged
@@ -2567,21 +2576,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286639645}
   m_CullTransparentMesh: 1
---- !u!114 &1286639650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286639645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f59fd1c5b622d9841b851bf0cdbad1b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectLevel: {fileID: 1291511355}
-  isButtonLocked: 0
-  buttonSelectLevel: {fileID: 1286639647}
 --- !u!1 &1291511353
 GameObject:
   m_ObjectHideFlags: 0
@@ -2956,8 +2950,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
+  idLevel: 4
   isButtonLocked: 0
   buttonSelectLevel: {fileID: 1347660476}
+  textStatusLevel: {fileID: 1801240893}
 --- !u!1 &1501467304
 GameObject:
   m_ObjectHideFlags: 0
@@ -3107,8 +3103,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
+  idLevel: 1
   isButtonLocked: 0
   buttonSelectLevel: {fileID: 1501467306}
+  textStatusLevel: {fileID: 1804956160}
 --- !u!1 &1534074024
 GameObject:
   m_ObjectHideFlags: 0
@@ -3771,8 +3769,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
+  idLevel: 7
   isButtonLocked: 1
   buttonSelectLevel: {fileID: 1726962085}
+  textStatusLevel: {fileID: 338746230}
 --- !u!222 &1726962088
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3888,13 +3888,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.6
-  m_fontSizeBase: 11.6
+  m_fontSize: 5
+  m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -4023,13 +4023,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.6
-  m_fontSizeBase: 11.6
+  m_fontSize: 5
+  m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -4398,8 +4398,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
+  idLevel: 6
   isButtonLocked: 1
   buttonSelectLevel: {fileID: 1853448600}
+  textStatusLevel: {fileID: 136210535}
 --- !u!114 &1853448600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4904,3 +4906,4 @@ MonoBehaviour:
   - 72
   - 108
   camMoveSpeed: 100
+  isReadyToMove: 0

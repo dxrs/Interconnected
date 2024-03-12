@@ -111,7 +111,7 @@ public class Finish : MonoBehaviour
                     if (curValueButton == 1)
                     {
                         sceneSystem.isNextScene = true;
-                        //nanti di ubah ke next scene
+                        //kalau continue save data totalLevelUnlocked dari script level manager
                     }
 
                     if (curValueButton == 2)
@@ -223,15 +223,11 @@ public class Finish : MonoBehaviour
     public void onClickContinue()
     {
         sceneSystem.isNextScene = true;
-
-        // nanti ke next scene
-
+        //kalau continue save data totalLevelUnlocked dari script level manager
     }
     public void onClickExit()
     {
         sceneSystem.isExitScene = true;
-
-
     }
 
    

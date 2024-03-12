@@ -7,7 +7,8 @@ public class LevelManager : MonoBehaviour
     public static LevelManager levelManager;
 
     public int totalLevel;
-    public int totalLevelUnlocked;
+    public int totalLevelUnlocked; // dipanggil menggunakan save data
+    public int currentTotalLevelSection;
     public int[] totalLevelPerChapter;
 
 
@@ -22,7 +23,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-       
+        currentTotalLevelSection = (totalLevelUnlocked) / 3;
     }
     int CalculateTotalLevel()
     {
@@ -34,5 +35,12 @@ public class LevelManager : MonoBehaviour
         }
 
         return total;
+    }
+
+    public void saveDataCurrentLevel() 
+    {
+        totalLevelUnlocked++;
+        // save di sini
+        // di panggil di game finish
     }
 }

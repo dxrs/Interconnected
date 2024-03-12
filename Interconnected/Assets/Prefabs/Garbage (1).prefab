@@ -154,6 +154,10 @@ MonoBehaviour:
   blastRadius: 3
   isGarbageDestroying: 0
   isRotate: 0
+  garbageBounceCollision:
+  - Gear
+  - Spike
+  - Trap
 --- !u!50 &2772721481137595801
 Rigidbody2D:
   serializedVersion: 4

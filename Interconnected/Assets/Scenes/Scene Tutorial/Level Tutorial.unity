@@ -2607,10 +2607,12 @@ MonoBehaviour:
   isRestartScene: 0
   isExitScene: 0
   isNextScene: 0
+  isPreviousScene: 0
   isChangeScene: 0
   delayTimeRestart: 0
   delayTimeExit: 1
   delayTimeNextScene: 1
+  delayPreviousScene: 0
 --- !u!114 &1224049754 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9218205163291923774, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
@@ -5685,6 +5687,14 @@ PrefabInstance:
     - target: {fileID: 3368033838847187707, guid: 0330526321a0ebe469611862df55e7e5, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368033838847187707, guid: 0330526321a0ebe469611862df55e7e5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 42.875465
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368033838847187707, guid: 0330526321a0ebe469611862df55e7e5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.31
       objectReference: {fileID: 0}
     - target: {fileID: 3368033838847187707, guid: 0330526321a0ebe469611862df55e7e5, type: 3}
       propertyPath: m_LocalPosition.x

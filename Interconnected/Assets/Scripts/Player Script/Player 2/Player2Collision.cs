@@ -11,6 +11,8 @@ public class Player2Collision : MonoBehaviour
     public bool isHitCameraBound;
     public bool isHitDoorButton;
 
+    [SerializeField] string[] playerDestroyCollision;
+
     [SerializeField] GlobalVariable globalVariable;
     [SerializeField] Player2Movement player2Movement;
     [SerializeField] Player2Ability player2Ability;
@@ -87,31 +89,38 @@ public class Player2Collision : MonoBehaviour
 
     private void handleObstacleCollision(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Gun Bullet"))
+        for(int j = 0; j < playerDestroyCollision.Length; j++) 
         {
-            if (!player2Ability.isShielding)
+            if (collision.gameObject.CompareTag(playerDestroyCollision[j])) 
             {
-                CameraShaker.Instance.ShakeOnce(8, 4, 0.1f, 1f);
-                LinkRay.linkRay.isPlayerLinkedEachOther=false;
-                if (LevelStatus.levelStatus.levelID != 4)
-                    player2Health.curPlayer2Health--;
-
-  
-                
-                globalVariable.playerInvisible();
-                if (player2Health.curPlayer2Health >= 1)
+                if (!player2Ability.isShielding)
                 {
-                    globalVariable.isRopeVisible = false;
-                    globalVariable.isPlayerDestroyed = true;
-                    StartCoroutine(player2SetPosToCheckpoint());
+                    CameraShaker.Instance.ShakeOnce(8, 4, 0.1f, 1f);
+                    LinkRay.linkRay.isPlayerLinkedEachOther = false;
+                    if (LevelStatus.levelStatus.levelID != 4)
+                        player2Health.curPlayer2Health--;
+
+
+
+                    globalVariable.playerInvisible();
+                    if (player2Health.curPlayer2Health >= 1)
+                    {
+                        globalVariable.isRopeVisible = false;
+                        globalVariable.isPlayerDestroyed = true;
+                        StartCoroutine(player2SetPosToCheckpoint());
+                    }
+                    Instantiate(playerHitParticle, transform.position, Quaternion.identity);
                 }
-                Instantiate(playerHitParticle, transform.position, Quaternion.identity);
+                else
+                {
+                    if (!globalVariable.isPlayerDestroyed)
+                        player2BouncedCollision(collision);
+                }
             }
-            else
-            {
-                if (!globalVariable.isPlayerDestroyed)
-                    player2BouncedCollision(collision);
-            }
+        }
+        if (collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Gun Bullet") || collision.gameObject.CompareTag("Trap"))
+        {
+           
         }
     }
 

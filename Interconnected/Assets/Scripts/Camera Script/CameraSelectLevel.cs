@@ -10,9 +10,27 @@ public class CameraSelectLevel : MonoBehaviour
     [SerializeField] float[] camPosX;
     [SerializeField] float camMoveSpeed;
 
+    [SerializeField] bool isReadyToMove;
+
     private void Update()
     {
-        compareCamPosX();
+        if (isReadyToMove) 
+        {
+            compareCamPosX();
+        }
+        else 
+        {
+            for (int j = 0; j < camPosX.Length; j++)
+            {
+                if (selectLevel.curLevelSectionValue == j)
+                {
+                    transform.position = new Vector3(camPosX[j], transform.position.y, transform.position.z);
+                }
+            }
+
+            StartCoroutine(waitToMove());
+        }
+        
     }
 
     private void compareCamPosX() 
@@ -34,6 +52,15 @@ public class CameraSelectLevel : MonoBehaviour
                 }
                 break;
             }
+        }
+    }
+
+    IEnumerator waitToMove() 
+    {
+        if (!isReadyToMove) 
+        {
+            yield return new WaitForSeconds(.1f);
+            isReadyToMove = true;
         }
     }
 }

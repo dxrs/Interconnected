@@ -11,7 +11,7 @@ public class SelectLevel : MonoBehaviour
 
     public int curSelectLevelValue;
 
-    public int curLevelSectionValue;
+    public int curLevelSectionValue; // variable buat pengolompokan level, di sini saya buat 3 level per section
 
     public bool isCameraNotMoving;
     public bool isLevelButtonHighlighted;
@@ -31,6 +31,9 @@ public class SelectLevel : MonoBehaviour
     private void Start()
     {
         mouseListener();
+
+        buttonHighlightedValue = LevelManager.levelManager.totalLevelUnlocked;
+
         Time.timeScale = 1;
     }
     private void Update()
@@ -92,7 +95,7 @@ public class SelectLevel : MonoBehaviour
     {
         if (isInputKeyboardChoose) 
         {
-            curLevelSectionValue = Mathf.FloorToInt((curSelectLevelValue) / 3.0f);
+            curLevelSectionValue = Mathf.FloorToInt((curSelectLevelValue) / 3);
 
             /*
             if (curSelectLevelValue == Mathf.Clamp(curSelectLevelValue, 0, 2))
@@ -165,11 +168,11 @@ public class SelectLevel : MonoBehaviour
 
     private void buttonMainMenuHighlighted(int value)
     {
-        if (LevelManager.levelManager.totalLevelUnlocked <= 5) 
+        
+        if (value <= LevelManager.levelManager.totalLevelUnlocked && !SceneSystem.sceneSystem.isChangeScene) 
         {
             buttonHighlightedValue = value;
         }
-        
     }
 
 
@@ -180,7 +183,7 @@ public class SelectLevel : MonoBehaviour
             MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
             if (!SceneSystem.sceneSystem.isChangeScene)
             {
-                if (curSelectLevelValue <= LevelManager.levelManager.totalLevel)
+                if (curSelectLevelValue < LevelManager.levelManager.totalLevelUnlocked)
                 {
                     buttonHighlightedValue++;
                 }
@@ -221,7 +224,7 @@ public class SelectLevel : MonoBehaviour
     {
         if (!SceneSystem.sceneSystem.isChangeScene) 
         {
-            if (curSelectLevelValue > 0) 
+            if (curLevelSectionValue > 0) 
             {
                 curLevelSectionValue--;
             }
@@ -233,14 +236,16 @@ public class SelectLevel : MonoBehaviour
 
     public void onClickChooseLevelRight() 
     {
+       
         if (!SceneSystem.sceneSystem.isChangeScene)
         {
-            if (curSelectLevelValue <= LevelManager.levelManager.totalLevel) 
+
+            if (curLevelSectionValue < LevelManager.levelManager.currentTotalLevelSection)
             {
                 curLevelSectionValue++;
+                buttonHighlightedValue = curLevelSectionValue * 3;
             }
 
-            buttonHighlightedValue = curLevelSectionValue * 3;
         }
         
     }

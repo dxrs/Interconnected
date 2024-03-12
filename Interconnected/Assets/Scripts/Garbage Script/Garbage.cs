@@ -13,6 +13,8 @@ public class Garbage : MonoBehaviour
     [SerializeField] bool isGarbageDestroying;
     [SerializeField] bool isRotate;
 
+    [SerializeField] string[] garbageBounceCollision;
+
     float lerpSpeed;
     float posX;
     float posY;
@@ -148,10 +150,17 @@ public class Garbage : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Garbage Bounce Collider"))
+        for(int a = 0; a < garbageBounceCollision.Length; a++) 
         {
-            Vector2 blastForceVector = (transform.position - collision.transform.position).normalized;
-            rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
+            if (collision.gameObject.CompareTag(garbageBounceCollision[a])) 
+            {
+                Vector2 blastForceVector = (transform.position - collision.transform.position).normalized;
+                rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
+            }
+        }
+        if (collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Trap"))
+        {
+           
         }
         
     }
@@ -172,11 +181,17 @@ public class Garbage : MonoBehaviour
             Vector2 blastForceVector = (transform.position - collision.transform.position).normalized;
             rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
         }
-
-        if (collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Garbage Bounce Collider"))
+        for (int a = 0; a < garbageBounceCollision.Length; a++)
         {
-            Vector2 blastForceVector = (transform.position - collision.transform.position).normalized;
-            rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
+            if (collision.gameObject.CompareTag(garbageBounceCollision[a]))
+            {
+                Vector2 blastForceVector = (transform.position - collision.transform.position).normalized;
+                rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
+            }
+        }
+        if (collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Trap"))
+        {
+            
         }
 
     }

@@ -23,12 +23,6 @@ public class Checkpoint : MonoBehaviour
     private void Start()
     {
         curCheckpointValue = 1;
-        if (LevelStatus.levelStatus.levelID != 3 && LevelStatus.levelStatus.levelID != 4) 
-        {
-            //player1.transform.position = player1CheckpintPos[0].position;
-            //player2.transform.position = player2CheckpintPos[0].position;
-        }
-      
     }
 
     private void Update()
