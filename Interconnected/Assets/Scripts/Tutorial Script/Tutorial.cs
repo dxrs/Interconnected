@@ -13,9 +13,14 @@ public class Tutorial : MonoBehaviour
 
     public bool isEnemyReadyToShoot;
     public bool isReadyToShareLives;
+    public bool[] isPlayersEnterGarbageArea;
 
     [SerializeField] GameObject wallBlocker;
     [SerializeField] GameObject wallStatic;
+    [SerializeField] GameObject garbages;
+    [SerializeField] GameObject[] shareLivesProgressObject;
+    [SerializeField] TextMeshProUGUI textShareLivesCount;
+    [SerializeField] TextMeshProUGUI[] textGarbages;
 
     GameObject player1, player2;
 
@@ -29,12 +34,35 @@ public class Tutorial : MonoBehaviour
         tutorialProgress = 1;
         player1 = GameObject.FindGameObjectWithTag("Player 1");
         player2 = GameObject.FindGameObjectWithTag("Player 2");
+        for (int j = 0; j < shareLivesProgressObject.Length; j++)
+        {
+            shareLivesProgressObject[j].SetActive(false);
+        }
     }
 
     private void Update()
     {
-        if (tutorialProgress >= 2) 
+        if (isReadyToShareLives) 
         {
+            
+            if (tutorialProgress <= 2) 
+            {
+                textShareLivesCount.enabled = true;
+            }
+ 
+           
+            textShareLivesCount.text = shareLivesProgress.ToString();
+        }
+       
+        if (tutorialProgress == 2) 
+        {
+            if (isReadyToShareLives) 
+            {
+                for (int j = 0; j < shareLivesProgressObject.Length; j++)
+                {
+                    shareLivesProgressObject[j].SetActive(true);
+                }
+            }
             if(player1.transform.position.x >= 7.5f && player2.transform.position.x >= 7.5f) 
             {
                 isEnemyReadyToShoot = true;
@@ -42,12 +70,37 @@ public class Tutorial : MonoBehaviour
             if (shareLivesProgress >= 2) 
             {
                 Destroy(wallStatic);
+                isReadyToShareLives = false;
             }
+            
         }
         if (tutorialProgress >= 3) 
         {
+            textShareLivesCount.enabled = false;
             wallBlocker.SetActive(true);
+            for(int j = 0; j < shareLivesProgressObject.Length; j++) 
+            {
+                shareLivesProgressObject[j].SetActive(false);
+            }
+            if (DialogueManager.dialogueManager.curTextValue >= 19) 
+            {
+                garbages.SetActive(true);
+            }
+            if (DialogueManager.dialogueManager.curTextValue >= 21 && !DialogueManager.dialogueManager.isDialogueActive) 
+            {
+                for (int j = 0; j < textGarbages.Length; j++)
+                {
+                    textGarbages[j].enabled = true;
+                }
+            }
+            
+            
         }
+    }
+
+    public void onButtonContinuePressed() 
+    {
+        SceneSystem.sceneSystem.isNextScene = true;
     }
     
 }

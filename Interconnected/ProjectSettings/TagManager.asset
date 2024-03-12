@@ -38,6 +38,11 @@ TagManager:
   - Gun Bullet
   - Level Bound
   - Garbage Whirlpool
+  - Door Button
+  - Garbage Bounce Collider
+  - Camera Boundaries
+  - Garbage Area
+  - Trap
   layers:
   - Default
   - TransparentFX

@@ -34,7 +34,11 @@ public class GarbageCollector : MonoBehaviour
     }
     private void Update()
     {
-        
+        if (LevelStatus.levelStatus.levelID == 4) 
+        {
+            GameObject[] currentGarbageFloating = GameObject.FindGameObjectsWithTag("Garbage");
+            targetGarbageStored = currentGarbageFloating.Length;
+        }
         if (playerReadyToStoreValue.Length != 0) 
         {
             if (playerReadyToStoreValue[0] == 1 && playerReadyToStoreValue[1] == 1)
@@ -57,9 +61,9 @@ public class GarbageCollector : MonoBehaviour
         if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isPlayerDestroyed) 
         {
             garbageCollected = 0;
-            sr.enabled = false;
+           // sr.enabled = false;
         }
-        else { sr.enabled = true; }
+       // else { sr.enabled = true; }
     }
 
     

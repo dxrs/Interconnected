@@ -55,6 +55,5 @@ MonoBehaviour:
   obstacleTag:
   - Wall
   - Obstacle
-  - Obstacle P1
-  - Obstacle P2
   - Level Bound
+  - Trap

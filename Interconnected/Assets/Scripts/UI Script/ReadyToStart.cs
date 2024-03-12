@@ -37,7 +37,6 @@ public class ReadyToStart : MonoBehaviour
         if (LevelStatus.levelStatus.levelID != 4) 
         {
             StartCoroutine(waitToCount());
-            StartCoroutine(setTextTimer());
 
             if (timerCountToStart > 1)
             {
@@ -54,10 +53,7 @@ public class ReadyToStart : MonoBehaviour
             isGameStart = true;
             if (isGameStart && !GameFinish.gameFinish.isGameFinish)
             {
-                if (Tutorial.tutorial.tutorialProgress == 2) 
-                {
-                    inGameUI.SetActive(true);
-                }
+                inGameUI.SetActive(true);
                 startUI.SetActive(false);
             }
         }
@@ -70,22 +66,13 @@ public class ReadyToStart : MonoBehaviour
         
         if (timerCountToStart > 0)
         {
-
-            timerCountToStart -= 1 * Time.deltaTime;
+            timerCountToStart -= 1.2f * Time.deltaTime;
         }
         if (timerCountToStart <= 0) 
         {
-            yield return new WaitForSeconds(1f);
-            isGameStart = true;
-        }
-    }
-    IEnumerator setTextTimer() 
-    {
-        
-        if (timerCountToStart <= 1)
-        {
-            yield return new WaitForSeconds(1);
             textTimerCountToStart.text = "Let's go !";
+            yield return new WaitForSeconds(.7f);
+            isGameStart = true;
         }
     }
 }

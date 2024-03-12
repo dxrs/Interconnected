@@ -12,9 +12,11 @@ public class GlobalVariable : MonoBehaviour
     public bool isTimerStart;
     public bool isPlayerSharingLives;
     public bool isRopeVisible;
+    public bool isCameraBoundariesActive;
+    public bool[] isDoorButtonPressed;
 
     public int maxDoor;
-    public int curDoorOpenValue;
+    
 
     public int curEnemySpawn;
     public int maxEnemySpawn;
@@ -22,6 +24,9 @@ public class GlobalVariable : MonoBehaviour
     public string[] playerShieldTagCollision;
 
     public float curShareLivesDelayTime;
+
+    [Range(0.1f,1)]
+    public float deltaTimeValueShareLives;
 
     [SerializeField] SpriteRenderer spriteRendererPlayer1;
     [SerializeField] SpriteRenderer spriteRendererPlayer2;
@@ -34,7 +39,7 @@ public class GlobalVariable : MonoBehaviour
 
     GameObject player1, player2;
 
-    bool isAddingCheckpointValue = false;
+    [SerializeField] bool isAddingCheckpointValue = false;
 
     private void Awake()
     {
@@ -53,25 +58,48 @@ public class GlobalVariable : MonoBehaviour
     {
         if (isPlayerDestroyed) 
         {
-            curDoorOpenValue = 0;
+            for(int j = 0; j < isDoorButtonPressed.Length; j++) 
+            {
+                isDoorButtonPressed[j] = false;
+            }
         }
-        if (curDoorOpenValue == 2 && !isAddingCheckpointValue) 
+        if (isDoorButtonPressed[0] && isDoorButtonPressed[1] && !isAddingCheckpointValue) 
         {
-            //Checkpoint.checkpoint.curCheckpointValue++;
+            
             if (LevelStatus.levelStatus.levelID == 4) 
             {
                 Tutorial.tutorial.tutorialProgress++;
                 isAddingCheckpointValue = true;
             }
+            else 
+            {
+                if (!Timer.timerInstance.isTimerLevel) 
+                {
+                    Checkpoint.checkpoint.curCheckpointValue++;
+                    isAddingCheckpointValue = true;
+                }
+            }
             
         }
         partOfSharingLives();
-
         StartCoroutine(setDefaultValueCurDoorValue());
+       
     }
     public void delayTimeToShareLives()
     {
         curShareLivesDelayTime = maxShareLivesDelayTime;
+    }
+
+    public void colliderInactive() 
+    {
+        player1Collider.isTrigger = true;
+        player2Collider.isTrigger = true;
+    }
+
+    public void colliderActive() 
+    {
+        player1Collider.isTrigger = false;
+        player2Collider.isTrigger = false;
     }
 
     public void playerVisible() 
@@ -92,7 +120,7 @@ public class GlobalVariable : MonoBehaviour
             player1Collider.enabled = false;
             player2Collider.enabled = false;
             spriteRendererPlayer1.enabled = false;
-            spriteRendererPlayer1.enabled = false;
+            spriteRendererPlayer2.enabled = false;
 
         }
        
@@ -102,7 +130,7 @@ public class GlobalVariable : MonoBehaviour
     {
         if (curShareLivesDelayTime > 0)
         {
-            curShareLivesDelayTime -= 1 * Time.deltaTime;
+            curShareLivesDelayTime -= deltaTimeValueShareLives * Time.deltaTime;
         }
         if (curShareLivesDelayTime <= 0)
         {
@@ -126,11 +154,15 @@ public class GlobalVariable : MonoBehaviour
 
     IEnumerator setDefaultValueCurDoorValue() 
     {
-        if (curDoorOpenValue >= 2) 
+        if (isDoorButtonPressed[0] && isDoorButtonPressed[1]) 
         {
-            yield return new WaitForSeconds(3);
-            curDoorOpenValue = 0;
+            yield return new WaitForSeconds(1);
+            for (int j = 0; j < isDoorButtonPressed.Length; j++)
+            {
+                isDoorButtonPressed[j] = false;
+            }
             isAddingCheckpointValue = false;
         }
     }
+   
 }

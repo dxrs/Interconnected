@@ -9,12 +9,11 @@ using UnityEngine.InputSystem;
 public class Finish : MonoBehaviour
 {
 
-    [SerializeField] GlobalVariable globalVariable;
     [SerializeField] SceneSystem sceneSystem;
 
     [SerializeField] GameObject finishUI;
     [SerializeField] GameObject inGameUI;
-    [SerializeField] GameObject finishSelector;
+    [SerializeField] GameObject buttonSelector;
 
     [SerializeField] TextMeshProUGUI textFinishStatusEnemyDestroy;
 
@@ -23,10 +22,10 @@ public class Finish : MonoBehaviour
     [SerializeField] int maxListButton;
     [SerializeField] int buttonHighlightedValue; // yang di highlight sama cursor mouse
 
-    [SerializeField] Button[] listPauseButton;
-    [SerializeField] Button[] allButtonFinishDisable;
+    [SerializeField] Button[] listFinishButton;
+    [SerializeField] Button[] allButtonDisable;
 
-    [SerializeField] Vector2[] finishSelectorPos;
+    [SerializeField] float[] buttonSelectorPosY;
 
     bool isDpadPressed = false;
 
@@ -44,9 +43,9 @@ public class Finish : MonoBehaviour
         {
             if (SceneSystem.sceneSystem.isChangeScene) 
             {
-                for (int k = 0; k < allButtonFinishDisable.Length; k++)
+                for (int k = 0; k < allButtonDisable.Length; k++)
                 {
-                    allButtonFinishDisable[k].interactable = false;
+                    allButtonDisable[k].interactable = false;
                 }
             }
             if (LevelStatus.levelStatus.levelID == 2) 
@@ -59,8 +58,8 @@ public class Finish : MonoBehaviour
            
         }
         
-        finishInputConfirmButton();
-        finishInputListSelection();
+        inputConfirmButton();
+        inputListSelection();
         selectorPos();
     }
 
@@ -68,20 +67,20 @@ public class Finish : MonoBehaviour
     {
         do
         {
-            for (int j = 0; j < listPauseButton.Length; j++)
+            for (int j = 0; j < listFinishButton.Length; j++)
             {
                 int buttonValue = curValueButtonIndex[j];
 
-                EventTrigger eventTrigger = listPauseButton[j].gameObject.AddComponent<EventTrigger>();
+                EventTrigger eventTrigger = listFinishButton[j].gameObject.AddComponent<EventTrigger>();
                 EventTrigger.Entry entry = new EventTrigger.Entry();
                 entry.eventID = EventTriggerType.PointerEnter;
-                entry.callback.AddListener((data) => { buttonPauseHighlighted(buttonValue); });
+                entry.callback.AddListener((data) => { buttonFinishHighlighted(buttonValue); });
                 eventTrigger.triggers.Add(entry);
             }
         } while (GameFinish.gameFinish.isGameFinish && LevelStatus.levelStatus.levelID != 4 && !SceneSystem.sceneSystem.isChangeScene);
     }
 
-    void buttonPauseHighlighted(int value)
+    void buttonFinishHighlighted(int value)
     {
         buttonHighlightedValue = value;
     }
@@ -101,7 +100,7 @@ public class Finish : MonoBehaviour
         }
     }
 
-    void finishInputConfirmButton()
+    void inputConfirmButton()
     {
         if (LevelStatus.levelStatus.levelID != 4) 
         {
@@ -111,8 +110,8 @@ public class Finish : MonoBehaviour
                 {
                     if (curValueButton == 1)
                     {
-                        sceneSystem.isRestartScene = true;
-                        //nanti di ubah ke next scene
+                        sceneSystem.isNextScene = true;
+                        //kalau continue save data totalLevelUnlocked dari script level manager
                     }
 
                     if (curValueButton == 2)
@@ -125,7 +124,7 @@ public class Finish : MonoBehaviour
        
     }
 
-    void finishInputListSelection()
+    void inputListSelection()
     {
         if (LevelStatus.levelStatus.levelID != 4) 
         {
@@ -189,23 +188,23 @@ public class Finish : MonoBehaviour
         {
             if (!MouseCursorActivated.mouseCursorActivated.isMouseActive && GameFinish.gameFinish.isGameFinish)
             {
-                for (int j = 0; j < finishSelectorPos.Length; j++)
+                for (int j = 0; j < buttonSelectorPosY.Length; j++)
                 {
                     if (curValueButton == j + 1)
                     {
-                        finishSelector.transform.localPosition = finishSelectorPos[j];
+                        buttonSelector.transform.localPosition = new Vector2(buttonSelector.transform.localPosition.x, buttonSelectorPosY[j]);
                     }
 
                 }
 
             }
-            for (int i = 0; i < finishSelectorPos.Length; i++)
+            for (int i = 0; i < buttonSelectorPosY.Length; i++)
             {
                 if (MouseCursorActivated.mouseCursorActivated.isMouseActive)
                 {
                     if (buttonHighlightedValue == i + 1)
                     {
-                        finishSelector.transform.localPosition = finishSelectorPos[i];
+                        buttonSelector.transform.localPosition = new Vector2(buttonSelector.transform.localPosition.x, buttonSelectorPosY[i]);
                     }
 
                 }
@@ -216,23 +215,19 @@ public class Finish : MonoBehaviour
 
     IEnumerator waitToActive() 
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.1f);
         finishUI.SetActive(true);
         inGameUI.SetActive(false);
     }
 
     public void onClickContinue()
     {
-        sceneSystem.isRestartScene = true;
-
-        // nanti ke next scene
-
+        sceneSystem.isNextScene = true;
+        //kalau continue save data totalLevelUnlocked dari script level manager
     }
     public void onClickExit()
     {
         sceneSystem.isExitScene = true;
-
-
     }
 
    

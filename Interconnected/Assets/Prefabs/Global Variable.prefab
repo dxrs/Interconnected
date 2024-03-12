@@ -48,8 +48,8 @@ MonoBehaviour:
   isTimerStart: 0
   isPlayerSharingLives: 0
   isRopeVisible: 0
+  isDoorButtonPressed: 0000
   maxDoor: 10
-  curDoorOpenValue: 0
   curEnemySpawn: 0
   maxEnemySpawn: 0
   playerShieldTagCollision:
@@ -58,7 +58,9 @@ MonoBehaviour:
   - Enemy
   - Gear
   curShareLivesDelayTime: 0
+  deltaTimeValueShareLives: 1
   spriteRendererPlayer1: {fileID: 0}
   spriteRendererPlayer2: {fileID: 0}
   player1Collider: {fileID: 0}
   player2Collider: {fileID: 0}
+  isAddingCheckpointValue: 0

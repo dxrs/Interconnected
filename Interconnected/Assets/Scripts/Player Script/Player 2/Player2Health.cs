@@ -49,10 +49,7 @@ public class Player2Health : MonoBehaviour // kurang slow motion
     private void Update()
     {
         shareLives();
-        if (curPlayer2Health <= 0)
-        {
-            GameOver.gameOver.isGameOver = true;
-        }
+       
     }
 
     private void shareLives()

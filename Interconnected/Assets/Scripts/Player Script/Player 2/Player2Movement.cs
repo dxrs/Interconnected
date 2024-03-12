@@ -71,7 +71,9 @@ public class Player2Movement : MonoBehaviour
         }
         if (globalVariable.isPlayerDestroyed 
             || globalVariable.isPlayerSharingLives
-            || player2Collision.isStopAtCameraTrigger)
+            || player2Collision.isHitCameraBound
+            || DialogueManager.dialogueManager.isDialogueActive
+            || Pause.pause.isGamePaused)
         {
             maxPlayerSpeed = 0;
         }
@@ -84,7 +86,27 @@ public class Player2Movement : MonoBehaviour
             isMoving = false;
             maxPlayerSpeed = Mathf.Lerp(maxPlayerSpeed, 0, 5 * Time.deltaTime);
             rb.drag = Mathf.Lerp(rb.drag, 10, 6 * Time.deltaTime);
-            StartCoroutine(setSimulatedRigidbody());
+            StartCoroutine(setConstRigidbody());
+        }
+
+        if (GameOver.gameOver.isGameOver)
+        {
+            maxPlayerSpeed = 0;
+            isMoving = false;
+            StartCoroutine(setConstRigidbody());
+        }
+
+        if (player2Collision.isHitCameraBound || DialogueManager.dialogueManager.isDialogueActive || Pause.pause.isGamePaused)
+        {
+            isMoving = false;
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+        }
+        else
+        {
+            if (!GameFinish.gameFinish.isGameFinish)
+            {
+                rb.constraints = ~RigidbodyConstraints2D.FreezePositionX & ~RigidbodyConstraints2D.FreezePositionY;
+            }
         }
     }
 
@@ -114,12 +136,12 @@ public class Player2Movement : MonoBehaviour
             if (!isMoving) { isBraking = true; }
             if (!globalVariable.isPlayerDestroyed) 
             {
-                if (isBraking || player2Collision.isCrashToOtherBoat)
+                if (isBraking || player2Collision.isCrashToOtherBoat || player2Collision.isHitDoorButton)
                 {
-                    float lerpSpeed = isBrakingWithInput ? 10f : 3.5f;
+                    float lerpSpeed = player2Collision.isHitDoorButton ? 8f : 3.5f;
                     rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
                 }
-                else if (isBrakingWithInput)
+                else if (player2Collision.isHitDoorButton)
                 {
                     rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, 5f * Time.deltaTime);
                 }
@@ -138,11 +160,10 @@ public class Player2Movement : MonoBehaviour
        
     }
 
-    IEnumerator setSimulatedRigidbody()
+    IEnumerator setConstRigidbody()
     {
         yield return new WaitForSeconds(.5f);
-        rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
     }
 
     IEnumerator setMaxSpeedPlayer()
@@ -153,32 +174,30 @@ public class Player2Movement : MonoBehaviour
 
     public void playerMovementInput(InputAction.CallbackContext context)
     {
-        bool isLevel4 = LevelStatus.levelStatus.levelID == 4;
-
-        if (!isLevel4 || !player2Collision.isStopAtCameraTrigger)
-        {
-            if (!globalVariable.isPlayerDestroyed
+        if (!globalVariable.isPlayerDestroyed
                 && !GameFinish.gameFinish.isGameFinish
                 && !GameOver.gameOver.isGameOver
                 && !Pause.pause.isGamePaused
                 && ReadyToStart.readyToStart.isGameStart
-                && !globalVariable.isPlayerSharingLives)
+                && !globalVariable.isPlayerSharingLives
+                && !player2Collision.isHitCameraBound
+                && !DialogueManager.dialogueManager.isDialogueActive)
+        {
+            if (context.performed)
             {
-                if (context.performed)
-                {
-                    MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
-                    if (globalVariable.isPlayerDestroyed)
-                    {
-                        isMoving = false;
-                    }
-                    else { isMoving = true; }
-                }
-                else
+                globalVariable.isCameraBoundariesActive = true;
+                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+                if (globalVariable.isPlayerDestroyed)
                 {
                     isMoving = false;
                 }
-                inputDir = context.ReadValue<Vector2>();
+                else { isMoving = true; }
             }
+            else
+            {
+                isMoving = false;
+            }
+            inputDir = context.ReadValue<Vector2>();
         }
 
     }

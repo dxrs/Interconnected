@@ -41,6 +41,7 @@ public class ObstacleWall : MonoBehaviour
     {
         player1 = GameObject.FindGameObjectWithTag("Player 1");
         player2 = GameObject.FindGameObjectWithTag("Player 2");
+        randomOffsetSinePos = Random.Range(0, 2);
         if (wallType == "Sine") 
         {
             pos = transform.position;
@@ -48,7 +49,7 @@ public class ObstacleWall : MonoBehaviour
             ySinePos = transform.position.y;
         }
 
-        if(wallType=="Move Towards") 
+        if(wallType=="Waypoint Movement") 
         {
             Vector2[] waypoint = new Vector2[pathWall.childCount];
             for(int i = 0; i < waypoint.Length; i++) 
@@ -102,7 +103,7 @@ public class ObstacleWall : MonoBehaviour
             {
                 if (moveTowardID == 2)
                 {
-                    if (player1.transform.position.x >= 50 || player2.transform.position.x >= 50)
+                    if (Tutorial.tutorial.isPlayersEnterGarbageArea[0] || Tutorial.tutorial.isPlayersEnterGarbageArea[1])
                     {
                         if (isMovingX)
                         {
@@ -122,12 +123,33 @@ public class ObstacleWall : MonoBehaviour
         {
             if (sineID == 1)
             {
-                transform.position = new Vector2(pos.x + Mathf.Sin(sineSpeed * Time.time) * sinePower,
-       transform.position.y);
+                if (isSineRandomOffset) 
+                {
+                    transform.position = new Vector2(pos.x + Mathf.Sin(sineSpeed * Time.time + randomOffsetSinePos) * sinePower, transform.position.y);
+                }
+                else 
+                {
+                    transform.position = new Vector2(pos.x + Mathf.Sin(sineSpeed * Time.time) * sinePower, transform.position.y);
+
+                }
+         
             }
             if (sineID == 2)
             {
-                transform.position = new Vector2(transform.position.x, pos.y + (Mathf.Sin(sineSpeed * Time.time) * sinePower));
+                if (isSineRandomOffset) 
+                {
+                    transform.position = new Vector2(transform.position.x, pos.y + (Mathf.Sin(sineSpeed * Time.time + randomOffsetSinePos) * sinePower));
+                }
+                else 
+                {
+                    transform.position = new Vector2(transform.position.x, pos.y + (Mathf.Sin(sineSpeed * Time.time) * sinePower));
+                }
+                
+            }
+            if (sineID == 3) 
+            {
+                transform.position = pos + new Vector2(Mathf.Sin(-sineSpeed * Time.time) * sinePower,
+                     Mathf.Sin(sineSpeed * Time.time) * sinePower);
             }
         }
     }
@@ -153,7 +175,7 @@ public class ObstacleWall : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if(wallType=="Move Towards") 
+        if(wallType== "Waypoint Movement") 
         {
             Vector2 startPos = pathWall.GetChild(0).position;
             Vector2 prevPos = startPos;

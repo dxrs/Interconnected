@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class Player2Collision : MonoBehaviour
 {
     public static Player2Collision player2Collision;
 
     public bool isCrashToOtherBoat;
-    public bool isStopAtCameraTrigger;
+    public bool isHitCameraBound;
+    public bool isHitDoorButton;
+
+    [SerializeField] string[] playerDestroyCollision;
 
     [SerializeField] GlobalVariable globalVariable;
     [SerializeField] Player2Movement player2Movement;
@@ -17,16 +21,33 @@ public class Player2Collision : MonoBehaviour
     [SerializeField] ParticleSystem playerHitParticle;
     [SerializeField] float crashForceValue;
 
-    Rigidbody2D rb;
+    [SerializeField] Rigidbody2D rb;
 
     private void Awake()
     {
         if (player2Collision == null) { player2Collision = this; }
     }
 
-    private void Start()
+    private void Update()
     {
-        rb = GetComponent<Rigidbody2D>();
+        if (globalVariable.isPlayerDestroyed) 
+        {
+            rb.simulated = false; //bug nanti diperbaiki note
+            player2Movement.isMoving = false;
+            player2Movement.isBraking = true;
+        }
+        else 
+        {
+            rb.simulated = true;
+        }
+
+        if(globalVariable.isPlayerDestroyed)
+        {
+            if(isHitDoorButton)
+            {
+                isHitDoorButton=false;
+            }
+        }
 
     }
 
@@ -35,10 +56,17 @@ public class Player2Collision : MonoBehaviour
         handleDumpPointCollision(collision);
         handleObstacleCollision(collision);
         handleOutlineColliderCollision(collision);
-        handleCameraMoveTriggerCollision(collision);
-        handleBrakingTriggerCollision(collision);
+        handleCameraBoundCollision(collision);
+        handleDoorButtonCollision(collision);
         handleEnemyCollision(collision);
         handleFinishPointCollision(collision);
+        if(collision.gameObject.tag=="Garbage Area") 
+        {
+            if (LevelStatus.levelStatus.levelID == 4) 
+            {
+                Tutorial.tutorial.isPlayersEnterGarbageArea[0] = true;
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -46,43 +74,53 @@ public class Player2Collision : MonoBehaviour
         if (collision.gameObject.tag == "Finish Point")
             GameFinish.gameFinish.finishValue--;
 
-        if (collision.gameObject.tag == "Camera Move Trigger")
-            isStopAtCameraTrigger = false;
+        if (collision.gameObject.tag == "Camera Boundaries")
+            isHitCameraBound = false;
 
         if (collision.gameObject.tag == "Garbage Center Point")
             GarbageCollector.garbageCollector.playerReadyToStoreValue[1] = 0;
 
-        //if (LevelStatus.levelStatus.levelID == 4 && collision.gameObject.tag == "Braking Trigger")
-            //Tutorial.tutorial.playerBrakingValue--;
+        if (collision.gameObject.tag == "Door Button")
+        {
+            isHitDoorButton = false;
+            globalVariable.isDoorButtonPressed[1] = false;
+        }
     }
 
     private void handleObstacleCollision(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Gun Bullet"))
+        for(int j = 0; j < playerDestroyCollision.Length; j++) 
         {
-            if (!player2Ability.isShielding)
+            if (collision.gameObject.CompareTag(playerDestroyCollision[j])) 
             {
-                if (LevelStatus.levelStatus.levelID != 4)
-                    player2Health.curPlayer2Health--;
-
-  
-                rb.simulated = false; //bug nanti diperbaiki note
-                player2Movement.isMoving = false;
-                player2Movement.isBraking = true;
-                globalVariable.playerInvisible();
-                if (player2Health.curPlayer2Health >= 1)
+                if (!player2Ability.isShielding)
                 {
-                    globalVariable.isRopeVisible = false;
-                    globalVariable.isPlayerDestroyed = true;
-                    StartCoroutine(player2SetPosToCheckpoint());
+                    CameraShaker.Instance.ShakeOnce(8, 4, 0.1f, 1f);
+                    LinkRay.linkRay.isPlayerLinkedEachOther = false;
+                    if (LevelStatus.levelStatus.levelID != 4)
+                        player2Health.curPlayer2Health--;
+
+
+
+                    globalVariable.playerInvisible();
+                    if (player2Health.curPlayer2Health >= 1)
+                    {
+                        globalVariable.isRopeVisible = false;
+                        globalVariable.isPlayerDestroyed = true;
+                        StartCoroutine(player2SetPosToCheckpoint());
+                    }
+                    Instantiate(playerHitParticle, transform.position, Quaternion.identity);
                 }
-                Instantiate(playerHitParticle, transform.position, Quaternion.identity);
+                else
+                {
+                    if (!globalVariable.isPlayerDestroyed)
+                        player2BouncedCollision(collision);
+                }
             }
-            else
-            {
-                if (!globalVariable.isPlayerDestroyed)
-                    player2BouncedCollision(collision);
-            }
+        }
+        if (collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Gun Bullet") || collision.gameObject.CompareTag("Trap"))
+        {
+           
         }
     }
 
@@ -93,20 +131,23 @@ public class Player2Collision : MonoBehaviour
     }
     private void handleOutlineColliderCollision(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player 1 Outline Collider" )
+        if (collision.gameObject.tag == "Player 1 Outline Collider")
             player2BouncedCollision(collision);
     }
 
-    private void handleCameraMoveTriggerCollision(Collider2D collision)
+    private void handleCameraBoundCollision(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Camera Move Trigger")
-            isStopAtCameraTrigger = true;
+        if (collision.gameObject.tag == "Camera Boundaries")
+            isHitCameraBound = true;
     }
 
-    private void handleBrakingTriggerCollision(Collider2D collision)
+    private void handleDoorButtonCollision(Collider2D collision)
     {
-        //if (LevelStatus.levelStatus.levelID == 4 && collision.gameObject.tag == "Braking Trigger")
-           // Tutorial.tutorial.playerBrakingValue++;
+        if (collision.gameObject.tag == "Door Button")
+        {
+            isHitDoorButton = true;
+            globalVariable.isDoorButtonPressed[1] = true;
+        }
     }
 
     private void handleEnemyCollision(Collider2D collision)
@@ -137,10 +178,13 @@ public class Player2Collision : MonoBehaviour
         StartCoroutine(playerCrash());
 
         // Mengurangi dampak pantulan jika isBrakingWithInput aktif
-        float adjustedCrashForce = player2Movement.isBrakingWithInput ? crashForceValue * 0.5f : crashForceValue;
+        float adjustedCrashForce = player2Movement.isBraking ? crashForceValue * 0.5f : crashForceValue;
 
-        Vector2 backwardMovePos = (transform.position - collider.transform.position).normalized;
-        rb.AddForce(backwardMovePos * adjustedCrashForce, ForceMode2D.Impulse);
+        if (!isHitDoorButton)
+        {
+            Vector2 backwardMovePos = (transform.position - collider.transform.position).normalized;
+            rb.AddForce(backwardMovePos * adjustedCrashForce, ForceMode2D.Impulse); // sedang konflik dgn void playerMovement
+        }
     }
 
     IEnumerator playerCrash()
@@ -156,7 +200,6 @@ public class Player2Collision : MonoBehaviour
     IEnumerator player2SetPosToCheckpoint()
     {
         yield return new WaitForSeconds(0.5f);
-        rb.simulated = true;
         globalVariable.isPlayerDestroyed = false;
         yield return new WaitForSeconds(.5f);
         globalVariable.playerVisible();

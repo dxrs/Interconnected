@@ -855,8 +855,11 @@ MonoBehaviour:
   isRestartScene: 0
   isExitScene: 0
   isNextScene: 0
+  isPreviousScene: 0
   isChangeScene: 0
-  delayTime: 0
+  delayTimeRestart: 1
+  delayTimeExit: 2
+  delayTimeNextScene: 1
 --- !u!4 &421272903
 Transform:
   m_ObjectHideFlags: 0
@@ -972,6 +975,7 @@ RectTransform:
   - {fileID: 1630627830}
   - {fileID: 1676384759}
   - {fileID: 2086895683}
+  - {fileID: 1672204172}
   m_Father: {fileID: 1767458151}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1624,6 +1628,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630627829}
   m_CullTransparentMesh: 1
+--- !u!1 &1672204171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1672204172}
+  - component: {fileID: 1672204174}
+  - component: {fileID: 1672204173}
+  m_Layer: 5
+  m_Name: Image Transition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1672204172
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672204171}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 461780050}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 1102}
+  m_SizeDelta: {x: 1920, y: 1079.9}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1672204173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672204171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1672204174
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672204171}
+  m_CullTransparentMesh: 1
 --- !u!1 &1676384758
 GameObject:
   m_ObjectHideFlags: 0
@@ -1929,10 +2009,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4b974cd3-af8d-4bf8-bece-161f8dd98bda
     m_ActionName: Main Menu/Navigation Confrim[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e63eb022-1b76-45c3-9eec-e389113fd77b
-    m_ActionName: Game Pause/Pause Click[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Main Menu
@@ -1955,62 +2031,19 @@ MonoBehaviour:
   curValueButtonIndex: 01000000020000000300000004000000
   maxListButton: 4
   buttonHighlightedValue: 0
+  isTransitionSceneActive: 0
   listMainMenuButton:
   - {fileID: 514133323}
   - {fileID: 101170044}
   - {fileID: 1630627831}
   - {fileID: 1676384760}
+  imageTransition: {fileID: 1672204171}
   mainMenuSelector: {fileID: 2086895682}
   mainMenuSelectorPosY:
   - {x: -880, y: 70}
   - {x: -880, y: -5}
   - {x: -880, y: -85}
   - {x: -880, y: -165}
---- !u!1 &1955438015
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1955438017}
-  - component: {fileID: 1955438016}
-  m_Layer: 0
-  m_Name: Mouse Active
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1955438016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955438015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a7291a3b88a254f92ba904ef6e159d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMouseActive: 0
---- !u!4 &1955438017
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955438015}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2020395208
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,3 +2188,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086895682}
   m_CullTransparentMesh: 1
+--- !u!1001 &2748880675574591435
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323636, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_Name
+      value: Mouse Active
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}

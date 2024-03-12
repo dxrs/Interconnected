@@ -12,6 +12,8 @@ public class GameOver : MonoBehaviour
 
     GameObject player1, player2;
 
+    bool isSlowTime=false;
+
     private void Awake()
     {
         gameOver = this;
@@ -25,17 +27,39 @@ public class GameOver : MonoBehaviour
 
     private void Update()
     {
+        if ((Player1Health.player1Health.curPlayer1Health <= 0 || Player2Health.player2Health.curPlayer2Health <= 0)
+            || (Timer.timerInstance.isTimerLevel && Timer.timerInstance.curTimerValue <= 0))
+        {
+            isGameOver = true;
+        }
         if (isGameOver)
         {
-            GlobalVariable.globalVariable.playerInvisible();
-            //SceneSystem.sceneSystem.isRestartScene = true;
-            Destroy(player1,1);
-            Destroy(player2,1);
-            SceneSystem.sceneSystem.isRestartScene = true;
-            if (player1 && player2 == null) 
+            if (Timer.timerInstance.isTimerLevel) 
             {
-                
+                if (Timer.timerInstance.curTimerValue <= 0) 
+                {
+                    globalVariable.colliderInactive();
+                }
             }
+            if(Player1Health.player1Health.curPlayer1Health <= 0 || Player2Health.player2Health.curPlayer2Health <= 0) 
+            {
+                Debug.Log(Time.timeScale);
+                globalVariable.playerInvisible();
+                if(!isSlowTime)
+                {
+                    Time.timeScale=.3f;
+                    isSlowTime=true;
+                }
+                StartCoroutine(setDefaultTimeScale());
+                Destroy(player1, 1);
+                Destroy(player2, 1);
+            }
+            
         }
+    }
+    IEnumerator setDefaultTimeScale()
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        Time.timeScale=1;
     }
 }

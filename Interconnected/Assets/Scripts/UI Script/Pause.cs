@@ -43,7 +43,8 @@ public class Pause : MonoBehaviour
     {
        if(!GameOver.gameOver.isGameOver && 
             !GameFinish.gameFinish.isGameFinish && 
-            ReadyToStart.readyToStart.isGameStart) 
+            ReadyToStart.readyToStart.isGameStart &&
+            !DialogueManager.dialogueManager.isDialogueActive) 
         {
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
             {
@@ -75,8 +76,11 @@ public class Pause : MonoBehaviour
             {
                 buttonHighlightedValue = curValueButton;
             }
+            if(!GameOver.gameOver.isGameOver)
+            {
+                Time.timeScale = 0;
+            }
 
-            Time.timeScale = 0;
         }
         else
         {
@@ -84,7 +88,10 @@ public class Pause : MonoBehaviour
             curValueButton = 1;
             if(!Player1Health.player1Health.isSharingLivesToP2 && !Player2Health.player2Health.isSharingLivesToP1) 
             {
-                Time.timeScale = 1;
+                if(!GameOver.gameOver.isGameOver)
+                {
+                    Time.timeScale = 1;
+                }
             }
 
         }
@@ -151,6 +158,7 @@ public class Pause : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Gamepad Enter")) 
             {
+                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
                 if (curValueButton == 1) 
                 {
                     sceneSystem.isRestartScene = true;

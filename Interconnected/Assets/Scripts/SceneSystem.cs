@@ -10,11 +10,13 @@ public class SceneSystem : MonoBehaviour
     public bool isRestartScene;
     public bool isExitScene;
     public bool isNextScene;
+    public bool isPreviousScene;
     public bool isChangeScene;
 
     [SerializeField] float delayTimeRestart;
     [SerializeField] float delayTimeExit;
     [SerializeField] float delayTimeNextScene;
+    [SerializeField] float delayPreviousScene;
 
     private void Awake()
     {
@@ -23,17 +25,17 @@ public class SceneSystem : MonoBehaviour
 
     private void Update()
     {
-        if (isRestartScene) 
+        if (isRestartScene)  // restart level
         {
             isChangeScene = true;
             StartCoroutine(waitToRestartScene());
         }
-        if (isExitScene) 
+        if (isExitScene) // exit level
         {
             isChangeScene = true;
             StartCoroutine(waitToExitScene());
         }
-        if (isNextScene) 
+        if (isNextScene) // next level
         {
             isChangeScene = true;
             StartCoroutine(waitToNextScene());
@@ -43,16 +45,32 @@ public class SceneSystem : MonoBehaviour
 
     public void goingToTutorialScene() 
     {
-        // dari scene prologue
-        // kalau tidak ada data gamenya atau new game
-        Debug.Log("ke scane tutorial");
-        SceneManager.LoadScene(1);
+        isChangeScene = true;
+        StartCoroutine(waitToSceneTutorialScene());
     }
 
-    public void goingToPrologueScene() 
+    public void goingToPrologueScene() // dari main menu ke prologue scene
     {
-        //dari main menu
-        // kalau tidak ada data gamenya atau new game
+        isChangeScene = true;
+        StartCoroutine(waitToScenePrologueScene());
+    }
+
+    public void goingToLevelSelected() 
+    {
+        isChangeScene = true;
+        StartCoroutine(waitToLevelSelectedScene());
+    }
+
+    IEnumerator waitToScenePrologueScene() 
+    {
+        yield return new WaitForSeconds(delayTimeNextScene);
+        SceneManager.LoadScene("Prologue");
+    }
+
+    IEnumerator waitToSceneTutorialScene() 
+    {
+        yield return new WaitForSeconds(delayTimeNextScene);
+        SceneManager.LoadScene(0);
     }
 
     IEnumerator waitToRestartScene() 
@@ -62,11 +80,11 @@ public class SceneSystem : MonoBehaviour
         SceneManager.LoadScene(currentRestartScene);
     }
 
-    IEnumerator waitToExitScene() 
+    IEnumerator waitToExitScene() // dari level kembali ke select level
     {
         yield return new WaitForSecondsRealtime(delayTimeExit);
-        SceneManager.LoadScene(0); // ke select level nanti
-                                   // exit scene di sini aja
+        SceneManager.LoadScene("Select Level"); 
+                                   
     }
 
     IEnumerator waitToNextScene() 
@@ -75,5 +93,11 @@ public class SceneSystem : MonoBehaviour
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene + 1);
 
+    }
+
+    IEnumerator waitToLevelSelectedScene() 
+    {
+        yield return new WaitForSeconds(delayTimeNextScene);
+        SceneManager.LoadScene(SelectLevel.selectLevel.curSelectLevelValue);
     }
 }
