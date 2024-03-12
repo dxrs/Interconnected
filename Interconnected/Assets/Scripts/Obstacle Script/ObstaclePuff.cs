@@ -36,13 +36,11 @@ public class ObstaclePuff : MonoBehaviour
 
                 puffBody.transform.localScale = Vector2.Lerp(puffBody.transform.localScale, targetScale, scaleSpeed * Time.deltaTime);
 
-                Debug.Log("kena");
             }
             else
             {
                 puffBody.transform.localScale = Vector2.Lerp(puffBody.transform.localScale, minBodyScale, scaleSpeed * Time.deltaTime);
                 puffBody.transform.Rotate(Vector3.forward, 100 * Time.deltaTime);
-                Debug.Log("fail");
             }
         }
         else 

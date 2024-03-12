@@ -670,6 +670,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 838206333}
     m_Modifications:
+    - target: {fileID: 3368033838847187701, guid: 0330526321a0ebe469611862df55e7e5, type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 3368033838847187704, guid: 0330526321a0ebe469611862df55e7e5, type: 3}
       propertyPath: m_Name
       value: Wall Static (2)
@@ -1374,6 +1378,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 838206333}
     m_Modifications:
+    - target: {fileID: 3368033838847187701, guid: 0330526321a0ebe469611862df55e7e5, type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 3368033838847187704, guid: 0330526321a0ebe469611862df55e7e5, type: 3}
       propertyPath: m_Name
       value: Wall Static (1)
