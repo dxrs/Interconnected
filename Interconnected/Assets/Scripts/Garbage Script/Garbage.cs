@@ -158,11 +158,6 @@ public class Garbage : MonoBehaviour
                 rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
             }
         }
-        if (collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Trap"))
-        {
-           
-        }
-        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -189,10 +184,7 @@ public class Garbage : MonoBehaviour
                 rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
             }
         }
-        if (collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Trap"))
-        {
-            
-        }
+        
 
     }
     

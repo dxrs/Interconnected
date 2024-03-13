@@ -10,6 +10,7 @@ public class Player2Collision : MonoBehaviour
     public bool isCrashToOtherBoat;
     public bool isHitCameraBound;
     public bool isHitDoorButton;
+    public bool isHitGravityArea;
 
     [SerializeField] string[] playerDestroyCollision;
 
@@ -67,6 +68,11 @@ public class Player2Collision : MonoBehaviour
                 Tutorial.tutorial.isPlayersEnterGarbageArea[0] = true;
             }
         }
+
+        if (collision.gameObject.tag == "Obstacle P1")
+        {
+            isHitGravityArea = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -84,6 +90,11 @@ public class Player2Collision : MonoBehaviour
         {
             isHitDoorButton = false;
             globalVariable.isDoorButtonPressed[1] = false;
+        }
+
+        if (collision.gameObject.tag == "Obstacle P1")
+        {
+            isHitGravityArea = false;
         }
     }
 
@@ -118,10 +129,7 @@ public class Player2Collision : MonoBehaviour
                 }
             }
         }
-        if (collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Gear") || collision.gameObject.CompareTag("Gun Bullet") || collision.gameObject.CompareTag("Trap"))
-        {
-           
-        }
+       
     }
 
     private void handleDumpPointCollision(Collider2D collision)

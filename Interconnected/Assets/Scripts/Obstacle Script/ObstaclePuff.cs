@@ -8,7 +8,7 @@ public class ObstaclePuff : MonoBehaviour
     [SerializeField] Vector2 maxBodyScale;
     [SerializeField] Vector2 minBodyScale;
     [SerializeField] float maxDistance;
-    [SerializeField] float scaleSpeed = 3.0f; // Kecepatan scaling
+    float scaleSpeed; 
 
     GameObject player1, player2;
 
@@ -16,6 +16,7 @@ public class ObstaclePuff : MonoBehaviour
     {
         player1 = GameObject.FindGameObjectWithTag("Player 1");
         player2 = GameObject.FindGameObjectWithTag("Player 2");
+        scaleSpeed = 5;
     }
 
     private void Update()
@@ -36,13 +37,11 @@ public class ObstaclePuff : MonoBehaviour
 
                 puffBody.transform.localScale = Vector2.Lerp(puffBody.transform.localScale, targetScale, scaleSpeed * Time.deltaTime);
 
-                Debug.Log("kena");
             }
             else
             {
                 puffBody.transform.localScale = Vector2.Lerp(puffBody.transform.localScale, minBodyScale, scaleSpeed * Time.deltaTime);
                 puffBody.transform.Rotate(Vector3.forward, 100 * Time.deltaTime);
-                Debug.Log("fail");
             }
         }
         else 

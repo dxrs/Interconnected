@@ -55,15 +55,43 @@ public class Player2Movement : MonoBehaviour
         playerBraking();
     }
 
-    private void playerSpeedComparison()
+    private void playerMovement()
     {
-        if (maxPlayerSpeed <= 0)
+        if (!globalVariable.isPlayerDestroyed)
         {
-            if (linkRay.isPlayerLinkedEachOther && !globalVariable.isPlayerDestroyed)
+            if (!isBraking && !isBrakingWithInput)
             {
-                StartCoroutine(setMaxSpeedPlayer());
+                Vector2 force = inputDir * maxPlayerSpeed * Time.deltaTime;
+
+                rb.AddForce(force, ForceMode2D.Impulse);
+                rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxPlayerSpeed);
+            }
+            if (player2Collision.isHitGravityArea)
+            {
+                if (isBraking)
+                {
+                    rb.gravityScale = 2.5f;
+                }
+                else
+                {
+                    rb.gravityScale = 0;
+                }
+            }
+            else
+            {
+                rb.gravityScale = 0;
             }
         }
+        else 
+        {
+            rb.gravityScale = 0;
+        }
+
+
+    }
+
+    private void playerSpeedComparison()
+    {
         if (!linkRay.isPlayerLinkedEachOther || globalVariable.isPlayerDestroyed || GarbageCollector.garbageCollector.garbageCollected == 0)
         {
             curMaxSpeed = totalMaxSpeedPlayer2;
@@ -110,20 +138,7 @@ public class Player2Movement : MonoBehaviour
         }
     }
 
-    private void playerMovement()
-    {
-        if (!globalVariable.isPlayerDestroyed) 
-        {
-            if (!isBraking && !isBrakingWithInput)
-            {
-                rb.AddForce(inputDir * maxPlayerSpeed);
-                rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxPlayerSpeed);
-            }
-
-        }
-     
-
-    }
+   
 
     private void playerBraking()
     {
@@ -134,6 +149,7 @@ public class Player2Movement : MonoBehaviour
                 isBraking = false;
             }
             if (!isMoving) { isBraking = true; }
+
             if (!globalVariable.isPlayerDestroyed) 
             {
                 if (isBraking || player2Collision.isCrashToOtherBoat || player2Collision.isHitDoorButton)
@@ -147,11 +163,6 @@ public class Player2Movement : MonoBehaviour
                 }
                 else
                 {
-                    Vector2 force = inputDir * maxPlayerSpeed * Time.deltaTime;
-
-                    rb.AddForce(force, ForceMode2D.Impulse);
-                    rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxPlayerSpeed);
-
                     rb.drag = 0;
                 }
             }
@@ -164,12 +175,6 @@ public class Player2Movement : MonoBehaviour
     {
         yield return new WaitForSeconds(.5f);
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
-    }
-
-    IEnumerator setMaxSpeedPlayer()
-    {
-        yield return new WaitForSeconds(.5f);
-        maxPlayerSpeed = curMaxSpeed;
     }
 
     public void playerMovementInput(InputAction.CallbackContext context)

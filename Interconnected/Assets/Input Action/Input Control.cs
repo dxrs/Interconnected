@@ -668,6 +668,17 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""action"": ""Navigation Confirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b38ed59c-78e1-436f-b07f-e140fa887250"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad Scheme"",
+                    ""action"": ""Navigation Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
