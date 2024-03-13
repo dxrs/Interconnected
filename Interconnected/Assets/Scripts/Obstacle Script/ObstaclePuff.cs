@@ -8,7 +8,7 @@ public class ObstaclePuff : MonoBehaviour
     [SerializeField] Vector2 maxBodyScale;
     [SerializeField] Vector2 minBodyScale;
     [SerializeField] float maxDistance;
-    [SerializeField] float scaleSpeed = 3.0f; // Kecepatan scaling
+    float scaleSpeed; 
 
     GameObject player1, player2;
 
@@ -16,6 +16,7 @@ public class ObstaclePuff : MonoBehaviour
     {
         player1 = GameObject.FindGameObjectWithTag("Player 1");
         player2 = GameObject.FindGameObjectWithTag("Player 2");
+        scaleSpeed = 5;
     }
 
     private void Update()

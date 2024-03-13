@@ -64,23 +64,40 @@ public class Player1Movement : MonoBehaviour
         {
             if (!isBraking && !isBrakingWithInput)
             {
-                rb.AddForce(inputDir * maxPlayerSpeed);
+                Vector2 force = inputDir * maxPlayerSpeed * Time.deltaTime;
+
+                rb.AddForce(force, ForceMode2D.Impulse);
                 rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxPlayerSpeed);
-                
+
             }
+
+            if (player1Collision.isHitGravityArea) 
+            {
+                if (isBraking) 
+                {
+                    rb.gravityScale = 2.5f;
+                }
+                else 
+                {
+                    rb.gravityScale = 0;
+                }
+            }
+            else 
+            {
+                rb.gravityScale = 0;
+            }
+
+        }
+        else 
+        {
+            rb.gravityScale = 0;
         }
 
     }
 
     private void playerSpeedComparison() 
     {
-        if (maxPlayerSpeed <= 0) 
-        {
-            if(linkRay.isPlayerLinkedEachOther && !globalVariable.isPlayerDestroyed) 
-            {
-                StartCoroutine(setMaxSpeedPlayer());
-            }
-        }
+       
         if (!linkRay.isPlayerLinkedEachOther || globalVariable.isPlayerDestroyed || GarbageCollector.garbageCollector.garbageCollected == 0) 
         {
             curMaxSpeed = totalMaxSpeedPlayer1;
@@ -150,11 +167,6 @@ public class Player1Movement : MonoBehaviour
                 }
                 else
                 {
-                    Vector2 force = inputDir * maxPlayerSpeed * Time.deltaTime;
-
-                    rb.AddForce(force, ForceMode2D.Impulse);
-                    rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxPlayerSpeed);
-
                     rb.drag = 0; // Mengatur rb.drag menjadi 0 ketika tidak ada pengereman
                 }
             }
@@ -170,11 +182,7 @@ public class Player1Movement : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
     }
 
-    IEnumerator setMaxSpeedPlayer() 
-    {
-        yield return new WaitForSeconds(1);
-        maxPlayerSpeed = 5;
-    }
+   
 
     //movement input
     public void playerMovementInput(InputAction.CallbackContext context) 
