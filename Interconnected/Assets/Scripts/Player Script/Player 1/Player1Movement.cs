@@ -21,8 +21,8 @@ public class Player1Movement : MonoBehaviour
 
     public float maxPlayerSpeed;
 
-    [SerializeField] float playerBrakingPower;
-    [SerializeField] float totalMaxSpeedPlayer1;
+    float playerBrakingPower = 5;
+    float totalMaxSpeedPlayer1 = 10;
 
     [HideInInspector]
     public Vector2 inputDir;
@@ -64,7 +64,7 @@ public class Player1Movement : MonoBehaviour
         {
             if (!isBraking && !isBrakingWithInput)
             {
-                Vector2 force = inputDir * maxPlayerSpeed * Time.deltaTime;
+                Vector2 force = inputDir * maxPlayerSpeed * 1.3f * Time.deltaTime;
 
                 rb.AddForce(force, ForceMode2D.Impulse);
                 rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxPlayerSpeed);
@@ -112,6 +112,7 @@ public class Player1Movement : MonoBehaviour
         {
             maxPlayerSpeed = 0;
         }
+        
         else 
         {
             maxPlayerSpeed = curMaxSpeed;
@@ -158,7 +159,7 @@ public class Player1Movement : MonoBehaviour
 
                 if (isBraking || player1Collision.isCrashToOtherBoat || player1Collision.isHitDoorButton)
                 {
-                    float lerpSpeed = player1Collision.isHitDoorButton ? 8f : 3.5f;
+                    float lerpSpeed = player1Collision.isHitDoorButton ? 8f : 4f;
                     rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
                 }
                 else if (player1Collision.isHitDoorButton)
@@ -167,6 +168,7 @@ public class Player1Movement : MonoBehaviour
                 }
                 else
                 {
+             
                     rb.drag = 0; // Mengatur rb.drag menjadi 0 ketika tidak ada pengereman
                 }
             }

@@ -66,7 +66,7 @@ public class Garbage : MonoBehaviour
 
                         pc.enabled = false;
 
-                        transform.localScale = minGarbageScale;
+                        //transform.localScale = minGarbageScale;
 
                         posX = garbagePosition.x + GarbageCollector.garbageCollector.radius * Mathf.Cos(Mathf.Deg2Rad * angle);
                         posY = garbagePosition.y + GarbageCollector.garbageCollector.radius * Mathf.Sin(Mathf.Deg2Rad * angle);

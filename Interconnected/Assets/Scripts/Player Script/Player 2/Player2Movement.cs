@@ -19,8 +19,8 @@ public class Player2Movement : MonoBehaviour
 
     public float maxPlayerSpeed;
 
-    [SerializeField] float playerBrakingPower;
-    [SerializeField] float totalMaxSpeedPlayer2;
+    float playerBrakingPower = 5;
+    float totalMaxSpeedPlayer2 = 10;
 
     [HideInInspector]
     public Vector2 inputDir;
@@ -61,7 +61,7 @@ public class Player2Movement : MonoBehaviour
         {
             if (!isBraking && !isBrakingWithInput)
             {
-                Vector2 force = inputDir * maxPlayerSpeed * Time.deltaTime;
+                Vector2 force = inputDir * maxPlayerSpeed * 1.3f * Time.deltaTime;
 
                 rb.AddForce(force, ForceMode2D.Impulse);
                 rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxPlayerSpeed);
@@ -154,7 +154,7 @@ public class Player2Movement : MonoBehaviour
             {
                 if (isBraking || player2Collision.isCrashToOtherBoat || player2Collision.isHitDoorButton)
                 {
-                    float lerpSpeed = player2Collision.isHitDoorButton ? 8f : 3.5f;
+                    float lerpSpeed = player2Collision.isHitDoorButton ? 8f : 4f;
                     rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
                 }
                 else if (player2Collision.isHitDoorButton)
@@ -163,6 +163,7 @@ public class Player2Movement : MonoBehaviour
                 }
                 else
                 {
+                   
                     rb.drag = 0;
                 }
             }
