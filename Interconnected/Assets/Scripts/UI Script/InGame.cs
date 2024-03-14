@@ -23,7 +23,7 @@ public class InGame : MonoBehaviour
     private void Update()
     {
         textMainObjective.text = "Sampah yang Terkumpul " + GarbageCollector.garbageCollector.currentGarbageStored;
-        textMaxGarbageCollected.text = "Sampah yang harus dikumpulkan " + GarbageCollector.garbageCollector.targetGarbageStored;
+        textMaxGarbageCollected.text = "Claim " + GarbageCollector.garbageCollector.targetGarbageStored + " Trash";
 
         if (isBarFillDecrease) 
         {
