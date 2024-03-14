@@ -24,6 +24,7 @@ public class SelectLevel : MonoBehaviour
     [SerializeField] GameObject[] typeLevelObject;
 
     [SerializeField] Button[] listLevelButton;
+    [SerializeField] Button[] listContentButton;
     private void Awake()
     {
         selectLevel = this;
@@ -253,5 +254,14 @@ public class SelectLevel : MonoBehaviour
     public void onClickLevelButton() 
     {
         SceneSystem.sceneSystem.goingToLevelSelected();
+    }
+
+    public void onClickBackToMenu() 
+    {
+        SceneSystem.sceneSystem.goingToMainMenu();
+        for(int n = 0; n < listContentButton.Length; n++) 
+        {
+            listContentButton[n].enabled = false;
+        }
     }
 }

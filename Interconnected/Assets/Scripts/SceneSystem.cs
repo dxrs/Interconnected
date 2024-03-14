@@ -43,6 +43,12 @@ public class SceneSystem : MonoBehaviour
         }
     }
 
+    public void goingToMainMenu() 
+    {
+        isChangeScene = true;
+        StartCoroutine(waitToSceneMainMenu());
+    }
+
     public void goingToTutorialScene() 
     {
         isChangeScene = true;
@@ -70,9 +76,16 @@ public class SceneSystem : MonoBehaviour
     IEnumerator waitToSceneTutorialScene() 
     {
         yield return new WaitForSeconds(delayTimeNextScene);
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Select Level");
     }
 
+    IEnumerator waitToSceneMainMenu()
+    {
+        yield return new WaitForSeconds(delayTimeNextScene);
+        //SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Main Menu");
+    }
     IEnumerator waitToRestartScene() 
     {
         yield return new WaitForSecondsRealtime(delayTimeRestart);
@@ -98,6 +111,6 @@ public class SceneSystem : MonoBehaviour
     IEnumerator waitToLevelSelectedScene() 
     {
         yield return new WaitForSeconds(delayTimeNextScene);
-        SceneManager.LoadScene(SelectLevel.selectLevel.curSelectLevelValue);
+        SceneManager.LoadScene(SelectLevel.selectLevel.curSelectLevelValue + 1);
     }
 }
