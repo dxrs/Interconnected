@@ -102,6 +102,9 @@ MonoBehaviour:
   garbageRb: {fileID: 2772721481137595801}
   sineSpeed: 3
   sinePower: 0.2
+  garbageImageFrame:
+  - {fileID: 21300000, guid: a081ef1e7ef07c84b97452395600b58d, type: 3}
+  - {fileID: 21300000, guid: f69b592e285351541a6cdf83fcade5e4, type: 3}
 --- !u!1 &2772721481137595804
 GameObject:
   m_ObjectHideFlags: 0

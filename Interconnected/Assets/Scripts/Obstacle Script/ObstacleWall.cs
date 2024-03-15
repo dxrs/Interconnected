@@ -35,8 +35,8 @@ public class ObstacleWall : MonoBehaviour
 
     GameObject player1, player2;
 
-
-
+    
+ 
     private void Start()
     {
         player1 = GameObject.FindGameObjectWithTag("Player 1");
@@ -68,6 +68,8 @@ public class ObstacleWall : MonoBehaviour
         {
             transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
         }
+
+        
     }
 
     private void wallMoveTowardTutorial() 

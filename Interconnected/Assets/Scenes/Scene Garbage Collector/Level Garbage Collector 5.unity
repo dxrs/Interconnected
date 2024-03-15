@@ -6622,6 +6622,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dialogue Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 2075635727941245926, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
 --- !u!1 &2076776014
@@ -8240,6 +8244,10 @@ PrefabInstance:
       propertyPath: sceneSystem
       value: 
       objectReference: {fileID: 1140296440}
+    - target: {fileID: 7046376242424383587, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8516829927780075818, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
       propertyPath: m_IsActive
       value: 0

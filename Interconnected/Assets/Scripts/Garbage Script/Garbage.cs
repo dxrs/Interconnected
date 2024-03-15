@@ -35,6 +35,8 @@ public class Garbage : MonoBehaviour
     Vector2 maxGarbageScale = new Vector2(0.6f, 0.6f);
     Vector2 minGarbageScale = new Vector2(0.3f, 0.3f);
 
+    
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -42,6 +44,7 @@ public class Garbage : MonoBehaviour
         garbageColldector = GameObject.FindGameObjectWithTag("Garbage Collector");
         garbageWhirlpool = GameObject.FindGameObjectWithTag("Garbage Whirlpool");
         rb.drag = 5;
+        
         randomValue();
         if (isRotate) 
         {
@@ -72,6 +75,8 @@ public class Garbage : MonoBehaviour
                         posY = garbagePosition.y + GarbageCollector.garbageCollector.radius * Mathf.Sin(Mathf.Deg2Rad * angle);
 
                         transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), lerpSpeed * Time.deltaTime);
+
+                        
                     }
                 }
                 else 
@@ -95,6 +100,7 @@ public class Garbage : MonoBehaviour
             }
             if (!isGarbageCollected)
             {
+                
                 transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(.6f,.6f), 1f * Time.deltaTime);
                 pc.enabled = true;
                 StartCoroutine(garbageRigidBrake(1f));

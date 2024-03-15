@@ -290,8 +290,6 @@ MonoBehaviour:
   isBraking: 0
   isBrakingWithInput: 0
   maxPlayerSpeed: 8
-  playerBrakingPower: 5
-  totalMaxSpeedPlayer1: 8
   inputDir: {x: 0, y: 0}
   curMaxSpeed: 0
 --- !u!114 &108566022860834253
@@ -542,11 +540,13 @@ MonoBehaviour:
   isCrashToOtherBoat: 0
   isHitDoorButton: 0
   isHitCameraBound: 0
+  isHitGravityArea: 0
   playerDestroyCollision:
   - Spike
   - Gear
   - Gun Bullet
   - Trap
+  - Wall Destroyer
   globalVariable: {fileID: 0}
   player1Movement: {fileID: 108566022860834246}
   player1Ability: {fileID: 108566022860834248}

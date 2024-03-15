@@ -13,6 +13,7 @@ public class GlobalVariable : MonoBehaviour
     public bool isPlayerSharingLives;
     public bool isRopeVisible;
     public bool isCameraBoundariesActive;
+    public bool isLevelHasDialogue;
     public bool[] isDoorButtonPressed;
 
     public int maxDoor;
@@ -33,6 +34,8 @@ public class GlobalVariable : MonoBehaviour
 
     [SerializeField] PolygonCollider2D player1Collider;
     [SerializeField] PolygonCollider2D player2Collider;
+
+    [SerializeField] GameObject[] wallDestroyer;
 
 
     float maxShareLivesDelayTime = 10;
@@ -83,7 +86,19 @@ public class GlobalVariable : MonoBehaviour
         }
         partOfSharingLives();
         StartCoroutine(setDefaultValueCurDoorValue());
-       
+        if (globalVariable.isLevelHasDialogue)
+        {
+            if (DialogueManager.dialogueManager.isDialogueActive)
+            {
+                if (DialogueManager.dialogueManager.curTextValue >= 4)
+                {
+                    for (int j = 0; j < wallDestroyer.Length; j++)
+                    {
+                        wallDestroyer[j].SetActive(true);
+                    }
+                }
+            }
+        }
     }
     public void delayTimeToShareLives()
     {

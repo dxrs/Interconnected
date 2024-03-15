@@ -31,6 +31,9 @@ public class Timer : MonoBehaviour
     {
         
         StartCoroutine(timerCountDown());
+        timerCount = TimeSpan.FromSeconds(curTimerValue);
+        string timer = timerCount.ToString("mm':'ss':'ff");
+        textCurrentTimer.text = timer;
     }
 
     private void Update()
@@ -45,11 +48,30 @@ public class Timer : MonoBehaviour
 
         if (isTimerLevel) 
         {
-            textCurrentTimer.enabled = true;
+            if (globalVariable.isLevelHasDialogue) 
+            {
+                if (DialogueManager.dialogueManager.curTextValue >= 3) 
+                {
+                    textCurrentTimer.enabled = true;
+                }
+            }
+            else 
+            {
+                textCurrentTimer.enabled = true;
+            }
+            
         }
         else 
         {
-            textCurrentTimer.enabled = false;
+            if(LevelStatus.levelStatus.levelID != 4) 
+            {
+                textCurrentTimer.text = "Danger Zone";
+            }
+            else 
+            {
+                textCurrentTimer.enabled = false;
+            }
+            
         }
         
     }
@@ -62,7 +84,8 @@ public class Timer : MonoBehaviour
             {
                 if (ReadyToStart.readyToStart.isGameStart
                     && !GameFinish.gameFinish.isGameFinish
-                    && !GameOver.gameOver.isGameOver)
+                    && !GameOver.gameOver.isGameOver
+                    && !DialogueManager.dialogueManager.isDialogueActive)
                 {
                     if (!isTimerStop)
                     {

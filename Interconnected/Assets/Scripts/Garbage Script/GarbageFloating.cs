@@ -13,14 +13,21 @@ public class GarbageFloating : MonoBehaviour
     [SerializeField] float sineSpeed;
     [SerializeField] float sinePower;
 
+    [SerializeField] Sprite[] garbageImageFrame;
+
     float randomOffsetSinePos;
 
     Vector2 garbageFloatingPos;
+
+
+    SpriteRenderer sr;
+    
 
     private void Start()
     {
         garbageFloatingPos = transform.localPosition;
         randomOffsetSinePos = Random.Range(0, 2);
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -29,9 +36,11 @@ public class GarbageFloating : MonoBehaviour
         if (garbage.isGarbageCollected) 
         {
             transform.position = garbageParent.transform.position;
+            sr.sprite = garbageImageFrame[0];
         }
         else
         {
+            sr.sprite = garbageImageFrame[1];
             transform.localPosition = new Vector2(garbageFloatingPos.x + (Mathf.Sin(sineSpeed * Time.time + randomOffsetSinePos) * sinePower),
                     garbageFloatingPos.y + (Mathf.Sin(sineSpeed * Time.time + randomOffsetSinePos) * sinePower));
             if (garbageRb.drag > 2) 

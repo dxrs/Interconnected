@@ -3275,6 +3275,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1545961581 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
+  m_PrefabInstance: {fileID: 1569360533}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cd81f98b3468bd4db8bbcaa06ef9cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1553979020 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 108566022316443693, guid: c29bae584c7231e45847d69b40e36588, type: 3}
@@ -3332,12 +3343,65 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
+      propertyPath: textDialogue
+      value: 
+      objectReference: {fileID: 9218205164494279014}
+    - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
+      propertyPath: dialoguePanel
+      value: 
+      objectReference: {fileID: 9218205164494279016}
+    - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
+      propertyPath: buttonDialogue
+      value: 
+      objectReference: {fileID: 9218205164494279013}
+    - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
+      propertyPath: dialogueObject
+      value: 
+      objectReference: {fileID: 9218205164494279015}
+    - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
       propertyPath: isDialogueActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
+      propertyPath: typingSpeedValue
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
+      propertyPath: listDialogueString.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
+      propertyPath: listDialogueString.Array.data[0]
+      value: kalian sekarang sudah saya terjunkan ke lapangan
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
+      propertyPath: listDialogueString.Array.data[1]
+      value: tugas nya sama, yaitu bawa sampah yang ada di area ini ke pembuangan
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
+      propertyPath: listDialogueString.Array.data[2]
+      value: tapi di area ini tempat pembuangannya tidak bisa menunggu lama, karena
+        harus ke tempat lain
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
+      propertyPath: listDialogueString.Array.data[3]
+      value: jadi kalian harus cepat, sesuai waktu yang sudah ditentukan
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
+      propertyPath: listDialogueString.Array.data[4]
+      value: ingat, bawa sampah terlalu banyak bisa mempengaruhi alat kalian
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
+      propertyPath: listDialogueString.Array.data[5]
+      value: bekerja sama lah dengan baik !!!
       objectReference: {fileID: 0}
     - target: {fileID: 2075635727941245926, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
       propertyPath: m_Name
       value: Dialogue Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075635727941245926, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
@@ -4708,6 +4772,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 72920456}
     - target: {fileID: 2862454965114613573, guid: 87aad01cf704d9b438275bcfbb73b24a, type: 3}
+      propertyPath: isLevelHasDialogue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2862454965114613573, guid: 87aad01cf704d9b438275bcfbb73b24a, type: 3}
       propertyPath: spriteRendererPlayer1
       value: 
       objectReference: {fileID: 602185849}
@@ -4892,7 +4960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5113257248735848244, guid: a6f03891d78fc214fbb412caa8a1f078, type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5113257248932511568, guid: a6f03891d78fc214fbb412caa8a1f078, type: 3}
       propertyPath: playerRb
@@ -5340,6 +5408,26 @@ PrefabInstance:
       propertyPath: sceneSystem
       value: 
       objectReference: {fileID: 1140296440}
+    - target: {fileID: 7046376242424383587, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882643699340188434, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1545961581}
+    - target: {fileID: 7882643699340188434, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: onClickDialogueButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882643699340188434, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882643699340188434, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8516829927780075818, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -5448,5 +5536,41 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9218205164903833327, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+--- !u!114 &9218205164494279013 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7882643699340188434, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+  m_PrefabInstance: {fileID: 9218205164494279012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9218205164494279014 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3581329937283447711, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+  m_PrefabInstance: {fileID: 9218205164494279012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &9218205164494279015 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6160711171083840545, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+  m_PrefabInstance: {fileID: 9218205164494279012}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9218205164494279016 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3053136061424173099, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+  m_PrefabInstance: {fileID: 9218205164494279012}
+  m_PrefabAsset: {fileID: 0}

@@ -46,17 +46,38 @@ public class DialogueManager : MonoBehaviour
         {
             if (isDialogueActive) 
             {
-                if (textDialogue.text == listDialogueString[curTextValue])
+                if(LevelStatus.levelStatus.levelID != 4) 
                 {
-                    curTextValue++;
-                    nextSentence();
+                    if (ReadyToStart.readyToStart.isGameStart) 
+                    {
+                        if (textDialogue.text == listDialogueString[curTextValue])
+                        {
+                            curTextValue++;
+                            nextSentence();
+                        }
+                        else
+                        {
+                            // kalau lagi typing ketika ingin tulisan langsung ada semua
+                            StopAllCoroutines();
+                            textDialogue.text = listDialogueString[curTextValue];
+                        }
+                    }
                 }
-                else
+                else 
                 {
-                    // kalau lagi typing ketika ingin tulisan langsung ada semua
-                    StopAllCoroutines();
-                    textDialogue.text = listDialogueString[curTextValue];
+                    if (textDialogue.text == listDialogueString[curTextValue])
+                    {
+                        curTextValue++;
+                        nextSentence();
+                    }
+                    else
+                    {
+                        // kalau lagi typing ketika ingin tulisan langsung ada semua
+                        StopAllCoroutines();
+                        textDialogue.text = listDialogueString[curTextValue];
+                    }
                 }
+               
 
             }
             

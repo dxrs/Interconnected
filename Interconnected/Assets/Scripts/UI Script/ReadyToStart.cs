@@ -16,6 +16,7 @@ public class ReadyToStart : MonoBehaviour
 
     [SerializeField] GameObject startUI;
     [SerializeField] GameObject inGameUI;
+    [SerializeField] GameObject dialogue;
 
  
     private void Awake()
@@ -28,7 +29,7 @@ public class ReadyToStart : MonoBehaviour
         inGameUI.SetActive(false);
         startUI.SetActive(true);
         timerCountToStart = 3;
-       
+        dialogue.SetActive(false);
     }
 
     private void Update()
@@ -46,6 +47,16 @@ public class ReadyToStart : MonoBehaviour
             {
                 inGameUI.SetActive(true);
                 startUI.SetActive(false);
+                
+                if (DialogueManager.dialogueManager.isDialogueActive) 
+                {
+                    dialogue.SetActive(true);
+
+                }
+                else 
+                {
+                    dialogue.SetActive(false);
+                }
             }
         }
         else 
