@@ -44,7 +44,18 @@ public class GarbageCollector : MonoBehaviour
         {
             if (playerReadyToStoreValue[0] == 1 && playerReadyToStoreValue[1] == 1)
             {
-                StartCoroutine(setIsGarbageStoredTtrue());
+                if (Timer.timerInstance.isTimerLevel) 
+                {
+                    StartCoroutine(setIsGarbageStoredTtrue());
+                }
+                else 
+                {
+                    if (garbageCollected >= targetGarbageStored) 
+                    {
+                        StartCoroutine(setIsGarbageStoredTtrue());
+                    }
+                }
+                
             }
             else
             {

@@ -219,7 +219,7 @@ public class Player1Collision : MonoBehaviour
         float adjustedCrashForce = player1Movement.isBraking ? crashForceValue * 0.5f : crashForceValue;
         //Debug.Log($"crashForceValue: {crashForceValue}, adjustedCrashForce: {adjustedCrashForce}");
 
-        if (!isHitDoorButton && !!isHitGarbageButton) 
+        if (!isHitDoorButton && !isHitGarbageButton) 
         {
             Vector2 backwardMovePos = (transform.position - collider.transform.position).normalized;
             rb.AddForce(backwardMovePos * adjustedCrashForce, ForceMode2D.Impulse); // sedang konflik dgn void playerMovement

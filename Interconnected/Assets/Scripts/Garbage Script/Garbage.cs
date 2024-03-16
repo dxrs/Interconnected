@@ -60,7 +60,7 @@ public class Garbage : MonoBehaviour
 
     private void Update()
     {
-        garbageDestroyingFunction();
+        garbageStoringFunction();
         if(!GameFinish.gameFinish.isGameFinish || !GameOver.gameOver.isGameOver) 
         {
             if (isGarbageCollected && !isGarbageStored)
@@ -133,26 +133,28 @@ public class Garbage : MonoBehaviour
         isGarbageCollected = false;
     }
 
-    private void garbageDestroyingFunction()
+    private void garbageStoringFunction()
     {
-        if (isGarbageCollected && isGarbageStored) 
+        if (isGarbageCollected && isGarbageStored)
         {
             garbagePosition = garbageWhirlpool.transform.position;
             posX = garbagePosition.x + randomRadius * Mathf.Cos(Mathf.Deg2Rad * angle);
             posY = garbagePosition.y + randomRadius * Mathf.Sin(Mathf.Deg2Rad * angle);
             transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), 2 * Time.deltaTime);
-            if (!isGarbageDestroying) 
+            if (!isGarbageDestroying)
             {
                 GarbageCollector.garbageCollector.currentGarbageStored++;
                 isGarbageDestroying = true;
             }
-            if (GarbageCenterPoint.garbageCenterPoint.isGarbageIsReadyToDestroy) 
+            if (GarbageCenterPoint.garbageCenterPoint.isGarbageIsReadyToDestroy)
             {
                 StartCoroutine(garbageDestroying());
             }
 
 
         }
+        
+       
     }
 
     void randomValue()
