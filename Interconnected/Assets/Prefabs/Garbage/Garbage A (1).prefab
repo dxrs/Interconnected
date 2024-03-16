@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 2772721481137595801}
   - component: {fileID: 5772750631442719049}
   m_Layer: 0
-  m_Name: Garbage (1)
+  m_Name: Garbage A (1)
   m_TagString: Garbage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,8 @@ MonoBehaviour:
   isGarbageCollected: 0
   blastForce: 5
   blastRadius: 3
-  isGarbageDestroying: 0
+  garbageWeight: 0.5
+  isGarbageStored: 0
   isRotate: 0
   garbageBounceCollision:
   - Gear

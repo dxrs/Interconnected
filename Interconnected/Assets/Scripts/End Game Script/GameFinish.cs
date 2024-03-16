@@ -21,9 +21,9 @@ public class GameFinish : MonoBehaviour
     {
         if (LevelStatus.levelStatus.levelID != 4) 
         {
-            if (GarbageCollector.garbageCollector.currentGarbageStored >= GarbageCollector.garbageCollector.targetGarbageStored) 
+            if (GarbageCollector.garbageCollector.currentGarbageStored >= GarbageCollector.garbageCollector.targetGarbageStored && GarbageCollector.garbageCollector.garbageDestroyedValue >= GarbageCollector.garbageCollector.currentGarbageStored && GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue == 2) 
             {
-                isGameFinish = true;
+                StartCoroutine(waitToFinish());
             }
             
         }
@@ -33,9 +33,9 @@ public class GameFinish : MonoBehaviour
             {
                 if (DialogueManager.dialogueManager.curTextValue > 20 && !DialogueManager.dialogueManager.isDialogueActive) 
                 {
-                    if (GarbageCollector.garbageCollector.currentGarbageStored >= GarbageCollector.garbageCollector.targetGarbageStored)
+                    if (GarbageCollector.garbageCollector.currentGarbageStored >= GarbageCollector.garbageCollector.targetGarbageStored && GarbageCollector.garbageCollector.garbageDestroyedValue >= GarbageCollector.garbageCollector.currentGarbageStored && GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue == 2)
                     {
-                        isGameFinish = true;
+                        StartCoroutine(waitToFinish());
                     }
                 }
             } 
@@ -45,5 +45,13 @@ public class GameFinish : MonoBehaviour
         {
             globalVariable.colliderInactive();
         }
+
+        
+    }
+
+    IEnumerator waitToFinish() 
+    {
+        yield return new WaitForSeconds(.5f);
+        isGameFinish = true;
     }
 }

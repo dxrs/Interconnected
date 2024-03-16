@@ -7015,19 +7015,19 @@ PrefabInstance:
     - target: {fileID: 74277217981580473, guid: 281f6ccc00e123f47aa2f9d844f4f728, type: 3}
       propertyPath: playerHealthImg.Array.data[0]
       value: 
-      objectReference: {fileID: 272285855}
+      objectReference: {fileID: 1224049754}
     - target: {fileID: 74277217981580473, guid: 281f6ccc00e123f47aa2f9d844f4f728, type: 3}
       propertyPath: playerHealthImg.Array.data[1]
       value: 
-      objectReference: {fileID: 92505041}
+      objectReference: {fileID: 1377370981}
     - target: {fileID: 74277217981580473, guid: 281f6ccc00e123f47aa2f9d844f4f728, type: 3}
       propertyPath: playerHealthImg.Array.data[2]
       value: 
-      objectReference: {fileID: 1377370981}
+      objectReference: {fileID: 92505041}
     - target: {fileID: 74277217981580473, guid: 281f6ccc00e123f47aa2f9d844f4f728, type: 3}
       propertyPath: playerHealthImg.Array.data[3]
       value: 
-      objectReference: {fileID: 1224049754}
+      objectReference: {fileID: 272285855}
     - target: {fileID: 74277217981580474, guid: 281f6ccc00e123f47aa2f9d844f4f728, type: 3}
       propertyPath: globalVariable
       value: 

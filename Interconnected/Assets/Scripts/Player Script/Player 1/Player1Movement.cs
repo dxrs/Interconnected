@@ -108,7 +108,8 @@ public class Player1Movement : MonoBehaviour
             || globalVariable.isPlayerSharingLives
             || player1Collision.isHitCameraBound
             || DialogueManager.dialogueManager.isDialogueActive
-            || Pause.pause.isGamePaused) 
+            || Pause.pause.isGamePaused
+            || player1Collision.isHitGarbageButton) 
         {
             maxPlayerSpeed = 0;
         }
@@ -196,7 +197,8 @@ public class Player1Movement : MonoBehaviour
                 && ReadyToStart.readyToStart.isGameStart
                 && !globalVariable.isPlayerSharingLives
                 && !player1Collision.isHitCameraBound
-                && !DialogueManager.dialogueManager.isDialogueActive)
+                && !DialogueManager.dialogueManager.isDialogueActive
+                && !player1Collision.isHitGarbageButton)
         {
             if (context.performed)
             {

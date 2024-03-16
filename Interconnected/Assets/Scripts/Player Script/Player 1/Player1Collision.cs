@@ -11,6 +11,7 @@ public class Player1Collision : MonoBehaviour
     public bool isHitDoorButton;
     public bool isHitCameraBound;
     public bool isHitGravityArea;
+    public bool isHitGarbageButton;
 
     [SerializeField] string[] playerDestroyCollision;
 
@@ -74,6 +75,12 @@ public class Player1Collision : MonoBehaviour
         if(collision.gameObject.tag=="Obstacle P1") 
         {
             isHitGravityArea = true;
+        }
+
+        if(collision.gameObject.tag=="Garbage Store Button") 
+        {
+            GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue++;
+            isHitGarbageButton = true;
         }
     }
 
@@ -212,7 +219,7 @@ public class Player1Collision : MonoBehaviour
         float adjustedCrashForce = player1Movement.isBraking ? crashForceValue * 0.5f : crashForceValue;
         //Debug.Log($"crashForceValue: {crashForceValue}, adjustedCrashForce: {adjustedCrashForce}");
 
-        if (!isHitDoorButton) 
+        if (!isHitDoorButton && !!isHitGarbageButton) 
         {
             Vector2 backwardMovePos = (transform.position - collider.transform.position).normalized;
             rb.AddForce(backwardMovePos * adjustedCrashForce, ForceMode2D.Impulse); // sedang konflik dgn void playerMovement

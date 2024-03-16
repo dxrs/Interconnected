@@ -9,11 +9,14 @@ public class Garbage : MonoBehaviour
 
     [SerializeField] float blastForce;  
     [SerializeField] float blastRadius;
+    [SerializeField] float garbageWeight;
 
-    [SerializeField] bool isGarbageDestroying;
+    [SerializeField] bool isGarbageStored;
     [SerializeField] bool isRotate;
 
     [SerializeField] string[] garbageBounceCollision;
+
+
 
     float lerpSpeed;
     float posX;
@@ -35,6 +38,7 @@ public class Garbage : MonoBehaviour
     Vector2 maxGarbageScale = new Vector2(0.6f, 0.6f);
     Vector2 minGarbageScale = new Vector2(0.3f, 0.3f);
 
+    bool isGarbageDestroying = false;
     
 
     private void Start()
@@ -59,7 +63,7 @@ public class Garbage : MonoBehaviour
         garbageDestroyingFunction();
         if(!GameFinish.gameFinish.isGameFinish || !GameOver.gameOver.isGameOver) 
         {
-            if (isGarbageCollected && !isGarbageDestroying)
+            if (isGarbageCollected && !isGarbageStored)
             {
                 if (!GarbageCollector.garbageCollector.isGarbageStored) 
                 {
@@ -69,19 +73,16 @@ public class Garbage : MonoBehaviour
 
                         pc.enabled = false;
 
-                        //transform.localScale = minGarbageScale;
-
                         posX = garbagePosition.x + GarbageCollector.garbageCollector.radius * Mathf.Cos(Mathf.Deg2Rad * angle);
                         posY = garbagePosition.y + GarbageCollector.garbageCollector.radius * Mathf.Sin(Mathf.Deg2Rad * angle);
 
                         transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), lerpSpeed * Time.deltaTime);
-
                         
                     }
                 }
                 else 
                 {
-                    isGarbageDestroying = true;
+                    isGarbageStored = true;
                     
                     StartCoroutine(garbageIsStoring());
                 }
@@ -134,14 +135,23 @@ public class Garbage : MonoBehaviour
 
     private void garbageDestroyingFunction()
     {
-        if (isGarbageCollected && isGarbageDestroying) 
+        if (isGarbageCollected && isGarbageStored) 
         {
             garbagePosition = garbageWhirlpool.transform.position;
             posX = garbagePosition.x + randomRadius * Mathf.Cos(Mathf.Deg2Rad * angle);
             posY = garbagePosition.y + randomRadius * Mathf.Sin(Mathf.Deg2Rad * angle);
             transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), 2 * Time.deltaTime);
-            StartCoroutine(garbageDestroying());
-          
+            if (!isGarbageDestroying) 
+            {
+                GarbageCollector.garbageCollector.currentGarbageStored++;
+                isGarbageDestroying = true;
+            }
+            if (GarbageCenterPoint.garbageCenterPoint.isGarbageIsReadyToDestroy) 
+            {
+                StartCoroutine(garbageDestroying());
+            }
+
+
         }
     }
 
@@ -150,8 +160,8 @@ public class Garbage : MonoBehaviour
         angle = Random.Range(0f, 360f);
         lerpSpeed = Random.Range(4.5f, 6.5f);
         flushLerpSpeed = Random.Range(3.2f, 5f);
-        randomRadius = Random.Range(0.3f, 2f);
-        randomDestroyTime = Random.Range(.2f, 1f);
+        randomRadius = Random.Range(0.5f, 3f);
+        randomDestroyTime = Random.Range(.5f, 1f);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -171,6 +181,9 @@ public class Garbage : MonoBehaviour
         {
             if(Player1Movement.player1Movement.curMaxSpeed > 1 && Player2Movement.player2Movement.curMaxSpeed > 1) 
             {
+                Player1Movement.player1Movement.curMaxSpeed -= garbageWeight;
+                Player2Movement.player2Movement.curMaxSpeed -= garbageWeight;
+               
                 isGarbageCollected = true;
                 rb.drag = 0;
             }
@@ -218,6 +231,6 @@ public class Garbage : MonoBehaviour
     }
     private void OnDestroy()
     {
-        GarbageCollector.garbageCollector.currentGarbageStored++;
+        GarbageCollector.garbageCollector.garbageDestroyedValue++;
     }
 }

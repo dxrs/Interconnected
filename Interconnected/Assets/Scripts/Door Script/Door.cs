@@ -33,6 +33,7 @@ public class Door : MonoBehaviour
                         {
                             for(int k = 0; k < doorButton.Length; k++) 
                             {
+                                doorButton[k].SetActive(false);
                                 doorButton[k].transform.position = transform.position;
                             }
                         }

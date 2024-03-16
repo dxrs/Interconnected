@@ -26,7 +26,8 @@ public class Player1ShootPoint : MonoBehaviour
                     && !SceneSystem.sceneSystem.isExitScene
                     && !SceneSystem.sceneSystem.isRestartScene
                     && Player1Health.player1Health.curPlayer1Health > 0
-                    && Player2Health.player2Health.curPlayer2Health > 0)
+                    && Player2Health.player2Health.curPlayer2Health > 0
+                    && GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue != 2)
             {
                 Instantiate(playerBullet, shootPoint.transform.position, transform.rotation);
             }

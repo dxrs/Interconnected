@@ -16,6 +16,7 @@ public class GarbageCollector : MonoBehaviour
     public int garbageCollected;
     public int currentGarbageStored;
     public int targetGarbageStored;
+    public int garbageDestroyedValue;
 
     [SerializeField] Transform player1;
     [SerializeField] Transform player2;

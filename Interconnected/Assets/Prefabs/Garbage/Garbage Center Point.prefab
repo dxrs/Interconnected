@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5668552394260206920}
-  - component: {fileID: 3746362868045808933}
   m_Layer: 0
-  m_Name: Garbage Whirlpool
+  m_Name: Garbage Radius Position
   m_TagString: Garbage Whirlpool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,18 +31,6 @@ Transform:
   m_Father: {fileID: 8774739259674710830}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3746362868045808933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3652522114434162620}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e56637b66cf7c54e940f304b71121ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8774739259674710819
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,6 +42,7 @@ GameObject:
   - component: {fileID: 8774739259674710830}
   - component: {fileID: 8774739259674710829}
   - component: {fileID: 8774739259674710828}
+  - component: {fileID: 1049663799889641278}
   m_Layer: 0
   m_Name: Garbage Center Point
   m_TagString: Garbage Center Point
@@ -71,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 8774739259674710819}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 85.1741, y: 2.5214, z: 0}
-  m_LocalScale: {x: 10.263583, y: 5.530271, z: 3.7666}
+  m_LocalScale: {x: 10.263583, y: 5.530271, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5668552394260206920}
@@ -118,9 +106,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.38039216, g: 1, b: 0, a: 0.29803923}
+  m_Color: {r: 0.38039216, g: 1, b: 0, a: 0.5254902}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -156,3 +144,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1049663799889641278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8774739259674710819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 041292065570d2e4bb6a7e8435a4e391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonGarbageStoreValue: 0
+  buttonGarbageStore:
+  - {fileID: 0}
+  - {fileID: 0}

@@ -29,7 +29,11 @@ public class ReadyToStart : MonoBehaviour
         inGameUI.SetActive(false);
         startUI.SetActive(true);
         timerCountToStart = 3;
-        dialogue.SetActive(false);
+        if (LevelStatus.levelStatus.levelID != 4) 
+        {
+            dialogue.SetActive(false);
+        }
+        
     }
 
     private void Update()

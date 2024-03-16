@@ -11,6 +11,7 @@ public class Player2Collision : MonoBehaviour
     public bool isHitCameraBound;
     public bool isHitDoorButton;
     public bool isHitGravityArea;
+    public bool isHitGarbageButton;
 
     [SerializeField] string[] playerDestroyCollision;
 
@@ -72,6 +73,12 @@ public class Player2Collision : MonoBehaviour
         if (collision.gameObject.tag == "Obstacle P1")
         {
             isHitGravityArea = true;
+        }
+
+        if (collision.gameObject.tag == "Garbage Store Button")
+        {
+            GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue++;
+            isHitGarbageButton = true;
         }
     }
 
@@ -188,7 +195,7 @@ public class Player2Collision : MonoBehaviour
         // Mengurangi dampak pantulan jika isBrakingWithInput aktif
         float adjustedCrashForce = player2Movement.isBraking ? crashForceValue * 0.5f : crashForceValue;
 
-        if (!isHitDoorButton)
+        if (!isHitDoorButton && !isHitGarbageButton)
         {
             Vector2 backwardMovePos = (transform.position - collider.transform.position).normalized;
             rb.AddForce(backwardMovePos * adjustedCrashForce, ForceMode2D.Impulse); // sedang konflik dgn void playerMovement

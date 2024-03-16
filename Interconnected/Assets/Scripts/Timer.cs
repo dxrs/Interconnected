@@ -85,7 +85,8 @@ public class Timer : MonoBehaviour
                 if (ReadyToStart.readyToStart.isGameStart
                     && !GameFinish.gameFinish.isGameFinish
                     && !GameOver.gameOver.isGameOver
-                    && !DialogueManager.dialogueManager.isDialogueActive)
+                    && !DialogueManager.dialogueManager.isDialogueActive
+                    && GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue != 2)
                 {
                     if (!isTimerStop)
                     {

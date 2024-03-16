@@ -101,7 +101,8 @@ public class Player2Movement : MonoBehaviour
             || globalVariable.isPlayerSharingLives
             || player2Collision.isHitCameraBound
             || DialogueManager.dialogueManager.isDialogueActive
-            || Pause.pause.isGamePaused)
+            || Pause.pause.isGamePaused
+            || player2Collision.isHitGarbageButton)
         {
             maxPlayerSpeed = 0;
         }
@@ -124,7 +125,7 @@ public class Player2Movement : MonoBehaviour
             StartCoroutine(setConstRigidbody());
         }
 
-        if (player2Collision.isHitCameraBound || DialogueManager.dialogueManager.isDialogueActive || Pause.pause.isGamePaused)
+        if (player2Collision.isHitCameraBound || DialogueManager.dialogueManager.isDialogueActive || Pause.pause.isGamePaused || player2Collision.isHitGarbageButton)
         {
             isMoving = false;
             rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
@@ -187,7 +188,8 @@ public class Player2Movement : MonoBehaviour
                 && ReadyToStart.readyToStart.isGameStart
                 && !globalVariable.isPlayerSharingLives
                 && !player2Collision.isHitCameraBound
-                && !DialogueManager.dialogueManager.isDialogueActive)
+                && !DialogueManager.dialogueManager.isDialogueActive
+                && !player2Collision.isHitGarbageButton)
         {
             if (context.performed)
             {

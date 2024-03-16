@@ -26,7 +26,8 @@ public class PlayerBullet : MonoBehaviour
                         && !SceneSystem.sceneSystem.isExitScene
                         && !SceneSystem.sceneSystem.isRestartScene
                         && Player1Health.player1Health.curPlayer1Health > 0
-                        && Player2Health.player2Health.curPlayer2Health > 0)
+                        && Player2Health.player2Health.curPlayer2Health > 0
+                        && !GarbageCenterPoint.garbageCenterPoint.isGarbageIsReadyToDestroy)
         {
             float distanceToPlayer2 = Vector2.Distance(player1.transform.position, player2.transform.position);
 
