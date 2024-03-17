@@ -20,7 +20,7 @@ public class Tutorial : MonoBehaviour
     [SerializeField] GameObject garbages;
     [SerializeField] GameObject[] shareLivesProgressObject;
     [SerializeField] TextMeshProUGUI textShareLivesCount;
-    [SerializeField] TextMeshProUGUI[] textGarbages;
+    [SerializeField] TextMeshProUGUI textMainObjective;
 
     GameObject player1, player2;
 
@@ -53,48 +53,101 @@ public class Tutorial : MonoBehaviour
            
             textShareLivesCount.text = shareLivesProgress.ToString();
         }
+
+        progress1();
+        progress2();
+        progress3();
+        
        
-        if (tutorialProgress == 2) 
+    }
+
+    private void progress1() 
+    {
+        if (tutorialProgress == 1)
         {
-            if (isReadyToShareLives) 
+            if (!DialogueManager.dialogueManager.isDialogueActive)
+            {
+                textMainObjective.text = "Walk to the white object";
+            }
+        }
+    }
+
+    private void progress2() 
+    {
+        if (tutorialProgress == 2)
+        {
+            if (!isReadyToShareLives && shareLivesProgress < 2)
+            {
+                textMainObjective.text = "";
+            }
+            if (isReadyToShareLives)
             {
                 for (int j = 0; j < shareLivesProgressObject.Length; j++)
                 {
                     shareLivesProgressObject[j].SetActive(true);
                 }
+                if (shareLivesProgress < 2)
+                {
+                    if (DialogueManager.dialogueManager.curTextValue >= 14)
+                    {
+                        if (Player1Health.player1Health.curPlayer1Health == 2)
+                        {
+                            textMainObjective.text = "Player 1 Hold F To Share Lives";
+                        }
+                        if (Player2Health.player2Health.curPlayer2Health == 2)
+                        {
+                            textMainObjective.text = "Player 2 Hold Button Y To Share Lives";
+                        }
+                    }
+
+                }
+                for (int j = 0; j < isPlayersEnterGarbageArea.Length; j++)
+                {
+                    if (shareLivesProgress >= 2 && !isPlayersEnterGarbageArea[j])
+                    {
+                        textMainObjective.text = "Done";
+                    }
+
+                }
+
             }
-            if(player1.transform.position.x >= 7.5f && player2.transform.position.x >= 7.5f) 
+            if (player1.transform.position.x >= 7.5f && player2.transform.position.x >= 7.5f)
             {
                 isEnemyReadyToShoot = true;
             }
-            if (shareLivesProgress >= 2) 
+            if (shareLivesProgress >= 2)
             {
                 Destroy(wallStatic);
                 isReadyToShareLives = false;
             }
-            
+
         }
-        if (tutorialProgress >= 3) 
+    }
+
+    private void progress3() 
+    {
+        if (tutorialProgress == 3)
         {
+            if (DialogueManager.dialogueManager.curTextValue < 21)
+            {
+                textMainObjective.text = "";
+            }
             textShareLivesCount.enabled = false;
             wallBlocker.SetActive(true);
-            for(int j = 0; j < shareLivesProgressObject.Length; j++) 
+            for (int j = 0; j < shareLivesProgressObject.Length; j++)
             {
                 shareLivesProgressObject[j].SetActive(false);
             }
-            if (DialogueManager.dialogueManager.curTextValue >= 19) 
+            if (DialogueManager.dialogueManager.curTextValue >= 19)
             {
                 garbages.SetActive(true);
             }
-            if (DialogueManager.dialogueManager.curTextValue >= 21 && !DialogueManager.dialogueManager.isDialogueActive) 
+            if (DialogueManager.dialogueManager.curTextValue >= 21 && !DialogueManager.dialogueManager.isDialogueActive)
             {
-                for (int j = 0; j < textGarbages.Length; j++)
-                {
-                    textGarbages[j].enabled = true;
-                }
+                textMainObjective.text = "Collect " + GarbageCollector.garbageCollector.currentGarbageStored + "/" + GarbageCollector.garbageCollector.targetGarbageStored + " Garbages";
             }
-            
-            
+
+
         }
     }
 

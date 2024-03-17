@@ -1598,7 +1598,7 @@ GameObject:
   - component: {fileID: 6202627811507479055}
   - component: {fileID: 2583323780723403915}
   m_Layer: 5
-  m_Name: Text Main Task
+  m_Name: Text Main Objective
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1621,8 +1621,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 240.8, y: -68}
-  m_SizeDelta: {x: 408.7, y: 50}
+  m_AnchoredPosition: {x: 224.073, y: -68}
+  m_SizeDelta: {x: 375.244, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6202627811507479055
 CanvasRenderer:
@@ -1652,9 +1652,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Text Main Task
-
-'
+  m_text: text main objective
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3cd9e8d05fd1324db758153f26fd7e7, type: 2}
   m_sharedMaterial: {fileID: 3725826275760956522, guid: d3cd9e8d05fd1324db758153f26fd7e7, type: 2}
@@ -3102,7 +3100,7 @@ GameObject:
   - component: {fileID: 5273699147004517362}
   - component: {fileID: 7485816887305495771}
   m_Layer: 5
-  m_Name: Bacground Task
+  m_Name: Background Objective
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -2401,7 +2401,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 9218205164494279012}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -2936,17 +2936,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1115282496 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1081592993722531316, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
-  m_PrefabInstance: {fileID: 9218205164494279012}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132675489}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1139637294
 GameObject:
   m_ObjectHideFlags: 0
@@ -4177,11 +4166,6 @@ MonoBehaviour:
   m_DefaultActionMap: Input Player 2
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!1 &1463370483 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9218205164063940448, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
-  m_PrefabInstance: {fileID: 9218205164494279012}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1468992470
 GameObject:
   m_ObjectHideFlags: 0
@@ -5019,14 +5003,10 @@ MonoBehaviour:
   wallStatic: {fileID: 510310346}
   garbages: {fileID: 333539066}
   shareLivesProgressObject:
-  - {fileID: 1463370483}
-  - {fileID: 1877622531}
   - {fileID: 2132675489}
   - {fileID: 93246269}
   textShareLivesCount: {fileID: 1328019963}
-  textGarbages:
-  - {fileID: 911569621}
-  - {fileID: 1115282496}
+  textMainObjective: {fileID: 911569621}
 --- !u!4 &1656724418
 Transform:
   m_ObjectHideFlags: 0
@@ -5385,11 +5365,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1877622531 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9218205163977518120, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
-  m_PrefabInstance: {fileID: 9218205164494279012}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1969935777
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6826,8 +6801,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2583323780723403915, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2583323780723403915, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2724853164936998720, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
       propertyPath: m_LocalScale.x

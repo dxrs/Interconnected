@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.InputSystem;
-using Unity.VisualScripting;
 
 public class MainMenu : MonoBehaviour
 {
@@ -20,13 +19,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField] int buttonHighlightedValue;
 
     [SerializeField] bool isTransitionSceneActive;
+    [SerializeField] bool isLevelButtonHighlighted;
 
     [SerializeField] Button[] listMainMenuButton;
 
     [SerializeField] GameObject imageTransition;
-    [SerializeField] GameObject mainMenuSelector;
-
-    [SerializeField] Vector2[] mainMenuSelectorPosY;
+    [SerializeField] GameObject[] animatedButtonSelect;
 
 
     private void Awake()
@@ -36,13 +34,12 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         mouseListener();
-        curValueButton = 1;
-        buttonHighlightedValue = 1;
     }
 
     private void Update()
     {
         mainMenuValue();
+        compareValueButton();
 
         if (isTransitionSceneActive) 
         {
@@ -62,33 +59,24 @@ public class MainMenu : MonoBehaviour
             {
                 listMainMenuButton[k].interactable = true;
             }
+
             if (MouseCursorActivated.mouseCursorActivated.isMouseActive)
             {
-                curValueButton = buttonHighlightedValue;
+                if (!isLevelButtonHighlighted) 
+                {
+                    curValueButton = 0;
+                    
+                }
+                else 
+                {
+                    curValueButton = buttonHighlightedValue;
+                }
             }
             else
             {
                 buttonHighlightedValue = curValueButton;
             }
 
-            if (!MouseCursorActivated.mouseCursorActivated.isMouseActive)
-            {
-                for (int j = 0; j < mainMenuSelectorPosY.Length; j++)
-                {
-                    if (curValueButton == j + 1)
-                    {
-                        mainMenuSelector.transform.localPosition = mainMenuSelectorPosY[j];
-                    }
-                }
-            }
-
-            for (int i = 0; i < mainMenuSelectorPosY.Length; i++)
-            {
-                if (buttonHighlightedValue == i + 1)
-                {
-                    mainMenuSelector.transform.localPosition = mainMenuSelectorPosY[i];
-                }
-            }
         }
         else 
         {
@@ -104,23 +92,58 @@ public class MainMenu : MonoBehaviour
     {
         for (int j = 0; j < listMainMenuButton.Length; j++)
         {
-            if (isMainMenuActive) 
+            if (isMainMenuActive)
             {
                 int buttonValue = curValueButtonIndex[j];
 
-                EventTrigger eventTrigger = listMainMenuButton[j].gameObject.AddComponent<EventTrigger>();
-                EventTrigger.Entry entry = new EventTrigger.Entry();
-                entry.eventID = EventTriggerType.PointerEnter;
-                entry.callback.AddListener((data) => { buttonMainMenuHighlighted(buttonValue); });
-                eventTrigger.triggers.Add(entry);
-            }
+                EventTrigger eventTrigger = listMainMenuButton[j].gameObject.GetComponent<EventTrigger>();
 
-           
+                if (eventTrigger == null)
+                {
+                    eventTrigger = listMainMenuButton[j].gameObject.AddComponent<EventTrigger>();
+                }
+
+                // cursor masuk ke dalam tombol
+                EventTrigger.Entry pointerEnter = new EventTrigger.Entry();
+                pointerEnter.eventID = EventTriggerType.PointerEnter;
+                pointerEnter.callback.AddListener((data) => { OnButtonPointerEnter(); });
+                pointerEnter.callback.AddListener((data) => { buttonMainMenuHighlighted(buttonValue); });
+                eventTrigger.triggers.Add(pointerEnter);
+
+                // cursor keluar dari tombol
+                EventTrigger.Entry pointerExit = new EventTrigger.Entry();
+                pointerExit.eventID = EventTriggerType.PointerExit;
+                pointerExit.callback.AddListener((data) => { OnButtonPointerExit(); });
+                eventTrigger.triggers.Add(pointerExit);
+            }
         }
-       
+
     }
 
-    
+    private void OnButtonPointerEnter()
+    {
+        isLevelButtonHighlighted = true;
+    }
+
+    private void OnButtonPointerExit()
+    {
+        isLevelButtonHighlighted = false;
+    }
+
+    private void compareValueButton() 
+    {
+        for (int i = 0; i < animatedButtonSelect.Length - 1; i++)
+        {
+            if (curValueButton == i + 1)
+            {
+                animatedButtonSelect[i].transform.localScale = Vector2.Lerp(animatedButtonSelect[i].transform.localScale, new Vector2(1.1f, 1.1f), 10 * Time.deltaTime);
+            }
+            else
+            {
+                animatedButtonSelect[i].transform.localScale = Vector2.Lerp(animatedButtonSelect[i].transform.localScale, new Vector2(1, 1), 16 * Time.deltaTime);
+            }
+        }
+    }
 
     #region input system navigation
     private void buttonMainMenuHighlighted(int value) 
@@ -166,6 +189,8 @@ public class MainMenu : MonoBehaviour
 
                     //jika tidak ada data
                     //SceneSystem.sceneSystem.goingToTutorialScene();
+                    //jika ada 
+                    // ke scene chapter
                     isTransitionSceneActive = true;
                     isMainMenuActive = false;
                 }
@@ -176,10 +201,6 @@ public class MainMenu : MonoBehaviour
                 if (curValueButton == 3)
                 {
                     Debug.Log("3");
-                }
-                if (curValueButton == 4)
-                {
-                    Debug.Log("4");
                     Application.Quit();
                 }
             }

@@ -10,8 +10,8 @@ public class MouseCursorActivated : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
         mouseCursorActivated = this;
     }
 
@@ -19,6 +19,15 @@ public class MouseCursorActivated : MonoBehaviour
 
     private void Update()
     {
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+
+        if (Mathf.Abs(mouseX) > 0.1f || Mathf.Abs(mouseY) > 0.1f)
+        {
+            isMouseActive = true;
+
+        }
+        /*
         if (isMouseActive) 
         {
             Cursor.visible = true;
@@ -37,5 +46,6 @@ public class MouseCursorActivated : MonoBehaviour
             isMouseActive = true;
             
         }
+        */
     }
 }

@@ -14,8 +14,9 @@ public class SelectLevel : MonoBehaviour
     public int curLevelSectionValue; // variable buat pengolompokan level, di sini saya buat 3 level per section
 
     public bool isCameraNotMoving;
-    public bool isLevelButtonHighlighted;
-    public bool isInputKeyboardChoose;
+
+    [SerializeField] bool isLevelButtonHighlighted;
+    [SerializeField] bool isInputKeyboardChoose;
 
     [SerializeField] int curValueButton;
     [SerializeField] int[] curValueButtonIndex;
@@ -81,7 +82,7 @@ public class SelectLevel : MonoBehaviour
             }
         }
     }
-      private void OnButtonPointerEnter()
+    private void OnButtonPointerEnter()
     {
         Debug.Log("true - Highlighted Button Value: ");
         isLevelButtonHighlighted = true;

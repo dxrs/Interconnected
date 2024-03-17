@@ -7,7 +7,6 @@ using TMPro;
 public class InGame : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI textMainObjective;
-    //[SerializeField] TextMeshProUGUI textMaxGarbageCollected;
     [SerializeField] TextMeshProUGUI textShareLivesAvailable;
 
     [SerializeField] Image imageShareLivesBar;
@@ -22,8 +21,11 @@ public class InGame : MonoBehaviour
     }
     private void Update()
     {
-        textMainObjective.text = "Collect " + GarbageCollector.garbageCollector.currentGarbageStored + "/" + GarbageCollector.garbageCollector.targetGarbageStored +" Garbages";
-        //textMaxGarbageCollected.text = "Claim " + GarbageCollector.garbageCollector.targetGarbageStored + " Trash";
+        if(LevelStatus.levelStatus.levelID != 4) 
+        {
+            textMainObjective.text = "Collect " + GarbageCollector.garbageCollector.currentGarbageStored + "/" + GarbageCollector.garbageCollector.targetGarbageStored + " Garbages";
+        }
+        
 
         if (isBarFillDecrease) 
         {
