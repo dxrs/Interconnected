@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class SelectLevel : MonoBehaviour
 {
@@ -14,9 +15,10 @@ public class SelectLevel : MonoBehaviour
     public int curLevelSectionValue; // variable buat pengolompokan level, di sini saya buat 3 level per section
 
     public bool isCameraNotMoving;
+    public bool isInputKeyboardChoose;
 
     [SerializeField] bool isLevelButtonHighlighted;
-    [SerializeField] bool isInputKeyboardChoose;
+    
 
     [SerializeField] int curValueButton;
     [SerializeField] int[] curValueButtonIndex;
@@ -84,13 +86,11 @@ public class SelectLevel : MonoBehaviour
     }
     private void OnButtonPointerEnter()
     {
-        Debug.Log("true - Highlighted Button Value: ");
         isLevelButtonHighlighted = true;
     }
 
     private void OnButtonPointerExit()
     {
-        Debug.Log("false - Unhighlighted Button Value: ");
         isLevelButtonHighlighted = false;
     }
     private void compareSectionValue() 
@@ -116,8 +116,6 @@ public class SelectLevel : MonoBehaviour
         }
        
     }
-
-  
 
     private void compareLevelTypeValue() 
     {
@@ -211,16 +209,7 @@ public class SelectLevel : MonoBehaviour
         }
     }
 
-    public void inputNavigationConfirm(InputAction.CallbackContext context) 
-    {
-        if (context.performed) 
-        {
-            if(isInputKeyboardChoose && isCameraNotMoving) 
-            {
-                SceneSystem.sceneSystem.goingToLevelSelected();
-            }
-        }
-    }
+   
 
     public void onClickChooseLevelLeft() 
     {
@@ -252,10 +241,7 @@ public class SelectLevel : MonoBehaviour
         
     }
 
-    public void onClickLevelButton() 
-    {
-        SceneSystem.sceneSystem.goingToLevelSelected();
-    }
+  
 
     public void onClickBackToMenu() 
     {

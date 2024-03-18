@@ -681,6 +681,96 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Select Chapter"",
+            ""id"": ""855fe3ff-6295-4efc-9aa0-60a32e2e59a4"",
+            ""actions"": [
+                {
+                    ""name"": ""Navigation Move Map"",
+                    ""type"": ""Value"",
+                    ""id"": ""ec84f114-e777-4c83-acc5-c184d2a8f762"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Navigation Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""87218f82-2325-4bb6-9d9c-9fd9d12394c3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Navigation Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""1cca230b-a077-4ef1-9fef-2d79c6226a04"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""5e58debb-7c95-44dc-a5d1-761bdaec757e"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad Scheme"",
+                    ""action"": ""Navigation Move Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e9b8596-eab1-4fa4-96b4-d51fd63afc6b"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard Scheme"",
+                    ""action"": ""Navigation Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0fb101c6-fa0e-425f-bdb3-fc40fbc4c8fe"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad Scheme"",
+                    ""action"": ""Navigation Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e2331c80-60a1-43f3-80be-fc31e7d05bdb"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard Scheme"",
+                    ""action"": ""Navigation Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7eb3a19c-f0c7-44a7-ab9a-78a9c38a6df7"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad Scheme"",
+                    ""action"": ""Navigation Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -749,6 +839,11 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         m_SelectLevel_NavigationLeft = m_SelectLevel.FindAction("Navigation Left", throwIfNotFound: true);
         m_SelectLevel_NavigationRIght = m_SelectLevel.FindAction("Navigation RIght", throwIfNotFound: true);
         m_SelectLevel_NavigationConfirm = m_SelectLevel.FindAction("Navigation Confirm", throwIfNotFound: true);
+        // Select Chapter
+        m_SelectChapter = asset.FindActionMap("Select Chapter", throwIfNotFound: true);
+        m_SelectChapter_NavigationMoveMap = m_SelectChapter.FindAction("Navigation Move Map", throwIfNotFound: true);
+        m_SelectChapter_NavigationBack = m_SelectChapter.FindAction("Navigation Back", throwIfNotFound: true);
+        m_SelectChapter_NavigationConfirm = m_SelectChapter.FindAction("Navigation Confirm", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1134,6 +1229,68 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         }
     }
     public SelectLevelActions @SelectLevel => new SelectLevelActions(this);
+
+    // Select Chapter
+    private readonly InputActionMap m_SelectChapter;
+    private List<ISelectChapterActions> m_SelectChapterActionsCallbackInterfaces = new List<ISelectChapterActions>();
+    private readonly InputAction m_SelectChapter_NavigationMoveMap;
+    private readonly InputAction m_SelectChapter_NavigationBack;
+    private readonly InputAction m_SelectChapter_NavigationConfirm;
+    public struct SelectChapterActions
+    {
+        private @InputControl m_Wrapper;
+        public SelectChapterActions(@InputControl wrapper) { m_Wrapper = wrapper; }
+        public InputAction @NavigationMoveMap => m_Wrapper.m_SelectChapter_NavigationMoveMap;
+        public InputAction @NavigationBack => m_Wrapper.m_SelectChapter_NavigationBack;
+        public InputAction @NavigationConfirm => m_Wrapper.m_SelectChapter_NavigationConfirm;
+        public InputActionMap Get() { return m_Wrapper.m_SelectChapter; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(SelectChapterActions set) { return set.Get(); }
+        public void AddCallbacks(ISelectChapterActions instance)
+        {
+            if (instance == null || m_Wrapper.m_SelectChapterActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SelectChapterActionsCallbackInterfaces.Add(instance);
+            @NavigationMoveMap.started += instance.OnNavigationMoveMap;
+            @NavigationMoveMap.performed += instance.OnNavigationMoveMap;
+            @NavigationMoveMap.canceled += instance.OnNavigationMoveMap;
+            @NavigationBack.started += instance.OnNavigationBack;
+            @NavigationBack.performed += instance.OnNavigationBack;
+            @NavigationBack.canceled += instance.OnNavigationBack;
+            @NavigationConfirm.started += instance.OnNavigationConfirm;
+            @NavigationConfirm.performed += instance.OnNavigationConfirm;
+            @NavigationConfirm.canceled += instance.OnNavigationConfirm;
+        }
+
+        private void UnregisterCallbacks(ISelectChapterActions instance)
+        {
+            @NavigationMoveMap.started -= instance.OnNavigationMoveMap;
+            @NavigationMoveMap.performed -= instance.OnNavigationMoveMap;
+            @NavigationMoveMap.canceled -= instance.OnNavigationMoveMap;
+            @NavigationBack.started -= instance.OnNavigationBack;
+            @NavigationBack.performed -= instance.OnNavigationBack;
+            @NavigationBack.canceled -= instance.OnNavigationBack;
+            @NavigationConfirm.started -= instance.OnNavigationConfirm;
+            @NavigationConfirm.performed -= instance.OnNavigationConfirm;
+            @NavigationConfirm.canceled -= instance.OnNavigationConfirm;
+        }
+
+        public void RemoveCallbacks(ISelectChapterActions instance)
+        {
+            if (m_Wrapper.m_SelectChapterActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ISelectChapterActions instance)
+        {
+            foreach (var item in m_Wrapper.m_SelectChapterActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_SelectChapterActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public SelectChapterActions @SelectChapter => new SelectChapterActions(this);
     private int m_KeyboardSchemeSchemeIndex = -1;
     public InputControlScheme KeyboardSchemeScheme
     {
@@ -1193,6 +1350,12 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     {
         void OnNavigationLeft(InputAction.CallbackContext context);
         void OnNavigationRIght(InputAction.CallbackContext context);
+        void OnNavigationConfirm(InputAction.CallbackContext context);
+    }
+    public interface ISelectChapterActions
+    {
+        void OnNavigationMoveMap(InputAction.CallbackContext context);
+        void OnNavigationBack(InputAction.CallbackContext context);
         void OnNavigationConfirm(InputAction.CallbackContext context);
     }
 }

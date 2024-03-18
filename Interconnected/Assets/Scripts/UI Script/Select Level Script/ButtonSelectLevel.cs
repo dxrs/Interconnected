@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class ButtonSelectLevel : MonoBehaviour
 {
@@ -13,13 +15,17 @@ public class ButtonSelectLevel : MonoBehaviour
 
     [SerializeField] bool isButtonLocked;
 
+    [SerializeField] string levelType;
+
     [SerializeField] Button buttonSelectLevel;
 
     [SerializeField] TextMeshProUGUI textStatusLevel;
+    [SerializeField] TextMeshProUGUI textLevelType;
 
 
     private void Update()
     {
+        textLevelType.text = levelType;
         if (!selectLevel.isCameraNotMoving) 
         {
             buttonSelectLevel.enabled = false;
@@ -46,14 +52,32 @@ public class ButtonSelectLevel : MonoBehaviour
             isButtonLocked = true;
         }
 
-        if (isButtonLocked)
+        if (idLevel > 1) 
         {
-            textStatusLevel.text = "Locked";
+            if (isButtonLocked)
+            {
+                textStatusLevel.text = "Locked";
+            }
+            else
+            {
+                textStatusLevel.text = idLevel.ToString();
+            }
         }
-        else 
-        {
-            textStatusLevel.text = idLevel.ToString();
-        }
+       
         
+    }
+    public void inputNavigationConfirm(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (selectLevel.isInputKeyboardChoose && selectLevel.isCameraNotMoving)
+            {
+                SceneSystem.sceneSystem.goingToLevelSelected(idLevel + 1);
+            }
+        }
+    }
+    public void onClickLevelButton() 
+    {
+        SceneSystem.sceneSystem.goingToLevelSelected(idLevel + 1);
     }
 }

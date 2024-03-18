@@ -43,10 +43,21 @@ public class SceneSystem : MonoBehaviour
         }
     }
 
+    public void currentLevelSelected() 
+    {
+        LevelManager.levelManager.levelChoosed = SceneManager.GetActiveScene().buildIndex;
+    }
+
     public void goingToMainMenu() 
     {
         isChangeScene = true;
         StartCoroutine(waitToSceneMainMenu());
+    }
+
+    public void goingToSelectLevelPerChapter() 
+    {
+        isChangeScene = true;
+        StartCoroutine(waitTSelectLevelScene());
     }
 
     public void goingToTutorialScene() 
@@ -61,23 +72,35 @@ public class SceneSystem : MonoBehaviour
         StartCoroutine(waitToScenePrologueScene());
     }
 
-    public void goingToLevelSelected() 
+    public void goingToLevelSelected(int levelIndex) 
     {
         isChangeScene = true;
         StartCoroutine(waitToLevelSelectedScene());
     }
 
+    public void goingToChapterSelect() 
+    {
+        isChangeScene = true;
+        StartCoroutine(waitToSceneSelectChapter());
+    }
+
+    #region bagian ienumeratornya
     IEnumerator waitToScenePrologueScene() 
     {
         yield return new WaitForSeconds(delayTimeNextScene);
         SceneManager.LoadScene("Prologue");
     }
 
+    IEnumerator waitToSceneSelectChapter()
+    {
+        yield return new WaitForSeconds(delayTimeNextScene);
+        SceneManager.LoadScene("Select Chapter");
+    }
+
     IEnumerator waitToSceneTutorialScene() 
     {
         yield return new WaitForSeconds(delayTimeNextScene);
-        //SceneManager.LoadScene(1);
-        SceneManager.LoadScene("Select Level");
+        SceneManager.LoadScene(1); // tutorial scene
     }
 
     IEnumerator waitToSceneMainMenu()
@@ -93,11 +116,17 @@ public class SceneSystem : MonoBehaviour
         SceneManager.LoadScene(currentRestartScene);
     }
 
-    IEnumerator waitToExitScene() // dari level kembali ke select level
+    IEnumerator waitTSelectLevelScene() // dari level kembali ke select level
+    {
+        yield return new WaitForSeconds(delayTimeExit);
+        SceneManager.LoadScene("Select Level Chapter " + SelectChapter.selectChapter.curValueButton); 
+                                   
+    }
+
+    IEnumerator waitToExitScene() 
     {
         yield return new WaitForSecondsRealtime(delayTimeExit);
-        SceneManager.LoadScene("Select Level"); 
-                                   
+        SceneManager.LoadScene("Select Level Chapter " + ChapterManager.chapterManager.chapterChoosed);
     }
 
     IEnumerator waitToNextScene() 
@@ -113,4 +142,5 @@ public class SceneSystem : MonoBehaviour
         yield return new WaitForSeconds(delayTimeNextScene);
         SceneManager.LoadScene(SelectLevel.selectLevel.curSelectLevelValue + 1);
     }
+    #endregion
 }

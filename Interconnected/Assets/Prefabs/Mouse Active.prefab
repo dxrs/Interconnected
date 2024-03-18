@@ -45,3 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMouseActive: 0
+  widthDivide: 2
+  heighDivide: 2

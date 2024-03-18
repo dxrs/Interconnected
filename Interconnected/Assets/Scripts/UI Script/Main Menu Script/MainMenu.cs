@@ -46,7 +46,7 @@ public class MainMenu : MonoBehaviour
             imageTransition.transform.localPosition = Vector2.MoveTowards(imageTransition.transform.localPosition, new Vector2(imageTransition.transform.localPosition.x, 0), 2000 * Time.deltaTime);
             if (imageTransition.transform.localPosition.y == 0) 
             {
-                SceneSystem.sceneSystem.goingToPrologueScene();
+                SceneSystem.sceneSystem.goingToChapterSelect();
             }
         }
     }

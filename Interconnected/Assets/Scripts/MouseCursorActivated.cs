@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MouseCursorActivated : MonoBehaviour
 {
@@ -8,14 +9,15 @@ public class MouseCursorActivated : MonoBehaviour
 
     public bool isMouseActive;
 
+    [SerializeField] bool isMouseCanVisible;
+
+    [SerializeField] float widthDivide;
+    [SerializeField] float heighDivide;
+
     private void Awake()
     {
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
         mouseCursorActivated = this;
     }
-
-    
 
     private void Update()
     {
@@ -27,25 +29,22 @@ public class MouseCursorActivated : MonoBehaviour
             isMouseActive = true;
 
         }
-        /*
-        if (isMouseActive) 
+        if (!isMouseActive) 
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None; 
+            Mouse.current.WarpCursorPosition(new Vector2(Screen.width / widthDivide, Screen.height / heighDivide));
+            if (isMouseCanVisible) 
+            {
+                Cursor.visible = false;
+            }
         }
         else 
         {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            if (isMouseCanVisible) 
+            {
+                Cursor.visible = true;
+            }
         }
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
-
-        if (Mathf.Abs(mouseX) > 0.1f || Mathf.Abs(mouseY) > 0.1f)
-        {
-            isMouseActive = true;
-            
-        }
-        */
+        
+       
     }
 }

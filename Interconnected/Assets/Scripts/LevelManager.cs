@@ -8,33 +8,30 @@ public class LevelManager : MonoBehaviour
 
     public int totalLevel;
     public int totalLevelUnlocked; // dipanggil menggunakan save data
+    public int levelChoosed; // apabila pengen maen level sebelum totalLevelUnlocked;
     public int currentTotalLevelSection;
-    public int[] totalLevelPerChapter;
+    
 
 
     private void Awake()
     {
         levelManager = this;
-        if (totalLevelPerChapter.Length > 0)
-        {
-            totalLevel = CalculateTotalLevel();
-        }
+        
     }
 
     private void Start()
     {
         currentTotalLevelSection = (totalLevelUnlocked) / 3;
+        
     }
-    int CalculateTotalLevel()
+    private void Update()
     {
-        int total = 0;
+        SceneSystem.sceneSystem.currentLevelSelected();
 
-        for (int i = 0; i < totalLevelPerChapter.Length; i++)
+        if (levelChoosed == Mathf.Clamp(levelChoosed, 0, 9)) 
         {
-            total += totalLevelPerChapter[i];
+            ChapterManager.chapterManager.chapterChoosed = 1;
         }
-
-        return total;
     }
 
     public void saveDataCurrentLevel() 

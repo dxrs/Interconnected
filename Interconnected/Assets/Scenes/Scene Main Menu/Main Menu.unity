@@ -688,7 +688,7 @@ MonoBehaviour:
   delayTimeRestart: 1
   delayTimeExit: 2
   delayTimeNextScene: 1
-  delayPreviousScene: 0
+  delayPreviousScene: 1
 --- !u!4 &421272903
 Transform:
   m_ObjectHideFlags: 0
@@ -1789,6 +1789,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 7df178a9-3366-44b1-89a1-3f8cde080d5b
     m_ActionName: Select Level/Navigation Confirm[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ec84f114-e777-4c83-acc5-c184d2a8f762
+    m_ActionName: Select Chapter/Navigation Move Map[/XInputControllerWindows/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 87218f82-2325-4bb6-9d9c-9fd9d12394c3
+    m_ActionName: Select Chapter/Navigation Back[/Keyboard/escape,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1cca230b-a077-4ef1-9fef-2d79c6226a04
+    m_ActionName: Select Chapter/Navigation Confirm[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Main Menu
