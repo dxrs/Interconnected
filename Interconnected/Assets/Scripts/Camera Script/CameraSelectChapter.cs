@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 public class CameraSelectChapter : MonoBehaviour
 {
     [SerializeField] float scrollSpeed;
-    [SerializeField] float edgeScrollLimitXPositive = 100f; // Batasan edge scroll pada sumbu X positif
-    [SerializeField] float edgeScrollLimitXNegative = -100f; // Batasan edge scroll pada sumbu X negatif
-    [SerializeField] float edgeScrollLimitYPositive = 100f; // Batasan edge scroll pada sumbu Y positif
-    [SerializeField] float edgeScrollLimitYNegative = -100f; // Batasan edge scroll pada sumbu Y negatif
+    [SerializeField] float limitScrollX_Plus = 100f; 
+    [SerializeField] float limitScrollX_Min = -100f; 
+    [SerializeField] float limitScrollY_Plus = 100f; 
+    [SerializeField] float limitScrollY_Min = -100f; 
 
 
     float scrollBoundary = 25.0f;
@@ -19,6 +19,11 @@ public class CameraSelectChapter : MonoBehaviour
     Vector3 moveDirection;
     Vector3 mousePosition;
     Vector2 screenSize;
+
+    private void Start()
+    {
+        scrollSpeed = currentScrollSpeed;
+    }
 
     void Update()
     {
@@ -70,20 +75,20 @@ public class CameraSelectChapter : MonoBehaviour
         Vector3 totalMoveDirection = moveDirection + edgeScrollDirection;
 
         // Menerapkan batasan edge scroll untuk setiap sumbu
-        if (transform.position.x >= edgeScrollLimitXPositive && totalMoveDirection.x > 0)
+        if (transform.position.x >= limitScrollX_Plus && totalMoveDirection.x > 0)
         {
             totalMoveDirection.x = 0;
         }
-        else if (transform.position.x <= edgeScrollLimitXNegative && totalMoveDirection.x < 0)
+        else if (transform.position.x <= limitScrollX_Min && totalMoveDirection.x < 0)
         {
             totalMoveDirection.x = 0;
         }
 
-        if (transform.position.y >= edgeScrollLimitYPositive && totalMoveDirection.y > 0)
+        if (transform.position.y >= limitScrollY_Plus && totalMoveDirection.y > 0)
         {
             totalMoveDirection.y = 0;
         }
-        else if (transform.position.y <= edgeScrollLimitYNegative && totalMoveDirection.y < 0)
+        else if (transform.position.y <= limitScrollY_Min && totalMoveDirection.y < 0)
         {
             totalMoveDirection.y = 0;
         }

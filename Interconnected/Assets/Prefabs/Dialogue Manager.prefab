@@ -46,6 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDialogueActive: 1
   curTextValue: 0
+  typingSpeedValue: 0
+  targetDialoguePos: 300
+  isReadyToInteractWithDialogue: 0
   listDialogueString: []
   textDialogue: {fileID: 0}
   buttonDialogue: {fileID: 0}

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.InputSystem;
 
@@ -23,9 +22,10 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] Button[] listMainMenuButton;
 
-    [SerializeField] GameObject imageTransition;
+    [SerializeField] Image imageTransition;
     [SerializeField] GameObject[] animatedButtonSelect;
 
+    Color alphaColor;
 
     private void Awake()
     {
@@ -34,6 +34,8 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         mouseListener();
+        alphaColor.a = 0;
+
     }
 
     private void Update()
@@ -43,8 +45,9 @@ public class MainMenu : MonoBehaviour
 
         if (isTransitionSceneActive) 
         {
-            imageTransition.transform.localPosition = Vector2.MoveTowards(imageTransition.transform.localPosition, new Vector2(imageTransition.transform.localPosition.x, 0), 2000 * Time.deltaTime);
-            if (imageTransition.transform.localPosition.y == 0) 
+            alphaColor.a = Mathf.MoveTowards(alphaColor.a, 1, 3 * Time.deltaTime);
+            imageTransition.color = alphaColor;
+            if (alphaColor.a >= 1) 
             {
                 SceneSystem.sceneSystem.goingToChapterSelect();
             }

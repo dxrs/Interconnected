@@ -1814,16 +1814,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2748880677377323531, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323531, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
       propertyPath: heighDivide
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2748880677377323531, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
       propertyPath: widthDivide
-      value: 3
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323531, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: isMouseCanVisible
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2748880677377323636, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
       propertyPath: m_Name
       value: Mouse Active
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323636, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
@@ -1893,7 +1905,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &660895705
 GameObject:
@@ -2322,6 +2334,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729882999}
   m_CullTransparentMesh: 1
+--- !u!1001 &767503691
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3537500051989721416, guid: 9f438062623b4d04080e721496831468, type: 3}
+      propertyPath: m_Name
+      value: Chapter Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537500051989721418, guid: 9f438062623b4d04080e721496831468, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537500051989721418, guid: 9f438062623b4d04080e721496831468, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537500051989721418, guid: 9f438062623b4d04080e721496831468, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537500051989721418, guid: 9f438062623b4d04080e721496831468, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537500051989721418, guid: 9f438062623b4d04080e721496831468, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537500051989721418, guid: 9f438062623b4d04080e721496831468, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537500051989721418, guid: 9f438062623b4d04080e721496831468, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537500051989721418, guid: 9f438062623b4d04080e721496831468, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537500051989721418, guid: 9f438062623b4d04080e721496831468, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537500051989721418, guid: 9f438062623b4d04080e721496831468, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537500051989721418, guid: 9f438062623b4d04080e721496831468, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9f438062623b4d04080e721496831468, type: 3}
 --- !u!1 &888330174
 GameObject:
   m_ObjectHideFlags: 0
@@ -2999,6 +3068,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ec84f114-e777-4c83-acc5-c184d2a8f762
     m_ActionName: Select Chapter/Navigation Move Map[/XInputControllerWindows/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 87218f82-2325-4bb6-9d9c-9fd9d12394c3
+    m_ActionName: Select Chapter/Navigation Back[/Keyboard/escape,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1cca230b-a077-4ef1-9fef-2d79c6226a04
+    m_ActionName: Select Chapter/Navigation Confirm[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Select Level

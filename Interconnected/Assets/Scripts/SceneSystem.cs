@@ -45,7 +45,7 @@ public class SceneSystem : MonoBehaviour
 
     public void currentLevelSelected() 
     {
-        LevelManager.levelManager.levelChoosed = SceneManager.GetActiveScene().buildIndex;
+        LevelManager.levelManager.levelChoosed = SceneManager.GetActiveScene().buildIndex - 1;
     }
 
     public void goingToMainMenu() 

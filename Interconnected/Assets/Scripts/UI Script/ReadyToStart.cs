@@ -10,13 +10,12 @@ public class ReadyToStart : MonoBehaviour
 
     public bool isGameStart;
 
-    [SerializeField] float timerCountToStart;
-
-    [SerializeField] TextMeshProUGUI textTimerCountToStart;
+    [SerializeField] Image imageStart;
 
     [SerializeField] GameObject startUI;
-    [SerializeField] GameObject inGameUI;
     [SerializeField] GameObject dialogue;
+
+    Color alphaColor;
 
  
     private void Awake()
@@ -26,68 +25,33 @@ public class ReadyToStart : MonoBehaviour
 
     private void Start()
     {
-        inGameUI.SetActive(false);
         startUI.SetActive(true);
-        timerCountToStart = 3;
-        if (LevelStatus.levelStatus.levelID != 4) 
-        {
-            dialogue.SetActive(false);
-        }
+        //dialogue.SetActive(false);
+        alphaColor = imageStart.color;
+        alphaColor.a = 1;
+        imageStart.color = alphaColor;
         
     }
 
     private void Update()
     {
-        
-        if (LevelStatus.levelStatus.levelID != 4) 
-        {
-            StartCoroutine(waitToCount());
 
-            if (timerCountToStart > 1)
-            {
-                textTimerCountToStart.text = Mathf.RoundToInt(timerCountToStart).ToString();
-            }
-            if (isGameStart && !GameFinish.gameFinish.isGameFinish)
-            {
-                inGameUI.SetActive(true);
-                startUI.SetActive(false);
-                
-                if (DialogueManager.dialogueManager.isDialogueActive) 
-                {
-                    dialogue.SetActive(true);
-
-                }
-                else 
-                {
-                    dialogue.SetActive(false);
-                }
-            }
-        }
-        else 
+        StartCoroutine(waitToFadeOut());
+        if (alphaColor.a <= 0) 
         {
             isGameStart = true;
-            if (isGameStart && !GameFinish.gameFinish.isGameFinish)
-            {
-                inGameUI.SetActive(true);
-                startUI.SetActive(false);
-            }
+            startUI.SetActive(false);
         }
+       
+       
       
     }
 
-    IEnumerator waitToCount() 
+    IEnumerator waitToFadeOut() 
     {
-        yield return new WaitForSeconds(1);
-        
-        if (timerCountToStart > 0)
-        {
-            timerCountToStart -= 1.2f * Time.deltaTime;
-        }
-        if (timerCountToStart <= 0) 
-        {
-            textTimerCountToStart.text = "Let's go !";
-            yield return new WaitForSeconds(.7f);
-            isGameStart = true;
-        }
+        yield return new WaitForSeconds(.2f);
+        alphaColor.a = Mathf.MoveTowards(alphaColor.a, 0, 1f * Time.deltaTime);
+        imageStart.color = alphaColor;
+       
     }
 }

@@ -13,6 +13,9 @@ public class DialogueManager : MonoBehaviour
     public int curTextValue;
 
     [SerializeField] float typingSpeedValue;
+    [SerializeField] float targetDialoguePos;
+
+    [SerializeField] bool isReadyToInteractWithDialogue;
 
     [TextArea(3,12)]
     [SerializeField] string[] listDialogueString;
@@ -22,7 +25,6 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] Button buttonDialogue;
 
     [SerializeField] GameObject dialogueObject;
-    [SerializeField] GameObject dialoguePanel;
 
     private void Awake()
     {
@@ -41,12 +43,52 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
+        if (isDialogueActive) 
+        {
+            if (ReadyToStart.readyToStart.isGameStart)
+            {
+                if (!isReadyToInteractWithDialogue)
+                {
+                    dialogueObject.transform.position = Vector2.MoveTowards(dialogueObject.transform.position, new Vector2(dialogueObject.transform.position.x, targetDialoguePos), 2000 * Time.deltaTime);
+                }
 
+               
+
+            }
+            if (dialogueObject.transform.position.y >= targetDialoguePos)
+            {
+                isReadyToInteractWithDialogue = true;
+
+            }
+            if (isReadyToInteractWithDialogue)
+            {
+                buttonDialogue.enabled = true;
+            }
+            else { buttonDialogue.enabled = false; }
+        }
+        else 
+        {
+            if (GlobalVariable.globalVariable.isLevelHasDialogue) 
+            {
+                dialogueObject.transform.position = Vector2.MoveTowards(dialogueObject.transform.position, new Vector2(dialogueObject.transform.position.x, 0), 2800 * Time.deltaTime);
+                isReadyToInteractWithDialogue = false;
+
+                buttonDialogue.enabled = false;
+            }
+            
+        }
+       
+       
+    
+
+       
+        
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Gamepad Enter")) 
         {
-            if (isDialogueActive) 
+            if (isDialogueActive && isReadyToInteractWithDialogue) 
             {
-                if(LevelStatus.levelStatus.levelID != 4) 
+                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+                if (LevelStatus.levelStatus.levelID != 4) 
                 {
                     if (ReadyToStart.readyToStart.isGameStart) 
                     {
@@ -86,22 +128,15 @@ public class DialogueManager : MonoBehaviour
         if (isDialogueActive) 
         {
             textDialogue.enabled = true;
-            buttonDialogue.interactable = true;
-            dialoguePanel.SetActive(true);
+
             dialogueObject.SetActive(true);
            
         }
         else 
         {
-            if(textDialogue!=null
-                && buttonDialogue!=null
-                && dialoguePanel!=null
-                && dialogueObject != null) 
+            if (textDialogue!=null) 
             {
                 textDialogue.enabled = false;
-                buttonDialogue.interactable = false;
-                dialoguePanel.SetActive(false);
-                dialogueObject.SetActive(false);
             }
            
         }
@@ -170,7 +205,6 @@ public class DialogueManager : MonoBehaviour
 
     public void onClickDialogueButton() 
     {
-        
         if (textDialogue.text == listDialogueString[curTextValue])
         {
             curTextValue++;
@@ -182,6 +216,8 @@ public class DialogueManager : MonoBehaviour
             StopAllCoroutines();
             textDialogue.text = listDialogueString[curTextValue];
         }
+       
+      
 
     }
 }

@@ -591,54 +591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &306275946
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 306275948}
-  - component: {fileID: 306275947}
-  m_Layer: 0
-  m_Name: Mouse Activated
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &306275947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 306275946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a7291a3b88a254f92ba904ef6e159d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMouseActive: 0
-  isMouseCanVisible: 0
-  widthDivide: 0
-  heighDivide: 0
---- !u!4 &306275948
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 306275946}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 508.5, y: 286, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &307111660 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8516829927780075818, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
@@ -1417,6 +1369,30 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4b974cd3-af8d-4bf8-bece-161f8dd98bda
     m_ActionName: Main Menu/Navigation Confirm[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1085420b-118a-4003-9c06-4517ecc1908e
+    m_ActionName: Select Level/Navigation Left[/XInputControllerWindows/dpad/left,/Keyboard/leftArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 79e240e4-1aed-4a7f-b8b3-1074d1a82d7b
+    m_ActionName: Select Level/Navigation RIght[/XInputControllerWindows/dpad/right,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7df178a9-3366-44b1-89a1-3f8cde080d5b
+    m_ActionName: Select Level/Navigation Confirm[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ec84f114-e777-4c83-acc5-c184d2a8f762
+    m_ActionName: Select Chapter/Navigation Move Map[/XInputControllerWindows/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 87218f82-2325-4bb6-9d9c-9fd9d12394c3
+    m_ActionName: Select Chapter/Navigation Back[/Keyboard/escape,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1cca230b-a077-4ef1-9fef-2d79c6226a04
+    m_ActionName: Select Chapter/Navigation Confirm[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard Scheme
   m_DefaultActionMap: Input Player 1
@@ -2993,6 +2969,30 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4b974cd3-af8d-4bf8-bece-161f8dd98bda
     m_ActionName: Main Menu/Navigation Confirm[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1085420b-118a-4003-9c06-4517ecc1908e
+    m_ActionName: Select Level/Navigation Left[/XInputControllerWindows/dpad/left,/Keyboard/leftArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 79e240e4-1aed-4a7f-b8b3-1074d1a82d7b
+    m_ActionName: Select Level/Navigation RIght[/XInputControllerWindows/dpad/right,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7df178a9-3366-44b1-89a1-3f8cde080d5b
+    m_ActionName: Select Level/Navigation Confirm[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ec84f114-e777-4c83-acc5-c184d2a8f762
+    m_ActionName: Select Chapter/Navigation Move Map[/XInputControllerWindows/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 87218f82-2325-4bb6-9d9c-9fd9d12394c3
+    m_ActionName: Select Chapter/Navigation Back[/Keyboard/escape,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1cca230b-a077-4ef1-9fef-2d79c6226a04
+    m_ActionName: Select Chapter/Navigation Confirm[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad Scheme
   m_DefaultActionMap: Input Player 2
@@ -3461,7 +3461,7 @@ PrefabInstance:
     - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
       propertyPath: dialoguePanel
       value: 
-      objectReference: {fileID: 9218205164494279016}
+      objectReference: {fileID: 0}
     - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
       propertyPath: buttonDialogue
       value: 
@@ -3477,6 +3477,10 @@ PrefabInstance:
     - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
       propertyPath: typingSpeedValue
       value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
+      propertyPath: targetDialoguePos
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 2075635727941245925, guid: 265fec014b72d214592449a0b3fc7519, type: 3}
       propertyPath: listDialogueString.Array.size
@@ -3962,6 +3966,67 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1978454779
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323530, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323531, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: isMouseCanVisible
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323636, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: m_Name
+      value: Mouse Active
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
 --- !u!1 &1985090488 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 173579760713405860, guid: ce619107cdd947c4b94532b6935bd4fa, type: 3}
@@ -5607,8 +5672,48 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 210813770963434525, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 210813770963434525, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 210813770963434525, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3581329937283447711, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 3725826275760956522, guid: d3cd9e8d05fd1324db758153f26fd7e7, type: 2}
+    - target: {fileID: 3581329937283447711, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3673401599870584077, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075379959283221155, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+    - target: {fileID: 4075379959283221155, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075379959283221155, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075379959283221155, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075379959283221155, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4960048775299041920, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
@@ -5634,6 +5739,10 @@ PrefabInstance:
     - target: {fileID: 7882643699340188434, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275272062023496989, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 35.100098
       objectReference: {fileID: 0}
     - target: {fileID: 8516829927780075818, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
       propertyPath: m_IsActive
@@ -5778,10 +5887,5 @@ MonoBehaviour:
 --- !u!1 &9218205164494279015 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6160711171083840545, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
-  m_PrefabInstance: {fileID: 9218205164494279012}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &9218205164494279016 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3053136061424173099, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
   m_PrefabInstance: {fileID: 9218205164494279012}
   m_PrefabAsset: {fileID: 0}

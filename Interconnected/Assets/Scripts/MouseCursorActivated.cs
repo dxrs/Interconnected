@@ -18,7 +18,17 @@ public class MouseCursorActivated : MonoBehaviour
     {
         mouseCursorActivated = this;
     }
-
+    private void Start()
+    {
+        if (isMouseCanVisible) 
+        {
+            Cursor.visible = false;
+        }
+        else 
+        {
+            Cursor.visible = true;
+        }
+    }
     private void Update()
     {
         float mouseX = Input.GetAxis("Mouse X");

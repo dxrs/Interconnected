@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
     }
     private void Update()
     {
-        SceneSystem.sceneSystem.currentLevelSelected();
+        //SceneSystem.sceneSystem.currentLevelSelected();
 
         if (levelChoosed == Mathf.Clamp(levelChoosed, 0, 9)) 
         {

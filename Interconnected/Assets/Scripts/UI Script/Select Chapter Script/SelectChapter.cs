@@ -20,7 +20,11 @@ public class SelectChapter : MonoBehaviour
 
     [SerializeField] Button[] listChapterButton;
 
+    [SerializeField] Image imageTransition;
+
     [SerializeField] GameObject[] animatedChapterButton;
+
+    Color alpahColor;
  
     private void Awake()
     {
@@ -32,13 +36,16 @@ public class SelectChapter : MonoBehaviour
     {
         mouseListener();
 
-        buttonHighlightedValue = ChapterManager.chapterManager.currentChapter;
-
+       
+        alpahColor.a = 1;
+        imageTransition.color = alpahColor;
         
     }
     private void Update()
     {
         curValueButton = buttonHighlightedValue;
+        alpahColor.a = Mathf.MoveTowards(alpahColor.a, 0, 2 * Time.deltaTime);
+        imageTransition.color = alpahColor;
     }
     private void mouseListener()
     {
@@ -90,6 +97,7 @@ public class SelectChapter : MonoBehaviour
     {
         if (isSelectChapterActive) 
         {
+            
             if (value <= ChapterManager.chapterManager.currentChapter && !SceneSystem.sceneSystem.isChangeScene)
             {
                 buttonHighlightedValue = value;
