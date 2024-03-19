@@ -9,7 +9,7 @@ public class SelectChapter : MonoBehaviour
     public static SelectChapter selectChapter;
 
     public bool isSelectChapterActive;
-
+    public bool isReadyToInteractWIthMap;
 
     public int curValueButton;
 
@@ -21,8 +21,6 @@ public class SelectChapter : MonoBehaviour
     [SerializeField] Button[] listChapterButton;
 
     [SerializeField] Image imageTransition;
-
-    [SerializeField] GameObject[] animatedChapterButton;
 
     Color alpahColor;
  
@@ -44,8 +42,22 @@ public class SelectChapter : MonoBehaviour
     private void Update()
     {
         curValueButton = buttonHighlightedValue;
-        alpahColor.a = Mathf.MoveTowards(alpahColor.a, 0, 2 * Time.deltaTime);
-        imageTransition.color = alpahColor;
+        if (isSelectChapterActive) 
+        {
+            alpahColor.a = Mathf.MoveTowards(alpahColor.a, 0, 2 * Time.deltaTime);
+            imageTransition.color = alpahColor;
+        }
+        else 
+        {
+            alpahColor.a = Mathf.MoveTowards(alpahColor.a, 1, 3 * Time.deltaTime);
+            imageTransition.color = alpahColor;
+        }
+
+        if (alpahColor.a <= 0) 
+        {
+            isReadyToInteractWIthMap = true;
+        }
+       
     }
     private void mouseListener()
     {

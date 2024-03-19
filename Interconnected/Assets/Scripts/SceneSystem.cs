@@ -48,6 +48,11 @@ public class SceneSystem : MonoBehaviour
         LevelManager.levelManager.levelChoosed = SceneManager.GetActiveScene().buildIndex - 1;
     }
 
+    public void levelNumber(int number) 
+    {
+        number = SceneManager.GetActiveScene().buildIndex - 1;
+    }
+
     public void goingToMainMenu() 
     {
         isChangeScene = true;

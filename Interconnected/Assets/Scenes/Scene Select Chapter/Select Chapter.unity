@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSelectChapterActive: 0
+  isReadyToInteractWIthMap: 0
   curValueButton: 0
   isLevelButtonHighlighted: 0
   curValueButtonIndex: 0100000002000000030000000400000005000000
@@ -180,7 +181,6 @@ MonoBehaviour:
   - {fileID: 1311966217}
   - {fileID: 534107258}
   imageTransition: {fileID: 1690693542}
-  animatedChapterButton: []
 --- !u!114 &48257266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2540,7 +2540,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3537500051989721419, guid: 9f438062623b4d04080e721496831468, type: 3}
       propertyPath: currentChapter
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f438062623b4d04080e721496831468, type: 3}

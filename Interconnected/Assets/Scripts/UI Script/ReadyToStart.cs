@@ -10,10 +10,7 @@ public class ReadyToStart : MonoBehaviour
 
     public bool isGameStart;
 
-    [SerializeField] Image imageStart;
-
-    [SerializeField] GameObject startUI;
-    [SerializeField] GameObject dialogue;
+    [SerializeField] Image imageTransition;
 
     Color alphaColor;
 
@@ -25,24 +22,28 @@ public class ReadyToStart : MonoBehaviour
 
     private void Start()
     {
-        startUI.SetActive(true);
-        //dialogue.SetActive(false);
-        alphaColor = imageStart.color;
+        alphaColor = imageTransition.color;
         alphaColor.a = 1;
-        imageStart.color = alphaColor;
+        imageTransition.color = alphaColor;
         
     }
 
     private void Update()
     {
+        if (!SceneSystem.sceneSystem.isChangeScene) 
+        {
+            StartCoroutine(waitToFadeOut());
+        }
+        else 
+        {
+            alphaColor.a = Mathf.MoveTowards(alphaColor.a, 1, 2f * Time.unscaledDeltaTime);
+            imageTransition.color = alphaColor;
+        }
 
-        StartCoroutine(waitToFadeOut());
         if (alphaColor.a <= 0) 
         {
             isGameStart = true;
-            startUI.SetActive(false);
         }
-       
        
       
     }
@@ -51,7 +52,9 @@ public class ReadyToStart : MonoBehaviour
     {
         yield return new WaitForSeconds(.2f);
         alphaColor.a = Mathf.MoveTowards(alphaColor.a, 0, 1f * Time.deltaTime);
-        imageStart.color = alphaColor;
+        imageTransition.color = alphaColor;
+       
+       
        
     }
 }

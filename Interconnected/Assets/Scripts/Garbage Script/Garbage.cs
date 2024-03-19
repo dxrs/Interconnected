@@ -61,7 +61,7 @@ public class Garbage : MonoBehaviour
     private void Update()
     {
         garbageStoringFunction();
-        if(!GameFinish.gameFinish.isGameFinish || !GameOver.gameOver.isGameOver) 
+        if(!GameFinish.gameFinish.isGameFinish) 
         {
             if (isGarbageCollected && !isGarbageStored)
             {
@@ -86,15 +86,30 @@ public class Garbage : MonoBehaviour
                     
                     StartCoroutine(garbageIsStoring());
                 }
-                
-                if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isPlayerDestroyed)
+
+                if (!GameOver.gameOver.isGameOver) 
                 {
-                    if (isRotate)
+                    if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isPlayerDestroyed)
                     {
-                        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+                        if (isRotate)
+                        {
+                            transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+                        }
+                        garbageBlast();
                     }
-                    garbageBlast();
                 }
+                else 
+                {
+                    if (Player1Health.player1Health.curPlayer1Health <= 0 || Player2Health.player2Health.curPlayer2Health <= 0)
+                    {
+                        if (isRotate)
+                        {
+                            transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+                        }
+                        garbageBlast();
+                    }
+                }
+              
 
 
 
@@ -107,13 +122,7 @@ public class Garbage : MonoBehaviour
                 StartCoroutine(garbageRigidBrake(1f));
             }
         }
-        if (GameOver.gameOver.isGameOver) 
-        {
-            if (Player1Health.player1Health.curPlayer1Health <= 0 || Player2Health.player2Health.curPlayer2Health <= 0)
-            {
-                garbageBlast();
-            }
-        }
+       
        
 
     }

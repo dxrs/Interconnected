@@ -11,7 +11,8 @@ public class ButtonSelectLevel : MonoBehaviour
 
     [SerializeField] SelectLevel selectLevel;
 
-    [SerializeField] int idLevel;
+    [SerializeField] int idLevel; // untuk memanggil ke scene setiap level dengan idLevel tertentu tidak menampilkan string level number
+    [SerializeField] int levelButtonNumber; // untuk menampilkan string angka level saja
 
     [SerializeField] bool isButtonLocked;
 
@@ -21,6 +22,8 @@ public class ButtonSelectLevel : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI textStatusLevel;
     [SerializeField] TextMeshProUGUI textLevelType;
+
+   
 
 
     private void Update()
@@ -52,7 +55,7 @@ public class ButtonSelectLevel : MonoBehaviour
             isButtonLocked = true;
         }
 
-        if (idLevel > 1) 
+        if (idLevel > 1) // artinya setelah scene tutorial, karena indexnya 1
         {
             if (isButtonLocked)
             {
@@ -60,7 +63,8 @@ public class ButtonSelectLevel : MonoBehaviour
             }
             else
             {
-                textStatusLevel.text = idLevel.ToString();
+                
+                textStatusLevel.text = levelButtonNumber.ToString();
             }
         }
        

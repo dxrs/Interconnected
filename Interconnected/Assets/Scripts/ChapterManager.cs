@@ -6,7 +6,7 @@ public class ChapterManager : MonoBehaviour
 {
     public static ChapterManager chapterManager;
 
-    public int currentChapter; // dipanggil menggunakan save data
+    public int currentChapter; // dipanggil berdasarkan totalLevelUnlocked
     public int chapterChoosed; // apabila pengen main level di chapter sebelum currentChapter
     public int totalChapter;
     public int[] totalLevelPerChapter;

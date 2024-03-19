@@ -5659,6 +5659,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2748880677377323531, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: heighDivide
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323531, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
+      propertyPath: widthDivide
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748880677377323531, guid: 83310e39e76de904aac59e7ae2f7566c, type: 3}
       propertyPath: isMouseCanVisible
       value: 1
       objectReference: {fileID: 0}

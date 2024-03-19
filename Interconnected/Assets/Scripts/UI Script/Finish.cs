@@ -13,19 +13,17 @@ public class Finish : MonoBehaviour
 
     [SerializeField] GameObject finishUI;
     [SerializeField] GameObject inGameUI;
-    [SerializeField] GameObject buttonSelector;
 
-    [SerializeField] TextMeshProUGUI textFinishStatusEnemyDestroy;
+    [SerializeField] TextMeshProUGUI textFinishStatus;
 
     [SerializeField] int curValueButton;
     [SerializeField] int[] curValueButtonIndex; // buat mouse cursor
     [SerializeField] int maxListButton;
     [SerializeField] int buttonHighlightedValue; // yang di highlight sama cursor mouse
 
-    [SerializeField] Button[] listFinishButton;
-    [SerializeField] Button[] allButtonDisable;
+    [SerializeField] bool isButtonHighlighted;
 
-    [SerializeField] float[] buttonSelectorPosY;
+    [SerializeField] Button[] listFinishButton;
 
     bool isDpadPressed = false;
 
@@ -43,9 +41,9 @@ public class Finish : MonoBehaviour
         {
             if (SceneSystem.sceneSystem.isChangeScene) 
             {
-                for (int k = 0; k < allButtonDisable.Length; k++)
+                for (int k = 0; k < listFinishButton.Length; k++)
                 {
-                    allButtonDisable[k].interactable = false;
+                    listFinishButton[k].interactable = false;
                 }
             }
             if (LevelStatus.levelStatus.levelID == 2) 
@@ -60,24 +58,52 @@ public class Finish : MonoBehaviour
         
         inputConfirmButton();
         inputListSelection();
-        selectorPos();
     }
 
     private void mouseListener()
     {
-        do
+
+        for (int j = 0; j < listFinishButton.Length; j++)
         {
-            for (int j = 0; j < listFinishButton.Length; j++)
+            if (!SceneSystem.sceneSystem.isChangeScene)
             {
                 int buttonValue = curValueButtonIndex[j];
 
-                EventTrigger eventTrigger = listFinishButton[j].gameObject.AddComponent<EventTrigger>();
-                EventTrigger.Entry entry = new EventTrigger.Entry();
-                entry.eventID = EventTriggerType.PointerEnter;
-                entry.callback.AddListener((data) => { buttonFinishHighlighted(buttonValue); });
-                eventTrigger.triggers.Add(entry);
+                EventTrigger eventTrigger = listFinishButton[j].gameObject.GetComponent<EventTrigger>();
+
+                if (eventTrigger == null)
+                {
+                    eventTrigger = listFinishButton[j].gameObject.AddComponent<EventTrigger>();
+                }
+
+                // cursor masuk ke dalam tombol
+                EventTrigger.Entry pointerEnter = new EventTrigger.Entry();
+                pointerEnter.eventID = EventTriggerType.PointerEnter;
+                pointerEnter.callback.AddListener((data) => { OnButtonPointerEnter(); });
+                pointerEnter.callback.AddListener((data) => { buttonFinishHighlighted(buttonValue); });
+                eventTrigger.triggers.Add(pointerEnter);
+
+                // cursor keluar dari tombol
+                EventTrigger.Entry pointerExit = new EventTrigger.Entry();
+                pointerExit.eventID = EventTriggerType.PointerExit;
+                pointerExit.callback.AddListener((data) => { OnButtonPointerExit(); });
+                eventTrigger.triggers.Add(pointerExit);
             }
-        } while (GameFinish.gameFinish.isGameFinish && LevelStatus.levelStatus.levelID != 4 && !SceneSystem.sceneSystem.isChangeScene);
+
+
+        }
+
+    }
+
+    private void OnButtonPointerEnter()
+    {
+        isButtonHighlighted = true;
+    }
+
+    private void OnButtonPointerExit()
+    {
+        isButtonHighlighted = false;
+
     }
 
     void buttonFinishHighlighted(int value)
@@ -91,7 +117,15 @@ public class Finish : MonoBehaviour
         {
             if (MouseCursorActivated.mouseCursorActivated.isMouseActive)
             {
-                curValueButton = buttonHighlightedValue;
+                if (!isButtonHighlighted)
+                {
+                    curValueButton = 0;
+                    buttonHighlightedValue = 0;
+                }
+                else
+                {
+                    curValueButton = buttonHighlightedValue;
+                }
             }
             else
             {
@@ -182,37 +216,8 @@ public class Finish : MonoBehaviour
        
     }
 
-    void selectorPos()
-    {
-        if (LevelStatus.levelStatus.levelID != 4)
-        {
-            if (!MouseCursorActivated.mouseCursorActivated.isMouseActive && GameFinish.gameFinish.isGameFinish)
-            {
-                for (int j = 0; j < buttonSelectorPosY.Length; j++)
-                {
-                    if (curValueButton == j + 1)
-                    {
-                        buttonSelector.transform.localPosition = new Vector2(buttonSelector.transform.localPosition.x, buttonSelectorPosY[j]);
-                    }
-
-                }
-
-            }
-            for (int i = 0; i < buttonSelectorPosY.Length; i++)
-            {
-                if (MouseCursorActivated.mouseCursorActivated.isMouseActive)
-                {
-                    if (buttonHighlightedValue == i + 1)
-                    {
-                        buttonSelector.transform.localPosition = new Vector2(buttonSelector.transform.localPosition.x, buttonSelectorPosY[i]);
-                    }
-
-                }
-            }
-        }
+   
         
-    }
-
     IEnumerator waitToActive() 
     {
         yield return new WaitForSeconds(.1f);

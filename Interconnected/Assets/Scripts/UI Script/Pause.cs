@@ -15,16 +15,16 @@ public class Pause : MonoBehaviour
     [SerializeField] SceneSystem sceneSystem;
 
     [SerializeField] GameObject pauseUI;
-    [SerializeField] GameObject pauseSelector;
+    [SerializeField] GameObject inGameUI;
 
     [SerializeField] int curValueButton;
     [SerializeField] int[] curValueButtonIndex; // buat mouse cursor
     [SerializeField] int maxListButton;
     [SerializeField] int buttonHighlightedValue; // yang di highlight sama cursor mouse
 
-    [SerializeField] Button[] listPauseButton;
+    [SerializeField] bool isButtonHighlighted;
 
-    [SerializeField] Vector2[] pauseSelectorPos;
+    [SerializeField] Button[] listPauseButton;
 
     bool isDpadPressed = false;
 
@@ -36,8 +36,7 @@ public class Pause : MonoBehaviour
     private void Start()
     {
         mouseListener();
-        curValueButton = 1;
-        buttonHighlightedValue = 1;
+        
     }
     private void Update()
     {
@@ -48,6 +47,7 @@ public class Pause : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
             {
+
                 if (!isGamePaused)
                 {
                     isGamePaused = true;
@@ -58,19 +58,40 @@ public class Pause : MonoBehaviour
                 }
             }
         }
+        for(int i = 0; i < listPauseButton.Length; i++) 
+        {
+            if (curValueButton == i + 1)
+            {
+                listPauseButton[i].transform.localScale = Vector2.Lerp(listPauseButton[i].transform.localScale, new Vector2(1.1f, 1.1f), 10 * Time.unscaledDeltaTime);
+            }
+            else
+            {
+                listPauseButton[i].transform.localScale = Vector2.Lerp(listPauseButton[i].transform.localScale, new Vector2(1, 1), 16 * Time.unscaledDeltaTime);
+            }
+        }
         gamePaused();
         pauseInputConfirmButton();
         pauseInputListSelection();
-        selectorPos();
+
     }
     void gamePaused()
     {
+        
         if (isGamePaused)
         {
             pauseUI.SetActive(true);
+            inGameUI.SetActive(false);
             if (MouseCursorActivated.mouseCursorActivated.isMouseActive)
             {
-                curValueButton = buttonHighlightedValue;
+                if (!isButtonHighlighted)
+                {
+                    curValueButton = 0;
+                    buttonHighlightedValue = 0;
+                }
+                else
+                {
+                    curValueButton = buttonHighlightedValue;
+                }
             }
             else
             {
@@ -85,7 +106,11 @@ public class Pause : MonoBehaviour
         else
         {
             pauseUI.SetActive(false);
-            curValueButton = 1;
+            if(!GameFinish.gameFinish.isGameFinish && !GameOver.gameOver.isGameOver) 
+            {
+                inGameUI.SetActive(true);
+            }
+
             if(!Player1Health.player1Health.isSharingLivesToP2 && !Player2Health.player2Health.isSharingLivesToP1) 
             {
                 if(!GameOver.gameOver.isGameOver)
@@ -96,53 +121,54 @@ public class Pause : MonoBehaviour
 
         }
         
-        if(isGamePaused || sceneSystem.isRestartScene || sceneSystem.isExitScene) 
-        {
-            
-        }
-    }
-    void selectorPos() 
-    {
-        if(!MouseCursorActivated.mouseCursorActivated.isMouseActive && isGamePaused) 
-        {
-            for(int j = 0; j < pauseSelectorPos.Length; j++) 
-            {
-                if (curValueButton == j + 1) 
-                {
-                    pauseSelector.transform.localPosition = pauseSelectorPos[j];
-                }
-               
-            }
-            
-        }
-        for (int i = 0; i < pauseSelectorPos.Length; i++)
-        {
-            if (MouseCursorActivated.mouseCursorActivated.isMouseActive) 
-            {
-                if (buttonHighlightedValue == i + 1)
-                {
-                    pauseSelector.transform.localPosition = pauseSelectorPos[i];
-                }
-                
-            }            
-        }
+       
     }
 
-    private void mouseListener() 
+
+    private void mouseListener()
     {
-        do
+       
+        for (int j = 0; j < listPauseButton.Length; j++)
         {
-            for(int j = 0; j < listPauseButton.Length; j++) 
+            if (!SceneSystem.sceneSystem.isChangeScene)
             {
                 int buttonValue = curValueButtonIndex[j];
 
-                EventTrigger eventTrigger = listPauseButton[j].gameObject.AddComponent<EventTrigger>();
-                EventTrigger.Entry entry = new EventTrigger.Entry();
-                entry.eventID = EventTriggerType.PointerEnter;
-                entry.callback.AddListener((data) => { buttonPauseHighlighted(buttonValue); });
-                eventTrigger.triggers.Add(entry);
+                EventTrigger eventTrigger = listPauseButton[j].gameObject.GetComponent<EventTrigger>();
+
+                if (eventTrigger == null)
+                {
+                    eventTrigger = listPauseButton[j].gameObject.AddComponent<EventTrigger>();
+                }
+
+                // cursor masuk ke dalam tombol
+                EventTrigger.Entry pointerEnter = new EventTrigger.Entry();
+                pointerEnter.eventID = EventTriggerType.PointerEnter;
+                pointerEnter.callback.AddListener((data) => { OnButtonPointerEnter(); });
+                pointerEnter.callback.AddListener((data) => { buttonPauseHighlighted(buttonValue); });
+                eventTrigger.triggers.Add(pointerEnter);
+
+                // cursor keluar dari tombol
+                EventTrigger.Entry pointerExit = new EventTrigger.Entry();
+                pointerExit.eventID = EventTriggerType.PointerExit;
+                pointerExit.callback.AddListener((data) => { OnButtonPointerExit(); });
+                eventTrigger.triggers.Add(pointerExit);
             }
-        } while (isGamePaused && !SceneSystem.sceneSystem.isChangeScene);
+          
+           
+        }
+
+    }
+
+    private void OnButtonPointerEnter()
+    {
+        isButtonHighlighted = true;
+    }
+
+    private void OnButtonPointerExit()
+    {
+        isButtonHighlighted = false;
+       
     }
     void buttonPauseHighlighted(int value)
     {

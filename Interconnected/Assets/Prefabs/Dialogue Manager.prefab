@@ -47,10 +47,9 @@ MonoBehaviour:
   isDialogueActive: 1
   curTextValue: 0
   typingSpeedValue: 0
-  targetDialoguePos: 300
+  targetDialoguePos: 10
   isReadyToInteractWithDialogue: 0
   listDialogueString: []
   textDialogue: {fileID: 0}
   buttonDialogue: {fileID: 0}
   dialogueObject: {fileID: 0}
-  dialoguePanel: {fileID: 0}

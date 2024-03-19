@@ -10,19 +10,18 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] SceneSystem sceneSystem;
 
     [SerializeField] GameObject gameOverUI;
-    [SerializeField] GameObject buttonSelector;
 
     [SerializeField] int curValueButton;
     [SerializeField] int[] curValueButtonIndex; // buat mouse cursor
     [SerializeField] int maxListButton;
     [SerializeField] int buttonHighlightedValue; // yang di highlight sama cursor mouse
 
+    [SerializeField] bool isButtonHighlighted;
+
     [SerializeField] Button[] listGameOverButton;
-    [SerializeField] Button[] allButtonDisable;
 
     [SerializeField] TextMeshProUGUI textGameOverStatus;
 
-    [SerializeField] float[] buttonSelectorPosY;
 
     bool isDpadPressed = false;
 
@@ -30,8 +29,6 @@ public class GameOverUI : MonoBehaviour
     {
         gameOverUI.SetActive(false);
         mouseListener();
-        curValueButton = 1;
-        buttonHighlightedValue = 1;
     }
 
     private void Update()
@@ -40,9 +37,9 @@ public class GameOverUI : MonoBehaviour
         {
             if (SceneSystem.sceneSystem.isChangeScene)
             {
-                for (int k = 0; k < allButtonDisable.Length; k++)
+                for (int k = 0; k < listGameOverButton.Length; k++)
                 {
-                    allButtonDisable[k].interactable = false;
+                    listGameOverButton[k].enabled = false;
                 }
             }
             gameOverStatus();
@@ -51,7 +48,6 @@ public class GameOverUI : MonoBehaviour
         }
         inputConfirmButton();
         inputListSelection();
-        selectorPos();
     }
 
     void compareButtonValue()
@@ -60,45 +56,36 @@ public class GameOverUI : MonoBehaviour
         {
             if (MouseCursorActivated.mouseCursorActivated.isMouseActive)
             {
-                curValueButton = buttonHighlightedValue;
+                if (!isButtonHighlighted)
+                {
+                    curValueButton = 0;
+                    buttonHighlightedValue = 0;
+                }
+                else
+                {
+                    curValueButton = buttonHighlightedValue;
+                }
             }
             else
             {
                 buttonHighlightedValue = curValueButton;
             }
         }
-    }
 
-    void selectorPos()
-    {
-        if (LevelStatus.levelStatus.levelID != 4)
+        for (int i = 0; i < listGameOverButton.Length; i++)
         {
-            if (!MouseCursorActivated.mouseCursorActivated.isMouseActive && GameOver.gameOver.isGameOver)
+            if (curValueButton == i + 1)
             {
-                for (int j = 0; j < buttonSelectorPosY.Length; j++)
-                {
-                    if (curValueButton == j + 1)
-                    {
-                        buttonSelector.transform.localPosition = new Vector2(buttonSelector.transform.localPosition.x, buttonSelectorPosY[j]);
-                    }
-
-                }
-
+                listGameOverButton[i].transform.localScale = Vector2.Lerp(listGameOverButton[i].transform.localScale, new Vector2(1.1f, 1.1f), 10 * Time.unscaledDeltaTime);
             }
-            for (int i = 0; i < buttonSelectorPosY.Length; i++)
+            else
             {
-                if (MouseCursorActivated.mouseCursorActivated.isMouseActive)
-                {
-                    if (buttonHighlightedValue == i + 1)
-                    {
-                        buttonSelector.transform.localPosition = new Vector2(buttonSelector.transform.localPosition.x, buttonSelectorPosY[i]);
-                    }
-
-                }
+                listGameOverButton[i].transform.localScale = Vector2.Lerp(listGameOverButton[i].transform.localScale, new Vector2(1, 1), 16 * Time.unscaledDeltaTime);
             }
         }
-
     }
+
+   
 
     void gameOverStatus() 
     {
@@ -210,21 +197,49 @@ public class GameOverUI : MonoBehaviour
 
     private void mouseListener()
     {
-        do
+
+        for (int j = 0; j < listGameOverButton.Length; j++)
         {
-            for (int j = 0; j < listGameOverButton.Length; j++)
+            if (!SceneSystem.sceneSystem.isChangeScene)
             {
                 int buttonValue = curValueButtonIndex[j];
 
-                EventTrigger eventTrigger = listGameOverButton[j].gameObject.AddComponent<EventTrigger>();
-                EventTrigger.Entry entry = new EventTrigger.Entry();
-                entry.eventID = EventTriggerType.PointerEnter;
-                entry.callback.AddListener((data) => { buttonGameOverHighlighted(buttonValue); });
-                eventTrigger.triggers.Add(entry);
+                EventTrigger eventTrigger = listGameOverButton[j].gameObject.GetComponent<EventTrigger>();
+
+                if (eventTrigger == null)
+                {
+                    eventTrigger = listGameOverButton[j].gameObject.AddComponent<EventTrigger>();
+                }
+
+                // cursor masuk ke dalam tombol
+                EventTrigger.Entry pointerEnter = new EventTrigger.Entry();
+                pointerEnter.eventID = EventTriggerType.PointerEnter;
+                pointerEnter.callback.AddListener((data) => { OnButtonPointerEnter(); });
+                pointerEnter.callback.AddListener((data) => { buttonGameOverHighlighted(buttonValue); });
+                eventTrigger.triggers.Add(pointerEnter);
+
+                // cursor keluar dari tombol
+                EventTrigger.Entry pointerExit = new EventTrigger.Entry();
+                pointerExit.eventID = EventTriggerType.PointerExit;
+                pointerExit.callback.AddListener((data) => { OnButtonPointerExit(); });
+                eventTrigger.triggers.Add(pointerExit);
             }
-        } while (GameFinish.gameFinish.isGameFinish && LevelStatus.levelStatus.levelID != 4 && !SceneSystem.sceneSystem.isChangeScene);
+
+
+        }
+
     }
 
+    private void OnButtonPointerEnter()
+    {
+        isButtonHighlighted = true;
+    }
+
+    private void OnButtonPointerExit()
+    {
+        isButtonHighlighted = false;
+
+    }
     void buttonGameOverHighlighted(int value)
     {
         buttonHighlightedValue = value;

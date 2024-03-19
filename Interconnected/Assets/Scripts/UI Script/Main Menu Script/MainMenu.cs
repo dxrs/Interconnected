@@ -18,12 +18,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField] int buttonHighlightedValue;
 
     [SerializeField] bool isTransitionSceneActive;
-    [SerializeField] bool isLevelButtonHighlighted;
+    [SerializeField] bool isButtonHighlighted;
 
     [SerializeField] Button[] listMainMenuButton;
 
     [SerializeField] Image imageTransition;
-    [SerializeField] GameObject[] animatedButtonSelect;
 
     Color alphaColor;
 
@@ -65,10 +64,10 @@ public class MainMenu : MonoBehaviour
 
             if (MouseCursorActivated.mouseCursorActivated.isMouseActive)
             {
-                if (!isLevelButtonHighlighted) 
+                if (!isButtonHighlighted) 
                 {
                     curValueButton = 0;
-                    
+                    buttonHighlightedValue = 0;
                 }
                 else 
                 {
@@ -125,25 +124,25 @@ public class MainMenu : MonoBehaviour
 
     private void OnButtonPointerEnter()
     {
-        isLevelButtonHighlighted = true;
+        isButtonHighlighted = true;
     }
 
     private void OnButtonPointerExit()
     {
-        isLevelButtonHighlighted = false;
+        isButtonHighlighted = false;
     }
 
     private void compareValueButton() 
     {
-        for (int i = 0; i < animatedButtonSelect.Length - 1; i++)
+        for (int i = 0; i < listMainMenuButton.Length; i++)
         {
             if (curValueButton == i + 1)
             {
-                animatedButtonSelect[i].transform.localScale = Vector2.Lerp(animatedButtonSelect[i].transform.localScale, new Vector2(1.1f, 1.1f), 10 * Time.deltaTime);
+                listMainMenuButton[i].transform.localScale = Vector2.Lerp(listMainMenuButton[i].transform.localScale, new Vector2(1.1f, 1.1f), 10 * Time.deltaTime);
             }
             else
             {
-                animatedButtonSelect[i].transform.localScale = Vector2.Lerp(animatedButtonSelect[i].transform.localScale, new Vector2(1, 1), 16 * Time.deltaTime);
+                listMainMenuButton[i].transform.localScale = Vector2.Lerp(listMainMenuButton[i].transform.localScale, new Vector2(1, 1), 16 * Time.deltaTime);
             }
         }
     }

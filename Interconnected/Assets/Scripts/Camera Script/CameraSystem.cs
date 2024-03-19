@@ -54,17 +54,16 @@ public class CameraSystem : MonoBehaviour
     }
     private void LateUpdate()
     {
-        if (LevelStatus.levelStatus.levelID == 1) 
+        if (cameraTargetObject == null) { return; }
+       
+       
+        
+        if (LevelStatus.levelStatus.levelID == 1)
         {
             float newScaleX = cam.orthographicSize * (cam.aspect / 2f);
             float newScaleY = cam.orthographicSize / 2f;
 
             transform.localScale = new Vector3(newScaleX / camBoundariesScale.x, newScaleY / camBoundariesScale.y, 1f);
-        }
-       
-        if (cameraTargetObject == null) { return; }
-        if (LevelStatus.levelStatus.levelID == 1)
-        {
             if (!GameOver.gameOver.isGameOver
             && !GlobalVariable.globalVariable.isPlayerDestroyed)
             {

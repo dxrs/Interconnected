@@ -28,6 +28,10 @@ public class SelectLevel : MonoBehaviour
 
     [SerializeField] Button[] listLevelButton;
     [SerializeField] Button[] listContentButton;
+
+    [SerializeField] Image imageTransition;
+
+    Color alphaColor;
     private void Awake()
     {
         selectLevel = this;
@@ -39,6 +43,9 @@ public class SelectLevel : MonoBehaviour
         buttonHighlightedValue = LevelManager.levelManager.totalLevelUnlocked;
 
         Time.timeScale = 1;
+
+        alphaColor.a = 1;
+        imageTransition.color = alphaColor;
     }
     private void Update()
     {
@@ -52,6 +59,17 @@ public class SelectLevel : MonoBehaviour
         else 
         {
             isInputKeyboardChoose = true;
+        }
+
+        if (!SceneSystem.sceneSystem.isChangeScene) 
+        {
+            alphaColor.a = Mathf.MoveTowards(alphaColor.a, 0, 2 * Time.deltaTime);
+            imageTransition.color = alphaColor;
+        }
+        else 
+        {
+            alphaColor.a = Mathf.MoveTowards(alphaColor.a, 1, 2 * Time.deltaTime);
+            imageTransition.color = alphaColor;
         }
     }
     private void mouseListener()
@@ -97,9 +115,9 @@ public class SelectLevel : MonoBehaviour
     {
         if (isInputKeyboardChoose) 
         {
-            //curLevelSectionValue = Mathf.FloorToInt((curSelectLevelValue) / 3);
+            curLevelSectionValue = Mathf.FloorToInt((curSelectLevelValue) / 3);
 
-           
+           /*
             if (curSelectLevelValue == Mathf.Clamp(curSelectLevelValue, 0, 2))
             {
                 curLevelSectionValue = 0;
@@ -112,6 +130,7 @@ public class SelectLevel : MonoBehaviour
             {
                 curLevelSectionValue = 2;
             }
+           */
             
         }
        
@@ -181,7 +200,7 @@ public class SelectLevel : MonoBehaviour
         if (context.performed)
         {
             MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
-            if (!SceneSystem.sceneSystem.isChangeScene)
+            if (!SceneSystem.sceneSystem.isChangeScene && alphaColor.a <= 0)
             {
                 if (curSelectLevelValue < LevelManager.levelManager.totalLevelUnlocked)
                 {
@@ -197,7 +216,7 @@ public class SelectLevel : MonoBehaviour
         if (context.performed)
         {
             MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
-            if (!SceneSystem.sceneSystem.isChangeScene) 
+            if (!SceneSystem.sceneSystem.isChangeScene && alphaColor.a <= 0) 
             {
                 if (curSelectLevelValue > 0)
                 {
@@ -213,7 +232,7 @@ public class SelectLevel : MonoBehaviour
 
     public void onClickChooseLevelLeft() 
     {
-        if (!SceneSystem.sceneSystem.isChangeScene) 
+        if (!SceneSystem.sceneSystem.isChangeScene && alphaColor.a <= 0) 
         {
             if (curLevelSectionValue > 0) 
             {
@@ -228,7 +247,7 @@ public class SelectLevel : MonoBehaviour
     public void onClickChooseLevelRight() 
     {
        
-        if (!SceneSystem.sceneSystem.isChangeScene)
+        if (!SceneSystem.sceneSystem.isChangeScene && alphaColor.a <= 0)
         {
 
             if (curLevelSectionValue < LevelManager.levelManager.currentTotalLevelSection)
@@ -245,10 +264,10 @@ public class SelectLevel : MonoBehaviour
 
     public void onClickBackToMenu() 
     {
-        SceneSystem.sceneSystem.goingToMainMenu();
+        //SceneSystem.sceneSystem.goingToMainMenu();
         for(int n = 0; n < listContentButton.Length; n++) 
         {
-            listContentButton[n].enabled = false;
+           // listContentButton[n].enabled = false;
         }
     }
 }

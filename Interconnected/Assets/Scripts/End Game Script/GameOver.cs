@@ -43,7 +43,6 @@ public class GameOver : MonoBehaviour
             }
             if(Player1Health.player1Health.curPlayer1Health <= 0 || Player2Health.player2Health.curPlayer2Health <= 0) 
             {
-                Debug.Log(Time.timeScale);
                 globalVariable.playerInvisible();
                 if(!isSlowTime)
                 {

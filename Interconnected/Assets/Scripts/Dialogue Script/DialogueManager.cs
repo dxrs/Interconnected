@@ -43,19 +43,21 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
+        
         if (isDialogueActive) 
         {
             if (ReadyToStart.readyToStart.isGameStart)
             {
+                
                 if (!isReadyToInteractWithDialogue)
                 {
-                    dialogueObject.transform.position = Vector2.MoveTowards(dialogueObject.transform.position, new Vector2(dialogueObject.transform.position.x, targetDialoguePos), 2000 * Time.deltaTime);
+                    dialogueObject.transform.localPosition = Vector2.MoveTowards(dialogueObject.transform.localPosition, new Vector2(dialogueObject.transform.localPosition.x, targetDialoguePos), 2000 * Time.deltaTime);
                 }
 
                
 
             }
-            if (dialogueObject.transform.position.y >= targetDialoguePos)
+            if (dialogueObject.transform.localPosition.y == targetDialoguePos)
             {
                 isReadyToInteractWithDialogue = true;
 
