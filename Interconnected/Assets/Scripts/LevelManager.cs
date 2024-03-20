@@ -10,8 +10,8 @@ public class LevelManager : MonoBehaviour
     public int totalLevelUnlocked; // dipanggil menggunakan save data
     public int levelChoosed; // apabila pengen maen level sebelum totalLevelUnlocked;
     public int currentTotalLevelSection;
-    
 
+    public bool isLevelGame;
 
     private void Awake()
     {
@@ -22,13 +22,13 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         currentTotalLevelSection = (totalLevelUnlocked) / 3;
-        
+        //totalLevelUnlocked = PlayerPrefs.GetInt(SaveDataManager.saveDataManager.listDataManager[0]); // memanggil data level yang kebuka melalui array string yang ke 0 khusus level unlock data
     }
     private void Update()
     {
-        //SceneSystem.sceneSystem.currentLevelSelected();
+        
 
-        if (levelChoosed == Mathf.Clamp(levelChoosed, 0, 9)) 
+        if (levelChoosed == Mathf.Clamp(levelChoosed, 0, 10)) 
         {
             ChapterManager.chapterManager.chapterChoosed = 1;
         }
@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
     public void saveDataCurrentLevel() 
     {
         totalLevelUnlocked++;
+        //PlayerPrefs.SetInt(SaveDataManager.saveDataManager.listDataManager[0], totalLevelUnlocked);
         // save di sini
         // di panggil di game finish
     }

@@ -7,21 +7,19 @@ public class GarbageCollector : MonoBehaviour
 {
     public static GarbageCollector garbageCollector;
 
-    public float radius;
+    public float garbageCollectorRadiusScale;
 
-    public bool isGarbageStored;
+    public bool isAllGarbagesStored;
 
     public int[] playerReadyToStoreValue;
-
     public int garbageCollected;
     public int currentGarbageStored;
     public int targetGarbageStored;
     public int garbageDestroyedValue;
+    [HideInInspector] public int limitGarbageCollected = 5;
 
     [SerializeField] Transform player1;
     [SerializeField] Transform player2;
-
-    SpriteRenderer sr;
 
     private void Awake()
     {
@@ -29,7 +27,6 @@ public class GarbageCollector : MonoBehaviour
     }
     private void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
         GameObject[] currentGarbageFloating = GameObject.FindGameObjectsWithTag("Garbage");
         targetGarbageStored = currentGarbageFloating.Length;
     }
@@ -59,7 +56,7 @@ public class GarbageCollector : MonoBehaviour
             }
             else
             {
-                isGarbageStored = false;
+                isAllGarbagesStored = false;
             }
         }
         if (player1 && player2 != null)
@@ -73,9 +70,8 @@ public class GarbageCollector : MonoBehaviour
         if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isPlayerDestroyed) 
         {
             garbageCollected = 0;
-           // sr.enabled = false;
+
         }
-       // else { sr.enabled = true; }
     }
 
     
@@ -83,6 +79,6 @@ public class GarbageCollector : MonoBehaviour
     IEnumerator setIsGarbageStoredTtrue() 
     {
         yield return new WaitForSeconds(.3f);
-        isGarbageStored = true;
+        isAllGarbagesStored = true;
     }
 }

@@ -11,11 +11,12 @@ public class Garbage : MonoBehaviour
     [SerializeField] float blastRadius;
     [SerializeField] float garbageWeight;
 
-    [SerializeField] bool isGarbageStored;
+    [SerializeField] bool isPlayerBringGarbage;
     [SerializeField] bool isRotate;
 
     [SerializeField] string[] garbageBounceCollision;
 
+    [SerializeField] string garbageType;
 
 
     float lerpSpeed;
@@ -34,12 +35,10 @@ public class Garbage : MonoBehaviour
     GameObject garbageWhirlpool;
 
     Vector2 garbagePosition;
-
-    Vector2 maxGarbageScale = new Vector2(0.6f, 0.6f);
-    Vector2 minGarbageScale = new Vector2(0.3f, 0.3f);
+    Vector2 scaleGarbageAtCenterPoint = new Vector2(0.7f, 0.7f);
 
     bool isGarbageDestroying = false;
-    
+    bool hasRotated = false;
 
     private void Start()
     {
@@ -54,8 +53,6 @@ public class Garbage : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
         }
-
-        transform.localScale = maxGarbageScale;
     }
 
     private void Update()
@@ -63,26 +60,34 @@ public class Garbage : MonoBehaviour
         garbageStoringFunction();
         if(!GameFinish.gameFinish.isGameFinish) 
         {
-            if (isGarbageCollected && !isGarbageStored)
+            if (isGarbageCollected && !isPlayerBringGarbage)
             {
-                if (!GarbageCollector.garbageCollector.isGarbageStored) 
+                if (!GarbageCollector.garbageCollector.isAllGarbagesStored) 
                 {
                     if (LinkRay.linkRay.isPlayerLinkedEachOther && !GlobalVariable.globalVariable.isPlayerDestroyed)
                     {
                         garbagePosition = garbageColldector.transform.position;
+                        if (garbageType=="Standart Garbage") 
+                        {
+                            posX = garbagePosition.x + GarbageCollector.garbageCollector.garbageCollectorRadiusScale * Mathf.Cos(Mathf.Deg2Rad * angle);
+                            posY = garbagePosition.y + GarbageCollector.garbageCollector.garbageCollectorRadiusScale * Mathf.Sin(Mathf.Deg2Rad * angle);
 
+                            transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), lerpSpeed * Time.deltaTime);
+                        }
+                        if(garbageType=="Special Garbage") 
+                        {
+                            transform.position = Vector2.Lerp(transform.position, garbagePosition, lerpSpeed * Time.deltaTime);
+                        }
+                       
+                       
                         pc.enabled = false;
 
-                        posX = garbagePosition.x + GarbageCollector.garbageCollector.radius * Mathf.Cos(Mathf.Deg2Rad * angle);
-                        posY = garbagePosition.y + GarbageCollector.garbageCollector.radius * Mathf.Sin(Mathf.Deg2Rad * angle);
-
-                        transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), lerpSpeed * Time.deltaTime);
-                        
+                       
                     }
                 }
                 else 
                 {
-                    isGarbageStored = true;
+                    isPlayerBringGarbage = true;
                     
                     StartCoroutine(garbageIsStoring());
                 }
@@ -91,10 +96,7 @@ public class Garbage : MonoBehaviour
                 {
                     if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isPlayerDestroyed)
                     {
-                        if (isRotate)
-                        {
-                            transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
-                        }
+                        
                         garbageBlast();
                     }
                 }
@@ -102,10 +104,7 @@ public class Garbage : MonoBehaviour
                 {
                     if (Player1Health.player1Health.curPlayer1Health <= 0 || Player2Health.player2Health.curPlayer2Health <= 0)
                     {
-                        if (isRotate)
-                        {
-                            transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
-                        }
+                      
                         garbageBlast();
                     }
                 }
@@ -117,7 +116,6 @@ public class Garbage : MonoBehaviour
             if (!isGarbageCollected)
             {
                 
-                transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(.6f,.6f), 1f * Time.deltaTime);
                 pc.enabled = true;
                 StartCoroutine(garbageRigidBrake(1f));
             }
@@ -144,12 +142,29 @@ public class Garbage : MonoBehaviour
 
     private void garbageStoringFunction()
     {
-        if (isGarbageCollected && isGarbageStored)
+        if (isGarbageCollected && isPlayerBringGarbage)
         {
             garbagePosition = garbageWhirlpool.transform.position;
-            posX = garbagePosition.x + randomRadius * Mathf.Cos(Mathf.Deg2Rad * angle);
-            posY = garbagePosition.y + randomRadius * Mathf.Sin(Mathf.Deg2Rad * angle);
-            transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), 2 * Time.deltaTime);
+            
+            if(garbageType=="Standart Garbage")
+            {
+                posX = garbagePosition.x + randomRadius * Mathf.Cos(Mathf.Deg2Rad * angle);
+                posY = garbagePosition.y + randomRadius * Mathf.Sin(Mathf.Deg2Rad * angle);
+                transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), 2 * Time.deltaTime);
+                if (!isRotate)
+                {
+                   
+
+                    transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360)).normalized;
+                    isRotate = true;
+                }
+            }
+            if(garbageType=="Special Garbage") 
+            {
+                transform.position = Vector2.Lerp(transform.position, garbagePosition, 2 * Time.deltaTime);
+            }
+            
+            
             if (!isGarbageDestroying)
             {
                 GarbageCollector.garbageCollector.currentGarbageStored++;
@@ -158,6 +173,14 @@ public class Garbage : MonoBehaviour
             if (GarbageCenterPoint.garbageCenterPoint.isGarbageIsReadyToDestroy)
             {
                 StartCoroutine(garbageDestroying());
+            }
+            else 
+            {
+                if(garbageType == "Standart Garbage") 
+                {
+                    transform.localScale = Vector2.Lerp(transform.localScale, scaleGarbageAtCenterPoint, 4 * Time.deltaTime);
+                }
+                
             }
 
 
@@ -190,14 +213,18 @@ public class Garbage : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Laser Rope")) 
         {
-            if(Player1Movement.player1Movement.curMaxSpeed > 1 && Player2Movement.player2Movement.curMaxSpeed > 1) 
+            if (GarbageCollector.garbageCollector.garbageCollected <= GarbageCollector.garbageCollector.limitGarbageCollected) 
             {
-                Player1Movement.player1Movement.curMaxSpeed -= garbageWeight;
-                Player2Movement.player2Movement.curMaxSpeed -= garbageWeight;
-               
-                isGarbageCollected = true;
-                rb.drag = 0;
+                if (Player1Movement.player1Movement.curMaxSpeed > 1 && Player2Movement.player2Movement.curMaxSpeed > 1)
+                {
+                    Player1Movement.player1Movement.curMaxSpeed -= garbageWeight;
+                    Player2Movement.player2Movement.curMaxSpeed -= garbageWeight;
+
+                    isGarbageCollected = true;
+                    rb.drag = 0;
+                }
             }
+          
            
         }
 

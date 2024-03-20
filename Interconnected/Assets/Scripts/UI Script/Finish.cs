@@ -26,6 +26,7 @@ public class Finish : MonoBehaviour
     [SerializeField] Button[] listFinishButton;
 
     bool isDpadPressed = false;
+    bool isSaving = false;
 
     private void Start()
     {
@@ -145,6 +146,11 @@ public class Finish : MonoBehaviour
                     if (curValueButton == 1)
                     {
                         sceneSystem.isNextScene = true;
+                        if (!isSaving) 
+                        {
+                            LevelManager.levelManager.saveDataCurrentLevel();
+                            isSaving = true;
+                        }
                         //kalau continue save data totalLevelUnlocked dari script level manager
                     }
 
@@ -228,6 +234,7 @@ public class Finish : MonoBehaviour
     public void onClickContinue()
     {
         sceneSystem.isNextScene = true;
+        LevelManager.levelManager.saveDataCurrentLevel();
         //kalau continue save data totalLevelUnlocked dari script level manager
     }
     public void onClickExit()

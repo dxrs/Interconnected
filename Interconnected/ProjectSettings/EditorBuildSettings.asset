@@ -38,8 +38,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene Select Level/Select Level Chapter 1.unity
     guid: 4a36bce2fc37657488dc71550c4e3621
-  - enabled: 1
-    path: Assets/Scenes/Scene Select Level/Select Level Chapter 2.unity
-    guid: 8966c9ff5f40049419276c20ea1efb3d
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 8ceffad9d85043543a3bee22719a7b9b, type: 2}

@@ -26,6 +26,8 @@ public class Pause : MonoBehaviour
 
     [SerializeField] Button[] listPauseButton;
 
+    [SerializeField] Button buttonPause;
+
     bool isDpadPressed = false;
 
 
@@ -45,6 +47,7 @@ public class Pause : MonoBehaviour
             ReadyToStart.readyToStart.isGameStart &&
             !DialogueManager.dialogueManager.isDialogueActive) 
         {
+            buttonPause.enabled = true;
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
             {
 
@@ -57,6 +60,10 @@ public class Pause : MonoBehaviour
                     isGamePaused = false;
                 }
             }
+        }
+        else 
+        {
+            buttonPause.enabled = false;
         }
         for(int i = 0; i < listPauseButton.Length; i++) 
         {
@@ -262,5 +269,13 @@ public class Pause : MonoBehaviour
     public void onClickExit() 
     {
         sceneSystem.isExitScene = true;
+    }
+
+    public void onClickButtonPause() 
+    {
+        if (!isGamePaused)
+        {
+            isGamePaused = true;
+        }
     }
 }

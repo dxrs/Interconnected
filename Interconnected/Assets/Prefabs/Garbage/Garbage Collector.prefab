@@ -45,12 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb1ed80c0457b24d8cdce26d98e48bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0.3
-  isGarbageStored: 0
+  garbageCollectorRadiusScale: 1.5
+  isAllGarbagesStored: 0
   playerReadyToStoreValue: 0000000000000000
   garbageCollected: 0
   currentGarbageStored: 0
   targetGarbageStored: 0
+  garbageDestroyedValue: 0
+  limitGarbageCollected: 5
   player1: {fileID: 0}
   player2: {fileID: 0}
 --- !u!58 &7178373797203147147

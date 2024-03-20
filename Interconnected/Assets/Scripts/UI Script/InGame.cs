@@ -6,6 +6,8 @@ using TMPro;
 
 public class InGame : MonoBehaviour
 {
+    public static InGame inGameUI;
+
     [SerializeField] TextMeshProUGUI textMainObjective;
     [SerializeField] TextMeshProUGUI textShareLivesAvailable;
 
@@ -13,11 +15,17 @@ public class InGame : MonoBehaviour
 
     [SerializeField] bool isBarFillDecrease;
 
-    [SerializeField] float barScaleX_Max;
+    [SerializeField] GameObject shareLivesBar;
 
+
+
+    private void Awake()
+    {
+        inGameUI = this;
+    }
     private void Start()
     {
-        imageShareLivesBar.enabled = false;
+        
     }
     private void Update()
     {
@@ -29,22 +37,26 @@ public class InGame : MonoBehaviour
 
         if (isBarFillDecrease) 
         {
-            textShareLivesAvailable.enabled = false;
-            imageShareLivesBar.enabled = true;
-            imageShareLivesBar.transform.localScale = Vector2.MoveTowards(imageShareLivesBar.transform.localScale, new Vector2(0, .2f), GlobalVariable.globalVariable.deltaTimeValueShareLives / 2 * Time.deltaTime);
-        }
-        else 
-        {
-            imageShareLivesBar.enabled = false;
-            imageShareLivesBar.transform.localScale = new Vector2(barScaleX_Max, .2f);
+            imageShareLivesBar.fillAmount = GlobalVariable.globalVariable.curShareLivesDelayTime / 10f;
 
-            if(Player1Health.player1Health.curPlayer1Health > 1 && Player2Health.player2Health.curPlayer2Health < 4 || Player2Health.player2Health.curPlayer2Health > 1 && Player1Health.player1Health.curPlayer1Health < 4) 
+            if (imageShareLivesBar.fillAmount <= 0)
             {
-                textShareLivesAvailable.enabled = true;
+                imageShareLivesBar.fillAmount = 1;
+
+            }
+        }
+        if(!isBarFillDecrease) 
+        {
+            
+            
+
+            if (Player1Health.player1Health.curPlayer1Health > 1 && Player2Health.player2Health.curPlayer2Health < 4 || Player2Health.player2Health.curPlayer2Health > 1 && Player1Health.player1Health.curPlayer1Health < 4) 
+            {
+                shareLivesBar.SetActive(true);
             }
             else 
             {
-                textShareLivesAvailable.enabled = false;
+                shareLivesBar.SetActive(false);
             }
         }
         if (GlobalVariable.globalVariable.curShareLivesDelayTime > 0) 
@@ -56,4 +68,8 @@ public class InGame : MonoBehaviour
             isBarFillDecrease = false;
         }
     }
+
+   
+
+   
 }

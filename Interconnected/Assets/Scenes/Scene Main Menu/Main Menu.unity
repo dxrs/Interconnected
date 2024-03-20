@@ -1080,6 +1080,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 514133321}
   m_CullTransparentMesh: 1
+--- !u!1 &917171947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 917171949}
+  - component: {fileID: 917171948}
+  m_Layer: 0
+  m_Name: Save Data Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &917171948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917171947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeae24f9806bb8841a5ebee147761139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listDataManager:
+  - Current_Level
+--- !u!4 &917171949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917171947}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1010009171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1824,17 +1870,12 @@ MonoBehaviour:
   maxListButton: 3
   buttonHighlightedValue: 0
   isTransitionSceneActive: 0
-  isLevelButtonHighlighted: 0
+  isButtonHighlighted: 0
   listMainMenuButton:
   - {fileID: 514133323}
   - {fileID: 1630627831}
   - {fileID: 1676384760}
   imageTransition: {fileID: 1672204173}
-  animatedButtonSelect:
-  - {fileID: 514133321}
-  - {fileID: 1630627829}
-  - {fileID: 1676384758}
-  - {fileID: 215451849}
 --- !u!1 &2020395208
 GameObject:
   m_ObjectHideFlags: 0

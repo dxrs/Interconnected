@@ -154,6 +154,7 @@ public class Tutorial : MonoBehaviour
     public void onButtonContinuePressed() 
     {
         SceneSystem.sceneSystem.isNextScene = true;
+        LevelManager.levelManager.saveDataCurrentLevel();
     }
     
 }

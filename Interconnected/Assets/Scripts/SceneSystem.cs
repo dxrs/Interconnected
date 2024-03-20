@@ -23,6 +23,11 @@ public class SceneSystem : MonoBehaviour
         sceneSystem = this;
     }
 
+    private void Start()
+    {
+        currentLevelSelected();
+    }
+
     private void Update()
     {
         if (isRestartScene)  // restart level
@@ -43,9 +48,17 @@ public class SceneSystem : MonoBehaviour
         }
     }
 
-    public void currentLevelSelected() 
+    void currentLevelSelected() 
     {
-        LevelManager.levelManager.levelChoosed = SceneManager.GetActiveScene().buildIndex - 1;
+        if(LevelManager.levelManager != null) 
+        {
+            if (LevelManager.levelManager.isLevelGame)
+            {
+                LevelManager.levelManager.levelChoosed = SceneManager.GetActiveScene().buildIndex - 1;
+            }
+        }
+       
+        
     }
 
     public void levelNumber(int number) 
@@ -62,7 +75,7 @@ public class SceneSystem : MonoBehaviour
     public void goingToSelectLevelPerChapter() 
     {
         isChangeScene = true;
-        StartCoroutine(waitTSelectLevelScene());
+        StartCoroutine(waitTSelectLevelChapterPerIndex());
     }
 
     public void goingToTutorialScene() 
@@ -110,7 +123,7 @@ public class SceneSystem : MonoBehaviour
 
     IEnumerator waitToSceneMainMenu()
     {
-        yield return new WaitForSeconds(delayTimeNextScene);
+        yield return new WaitForSeconds(delayPreviousScene);
         //SceneManager.LoadScene(1);
         SceneManager.LoadScene("Main Menu");
     }
@@ -121,9 +134,9 @@ public class SceneSystem : MonoBehaviour
         SceneManager.LoadScene(currentRestartScene);
     }
 
-    IEnumerator waitTSelectLevelScene() // dari level kembali ke select level
+    IEnumerator waitTSelectLevelChapterPerIndex() // dari level kembali ke select level
     {
-        yield return new WaitForSeconds(delayTimeExit);
+        yield return new WaitForSeconds(delayTimeNextScene);
         SceneManager.LoadScene("Select Level Chapter " + SelectChapter.selectChapter.curValueButton); 
                                    
     }

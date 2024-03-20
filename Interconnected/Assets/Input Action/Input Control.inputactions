@@ -589,6 +589,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Navigation Back",
+                    "type": "Button",
+                    "id": "67a61723-e8eb-4039-817f-122ff7eaee1f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -655,6 +664,28 @@
                     "processors": "",
                     "groups": "Gamepad Scheme",
                     "action": "Navigation Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b85d1a06-3bea-48f7-94f3-40c892b5197e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard Scheme",
+                    "action": "Navigation Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "186d5968-7afb-4852-99e1-ef72fa90a799",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad Scheme",
+                    "action": "Navigation Back",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

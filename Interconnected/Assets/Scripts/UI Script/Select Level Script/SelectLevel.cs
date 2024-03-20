@@ -228,6 +228,19 @@ public class SelectLevel : MonoBehaviour
         }
     }
 
+    public void inputNavigationBack(InputAction.CallbackContext context) 
+    {
+        if (context.performed) 
+        {
+            MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+            SceneSystem.sceneSystem.goingToChapterSelect();
+            for (int n = 0; n < listContentButton.Length; n++)
+            {
+                listContentButton[n].enabled = false;
+            }
+        }
+    }
+
    
 
     public void onClickChooseLevelLeft() 
@@ -264,10 +277,10 @@ public class SelectLevel : MonoBehaviour
 
     public void onClickBackToMenu() 
     {
-        //SceneSystem.sceneSystem.goingToMainMenu();
+        SceneSystem.sceneSystem.goingToChapterSelect();
         for(int n = 0; n < listContentButton.Length; n++) 
         {
-           // listContentButton[n].enabled = false;
+             listContentButton[n].enabled = false;
         }
     }
 }

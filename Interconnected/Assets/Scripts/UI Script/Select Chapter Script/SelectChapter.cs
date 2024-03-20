@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class SelectChapter : MonoBehaviour
@@ -116,6 +117,27 @@ public class SelectChapter : MonoBehaviour
             }
         }
        
+    }
+
+    public void navigationConfirm(InputAction.CallbackContext context) 
+    {
+        if (context.performed) 
+        {
+            if (curValueButton != 0) 
+            {
+                isSelectChapterActive = false;
+                SceneSystem.sceneSystem.goingToSelectLevelPerChapter();
+            }
+           
+        }
+    }
+    public void navigationBack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            isSelectChapterActive = false;
+            SceneSystem.sceneSystem.goingToMainMenu();
+        }
     }
 
     public void onClickButtonChapter() 

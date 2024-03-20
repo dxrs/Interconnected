@@ -55,7 +55,7 @@ public class ButtonSelectLevel : MonoBehaviour
             isButtonLocked = true;
         }
 
-        if (idLevel > 1) // artinya setelah scene tutorial, karena indexnya 1
+        if (idLevel > 0) // artinya setelah scene tutorial, karena indexnya 1
         {
             if (isButtonLocked)
             {

@@ -38,7 +38,7 @@ public class GlobalVariable : MonoBehaviour
     [SerializeField] GameObject[] wallDestroyer;
 
 
-    float maxShareLivesDelayTime = 10;
+    [HideInInspector] public float maxShareLivesDelayTime = 10;
 
     GameObject player1, player2;
 

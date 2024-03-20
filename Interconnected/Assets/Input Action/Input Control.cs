@@ -611,6 +611,15 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Navigation Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""67a61723-e8eb-4039-817f-122ff7eaee1f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -677,6 +686,28 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad Scheme"",
                     ""action"": ""Navigation Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b85d1a06-3bea-48f7-94f3-40c892b5197e"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard Scheme"",
+                    ""action"": ""Navigation Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""186d5968-7afb-4852-99e1-ef72fa90a799"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad Scheme"",
+                    ""action"": ""Navigation Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -839,6 +870,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         m_SelectLevel_NavigationLeft = m_SelectLevel.FindAction("Navigation Left", throwIfNotFound: true);
         m_SelectLevel_NavigationRIght = m_SelectLevel.FindAction("Navigation RIght", throwIfNotFound: true);
         m_SelectLevel_NavigationConfirm = m_SelectLevel.FindAction("Navigation Confirm", throwIfNotFound: true);
+        m_SelectLevel_NavigationBack = m_SelectLevel.FindAction("Navigation Back", throwIfNotFound: true);
         // Select Chapter
         m_SelectChapter = asset.FindActionMap("Select Chapter", throwIfNotFound: true);
         m_SelectChapter_NavigationMoveMap = m_SelectChapter.FindAction("Navigation Move Map", throwIfNotFound: true);
@@ -1174,6 +1206,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_SelectLevel_NavigationLeft;
     private readonly InputAction m_SelectLevel_NavigationRIght;
     private readonly InputAction m_SelectLevel_NavigationConfirm;
+    private readonly InputAction m_SelectLevel_NavigationBack;
     public struct SelectLevelActions
     {
         private @InputControl m_Wrapper;
@@ -1181,6 +1214,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         public InputAction @NavigationLeft => m_Wrapper.m_SelectLevel_NavigationLeft;
         public InputAction @NavigationRIght => m_Wrapper.m_SelectLevel_NavigationRIght;
         public InputAction @NavigationConfirm => m_Wrapper.m_SelectLevel_NavigationConfirm;
+        public InputAction @NavigationBack => m_Wrapper.m_SelectLevel_NavigationBack;
         public InputActionMap Get() { return m_Wrapper.m_SelectLevel; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1199,6 +1233,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @NavigationConfirm.started += instance.OnNavigationConfirm;
             @NavigationConfirm.performed += instance.OnNavigationConfirm;
             @NavigationConfirm.canceled += instance.OnNavigationConfirm;
+            @NavigationBack.started += instance.OnNavigationBack;
+            @NavigationBack.performed += instance.OnNavigationBack;
+            @NavigationBack.canceled += instance.OnNavigationBack;
         }
 
         private void UnregisterCallbacks(ISelectLevelActions instance)
@@ -1212,6 +1249,9 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
             @NavigationConfirm.started -= instance.OnNavigationConfirm;
             @NavigationConfirm.performed -= instance.OnNavigationConfirm;
             @NavigationConfirm.canceled -= instance.OnNavigationConfirm;
+            @NavigationBack.started -= instance.OnNavigationBack;
+            @NavigationBack.performed -= instance.OnNavigationBack;
+            @NavigationBack.canceled -= instance.OnNavigationBack;
         }
 
         public void RemoveCallbacks(ISelectLevelActions instance)
@@ -1351,6 +1391,7 @@ public partial class @InputControl: IInputActionCollection2, IDisposable
         void OnNavigationLeft(InputAction.CallbackContext context);
         void OnNavigationRIght(InputAction.CallbackContext context);
         void OnNavigationConfirm(InputAction.CallbackContext context);
+        void OnNavigationBack(InputAction.CallbackContext context);
     }
     public interface ISelectChapterActions
     {

@@ -8,6 +8,7 @@ public class CameraSystem : MonoBehaviour
     [SerializeField] Camera cam;
 
     [SerializeField] List<Transform> cameraTargetObject;
+    [SerializeField] Transform garbageCenterPointTransform;
 
     [SerializeField] Vector3 cameraOffset;
 
@@ -21,6 +22,7 @@ public class CameraSystem : MonoBehaviour
     [SerializeField] float[] camPosX;
 
     [SerializeField] GameObject camBoundaries;
+
 
     Vector3 cameraVelocity;
 
@@ -65,6 +67,7 @@ public class CameraSystem : MonoBehaviour
 
             transform.localScale = new Vector3(newScaleX / camBoundariesScale.x, newScaleY / camBoundariesScale.y, 1f);
             if (!GameOver.gameOver.isGameOver
+                && GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue != 2
             && !GlobalVariable.globalVariable.isPlayerDestroyed)
             {
                 if (cameraTargetObject[0] != null && cameraTargetObject[1] != null)
@@ -77,7 +80,7 @@ public class CameraSystem : MonoBehaviour
                 }
 
             }
-            if (GameOver.gameOver.isGameOver)
+            if (GameOver.gameOver.isGameOver && GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue != 2)
             {
                 if (Timer.timerInstance.isTimerLevel)
                 {
@@ -89,11 +92,11 @@ public class CameraSystem : MonoBehaviour
                             {
                                 if (Player1Health.player1Health.curPlayer1Health <= 0)
                                 {
-                                    focusOnNoobPlayer(cameraTargetObject[0]);
+                                    focusOnSpecificObject(cameraTargetObject[0]);
                                 }
                                 if (Player2Health.player2Health.curPlayer2Health <= 0)
                                 {
-                                    focusOnNoobPlayer(cameraTargetObject[1]);
+                                    focusOnSpecificObject(cameraTargetObject[1]);
                                 }
                             }
                         }
@@ -107,17 +110,21 @@ public class CameraSystem : MonoBehaviour
                         {
                             if (Player1Health.player1Health.curPlayer1Health <= 0)
                             {
-                                focusOnNoobPlayer(cameraTargetObject[0]);
+                                focusOnSpecificObject(cameraTargetObject[0]);
                             }
                             if (Player2Health.player2Health.curPlayer2Health <= 0)
                             {
-                                focusOnNoobPlayer(cameraTargetObject[1]);
+                                focusOnSpecificObject(cameraTargetObject[1]);
                             }
                         }
                     }
                 }
 
 
+            }
+            if (GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue == 2) 
+            {
+                focusOnSpecificObject(garbageCenterPointTransform);
             }
         }
         if (LevelStatus.levelStatus.levelID == 4) 
@@ -181,7 +188,7 @@ public class CameraSystem : MonoBehaviour
         return bounds.center;
     }
 
-    private void focusOnNoobPlayer(Transform playerTransform)
+    private void focusOnSpecificObject(Transform playerTransform)
     {
         Vector3 newCameraPosition = playerTransform.position + cameraOffset;
         float newZoom = Mathf.Lerp(cameraMaxZoom, 1f, camBoundDistance() / cameraZoomLimiter);
