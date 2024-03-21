@@ -25,6 +25,7 @@ public class SelectLevel : MonoBehaviour
     [SerializeField] int buttonHighlightedValue;
 
     [SerializeField] GameObject[] typeLevelObject;
+    [SerializeField] GameObject transitionObject;
 
     [SerializeField] Button[] listLevelButton;
     [SerializeField] Button[] listContentButton;
@@ -35,6 +36,7 @@ public class SelectLevel : MonoBehaviour
     private void Awake()
     {
         selectLevel = this;
+        transitionObject.SetActive(true);
     }
     private void Start()
     {
@@ -49,6 +51,7 @@ public class SelectLevel : MonoBehaviour
     }
     private void Update()
     {
+        if (buttonHighlightedValue > listLevelButton.Length) { buttonHighlightedValue = listLevelButton.Length - 1; }
         curSelectLevelValue = buttonHighlightedValue;
         compareLevelTypeValue();
         compareSectionValue();
@@ -204,7 +207,11 @@ public class SelectLevel : MonoBehaviour
             {
                 if (curSelectLevelValue < LevelManager.levelManager.totalLevelUnlocked)
                 {
-                    buttonHighlightedValue++;
+                    if (buttonHighlightedValue < listLevelButton.Length - 1)
+                    {
+                        buttonHighlightedValue++;
+                    }
+                   
                 }
             }
            

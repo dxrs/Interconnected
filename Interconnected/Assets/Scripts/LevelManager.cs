@@ -10,9 +10,10 @@ public class LevelManager : MonoBehaviour
     public int totalLevelUnlocked; // dipanggil menggunakan save data
     public int levelChoosed; // apabila pengen maen level sebelum totalLevelUnlocked;
     public int currentTotalLevelSection;
-
+    
     public bool isLevelGame;
 
+    [SerializeField] int maxSection = 3;
     private void Awake()
     {
         levelManager = this;
@@ -26,7 +27,10 @@ public class LevelManager : MonoBehaviour
     }
     private void Update()
     {
-        
+        if (currentTotalLevelSection > maxSection) 
+        {
+            currentTotalLevelSection = 3;
+        }
 
         if (levelChoosed == Mathf.Clamp(levelChoosed, 0, 10)) 
         {

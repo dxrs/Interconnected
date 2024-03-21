@@ -181,6 +181,7 @@ MonoBehaviour:
   - {fileID: 1311966217}
   - {fileID: 534107258}
   imageTransition: {fileID: 1690693542}
+  transitionObject: {fileID: 1690693540}
 --- !u!114 &48257266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,6 +343,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1cca230b-a077-4ef1-9fef-2d79c6226a04
     m_ActionName: Select Chapter/Navigation Confirm[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 67a61723-e8eb-4039-817f-122ff7eaee1f
+    m_ActionName: Select Level/Navigation Back[/Keyboard/escape,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Select Chapter
@@ -2226,7 +2231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1690693541
 RectTransform:
   m_ObjectHideFlags: 0

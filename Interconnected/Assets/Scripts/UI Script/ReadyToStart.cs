@@ -11,13 +11,15 @@ public class ReadyToStart : MonoBehaviour
     public bool isGameStart;
 
     [SerializeField] Image imageTransition;
+    [SerializeField] GameObject transitionObject;
 
     Color alphaColor;
 
- 
+    
     private void Awake()
     {
         readyToStart = this;
+        transitionObject.SetActive(true);
     }
 
     private void Start()

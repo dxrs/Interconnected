@@ -19,7 +19,7 @@ public class SaveDataManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("Nilai listDataManager[0]: " + PlayerPrefs.GetInt(listDataManager[0]));
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         if (!PlayerPrefs.HasKey(listDataManager[0])) 
         {
             //PlayerPrefs.SetInt(listDataManager[0], 0); // data level mulai dari 0, 0 adalah tutorial

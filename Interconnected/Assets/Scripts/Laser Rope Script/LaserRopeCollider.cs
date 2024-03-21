@@ -11,7 +11,11 @@ public class LaserRopeCollider : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Garbage")) 
         {
-            GarbageCollector.garbageCollector.garbageCollected++;
+            if (GarbageCollector.garbageCollector.garbageCollected < GarbageCollector.garbageCollector.limitGarbageCollected) 
+            {
+                GarbageCollector.garbageCollector.garbageCollected++;
+            }
+                
         }
     }
    

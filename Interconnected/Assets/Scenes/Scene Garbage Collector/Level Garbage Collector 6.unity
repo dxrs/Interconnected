@@ -5854,7 +5854,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9218205163520336138, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: onClickExit
+      value: onClickContinue
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218205163575984446, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9218205164653441785, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
       propertyPath: m_AnchoredPosition.x

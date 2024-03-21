@@ -23,12 +23,15 @@ public class SelectChapter : MonoBehaviour
 
     [SerializeField] Image imageTransition;
 
+    [SerializeField] GameObject transitionObject;
+
     Color alpahColor;
  
     private void Awake()
     {
         selectChapter = this;
         isSelectChapterActive = true;
+        transitionObject.SetActive(true);
     }
 
     private void Start()

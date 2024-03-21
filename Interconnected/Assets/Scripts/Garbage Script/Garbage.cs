@@ -13,6 +13,8 @@ public class Garbage : MonoBehaviour
 
     [SerializeField] bool isPlayerBringGarbage;
     [SerializeField] bool isRotate;
+    [SerializeField] bool isCanBeCollected;
+
 
     [SerializeField] string[] garbageBounceCollision;
 
@@ -38,7 +40,7 @@ public class Garbage : MonoBehaviour
     Vector2 scaleGarbageAtCenterPoint = new Vector2(0.7f, 0.7f);
 
     bool isGarbageDestroying = false;
-    bool hasRotated = false;
+
 
     private void Start()
     {
@@ -58,7 +60,12 @@ public class Garbage : MonoBehaviour
     private void Update()
     {
         garbageStoringFunction();
-        if(!GameFinish.gameFinish.isGameFinish) 
+        if (GarbageCollector.garbageCollector.garbageCollected >= GarbageCollector.garbageCollector.limitGarbageCollected) 
+        {
+            isCanBeCollected = true;
+        }
+        else { isCanBeCollected = false; }
+        if (!GameFinish.gameFinish.isGameFinish) 
         {
             if (isGarbageCollected && !isPlayerBringGarbage)
             {
@@ -213,14 +220,15 @@ public class Garbage : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Laser Rope")) 
         {
-            if (GarbageCollector.garbageCollector.garbageCollected <= GarbageCollector.garbageCollector.limitGarbageCollected) 
+            
             {
-                if (Player1Movement.player1Movement.curMaxSpeed > 1 && Player2Movement.player2Movement.curMaxSpeed > 1)
+             
+                if (Player1Movement.player1Movement.curMaxSpeed > 1 && Player2Movement.player2Movement.curMaxSpeed > 1 && !isCanBeCollected)
                 {
                     Player1Movement.player1Movement.curMaxSpeed -= garbageWeight;
                     Player2Movement.player2Movement.curMaxSpeed -= garbageWeight;
-
                     isGarbageCollected = true;
+
                     rb.drag = 0;
                 }
             }

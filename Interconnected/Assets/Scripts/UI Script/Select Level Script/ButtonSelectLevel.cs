@@ -11,8 +11,8 @@ public class ButtonSelectLevel : MonoBehaviour
 
     [SerializeField] SelectLevel selectLevel;
 
-    [SerializeField] int idLevel; // untuk memanggil ke scene setiap level dengan idLevel tertentu tidak menampilkan string level number
-    [SerializeField] int levelButtonNumber; // untuk menampilkan string angka level saja
+    [Tooltip("menentukan value id dari index scene untuk masuk ke setiap level")] [SerializeField] int idLevel; // untuk memanggil ke scene setiap level dengan idLevel tertentu tidak menampilkan string level number
+    [Tooltip("informasi angka level")] [SerializeField] int levelButtonNumber; // untuk menampilkan string angka level saja
 
     [SerializeField] bool isButtonLocked;
 

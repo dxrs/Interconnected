@@ -59,6 +59,18 @@ public class Finish : MonoBehaviour
         
         inputConfirmButton();
         inputListSelection();
+
+        for (int i = 0; i < listFinishButton.Length; i++)
+        {
+            if (curValueButton == i + 1)
+            {
+                listFinishButton[i].transform.localScale = Vector2.Lerp(listFinishButton[i].transform.localScale, new Vector2(1.1f, 1.1f), 10 * Time.unscaledDeltaTime);
+            }
+            else
+            {
+                listFinishButton[i].transform.localScale = Vector2.Lerp(listFinishButton[i].transform.localScale, new Vector2(1, 1), 16 * Time.unscaledDeltaTime);
+            }
+        }
     }
 
     private void mouseListener()

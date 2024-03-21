@@ -192,14 +192,24 @@ public class Pause : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Gamepad Enter")) 
             {
                 MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+
                 if (curValueButton == 1) 
+                {
+                    curValueButton = 0;
+                    buttonHighlightedValue = 0;
+                    if (isGamePaused)
+                    {
+                        isGamePaused = false;
+                    }
+                }
+                if (curValueButton == 2) 
                 {
                     sceneSystem.isRestartScene = true;
                     
                     // restart scene
                 }
 
-                if (curValueButton == 2) 
+                if (curValueButton == 3) 
                 {
                     sceneSystem.isExitScene = true;
                     //exit scene ke menu
@@ -215,7 +225,7 @@ public class Pause : MonoBehaviour
             
             float inputDpadVertical = Input.GetAxis("Dpad Vertical");
 
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 curValueButton++;
                 if (curValueButton > maxListButton) 
@@ -224,7 +234,7 @@ public class Pause : MonoBehaviour
                 }
                 MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 curValueButton--;
                 if (curValueButton < 1) 
@@ -234,7 +244,7 @@ public class Pause : MonoBehaviour
                 MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
             }
 
-            if (inputDpadVertical == 1 && !isDpadPressed)
+            if (inputDpadVertical == -1 && !isDpadPressed)
             {
                 MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
                 curValueButton++;
@@ -244,7 +254,7 @@ public class Pause : MonoBehaviour
                 }
                 isDpadPressed = true;
             }
-            if (inputDpadVertical == -1 && !isDpadPressed)
+            if (inputDpadVertical == 1 && !isDpadPressed)
             {
                 MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
                 curValueButton--;
@@ -276,6 +286,16 @@ public class Pause : MonoBehaviour
         if (!isGamePaused)
         {
             isGamePaused = true;
+        }
+    }
+
+    public void onClickButtonResume() 
+    {
+        if (isGamePaused)
+        {
+            curValueButton = 0;
+            buttonHighlightedValue = 0;
+            isGamePaused = false;
         }
     }
 }

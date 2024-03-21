@@ -16,7 +16,7 @@ public class GarbageCollector : MonoBehaviour
     public int currentGarbageStored;
     public int targetGarbageStored;
     public int garbageDestroyedValue;
-    [HideInInspector] public int limitGarbageCollected = 5;
+     public int limitGarbageCollected = 5;
 
     [SerializeField] Transform player1;
     [SerializeField] Transform player2;
