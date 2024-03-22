@@ -1289,7 +1289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: f621155f0f4b4be418153e99788c92cc, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 3aaf443126c3c204fb19fe80d1eaf876, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -1302,70 +1302,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 388d81ce-db95-41c0-a2fb-a192206b4e27
-    m_ActionName: Input Player 1/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: d00c6259-4f03-44f9-aeb1-587ce289e2c2
-    m_ActionName: Input Player 1/Interact Press
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 13f866bb-7131-45c2-b44e-a38c147a99a0
-    m_ActionName: Input Player 1/Interact Tap
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: da185e95-fb85-4a38-8459-f7b358533323
-    m_ActionName: Input Player 1/Interact Hold
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4439dbc1-55e2-4bdc-a1e2-caa9f7e1ad65
-    m_ActionName: Input Player 1/Give Health[/Keyboard/f]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a9a444fa-beb5-47e7-a00f-295983c6397f
-    m_ActionName: Input Player 1/Brake[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 008bd728-9221-4d3a-8ab1-845449e9e387
-    m_ActionName: Input Player 1/Basic Skill Dash[/Keyboard/leftShift]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 250bb9b5-4e5e-4e86-a2fc-4c8982f1f65f
-    m_ActionName: Input Player 1/Special Skill Pull Up[/Keyboard/g]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0c6bd544-d51d-4d15-9a8a-698487d219cb
-    m_ActionName: Input Player 2/Movement[/XInputControllerWindows/leftStick]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ad4d6e57-d202-4205-a368-a4255c91da3f
-    m_ActionName: Input Player 2/Interact Press
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7e9757a9-c4fb-4ff6-b915-79e9d9e8ca7a
-    m_ActionName: Input Player 2/Interact Tap
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0ef49c3e-5618-428d-a2b8-6f821fba5ba2
-    m_ActionName: Input Player 2/Interact Hold
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7da49372-5dfe-43b4-84e2-4bbc8ec74f8f
-    m_ActionName: Input Player 2/Give Health[/XInputControllerWindows/buttonNorth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c473713c-8497-4e8c-99a7-835e0d925607
-    m_ActionName: Input Player 2/Brake[/XInputControllerWindows/buttonEast]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 52f730c5-86c0-4178-86ef-38534a3e8046
-    m_ActionName: Input Player 2/Basic Skill Dash[/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4af3bff8-8a64-4d2f-9bd0-9ea63d615ebb
-    m_ActionName: Input Player 2/Basic Skill Shield[/XInputControllerWindows/buttonWest]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1767458153}
@@ -1380,8 +1316,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 43265e41-01aa-4b34-a092-5202c14d27a1
-    m_ActionName: Main Menu/Game Navigation[/XInputControllerWindows/dpad/up]
+    m_ActionId: 5a993a9a-1f62-461a-8a75-164ccde4fb3c
+    m_ActionName: Main Menu/Navigation Up[/Keyboard/upArrow,/XInputControllerWindows/dpad/up]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1767458153}
@@ -1396,8 +1332,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 4cd2eac3-fae4-46e3-96a6-b34d0a37c2c7
-    m_ActionName: Main Menu/Navigation Down[/XInputControllerWindows/dpad/down,/Keyboard/downArrow,/Keyboard/s]
+    m_ActionId: 8971873d-d508-4bc7-8572-e7bf3c98849a
+    m_ActionName: Main Menu/Navigation Down[/Keyboard/downArrow,/XInputControllerWindows/dpad/down,/XInputControllerWindows/leftStick/down]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1767458153}
@@ -1412,34 +1348,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 4b974cd3-af8d-4bf8-bece-161f8dd98bda
-    m_ActionName: Main Menu/Navigation Confrim[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1085420b-118a-4003-9c06-4517ecc1908e
-    m_ActionName: Select Level/Navigation Left[/Keyboard/leftArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 79e240e4-1aed-4a7f-b8b3-1074d1a82d7b
-    m_ActionName: Select Level/Navigation RIght[/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7df178a9-3366-44b1-89a1-3f8cde080d5b
-    m_ActionName: Select Level/Navigation Confirm[/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ec84f114-e777-4c83-acc5-c184d2a8f762
-    m_ActionName: Select Chapter/Navigation Move Map[/XInputControllerWindows/leftStick]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 87218f82-2325-4bb6-9d9c-9fd9d12394c3
-    m_ActionName: Select Chapter/Navigation Back[/Keyboard/escape,/XInputControllerWindows/buttonEast]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1cca230b-a077-4ef1-9fef-2d79c6226a04
-    m_ActionName: Select Chapter/Navigation Confirm[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
+    m_ActionId: ba5d109f-00e5-4e10-bc0e-2e3256aae71e
+    m_ActionName: Main Menu/Navigation Confirm[/Keyboard/space,/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Main Menu scheme
   m_DefaultActionMap: Main Menu
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

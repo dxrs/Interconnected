@@ -98,10 +98,12 @@ public class Player1Ability : MonoBehaviour
                 {
                     if (player1Stamina.curStamina > player1Stamina.dashStaminaCost)
                     {
+                        /*
                         StartCoroutine(Dashing());
                         player1Stamina.curStamina -= player1Stamina.dashStaminaCost;
                         if (player1Stamina.curStamina < 0) { player1Stamina.curStamina = 0; }
                         player1Stamina.staminaFunctionCallback();
+                        */
                     }
                 }
             }
@@ -125,6 +127,7 @@ public class Player1Ability : MonoBehaviour
                 {
                     if (context.performed)
                     {
+                        /*
                         if (!isPullingUp)
                         {
                             if (pullUpProgress <= 2)
@@ -170,6 +173,7 @@ public class Player1Ability : MonoBehaviour
                             }
 
                         }
+                        */
 
                     }
                 }

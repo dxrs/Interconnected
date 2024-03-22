@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class GameOverUI : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class GameOverUI : MonoBehaviour
     {
         gameOverUI.SetActive(false);
         mouseListener();
+        curValueButton = 0;
+        buttonHighlightedValue = 0;
     }
 
     private void Update()
@@ -46,8 +49,7 @@ public class GameOverUI : MonoBehaviour
             compareButtonValue();
             StartCoroutine(waiToActive());
         }
-        inputConfirmButton();
-        inputListSelection();
+        
     }
 
     void compareButtonValue()
@@ -103,6 +105,60 @@ public class GameOverUI : MonoBehaviour
         if (Player2Health.player2Health.curPlayer2Health <= 0) 
         {
             textGameOverStatus.text = "Player 2 Destroyed";
+        }
+
+    }
+
+    public void inputNavigationConfirm(InputAction.CallbackContext context) 
+    {
+        if (context.performed) 
+        {
+            if (LevelStatus.levelStatus.levelID != 4)
+            {
+                if (GameOver.gameOver.isGameOver && !SceneSystem.sceneSystem.isChangeScene)
+                {
+                    if (curValueButton == 1)
+                    {
+                        sceneSystem.isRestartScene = true;
+                    }
+
+                    if (curValueButton == 2)
+                    {
+                        sceneSystem.isExitScene = true;
+                    }
+                    
+                }
+            }
+
+        }
+    }
+
+    public void inputNavigationUp(InputAction.CallbackContext context) 
+    {
+        if (context.performed)
+        {
+            curValueButton--;
+            if (curValueButton < 1)
+            {
+                curValueButton = maxListButton;
+            }
+            MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+
+        }
+
+    }
+
+    public void inputNavigationDown(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            curValueButton++;
+            if (curValueButton > maxListButton)
+            {
+                curValueButton = 1;
+            }
+            MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+
         }
 
     }

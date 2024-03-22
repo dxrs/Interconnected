@@ -112,10 +112,12 @@ public class Player2Ability : MonoBehaviour
                 {
                     if (player2Stamina.curStamina > player2Stamina.shieldStaminaCost)
                     {
+                        /*
                         StartCoroutine(Dashing());
                         player2Stamina.curStamina -= player2Stamina.dashStaminaCost;
                         if (player2Stamina.curStamina < 0) { player2Stamina.curStamina = 0; }
                         player2Stamina.staminaFunctionCallback();
+                        */
                     }
                 }
             }
@@ -140,10 +142,12 @@ public class Player2Ability : MonoBehaviour
                 {
                     if (player2Stamina.curStamina > player2Stamina.shieldStaminaCost)
                     {
+                        /*
                         isShielding = true;
                         player2Stamina.curStamina -= player2Stamina.shieldStaminaCost;
                         if (player2Stamina.curStamina < 0) { player2Stamina.curStamina = 0; }
                         player2Stamina.staminaFunctionCallback();
+                        */
                     }
                 }
             }

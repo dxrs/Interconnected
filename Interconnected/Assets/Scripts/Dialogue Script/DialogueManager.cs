@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -87,43 +88,7 @@ public class DialogueManager : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Gamepad Enter")) 
         {
-            if (isDialogueActive && isReadyToInteractWithDialogue) 
-            {
-                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
-                if (LevelStatus.levelStatus.levelID != 4) 
-                {
-                    if (ReadyToStart.readyToStart.isGameStart) 
-                    {
-                        if (textDialogue.text == listDialogueString[curTextValue])
-                        {
-                            curTextValue++;
-                            nextSentence();
-                        }
-                        else
-                        {
-                            // kalau lagi typing ketika ingin tulisan langsung ada semua
-                            StopAllCoroutines();
-                            textDialogue.text = listDialogueString[curTextValue];
-                        }
-                    }
-                }
-                else 
-                {
-                    if (textDialogue.text == listDialogueString[curTextValue])
-                    {
-                        curTextValue++;
-                        nextSentence();
-                    }
-                    else
-                    {
-                        // kalau lagi typing ketika ingin tulisan langsung ada semua
-                        StopAllCoroutines();
-                        textDialogue.text = listDialogueString[curTextValue];
-                    }
-                }
-               
-
-            }
+            
             
         }
 
@@ -173,6 +138,49 @@ public class DialogueManager : MonoBehaviour
 
     }
 
+    public void inputNavigationDialogue(InputAction.CallbackContext context) 
+    {
+        if (context.performed) 
+        {
+            if (isDialogueActive && isReadyToInteractWithDialogue)
+            {
+                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+                if (LevelStatus.levelStatus.levelID != 4)
+                {
+                    if (ReadyToStart.readyToStart.isGameStart)
+                    {
+                        if (textDialogue.text == listDialogueString[curTextValue])
+                        {
+                            curTextValue++;
+                            nextSentence();
+                        }
+                        else
+                        {
+                            // kalau lagi typing ketika ingin tulisan langsung ada semua
+                            StopAllCoroutines();
+                            textDialogue.text = listDialogueString[curTextValue];
+                        }
+                    }
+                }
+                else
+                {
+                    if (textDialogue.text == listDialogueString[curTextValue])
+                    {
+                        curTextValue++;
+                        nextSentence();
+                    }
+                    else
+                    {
+                        // kalau lagi typing ketika ingin tulisan langsung ada semua
+                        StopAllCoroutines();
+                        textDialogue.text = listDialogueString[curTextValue];
+                    }
+                }
+
+
+            }
+        }
+    }
     void nextSentence() 
     {
         if (isDialogueActive) 

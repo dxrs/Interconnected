@@ -1,0 +1,177 @@
+{
+    "name": "Input Select Level",
+    "maps": [
+        {
+            "name": "Select Level",
+            "id": "d761004a-062e-4beb-87b5-ab75ff7df902",
+            "actions": [
+                {
+                    "name": "Navigation Confirm",
+                    "type": "Button",
+                    "id": "8cd39ba6-b090-41b9-bee7-499f94c0a54f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Navigation Left",
+                    "type": "Button",
+                    "id": "952b1642-f96d-4694-8fce-5fc26e1958b8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Navigation Right",
+                    "type": "Button",
+                    "id": "5a8152a1-5c4c-4190-98da-f75e078f075d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Navigation Back",
+                    "type": "Button",
+                    "id": "7765efd4-c48e-4dc7-8811-ecd42651b5be",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2aef31bb-2e84-4542-aa53-592393c8ca1c",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Level scheme",
+                    "action": "Navigation Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cfa2c357-ecd7-42ac-b528-a54cc9e79734",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Level scheme",
+                    "action": "Navigation Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2b864df9-af7a-4c44-990d-92d4d7f2f321",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Level scheme",
+                    "action": "Navigation Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b99bb449-a9f1-408f-9408-5b150053ff08",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Level scheme",
+                    "action": "Navigation Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "620e4455-0af8-4616-8d8f-f50627a23b59",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Level scheme",
+                    "action": "Navigation Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e3f00c3-cc72-4348-8914-d7a618f68575",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Level scheme",
+                    "action": "Navigation Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8afc09d0-7b53-4230-9313-364795610574",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Level scheme",
+                    "action": "Navigation Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47e14c30-ca35-40d8-a540-114364a7af4b",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Level scheme",
+                    "action": "Navigation Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d51d469-7116-4691-81df-f953dab38ef1",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Level scheme",
+                    "action": "Navigation Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "57f89ce9-f1ea-4db3-b0a5-37cf6df610eb",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Level scheme",
+                    "action": "Navigation Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Select Level scheme",
+            "bindingGroup": "Select Level scheme",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

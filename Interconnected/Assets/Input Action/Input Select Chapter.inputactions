@@ -1,0 +1,168 @@
+{
+    "name": "Input Select Chapter",
+    "maps": [
+        {
+            "name": "Select Chapter",
+            "id": "5927d4b0-dc51-4744-9ccd-4104646f6c28",
+            "actions": [
+                {
+                    "name": "Moving Map",
+                    "type": "Value",
+                    "id": "b657bf27-14c1-4986-9a3b-a376b87ce34a",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Navigation Confirm",
+                    "type": "Button",
+                    "id": "b0122eba-ed81-4845-bbf9-3e728123be6d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Navigation Back",
+                    "type": "Button",
+                    "id": "9c971d11-c0d8-4cce-a635-d26624ade1c1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "594955d0-ca5d-4e2c-8987-5cb68c3dac69",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Chapter scheme",
+                    "action": "Moving Map",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "WASD",
+                    "id": "01c72e44-585d-43d7-ad36-43ac009d6f24",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Moving Map",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "34f21389-aec3-49c6-8681-b0ac1af0408e",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Chapter scheme",
+                    "action": "Moving Map",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "9918ab62-a4ba-41f6-b7b8-1f5377d12332",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Chapter scheme",
+                    "action": "Moving Map",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "00246fc4-1033-4ca5-bc38-430abb42cbcf",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Chapter scheme",
+                    "action": "Moving Map",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "20083dd9-1a9d-494f-a7ad-31d2c5698b82",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Chapter scheme",
+                    "action": "Moving Map",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "8ac17f4d-feb6-460c-820c-fe2e206a1160",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Chapter scheme",
+                    "action": "Navigation Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b2f9b21f-1c8d-48a7-9a00-c6839ce113b6",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Chapter scheme",
+                    "action": "Navigation Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d57c9dd-1692-4ab2-9588-9d490715df0b",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Chapter scheme",
+                    "action": "Navigation Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "baeb107c-5970-425d-bf09-3d44a625c374",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Select Chapter scheme",
+                    "action": "Navigation Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Select Chapter scheme",
+            "bindingGroup": "Select Chapter scheme",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

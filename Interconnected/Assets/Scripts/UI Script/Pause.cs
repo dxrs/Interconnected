@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEditor.SearchService;
 
 public class Pause : MonoBehaviour
 {
@@ -48,18 +49,6 @@ public class Pause : MonoBehaviour
             !DialogueManager.dialogueManager.isDialogueActive) 
         {
             buttonPause.enabled = true;
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
-            {
-
-                if (!isGamePaused)
-                {
-                    isGamePaused = true;
-                }
-                else
-                {
-                    isGamePaused = false;
-                }
-            }
         }
         else 
         {
@@ -77,8 +66,8 @@ public class Pause : MonoBehaviour
             }
         }
         gamePaused();
-        pauseInputConfirmButton();
-        pauseInputListSelection();
+       // pauseInputConfirmButton();
+       // pauseInputListSelection();
 
     }
     void gamePaused()
@@ -184,6 +173,96 @@ public class Pause : MonoBehaviour
 
     #region pause input
 
+    public void inputNavigationPauseClick(InputAction.CallbackContext context) 
+    {
+        if (context.performed) 
+        {
+            if (!GameOver.gameOver.isGameOver &&
+            !GameFinish.gameFinish.isGameFinish &&
+            ReadyToStart.readyToStart.isGameStart &&
+            !DialogueManager.dialogueManager.isDialogueActive)
+            {
+                if (!isGamePaused)
+                {
+                    isGamePaused = true;
+                }
+                else
+                {
+                    curValueButton = 0;
+                    buttonHighlightedValue = 0;
+                    isGamePaused = false;
+                }
+
+            }
+          
+        }
+    }
+
+    public void inputNavigationUp(InputAction.CallbackContext context) 
+    {
+        if (context.performed) 
+        {
+            if (isGamePaused && !SceneSystem.sceneSystem.isChangeScene)
+            {
+                curValueButton--;
+                if (curValueButton < 1)
+                {
+                    curValueButton = maxListButton;
+                }
+                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+            }
+        }
+        
+    }
+
+    public void inputNavigationDown(InputAction.CallbackContext context) 
+    {
+        if (context.performed) 
+        {
+            if(isGamePaused && !SceneSystem.sceneSystem.isChangeScene) 
+            {
+                curValueButton++;
+                if (curValueButton > maxListButton)
+                {
+                    curValueButton = 1;
+                }
+                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+            }
+        }
+    }
+    public void inputNavigationConfirm(InputAction.CallbackContext context) 
+    {
+        if (context.performed) 
+        {
+            if (isGamePaused && !SceneSystem.sceneSystem.isChangeScene) 
+            {
+                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+
+                if (curValueButton == 1)
+                {
+                    curValueButton = 0;
+                    buttonHighlightedValue = 0;
+                    if (isGamePaused)
+                    {
+                        isGamePaused = false;
+                    }
+                }
+                if (curValueButton == 2)
+                {
+                    sceneSystem.isRestartScene = true;
+
+                    // restart scene
+                }
+
+                if (curValueButton == 3)
+                {
+                    sceneSystem.isExitScene = true;
+                    //exit scene ke menu
+                }
+            }
+        }
+    }
+
     void pauseInputConfirmButton() 
     {
         if (isGamePaused && !SceneSystem.sceneSystem.isChangeScene) 
@@ -223,7 +302,7 @@ public class Pause : MonoBehaviour
         if (isGamePaused && !SceneSystem.sceneSystem.isChangeScene)
         {
             
-            float inputDpadVertical = Input.GetAxis("Dpad Vertical");
+            float inputDpadVertical = Input.GetAxis("Dpad Vertical"); // DOWN
 
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {

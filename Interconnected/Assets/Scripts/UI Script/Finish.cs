@@ -32,8 +32,8 @@ public class Finish : MonoBehaviour
     {
         finishUI.SetActive(false);
         mouseListener();
-        curValueButton = 1;
-        buttonHighlightedValue = 1;
+        curValueButton = 0;
+        buttonHighlightedValue = 0;
     }
 
     private void Update()
@@ -57,8 +57,7 @@ public class Finish : MonoBehaviour
            
         }
         
-        inputConfirmButton();
-        inputListSelection();
+        
 
         for (int i = 0; i < listFinishButton.Length; i++)
         {
@@ -145,6 +144,95 @@ public class Finish : MonoBehaviour
                 buttonHighlightedValue = curValueButton;
             }
         }
+    }
+
+    public void inputNavigationConfirm(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (LevelStatus.levelStatus.levelID != 4)
+            {
+                if (GameFinish.gameFinish.isGameFinish && !SceneSystem.sceneSystem.isChangeScene)
+                {
+                    if (curValueButton == 1)
+                    {
+                        sceneSystem.isNextScene = true;
+                        if (!isSaving)
+                        {
+                            LevelManager.levelManager.saveDataCurrentLevel();
+                            isSaving = true;
+                        }
+                        //kalau continue save data totalLevelUnlocked dari script level manager
+                    }
+
+                    if (curValueButton == 2)
+                    {
+                        sceneSystem.isExitScene = true;
+                    }
+                    
+                }
+            }
+            if(LevelStatus.levelStatus.levelID == 4)
+            {
+                if (GameFinish.gameFinish.isGameFinish && !SceneSystem.sceneSystem.isChangeScene) 
+                {
+                    sceneSystem.isNextScene = true;
+                    if (!isSaving)
+                    {
+                        LevelManager.levelManager.saveDataCurrentLevel();
+                        isSaving = true;
+                    }
+                }
+               
+            }
+        }
+    }
+
+    public void inputNavigationUp(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (GameFinish.gameFinish.isGameFinish && !SceneSystem.sceneSystem.isChangeScene) 
+            {
+                if (LevelStatus.levelStatus.levelID != 4)
+                {
+                    curValueButton++;
+                    if (curValueButton > maxListButton)
+                    {
+                        curValueButton = 1;
+                    }
+                    MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+
+                }
+            }
+            
+
+        }
+
+    }
+
+    public void inputNavigationDown(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (GameFinish.gameFinish.isGameFinish && !SceneSystem.sceneSystem.isChangeScene)
+            {
+                if (LevelStatus.levelStatus.levelID != 4)
+                {
+                    curValueButton--;
+                    if (curValueButton < 1)
+                    {
+                        curValueButton = maxListButton;
+                    }
+                    MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+
+                }
+            }
+           
+           
+
+        }
+
     }
 
     void inputConfirmButton()
