@@ -18,7 +18,7 @@ public class Tutorial : MonoBehaviour
     [SerializeField] GameObject wallBlocker;
     [SerializeField] GameObject wallStatic;
     [SerializeField] GameObject garbages;
-    [SerializeField] GameObject[] shareLivesProgressObject;
+    [SerializeField] GameObject shareLivesProgressObject;
     [SerializeField] TextMeshProUGUI textShareLivesCount;
     [SerializeField] TextMeshProUGUI textMainObjective;
 
@@ -34,10 +34,7 @@ public class Tutorial : MonoBehaviour
         tutorialProgress = 1;
         player1 = GameObject.FindGameObjectWithTag("Player 1");
         player2 = GameObject.FindGameObjectWithTag("Player 2");
-        for (int j = 0; j < shareLivesProgressObject.Length; j++)
-        {
-            shareLivesProgressObject[j].SetActive(false);
-        }
+        shareLivesProgressObject.SetActive(false);
     }
 
     private void Update()
@@ -82,10 +79,8 @@ public class Tutorial : MonoBehaviour
             }
             if (isReadyToShareLives)
             {
-                for (int j = 0; j < shareLivesProgressObject.Length; j++)
-                {
-                    shareLivesProgressObject[j].SetActive(true);
-                }
+                shareLivesProgressObject.SetActive(true);
+               
                 if (shareLivesProgress < 2)
                 {
                     if (DialogueManager.dialogueManager.curTextValue >= 14)
@@ -134,10 +129,7 @@ public class Tutorial : MonoBehaviour
             }
             textShareLivesCount.enabled = false;
             wallBlocker.SetActive(true);
-            for (int j = 0; j < shareLivesProgressObject.Length; j++)
-            {
-                shareLivesProgressObject[j].SetActive(false);
-            }
+            shareLivesProgressObject.SetActive(false);
             if (DialogueManager.dialogueManager.curTextValue >= 19)
             {
                 garbages.SetActive(true);

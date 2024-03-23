@@ -12,6 +12,7 @@ public class InGame : MonoBehaviour
     [SerializeField] TextMeshProUGUI textShareLivesAvailable;
 
     [SerializeField] Image imageShareLivesBar;
+    [SerializeField] Image imageInnerCircleShareLives;
 
     [SerializeField] bool isBarFillDecrease;
 
@@ -37,27 +38,35 @@ public class InGame : MonoBehaviour
 
         if (isBarFillDecrease) 
         {
-            imageShareLivesBar.fillAmount = GlobalVariable.globalVariable.curShareLivesDelayTime / 10f;
-
-            if (imageShareLivesBar.fillAmount <= 0)
-            {
-                imageShareLivesBar.fillAmount = 1;
-
-            }
+            imageShareLivesBar.fillAmount = 1 - (GlobalVariable.globalVariable.curShareLivesDelayTime / 10f);
+            imageInnerCircleShareLives.enabled = false;
+           
         }
-        if(!isBarFillDecrease) 
+        else
         {
-            
-            
-
-            if (Player1Health.player1Health.curPlayer1Health > 1 && Player2Health.player2Health.curPlayer2Health < 4 || Player2Health.player2Health.curPlayer2Health > 1 && Player1Health.player1Health.curPlayer1Health < 4) 
+            if(LevelStatus.levelStatus.levelID != 4) 
             {
-                shareLivesBar.SetActive(true);
+                if (Player1Health.player1Health.curPlayer1Health > 1 && Player2Health.player2Health.curPlayer2Health < 4 || Player2Health.player2Health.curPlayer2Health > 1 && Player1Health.player1Health.curPlayer1Health < 4)
+                {
+                    shareLivesBar.SetActive(true);
+                    imageInnerCircleShareLives.transform.Rotate(Vector3.forward, 100 * Time.deltaTime);
+                    imageInnerCircleShareLives.enabled = true;
+                }
+                else
+                {
+                    shareLivesBar.SetActive(false);
+                }
             }
             else 
             {
-                shareLivesBar.SetActive(false);
+                if (Player1Health.player1Health.curPlayer1Health > 1 && Player2Health.player2Health.curPlayer2Health < 4 || Player2Health.player2Health.curPlayer2Health > 1 && Player1Health.player1Health.curPlayer1Health < 4)
+                {
+                    
+                    imageInnerCircleShareLives.transform.Rotate(Vector3.forward, 100 * Time.deltaTime);
+                    imageInnerCircleShareLives.enabled = true;
+                }
             }
+            
         }
         if (GlobalVariable.globalVariable.curShareLivesDelayTime > 0) 
         {
