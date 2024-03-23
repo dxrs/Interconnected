@@ -13,7 +13,7 @@ public class LaserRopeCollider : MonoBehaviour
         {
             if (GarbageCollector.garbageCollector.garbageCollected < GarbageCollector.garbageCollector.limitGarbageCollected) 
             {
-                GarbageCollector.garbageCollector.garbageCollected++;
+                //GarbageCollector.garbageCollector.garbageCollected++;
             }
                 
         }

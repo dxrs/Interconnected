@@ -44,6 +44,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3484423637670232682}
   - component: {fileID: 3484423637670232685}
+  - component: {fileID: 9092546121363092359}
   m_Layer: 0
   m_Name: Player 2 Outline Collider
   m_TagString: Player 2 Outline Collider
@@ -116,6 +117,18 @@ PolygonCollider2D:
       - {x: 8.240603, y: -0.8728441}
       - {x: 8.509954, y: 2.5061636}
       - {x: 8.541236, y: 4.2368007}
+--- !u!114 &9092546121363092359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3484423637670232683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c79d7f63dc11945a15821ad4add85b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3484423637755312126
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,6 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3484423637755312097}
   - component: {fileID: 3484423637755312096}
+  - component: {fileID: 3948040329916535793}
   m_Layer: 0
   m_Name: Player 1 Outline Collider
   m_TagString: Player 1 Outline Collider
@@ -210,6 +224,18 @@ PolygonCollider2D:
       - {x: 3.2104797, y: 2.566173}
       - {x: 2.405941, y: 2.7785707}
       - {x: 2.431922, y: 2.779091}
+--- !u!114 &3948040329916535793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3484423637755312126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d845a271f791a499e79e49a61a5448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8349422041440292373
 GameObject:
   m_ObjectHideFlags: 0

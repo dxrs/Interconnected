@@ -82,6 +82,7 @@ public class Player1Collision : MonoBehaviour
             GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue++;
             isHitGarbageButton = true;
         }
+       
     }
 
     private void OnTriggerExit2D(Collider2D collision)

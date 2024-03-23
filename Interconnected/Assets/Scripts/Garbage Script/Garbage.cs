@@ -215,12 +215,29 @@ public class Garbage : MonoBehaviour
                 rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
             }
         }
+        if (collision.gameObject.CompareTag("Player 1 Outline Collider") || collision.gameObject.CompareTag("Player 2 Outline Collider"))
+        {
+            if (LinkRay.linkRay.isPlayerLinkedEachOther && !GlobalVariable.globalVariable.isPlayerDestroyed)
+            {
+
+                if (Player1Movement.player1Movement.curMaxSpeed > 1 && Player2Movement.player2Movement.curMaxSpeed > 1 && !isCanBeCollected)
+                {
+                    Player1Movement.player1Movement.curMaxSpeed -= garbageWeight;
+                    Player2Movement.player2Movement.curMaxSpeed -= garbageWeight;
+                    isGarbageCollected = true;
+
+                    rb.drag = 0;
+                }
+            }
+
+
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Laser Rope")) 
+        if(collision.gameObject.CompareTag("Player 1 Outline Collider") || collision.gameObject.CompareTag("Player 2 Outline Collider")) 
         {
-            
+            if(LinkRay.linkRay.isPlayerLinkedEachOther && !GlobalVariable.globalVariable.isPlayerDestroyed)
             {
              
                 if (Player1Movement.player1Movement.curMaxSpeed > 1 && Player2Movement.player2Movement.curMaxSpeed > 1 && !isCanBeCollected)

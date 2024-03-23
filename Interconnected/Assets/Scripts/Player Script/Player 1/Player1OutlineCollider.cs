@@ -8,13 +8,17 @@ public class Player1OutlineCollider : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Garbage"))
         {
-            if (Player1Stamina.player1Stamina.curStamina > 0)
+            if (LinkRay.linkRay.isPlayerLinkedEachOther) 
             {
-                Player1Stamina.player1Stamina.curStamina -= 0.05f;
-            }
+                if (GarbageCollector.garbageCollector.garbageCollected < GarbageCollector.garbageCollector.limitGarbageCollected)
+                {
+                    GarbageCollector.garbageCollector.garbageCollected++;
+                    Debug.Log("kena");
+                }
 
-            if (Player1Stamina.player1Stamina.curStamina < 0) { Player1Stamina.player1Stamina.curStamina = 0; }
-            Player1Stamina.player1Stamina.staminaFunctionCallback();
+            }
+            
+
         }
     }
 }

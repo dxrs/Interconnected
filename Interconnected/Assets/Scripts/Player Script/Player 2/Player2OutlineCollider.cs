@@ -8,13 +8,17 @@ public class Player2OutlineCollider : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Garbage"))
         {
-            if (Player2Stamina.player2Stamina.curStamina > 0)
+            if (LinkRay.linkRay.isPlayerLinkedEachOther)
             {
-                Player2Stamina.player2Stamina.curStamina -= 0.05f;
+                if (GarbageCollector.garbageCollector.garbageCollected < GarbageCollector.garbageCollector.limitGarbageCollected)
+                {
+                    GarbageCollector.garbageCollector.garbageCollected++;
+                    Debug.Log("kena 2");
+                }
+
             }
 
-            if (Player2Stamina.player2Stamina.curStamina < 0) { Player2Stamina.player2Stamina.curStamina = 0; }
-            Player2Stamina.player2Stamina.staminaFunctionCallback();
+
         }
     }
 }
