@@ -6610,7 +6610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9218205163490194630, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
       propertyPath: curTimerValue
-      value: 150
+      value: 135
       objectReference: {fileID: 0}
     - target: {fileID: 9218205163490194630, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
       propertyPath: globalVariable

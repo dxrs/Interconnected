@@ -153,6 +153,21 @@ public class ObstacleWall : MonoBehaviour
                 transform.position = pos + new Vector2(Mathf.Sin(-sineSpeed * Time.time) * sinePower,
                      Mathf.Sin(sineSpeed * Time.time) * sinePower);
             }
+            if (sineID == 4)
+            {
+                transform.position = pos + new Vector2(Mathf.Sin(sineSpeed * Time.time) * sinePower,
+                     Mathf.Sin(sineSpeed * Time.time) * sinePower);
+            }
+            if (sineID == 5)
+            {
+                transform.position = pos + new Vector2(Mathf.Sin(sineSpeed * Time.time) * sinePower,
+                     Mathf.Sin(-sineSpeed * Time.time) * sinePower);
+            }
+            if (sineID == 6)
+            {
+                transform.position = pos + new Vector2(Mathf.Sin(-sineSpeed * Time.time) * sinePower,
+                     Mathf.Sin(-sineSpeed * Time.time) * sinePower);
+            }
         }
     }
 

@@ -37,6 +37,9 @@ EditorBuildSettings:
     guid: 2de7d7f711b74e647b5b7847e6f7ccf5
   - enabled: 1
     path: Assets/Scenes/Scene Garbage Collector/Level Garbage Collector 9.unity
+    guid: b35162c8df811ac4da6e52588017e132
+  - enabled: 1
+    path: Assets/Scenes/Scene Garbage Collector/Level Garbage Collector 10.unity
     guid: dfce74c69646df340b80867fbd030556
   - enabled: 1
     path: Assets/Scenes/Scene Prologue/Prologue.unity
