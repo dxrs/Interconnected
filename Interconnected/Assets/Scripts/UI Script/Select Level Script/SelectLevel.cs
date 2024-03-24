@@ -14,6 +14,8 @@ public class SelectLevel : MonoBehaviour
 
     public int curLevelSectionValue; // variable buat pengolompokan level, di sini saya buat 3 level per section
 
+    public int curIndexSelectLevel;
+
     public bool isCameraNotMoving;
     public bool isInputKeyboardChoose;
 
@@ -23,6 +25,7 @@ public class SelectLevel : MonoBehaviour
     [SerializeField] int curValueButton;
     [SerializeField] int[] curValueButtonIndex;
     [SerializeField] int buttonHighlightedValue;
+    [SerializeField] int[] listIndexButtonSelectLevel;
 
     [SerializeField] GameObject[] typeLevelObject;
     [SerializeField] GameObject transitionObject;
@@ -73,6 +76,38 @@ public class SelectLevel : MonoBehaviour
         {
             alphaColor.a = Mathf.MoveTowards(alphaColor.a, 1, 2 * Time.deltaTime);
             imageTransition.color = alphaColor;
+        }
+
+        /*
+        if (buttonHighlightedValue == 1) 
+        {
+            curIndexSelectLevel = listIndexButtonSelectLevel[0];
+        }
+        if (buttonHighlightedValue == 2)
+        {
+            curIndexSelectLevel = listIndexButtonSelectLevel[1];
+        }
+        if (buttonHighlightedValue == 3)
+        {
+            curIndexSelectLevel = listIndexButtonSelectLevel[2];
+        }
+        if (buttonHighlightedValue == 4)
+        {
+            curIndexSelectLevel = listIndexButtonSelectLevel[3];
+        }
+        if (buttonHighlightedValue == 5)
+        {
+            curIndexSelectLevel = listIndexButtonSelectLevel[4];
+        }
+        */
+
+        for (int i = 0; i < listLevelButton.Length; ++i)
+        {
+            if (buttonHighlightedValue == i + 1)
+            {
+                curIndexSelectLevel = listIndexButtonSelectLevel[i];
+                break;
+            }
         }
     }
     private void mouseListener()
@@ -208,7 +243,7 @@ public class SelectLevel : MonoBehaviour
             {
                 if (curSelectLevelValue < LevelManager.levelManager.totalLevelUnlocked)
                 {
-                    if (buttonHighlightedValue < listLevelButton.Length - 1)
+                    if (buttonHighlightedValue < listLevelButton.Length)
                     {
                         buttonHighlightedValue++;
                     }
@@ -226,7 +261,7 @@ public class SelectLevel : MonoBehaviour
             MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
             if (!SceneSystem.sceneSystem.isChangeScene && alphaColor.a <= 0) 
             {
-                if (curSelectLevelValue > 0)
+                if (curSelectLevelValue > 1)
                 {
                     buttonHighlightedValue--;
                 }
@@ -249,7 +284,16 @@ public class SelectLevel : MonoBehaviour
         }
     }
 
-   
+   public void inputNavigationConfirm(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (isInputKeyboardChoose && isCameraNotMoving)
+            {
+                SceneSystem.sceneSystem.goingToLevelSelected();
+            }
+        }
+    }
 
     public void onClickChooseLevelLeft() 
     {
@@ -290,5 +334,12 @@ public class SelectLevel : MonoBehaviour
         {
              listContentButton[n].enabled = false;
         }
+    }
+
+    
+    public void onClickLevelButton()
+    {
+        SceneSystem.sceneSystem.goingToLevelSelected();
+        
     }
 }

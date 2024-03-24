@@ -697,8 +697,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 522060295}
-        m_TargetAssemblyTypeName: ButtonSelectLevel, Assembly-CSharp
+      - m_Target: {fileID: 1291511355}
+        m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: onClickLevelButton
         m_Mode: 1
         m_Arguments:
@@ -853,8 +853,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 522060295}
-        m_TargetAssemblyTypeName: ButtonSelectLevel, Assembly-CSharp
+      - m_Target: {fileID: 1291511355}
+        m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: onClickLevelButton
         m_Mode: 1
         m_Arguments:
@@ -1014,7 +1014,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4952732781539411342, guid: 5fbbcefa02ff3a0419161cde2bcb4f73, type: 3}
       propertyPath: totalLevelUnlocked
-      value: 100
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4952732781539411342, guid: 5fbbcefa02ff3a0419161cde2bcb4f73, type: 3}
       propertyPath: totalLevelPerChapter.Array.size
@@ -2307,8 +2307,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519158053}
-        m_TargetAssemblyTypeName: ButtonSelectLevel, Assembly-CSharp
+      - m_Target: {fileID: 1291511355}
+        m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: onClickLevelButton
         m_Mode: 1
         m_Arguments:
@@ -2463,8 +2463,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 522060295}
-        m_TargetAssemblyTypeName: ButtonSelectLevel, Assembly-CSharp
+      - m_Target: {fileID: 1291511355}
+        m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: onClickLevelButton
         m_Mode: 1
         m_Arguments:
@@ -3267,8 +3267,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 522060295}
-        m_TargetAssemblyTypeName: ButtonSelectLevel, Assembly-CSharp
+      - m_Target: {fileID: 1291511355}
+        m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: onClickLevelButton
         m_Mode: 1
         m_Arguments:
@@ -3719,8 +3719,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 522060295}
-        m_TargetAssemblyTypeName: ButtonSelectLevel, Assembly-CSharp
+      - m_Target: {fileID: 1291511355}
+        m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: onClickLevelButton
         m_Mode: 1
         m_Arguments:
@@ -4173,8 +4173,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1286639650}
-        m_TargetAssemblyTypeName: ButtonSelectLevel, Assembly-CSharp
+      - m_Target: {fileID: 1291511355}
+        m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: onClickLevelButton
         m_Mode: 1
         m_Arguments:
@@ -4290,12 +4290,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curSelectLevelValue: 0
   curLevelSectionValue: 0
+  curIndexSelectLevel: 0
   isCameraNotMoving: 0
   isInputKeyboardChoose: 0
   isLevelButtonHighlighted: 0
   curValueButton: 0
   curValueButtonIndex: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b000000
   buttonHighlightedValue: 0
+  listIndexButtonSelectLevel: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000
   typeLevelObject:
   - {fileID: 1849834146}
   - {fileID: 1599397740}
@@ -4355,8 +4357,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1286639650}
-        m_TargetAssemblyTypeName: ButtonSelectLevel, Assembly-CSharp
+      - m_Target: {fileID: 1291511355}
+        m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: inputNavigationConfirm
         m_Mode: 0
         m_Arguments:
@@ -4528,8 +4530,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 522060295}
-        m_TargetAssemblyTypeName: ButtonSelectLevel, Assembly-CSharp
+      - m_Target: {fileID: 1291511355}
+        m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: onClickLevelButton
         m_Mode: 1
         m_Arguments:
@@ -4664,8 +4666,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 522060295}
-        m_TargetAssemblyTypeName: ButtonSelectLevel, Assembly-CSharp
+      - m_Target: {fileID: 1291511355}
+        m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: onClickLevelButton
         m_Mode: 1
         m_Arguments:
@@ -4820,8 +4822,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1501467309}
-        m_TargetAssemblyTypeName: ButtonSelectLevel, Assembly-CSharp
+      - m_Target: {fileID: 1291511355}
+        m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: onClickLevelButton
         m_Mode: 1
         m_Arguments:
@@ -5357,8 +5359,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 522060295}
-        m_TargetAssemblyTypeName: ButtonSelectLevel, Assembly-CSharp
+      - m_Target: {fileID: 1291511355}
+        m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: onClickLevelButton
         m_Mode: 1
         m_Arguments:
@@ -5960,8 +5962,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 522060295}
-        m_TargetAssemblyTypeName: ButtonSelectLevel, Assembly-CSharp
+      - m_Target: {fileID: 1291511355}
+        m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: onClickLevelButton
         m_Mode: 1
         m_Arguments:

@@ -90,7 +90,7 @@ public class SceneSystem : MonoBehaviour
         StartCoroutine(waitToScenePrologueScene());
     }
 
-    public void goingToLevelSelected(int levelIndex) 
+    public void goingToLevelSelected() 
     {
         isChangeScene = true;
         StartCoroutine(waitToLevelSelectedScene());
@@ -155,10 +155,11 @@ public class SceneSystem : MonoBehaviour
 
     }
 
-    IEnumerator waitToLevelSelectedScene() 
+    public IEnumerator waitToLevelSelectedScene() 
     {
         yield return new WaitForSeconds(delayTimeNextScene);
-        SceneManager.LoadScene(SelectLevel.selectLevel.curSelectLevelValue);
+        
+        SceneManager.LoadScene(SelectLevel.selectLevel.curIndexSelectLevel);
     }
     #endregion
 }

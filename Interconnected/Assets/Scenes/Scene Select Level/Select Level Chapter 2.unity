@@ -646,7 +646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 19
+  idLevel: 20
   levelButtonNumber: 8
   isButtonLocked: 1
   levelType: null
@@ -802,7 +802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 20
+  idLevel: 21
   levelButtonNumber: 9
   isButtonLocked: 1
   levelType: null
@@ -2235,7 +2235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 13
+  idLevel: 14
   levelButtonNumber: 2
   isButtonLocked: 0
   levelType: Danger Zone
@@ -2391,7 +2391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 14
+  idLevel: 15
   levelButtonNumber: 3
   isButtonLocked: 0
   levelType: null
@@ -2560,7 +2560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &634320601
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2944,7 +2944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 16
+  idLevel: 17
   levelButtonNumber: 5
   isButtonLocked: 1
   levelType: null
@@ -3396,7 +3396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 21
+  idLevel: 22
   levelButtonNumber: 10
   isButtonLocked: 1
   levelType: null
@@ -3725,12 +3725,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curSelectLevelValue: 0
   curLevelSectionValue: 0
+  curIndexSelectLevel: 0
   isCameraNotMoving: 0
   isInputKeyboardChoose: 0
   isLevelButtonHighlighted: 0
   curValueButton: 0
   curValueButtonIndex: 00000000010000000200000003000000040000000500000006000000070000000800000009000000
   buttonHighlightedValue: 0
+  listIndexButtonSelectLevel: 0c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000
   typeLevelObject:
   - {fileID: 1599397740}
   - {fileID: 1974396096}
@@ -3954,7 +3956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 15
+  idLevel: 16
   levelButtonNumber: 4
   isButtonLocked: 0
   levelType: null
@@ -4110,7 +4112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 12
+  idLevel: 13
   levelButtonNumber: 1
   isButtonLocked: 0
   levelType: Time Speed
@@ -4639,7 +4641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 18
+  idLevel: 19
   levelButtonNumber: 7
   isButtonLocked: 1
   levelType: null
@@ -5001,7 +5003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 17
+  idLevel: 18
   levelButtonNumber: 6
   isButtonLocked: 1
   levelType: null

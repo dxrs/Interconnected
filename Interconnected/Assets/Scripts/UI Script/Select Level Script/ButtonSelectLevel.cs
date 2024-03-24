@@ -76,12 +76,13 @@ public class ButtonSelectLevel : MonoBehaviour
         {
             if (selectLevel.isInputKeyboardChoose && selectLevel.isCameraNotMoving)
             {
-                SceneSystem.sceneSystem.goingToLevelSelected(idLevel);
+                //SceneSystem.sceneSystem.goingToLevelSelected(idLevel);
             }
         }
     }
     public void onClickLevelButton() 
     {
-        SceneSystem.sceneSystem.goingToLevelSelected(idLevel);
+        //SceneSystem.sceneSystem.goingToLevelSelected(idLevel);
+        //StartCoroutine(SceneSystem.sceneSystem.waitToLevelSelectedScene(idLevel));
     }
 }
