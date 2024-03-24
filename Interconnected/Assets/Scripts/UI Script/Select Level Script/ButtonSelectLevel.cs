@@ -55,7 +55,7 @@ public class ButtonSelectLevel : MonoBehaviour
             isButtonLocked = true;
         }
 
-        if (idLevel > 0) // artinya setelah scene tutorial, karena indexnya 1
+        if (idLevel > 1) // artinya setelah scene tutorial, karena indexnya 1
         {
             if (isButtonLocked)
             {
@@ -76,12 +76,12 @@ public class ButtonSelectLevel : MonoBehaviour
         {
             if (selectLevel.isInputKeyboardChoose && selectLevel.isCameraNotMoving)
             {
-                SceneSystem.sceneSystem.goingToLevelSelected(idLevel + 1);
+                SceneSystem.sceneSystem.goingToLevelSelected(idLevel);
             }
         }
     }
     public void onClickLevelButton() 
     {
-        SceneSystem.sceneSystem.goingToLevelSelected(idLevel + 1);
+        SceneSystem.sceneSystem.goingToLevelSelected(idLevel);
     }
 }

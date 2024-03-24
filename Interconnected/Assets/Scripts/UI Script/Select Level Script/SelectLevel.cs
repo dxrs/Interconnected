@@ -51,7 +51,7 @@ public class SelectLevel : MonoBehaviour
     }
     private void Update()
     {
-        if (buttonHighlightedValue >= listLevelButton.Length) { buttonHighlightedValue = listLevelButton.Length - 1; }
+        if (buttonHighlightedValue >= listLevelButton.Length) { buttonHighlightedValue = listLevelButton.Length; }
         curSelectLevelValue = buttonHighlightedValue;
         compareLevelTypeValue();
         compareSectionValue();
@@ -81,7 +81,7 @@ public class SelectLevel : MonoBehaviour
         {
             if (!isCameraNotMoving)
             {
-                int buttonValue = curValueButtonIndex[j];
+                int buttonValue = curValueButtonIndex[j] + 1; // Mengatur buttonValue dengan j + 1
 
                 EventTrigger eventTrigger = listLevelButton[j].gameObject.GetComponent<EventTrigger>();
 
@@ -119,22 +119,22 @@ public class SelectLevel : MonoBehaviour
 
         if (isInputKeyboardChoose) 
         {
-            curLevelSectionValue = Mathf.FloorToInt((curSelectLevelValue) / 3);
+            curLevelSectionValue = Mathf.FloorToInt((curSelectLevelValue - 1) / 3);
 
-           /*
-            if (curSelectLevelValue == Mathf.Clamp(curSelectLevelValue, 0, 2))
+          /*
+            if (curSelectLevelValue == Mathf.Clamp(curSelectLevelValue, 1, 3))
             {
                 curLevelSectionValue = 0;
             }
-            if (curSelectLevelValue == Mathf.Clamp(curSelectLevelValue, 3, 5))
+            if (curSelectLevelValue == Mathf.Clamp(curSelectLevelValue, 4, 6))
             {
                 curLevelSectionValue = 1;
             }
-            if (curSelectLevelValue == Mathf.Clamp(curSelectLevelValue, 6, 8)) 
+            if (curSelectLevelValue == Mathf.Clamp(curSelectLevelValue, 7, 9)) 
             {
                 curLevelSectionValue = 2;
             }
-           */
+          */
             
         }
        
@@ -145,7 +145,7 @@ public class SelectLevel : MonoBehaviour
 
         for (int i = 0; i < typeLevelObject.Length; i++)
         {
-            typeLevelObject[i].SetActive(buttonHighlightedValue == i && listLevelButton[i].enabled);
+            typeLevelObject[i].SetActive(buttonHighlightedValue == i + 1 && listLevelButton[i].enabled);
         }
 
         /*
@@ -191,7 +191,7 @@ public class SelectLevel : MonoBehaviour
 
     private void buttonMainMenuHighlighted(int value)
     {
-        
+       
         if (value <= LevelManager.levelManager.totalLevelUnlocked && !SceneSystem.sceneSystem.isChangeScene) 
         {
             buttonHighlightedValue = value;
@@ -259,8 +259,8 @@ public class SelectLevel : MonoBehaviour
             {
                 curLevelSectionValue--;
             }
-            
-            buttonHighlightedValue = curLevelSectionValue * 3;
+
+            buttonHighlightedValue = curLevelSectionValue * 3 + 1;
         }
         
     }
@@ -274,7 +274,7 @@ public class SelectLevel : MonoBehaviour
             if (curLevelSectionValue < LevelManager.levelManager.currentTotalLevelSection)
             {
                 curLevelSectionValue++;
-                buttonHighlightedValue = curLevelSectionValue * 3;
+                buttonHighlightedValue = curLevelSectionValue * 3 + 1;
             }
 
         }

@@ -158,7 +158,7 @@ public class SceneSystem : MonoBehaviour
     IEnumerator waitToLevelSelectedScene() 
     {
         yield return new WaitForSeconds(delayTimeNextScene);
-        SceneManager.LoadScene(SelectLevel.selectLevel.curSelectLevelValue + 1);
+        SceneManager.LoadScene(SelectLevel.selectLevel.curSelectLevelValue);
     }
     #endregion
 }

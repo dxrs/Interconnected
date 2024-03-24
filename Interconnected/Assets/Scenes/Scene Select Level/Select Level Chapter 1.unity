@@ -224,7 +224,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 220, y: 73}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &124077203
@@ -646,8 +646,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 8
-  levelButtonNumber: 8
+  idLevel: 9
+  levelButtonNumber: 9
   isButtonLocked: 1
   levelType: null
   buttonSelectLevel: {fileID: 219070174}
@@ -802,8 +802,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 9
-  levelButtonNumber: 9
+  idLevel: 10
+  levelButtonNumber: 10
   isButtonLocked: 1
   levelType: null
   buttonSelectLevel: {fileID: 241870356}
@@ -1014,7 +1014,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4952732781539411342, guid: 5fbbcefa02ff3a0419161cde2bcb4f73, type: 3}
       propertyPath: totalLevelUnlocked
-      value: 12
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4952732781539411342, guid: 5fbbcefa02ff3a0419161cde2bcb4f73, type: 3}
       propertyPath: totalLevelPerChapter.Array.size
@@ -2370,8 +2370,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 2
-  levelButtonNumber: 2
+  idLevel: 3
+  levelButtonNumber: 3
   isButtonLocked: 0
   levelType: Danger Zone
   buttonSelectLevel: {fileID: 519158050}
@@ -2526,8 +2526,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 3
-  levelButtonNumber: 3
+  idLevel: 4
+  levelButtonNumber: 4
   isButtonLocked: 0
   levelType: null
   buttonSelectLevel: {fileID: 522060292}
@@ -3216,8 +3216,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 5
-  levelButtonNumber: 5
+  idLevel: 6
+  levelButtonNumber: 6
   isButtonLocked: 1
   levelType: null
   buttonSelectLevel: {fileID: 729883002}
@@ -3668,8 +3668,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 10
-  levelButtonNumber: 10
+  idLevel: 11
+  levelButtonNumber: 11
   isButtonLocked: 1
   levelType: null
   buttonSelectLevel: {fileID: 913423236}
@@ -4236,8 +4236,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 0
-  levelButtonNumber: 0
+  idLevel: 1
+  levelButtonNumber: 1
   isButtonLocked: 0
   levelType: Practice Here
   buttonSelectLevel: {fileID: 1286639647}
@@ -4477,8 +4477,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 11
-  levelButtonNumber: 11
+  idLevel: 12
+  levelButtonNumber: 12
   isButtonLocked: 1
   levelType: null
   buttonSelectLevel: {fileID: 1336152962}
@@ -4727,8 +4727,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 4
-  levelButtonNumber: 4
+  idLevel: 5
+  levelButtonNumber: 5
   isButtonLocked: 0
   levelType: null
   buttonSelectLevel: {fileID: 1347660476}
@@ -4883,8 +4883,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 1
-  levelButtonNumber: 1
+  idLevel: 2
+  levelButtonNumber: 2
   isButtonLocked: 0
   levelType: Time Speed
   buttonSelectLevel: {fileID: 1501467306}
@@ -5061,7 +5061,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 41, y: 182}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1618185272
@@ -5412,8 +5412,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 7
-  levelButtonNumber: 7
+  idLevel: 8
+  levelButtonNumber: 8
   isButtonLocked: 1
   levelType: null
   buttonSelectLevel: {fileID: 1726962085}
@@ -5909,8 +5909,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectLevel: {fileID: 1291511355}
-  idLevel: 6
-  levelButtonNumber: 6
+  idLevel: 7
+  levelButtonNumber: 7
   isButtonLocked: 1
   levelType: null
   buttonSelectLevel: {fileID: 1853448600}
