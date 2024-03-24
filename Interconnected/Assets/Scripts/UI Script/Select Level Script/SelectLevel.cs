@@ -119,7 +119,7 @@ public class SelectLevel : MonoBehaviour
 
         if (isInputKeyboardChoose) 
         {
-            curLevelSectionValue = Mathf.FloorToInt((curSelectLevelValue - 1) / 3);
+            curLevelSectionValue = Mathf.FloorToInt((curSelectLevelValue) / 3);
 
            /*
             if (curSelectLevelValue == Mathf.Clamp(curSelectLevelValue, 0, 2))
