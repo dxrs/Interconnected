@@ -219,7 +219,10 @@ public class Garbage : MonoBehaviour
         {
             if (LinkRay.linkRay.isPlayerLinkedEachOther && !GlobalVariable.globalVariable.isPlayerDestroyed)
             {
-
+                if (GarbageCollector.garbageCollector.garbageCollected < GarbageCollector.garbageCollector.limitGarbageCollected)
+                {
+                    GarbageCollector.garbageCollector.garbageCollected++;
+                }
                 if (Player1Movement.player1Movement.curMaxSpeed > 1 && Player2Movement.player2Movement.curMaxSpeed > 1 && !isCanBeCollected)
                 {
                     Player1Movement.player1Movement.curMaxSpeed -= garbageWeight;
@@ -239,7 +242,10 @@ public class Garbage : MonoBehaviour
         {
             if(LinkRay.linkRay.isPlayerLinkedEachOther && !GlobalVariable.globalVariable.isPlayerDestroyed)
             {
-             
+                if (GarbageCollector.garbageCollector.garbageCollected < GarbageCollector.garbageCollector.limitGarbageCollected)
+                {
+                    GarbageCollector.garbageCollector.garbageCollected++;
+                }
                 if (Player1Movement.player1Movement.curMaxSpeed > 1 && Player2Movement.player2Movement.curMaxSpeed > 1 && !isCanBeCollected)
                 {
                     Player1Movement.player1Movement.curMaxSpeed -= garbageWeight;

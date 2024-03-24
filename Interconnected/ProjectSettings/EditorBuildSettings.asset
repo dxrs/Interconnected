@@ -22,18 +22,21 @@ EditorBuildSettings:
     guid: 61d9f0b35484d144ba85a59339a83d8e
   - enabled: 1
     path: Assets/Scenes/Scene Garbage Collector/Level Garbage Collector 4.unity
-    guid: 610e56c3203a4364190c819ee23af79f
-  - enabled: 1
-    path: Assets/Scenes/Scene Garbage Collector/Level Garbage Collector 5.unity
     guid: dc9d952509edd874a8f5a671356921bd
   - enabled: 1
-    path: Assets/Scenes/Scene Garbage Collector/Level Garbage Collector 6.unity
+    path: Assets/Scenes/Scene Garbage Collector/Level Garbage Collector 5.unity
     guid: 5370d43d13aa8374d99dda6d5753b3ea
   - enabled: 1
-    path: Assets/Scenes/Scene Garbage Collector/Level Garbage Collector 7.unity
+    path: Assets/Scenes/Scene Garbage Collector/Level Garbage Collector 6.unity
     guid: db73b540af0d7d84e8c2e65195e42043
   - enabled: 1
-    path: Assets/Scenes/Scene Garbage Collector/Level Garbage Collector 500.unity
+    path: Assets/Scenes/Scene Garbage Collector/Level Garbage Collector 7.unity
+    guid: 610e56c3203a4364190c819ee23af79f
+  - enabled: 1
+    path: Assets/Scenes/Scene Garbage Collector/Level Garbage Collector 8.unity
+    guid: 2de7d7f711b74e647b5b7847e6f7ccf5
+  - enabled: 1
+    path: Assets/Scenes/Scene Garbage Collector/Level Garbage Collector 9.unity
     guid: dfce74c69646df340b80867fbd030556
   - enabled: 1
     path: Assets/Scenes/Scene Prologue/Prologue.unity

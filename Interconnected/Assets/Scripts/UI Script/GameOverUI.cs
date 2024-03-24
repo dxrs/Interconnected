@@ -137,12 +137,16 @@ public class GameOverUI : MonoBehaviour
     {
         if (context.performed)
         {
-            curValueButton--;
-            if (curValueButton < 1)
+            if (GameOver.gameOver.isGameOver && !SceneSystem.sceneSystem.isChangeScene)
             {
-                curValueButton = maxListButton;
+                curValueButton--;
+                if (curValueButton < 1)
+                {
+                    curValueButton = maxListButton;
+                }
+                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
             }
-            MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+          
 
         }
 
@@ -152,12 +156,16 @@ public class GameOverUI : MonoBehaviour
     {
         if (context.performed)
         {
-            curValueButton++;
-            if (curValueButton > maxListButton)
+            if (GameOver.gameOver.isGameOver && !SceneSystem.sceneSystem.isChangeScene) 
             {
-                curValueButton = 1;
+                curValueButton++;
+                if (curValueButton > maxListButton)
+                {
+                    curValueButton = 1;
+                }
+                MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
             }
-            MouseCursorActivated.mouseCursorActivated.isMouseActive = false;
+         
 
         }
 

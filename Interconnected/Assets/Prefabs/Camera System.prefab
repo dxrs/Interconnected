@@ -110,7 +110,7 @@ MonoBehaviour:
   - {fileID: 0}
   garbageCenterPointTransform: {fileID: 0}
   cameraOffset: {x: 0, y: 0, z: -10}
-  distanceBetween2Player: 24
+  distanceBetween2Player: 35
   smoothCameraTimeMovemement: 0.5
   cameraMinZoom: 15
   cameraMaxZoom: 6
