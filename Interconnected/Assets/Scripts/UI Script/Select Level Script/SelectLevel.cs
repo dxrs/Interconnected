@@ -51,7 +51,7 @@ public class SelectLevel : MonoBehaviour
     }
     private void Update()
     {
-        if (buttonHighlightedValue > listLevelButton.Length) { buttonHighlightedValue = listLevelButton.Length - 1; }
+        if (buttonHighlightedValue >= listLevelButton.Length) { buttonHighlightedValue = listLevelButton.Length - 1; }
         curSelectLevelValue = buttonHighlightedValue;
         compareLevelTypeValue();
         compareSectionValue();
@@ -116,9 +116,10 @@ public class SelectLevel : MonoBehaviour
     }
     private void compareSectionValue() 
     {
+
         if (isInputKeyboardChoose) 
         {
-            curLevelSectionValue = Mathf.FloorToInt((curSelectLevelValue) / 3);
+            curLevelSectionValue = Mathf.FloorToInt((curSelectLevelValue - 1) / 3);
 
            /*
             if (curSelectLevelValue == Mathf.Clamp(curSelectLevelValue, 0, 2))
