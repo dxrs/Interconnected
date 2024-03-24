@@ -1014,7 +1014,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4952732781539411342, guid: 5fbbcefa02ff3a0419161cde2bcb4f73, type: 3}
       propertyPath: totalLevelUnlocked
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4952732781539411342, guid: 5fbbcefa02ff3a0419161cde2bcb4f73, type: 3}
       propertyPath: totalLevelPerChapter.Array.size
