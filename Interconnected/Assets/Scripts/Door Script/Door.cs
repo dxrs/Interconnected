@@ -7,6 +7,7 @@ public class Door : MonoBehaviour
     public int id;
 
     [SerializeField] GameObject[] doorButton;
+    [SerializeField] Transform[] doorButtonScale;
 
     [SerializeField] float doorMoveSpeed;
 
@@ -25,20 +26,27 @@ public class Door : MonoBehaviour
                 {
                     transform.localPosition = Vector2.MoveTowards(transform.localPosition,
                      doorMoveTarget, doorMoveSpeed * Time.deltaTime);
-                    
+                    if (doorButton[0] && doorButton[1] != null)
+                    {
+                        for (int k = 0; k < doorButton.Length; k++)
+                        {
+                            doorButton[k].SetActive(false);
+                            
+                        }
+                    }
 
-                    if(Mathf.Approximately(transform.localPosition.x, doorMoveTarget.x) && Mathf.Approximately(transform.localPosition.y, doorMoveTarget.y)) 
+                    if (Mathf.Approximately(transform.localPosition.x, doorMoveTarget.x) && Mathf.Approximately(transform.localPosition.y, doorMoveTarget.y)) 
                     {
                         if (doorButton[0] && doorButton[1] != null) 
                         {
                             for(int k = 0; k < doorButton.Length; k++) 
                             {
-                                doorButton[k].SetActive(false);
+                             
                                 doorButton[k].transform.position = transform.position;
                             }
                         }
 
-                        Destroy(gameObject,5);
+                        Destroy(gameObject);
                         for (int k = 0; k < doorButton.Length; k++)
                         {
                             Destroy(doorButton[k], 5);
@@ -47,7 +55,7 @@ public class Door : MonoBehaviour
                 }
                 if (doorButton[0] && doorButton[1] != null) 
                 {
-                    if (doorButton[0].transform.localScale.x <= 0.8f && doorButton[1].transform.localScale.x <= 0.8f)
+                    if (doorButtonScale[0].localScale.x <= 0.02f && doorButtonScale[1].localScale.x <= 0.02f)
                     {
                         isDoorOpen = true;
                     }
@@ -55,5 +63,13 @@ public class Door : MonoBehaviour
                
             }
         }
+    }
+    private void OnDestroy()
+    {
+        if (LevelStatus.levelStatus.levelID == 4) 
+        {
+            Tutorial.tutorial.tutorialProgress++;
+        }
+        
     }
 }

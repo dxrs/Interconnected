@@ -10,6 +10,7 @@ public class DoorButton : MonoBehaviour
     [SerializeField] bool isPlayer2SetPosToDoor;
     [SerializeField] bool isButtonPressed;
 
+    [SerializeField] Transform buttonSpriteScale;
 
     private void Update()
     {
@@ -20,14 +21,18 @@ public class DoorButton : MonoBehaviour
             {
                 if (id == i)
                 {
-                    if (isButtonPressed)
+                    if (buttonSpriteScale != null) 
                     {
-                        transform.localScale = Vector2.MoveTowards(transform.localScale, new Vector2(0.02f, 0.02f), 4.5f * Time.deltaTime);
+                        if (isButtonPressed)
+                        {
+                            buttonSpriteScale.localScale = Vector2.MoveTowards(buttonSpriteScale.localScale, new Vector2(0.02f, 0.02f), 4.5f * Time.deltaTime);
+                        }
+                        else
+                        {
+                            buttonSpriteScale.localScale = Vector2.Lerp(buttonSpriteScale.localScale, new Vector2(1.5f, 1.5f), 4.5f * Time.deltaTime);
+                        }
                     }
-                    else
-                    {
-                        transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(1.5f, 1.5f), 4.5f * Time.deltaTime);
-                    }
+                   
                   
                     break;
                 }

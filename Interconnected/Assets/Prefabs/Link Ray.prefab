@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerLinkedEachOther: 0
-  maxLinkDistance: 12
+  maxLinkDistance: 16
   player:
   - {fileID: 0}
   - {fileID: 0}

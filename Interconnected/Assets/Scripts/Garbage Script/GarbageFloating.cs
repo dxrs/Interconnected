@@ -6,6 +6,8 @@ public class GarbageFloating : MonoBehaviour
 {
     [SerializeField] Garbage garbage;
 
+    [SerializeField] string garbageType;
+
     [SerializeField] GameObject garbageParent;
 
     [SerializeField] Rigidbody2D garbageRb;
@@ -63,6 +65,19 @@ public class GarbageFloating : MonoBehaviour
                
             }
             //transform.position = garbageParent.transform.position;
+        }
+
+        if(garbage.isGarbageCollected && garbage.isPlayerBringGarbage) 
+        {
+            if(GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue == 2) 
+            {
+                if(Timer.timerInstance.isTimerLevel) 
+                {
+                    transform.localScale = new Vector2(.02f, .02f);
+                }
+                
+            }
+            
         }
     }
 }

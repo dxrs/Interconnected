@@ -71,7 +71,8 @@ public class GlobalVariable : MonoBehaviour
             
             if (LevelStatus.levelStatus.levelID == 4) 
             {
-                Tutorial.tutorial.tutorialProgress++;
+                //Tutorial.tutorial.tutorialProgress++;
+               
                 isAddingCheckpointValue = true;
             }
             else 

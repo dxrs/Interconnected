@@ -76,15 +76,22 @@ public class ObstacleWall : MonoBehaviour
     {
         if (LevelStatus.levelStatus.levelID == 4)
         {
-            if (Tutorial.tutorial.tutorialProgress >= 2)
+            if (Tutorial.tutorial.tutorialProgress >= 2 )
             {
                 if (moveTowardID == 1)
                 {
+                   
                     if (player1.transform.position.x >= 6 || player2.transform.position.x >= 6)
                     {
+
                         if (isMovingX)
                         {
                             transform.position = Vector2.MoveTowards(transform.position, new Vector2(moveXTarget, transform.position.y), moveTowardSpeed * Time.deltaTime);
+                            if (Tutorial.tutorial.isEnterShareLivesArea)
+                            {
+
+                            }
+
                         }
                     }
                 }

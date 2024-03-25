@@ -6,15 +6,15 @@ using UnityEngine;
 public class Garbage : MonoBehaviour
 {
     public bool isGarbageCollected;
+    public bool isPlayerBringGarbage;
 
     [SerializeField] float blastForce;  
     [SerializeField] float blastRadius;
     [SerializeField] float garbageWeight;
 
-    [SerializeField] bool isPlayerBringGarbage;
+
     [SerializeField] bool isRotate;
     [SerializeField] bool isCanBeCollected;
-
 
     [SerializeField] string[] garbageBounceCollision;
 
@@ -120,7 +120,7 @@ public class Garbage : MonoBehaviour
 
 
             }
-            if (!isGarbageCollected)
+            if (!isGarbageCollected && !isPlayerBringGarbage)
             {
                 
                 pc.enabled = true;
@@ -152,26 +152,36 @@ public class Garbage : MonoBehaviour
         if (isGarbageCollected && isPlayerBringGarbage)
         {
             garbagePosition = garbageWhirlpool.transform.position;
-            
-            if(garbageType=="Standart Garbage")
+            pc.enabled = false;
+
+            if (GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue == 2 && Timer.timerInstance.isTimerLevel)
             {
-                posX = garbagePosition.x + randomRadius * Mathf.Cos(Mathf.Deg2Rad * angle);
-                posY = garbagePosition.y + randomRadius * Mathf.Sin(Mathf.Deg2Rad * angle);
-                transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), 2 * Time.deltaTime);
-                if (!isRotate)
+                transform.SetParent(garbageWhirlpool.transform);
+            }
+            if (GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue != 2)
+            {
+                if (garbageType == "Standart Garbage")
                 {
                    
+                    posX = garbagePosition.x + randomRadius * Mathf.Cos(Mathf.Deg2Rad * angle);
+                    posY = garbagePosition.y + randomRadius * Mathf.Sin(Mathf.Deg2Rad * angle);
+                    transform.position = Vector2.Lerp(transform.position, new Vector2(posX, posY), 2 * Time.deltaTime);
 
-                    transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360)).normalized;
-                    isRotate = true;
+                    if (!isRotate)
+                    {
+                        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360)).normalized;
+                        isRotate = true;
+                    }
+                }
+                else if (garbageType == "Special Garbage")
+                {
+                    transform.position = Vector2.Lerp(transform.position, garbagePosition, 2 * Time.deltaTime);
                 }
             }
-            if(garbageType=="Special Garbage") 
-            {
-                transform.position = Vector2.Lerp(transform.position, garbagePosition, 2 * Time.deltaTime);
-            }
             
-            
+
+
+
             if (!isGarbageDestroying)
             {
                 GarbageCollector.garbageCollector.currentGarbageStored++;
@@ -181,19 +191,16 @@ public class Garbage : MonoBehaviour
             {
                 StartCoroutine(garbageDestroying());
             }
-            else 
+            else
             {
-                if(garbageType == "Standart Garbage") 
+                if (garbageType == "Standart Garbage")
                 {
                     transform.localScale = Vector2.Lerp(transform.localScale, scaleGarbageAtCenterPoint, 4 * Time.deltaTime);
                 }
-                
             }
-
-
         }
-        
-       
+
+
     }
 
     void randomValue()
@@ -201,7 +208,7 @@ public class Garbage : MonoBehaviour
         angle = Random.Range(0f, 360f);
         lerpSpeed = Random.Range(4.5f, 6.5f);
         flushLerpSpeed = Random.Range(3.2f, 5f);
-        randomRadius = Random.Range(0.5f, 3f);
+        randomRadius = Random.Range(0.5f, 2.7f);
         randomDestroyTime = Random.Range(.5f, 1f);
     }
 

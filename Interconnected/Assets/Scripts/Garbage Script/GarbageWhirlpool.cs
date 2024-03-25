@@ -6,6 +6,14 @@ public class GarbageWhirlpool : MonoBehaviour
 {
     private void Update()
     {
-        transform.Rotate(Vector3.forward, 50 * Time.deltaTime);
+        if (Timer.timerInstance.isTimerLevel) 
+        {
+            if (GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue == 2)
+            {
+                transform.Rotate(Vector3.forward, 150 * Time.deltaTime);
+            }
+        }
+     
+        
     }
 }

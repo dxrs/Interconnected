@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5668552394260206920}
+  - component: {fileID: 8512231711364016319}
   m_Layer: 0
   m_Name: Garbage Radius Position
   m_TagString: Garbage Whirlpool
@@ -31,6 +32,18 @@ Transform:
   m_Father: {fileID: 8774739259674710830}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8512231711364016319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3652522114434162620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e56637b66cf7c54e940f304b71121ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8774739259674710819
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,6 +170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonGarbageStoreValue: 0
+  isGarbageIsReadyToDestroy: 0
   buttonGarbageStore:
   - {fileID: 0}
   - {fileID: 0}
+  garbageHole: {fileID: 0}

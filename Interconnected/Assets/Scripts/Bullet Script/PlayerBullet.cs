@@ -32,9 +32,9 @@ public class PlayerBullet : MonoBehaviour
             float distanceToPlayer2 = Vector2.Distance(player1.transform.position, player2.transform.position);
 
             // Ubah warna berdasarkan jarak
-            if (distanceToPlayer2 >= 10f)
+            if (distanceToPlayer2 >= LinkRay.linkRay.maxLinkDistance - 2)
             {
-                float t = Mathf.InverseLerp(10f, LinkRay.linkRay.maxLinkDistance, distanceToPlayer2);
+                float t = Mathf.InverseLerp(LinkRay.linkRay.maxLinkDistance - 2, LinkRay.linkRay.maxLinkDistance, distanceToPlayer2);
                 Color newColor = sr.color; // Salin warna saat ini
                 newColor.a = Mathf.Lerp(1f, 0f, t); // Ubah komponen alpha (transparansi)
                 sr.color = newColor;

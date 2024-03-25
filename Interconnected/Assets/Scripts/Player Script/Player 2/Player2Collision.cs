@@ -70,6 +70,14 @@ public class Player2Collision : MonoBehaviour
             }
         }
 
+        if (collision.gameObject.tag == "Share Lives Area")
+        {
+            if (LevelStatus.levelStatus.levelID == 4)
+            {
+                Tutorial.tutorial.isEnterShareLivesArea = true;
+            }
+        }
+
         if (collision.gameObject.tag == "Obstacle P1")
         {
             isHitGravityArea = true;

@@ -6724,6 +6724,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7730755154521044827, guid: bd336977dceab784392e0b6f318ea138, type: 3}
+      propertyPath: maxLinkDistance
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7730755154521044827, guid: bd336977dceab784392e0b6f318ea138, type: 3}
       propertyPath: player.Array.data[0]
       value: 
       objectReference: {fileID: 116975106}

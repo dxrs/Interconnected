@@ -14,6 +14,7 @@ public class Tutorial : MonoBehaviour
     public bool isEnemyReadyToShoot;
     public bool isReadyToShareLives;
     public bool[] isPlayersEnterGarbageArea;
+    public bool isEnterShareLivesArea;
 
     [SerializeField] GameObject wallBlocker;
     [SerializeField] GameObject wallStatic;

@@ -45,6 +45,7 @@ TagManager:
   - Trap
   - Wall Destroyer
   - Garbage Store Button
+  - Share Lives Area
   layers:
   - Default
   - TransparentFX
