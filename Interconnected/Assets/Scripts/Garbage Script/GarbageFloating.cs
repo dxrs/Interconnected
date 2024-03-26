@@ -30,7 +30,7 @@ public class GarbageFloating : MonoBehaviour
         garbageFloatingPos = transform.localPosition;
         randomOffsetSinePos = Random.Range(0, 2);
         sr = GetComponent<SpriteRenderer>();
-        sr.sortingOrder = -1;
+        //sr.sortingOrder = -1;
         sr.color = new Color(1, 1, 1, 1);
     }
 
@@ -69,14 +69,27 @@ public class GarbageFloating : MonoBehaviour
 
         if(garbage.isGarbageCollected && garbage.isPlayerBringGarbage) 
         {
-            if(GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue == 2) 
+            if(LevelStatus.levelStatus.levelID != 4) 
             {
-                if(Timer.timerInstance.isTimerLevel) 
+                if (GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue == 2)
+                {
+                    if (Timer.timerInstance.isTimerLevel)
+                    {
+                        transform.localScale = new Vector2(.02f, .02f);
+                    }
+
+                }
+            }
+            else 
+            {
+                if (GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue == 2)
                 {
                     transform.localScale = new Vector2(.02f, .02f);
+                   
+
                 }
-                
             }
+            
             
         }
     }

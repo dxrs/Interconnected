@@ -419,6 +419,22 @@ PrefabInstance:
       propertyPath: sineSpeed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8399348337159309229, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: sineID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399348337159309229, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: sinePower
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399348337159309229, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: sineSpeed
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399348337159309229, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: isSineRandomOffset
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
 --- !u!114 &106151307 stripped
@@ -3276,6 +3292,22 @@ PrefabInstance:
       value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 2429221714610456398, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: isSineRandomOffset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399348337159309229, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: sineID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399348337159309229, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: sinePower
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399348337159309229, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
+      propertyPath: sineSpeed
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399348337159309229, guid: a786d1aeea27f3845b4c83c6d4dfcfe3, type: 3}
       propertyPath: isSineRandomOffset
       value: 1
       objectReference: {fileID: 0}

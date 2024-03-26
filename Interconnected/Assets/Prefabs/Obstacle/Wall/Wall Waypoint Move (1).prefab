@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7673157337044394915}
   - component: {fileID: 7673157337044394913}
   - component: {fileID: 7673157337044394912}
-  - component: {fileID: 7673157337044394926}
+  - component: {fileID: 6372004482323632472}
   m_Layer: 6
   m_Name: Wall
   m_TagString: Wall
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7673157337044394926
+--- !u!114 &6372004482323632472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,24 +121,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7673157337044394914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d95cc0fac5da9e4d9d1c6c1ea33b8f6, type: 3}
+  m_Script: {fileID: 11500000, guid: fe26d2d1e657a7b4ba43583abf7a3664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallType: Waypoint Movement
-  sineID: 0
-  sineSpeed: 0
-  sinePower: 0
-  isSineRandomOffset: 0
   pathWall: {fileID: 7673157337343952067}
-  moveSpeed: 4
-  delayTime: 0.2
-  moveTowardID: 0
-  isMovingX: 0
-  moveTowardSpeed: 0
-  moveXTarget: 0
-  moveYTarget: 0
-  isRotateClockwise: 0
-  rotationSpeed: 0
+  moveSpeed: 0
+  delayTime: 0
 --- !u!1 &7673157337343952066
 GameObject:
   m_ObjectHideFlags: 0

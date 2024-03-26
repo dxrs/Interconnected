@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2429221714610454707}
   - component: {fileID: 2429221714610454705}
   - component: {fileID: 2429221714610454704}
-  - component: {fileID: 2429221714610456398}
+  - component: {fileID: 8399348337159309229}
   m_Layer: 6
   m_Name: Wall Sine (1)
   m_TagString: Wall
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2429221714610456398
+--- !u!114 &8399348337159309229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,21 +121,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2429221714610454706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d95cc0fac5da9e4d9d1c6c1ea33b8f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 16016aef7768c2f469269759d67baf86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallType: Sine
   sineID: 1
   sineSpeed: 0
   sinePower: 0
   isSineRandomOffset: 0
-  pathWall: {fileID: 0}
-  moveSpeed: 0
-  delayTime: 0
-  moveTowardID: 0
-  isMovingX: 0
-  moveTowardSpeed: 0
-  moveXTarget: 0
-  moveYTarget: 0
-  isRotateClockwise: 0
-  rotationSpeed: 0

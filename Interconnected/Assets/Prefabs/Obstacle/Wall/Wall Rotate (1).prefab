@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3326990768907537703}
-  - component: {fileID: 3326990768907537700}
+  - component: {fileID: 3379846581084904965}
   m_Layer: 0
   m_Name: Wall Rotate (1)
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3326990768907537700
+--- !u!114 &3379846581084904965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,24 +42,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3326990768907537702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d95cc0fac5da9e4d9d1c6c1ea33b8f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 1abff1399c845614cacb6ce1236648b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallType: Rotate
-  sineID: 0
-  sineSpeed: 0
-  sinePower: 0
-  isSineRandomOffset: 0
-  pathWall: {fileID: 0}
-  moveSpeed: 0
-  delayTime: 0
-  moveTowardID: 0
-  isMovingX: 0
-  moveTowardSpeed: 0
-  moveXTarget: 0
-  moveYTarget: 0
-  isRotateClockwise: 0
-  rotationSpeed: 30
 --- !u!1 &3326990769154589566
 GameObject:
   m_ObjectHideFlags: 0

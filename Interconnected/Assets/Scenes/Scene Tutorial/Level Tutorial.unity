@@ -986,7 +986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &333539067
 Transform:
   m_ObjectHideFlags: 0
@@ -2487,21 +2487,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d95cc0fac5da9e4d9d1c6c1ea33b8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallType: 
-  sineID: 0
-  sineSpeed: 0
-  sinePower: 0
-  isSineRandomOffset: 0
-  pathWall: {fileID: 0}
-  moveSpeed: 0
-  delayTime: 0
   moveTowardID: 2
   isMovingX: 1
   moveTowardSpeed: 20
   moveXTarget: 26.35
   moveYTarget: 0
-  isRotateClockwise: 0
-  rotationSpeed: 0
 --- !u!1 &970019190 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6160711171083840545, guid: 88ce78ce02e02284c8947b8897947a9e, type: 3}
@@ -2656,6 +2646,10 @@ PrefabInstance:
     - target: {fileID: 173579759150048541, guid: ce619107cdd947c4b94532b6935bd4fa, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 173579759150048542, guid: ce619107cdd947c4b94532b6935bd4fa, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 173579760713405860, guid: ce619107cdd947c4b94532b6935bd4fa, type: 3}
       propertyPath: m_IsActive
@@ -4455,21 +4449,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d95cc0fac5da9e4d9d1c6c1ea33b8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallType: 
-  sineID: 0
-  sineSpeed: 0
-  sinePower: 0
-  isSineRandomOffset: 0
-  pathWall: {fileID: 0}
-  moveSpeed: 0
-  delayTime: 0
   moveTowardID: 3
   isMovingX: 1
   moveTowardSpeed: 45
   moveXTarget: 28.04
   moveYTarget: 0
-  isRotateClockwise: 0
-  rotationSpeed: 0
 --- !u!1 &1603053334
 GameObject:
   m_ObjectHideFlags: 0
@@ -4779,21 +4763,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d95cc0fac5da9e4d9d1c6c1ea33b8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallType: 
-  sineID: 0
-  sineSpeed: 0
-  sinePower: 0
-  isSineRandomOffset: 0
-  pathWall: {fileID: 0}
-  moveSpeed: 0
-  delayTime: 0
   moveTowardID: 1
   isMovingX: 1
   moveTowardSpeed: 20
   moveXTarget: -16.4599
   moveYTarget: 0
-  isRotateClockwise: 0
-  rotationSpeed: 0
 --- !u!1 &1652649987
 GameObject:
   m_ObjectHideFlags: 0

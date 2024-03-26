@@ -154,9 +154,21 @@ public class Garbage : MonoBehaviour
             garbagePosition = garbageWhirlpool.transform.position;
             pc.enabled = false;
 
-            if (GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue == 2 && Timer.timerInstance.isTimerLevel)
+            if (GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue == 2)
             {
-                transform.SetParent(garbageWhirlpool.transform);
+                if(LevelStatus.levelStatus.levelID != 4) 
+                {
+                    if (Timer.timerInstance.isTimerLevel) 
+                    {
+                        transform.SetParent(garbageWhirlpool.transform);
+                    }
+                    
+                }
+                else 
+                {
+                    transform.SetParent(garbageWhirlpool.transform);
+                }
+                
             }
             if (GarbageCenterPoint.garbageCenterPoint.buttonGarbageStoreValue != 2)
             {

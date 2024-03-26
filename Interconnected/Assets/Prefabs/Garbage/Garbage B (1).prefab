@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   garbage: {fileID: 2772721481137595800}
+  garbageType: 
   garbageParent: {fileID: 2772721481137595804}
   garbageRb: {fileID: 2772721481137595801}
   sineSpeed: 3
@@ -153,11 +154,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGarbageCollected: 0
+  isPlayerBringGarbage: 0
   blastForce: 5
   blastRadius: 3
-  garbageWeight: 3
-  isPlayerBringGarbage: 0
+  garbageWeight: 0
   isRotate: 0
+  isCanBeCollected: 0
   garbageBounceCollision:
   - Gear
   - Spike
