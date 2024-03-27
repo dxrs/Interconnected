@@ -2442,6 +2442,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4952732781539411342, guid: 5fbbcefa02ff3a0419161cde2bcb4f73, type: 3}
+      propertyPath: isLevelGame
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fbbcefa02ff3a0419161cde2bcb4f73, type: 3}
 --- !u!1001 &1317599284
@@ -4771,10 +4775,6 @@ PrefabInstance:
       propertyPath: linkRay
       value: 
       objectReference: {fileID: 1708332662}
-    - target: {fileID: 4000393906820303365, guid: 281f6ccc00e123f47aa2f9d844f4f728, type: 3}
-      propertyPath: playerBullet
-      value: 
-      objectReference: {fileID: 6718829098404625899, guid: c7170928d839ecc44982ee265e190742, type: 3}
     - target: {fileID: 4776981173243895035, guid: 281f6ccc00e123f47aa2f9d844f4f728, type: 3}
       propertyPath: linkRay
       value: 
@@ -5034,11 +5034,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1587802022458880880, guid: 46c30f716bd69bb40a9682229167c213, type: 3}
       propertyPath: cameraMaxZoom
-      value: 12
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1587802022458880880, guid: 46c30f716bd69bb40a9682229167c213, type: 3}
       propertyPath: cameraMinZoom
-      value: 28
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 1587802022458880880, guid: 46c30f716bd69bb40a9682229167c213, type: 3}
       propertyPath: cameraZoomLimiter

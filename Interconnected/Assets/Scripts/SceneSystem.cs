@@ -54,7 +54,7 @@ public class SceneSystem : MonoBehaviour
         {
             if (LevelManager.levelManager.isLevelGame)
             {
-                LevelManager.levelManager.levelChoosed = SceneManager.GetActiveScene().buildIndex - 1;
+                LevelManager.levelManager.indexSceneLevelValue = SceneManager.GetActiveScene().buildIndex;
             }
         }
        

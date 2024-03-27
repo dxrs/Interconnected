@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class Player2Animation : MonoBehaviour
 {
+    public static Player2Animation player2Animation;
+
+    public bool isFacingRight;
+
     [SerializeField] Player2Movement player2Movement;
 
     [SerializeField] GameObject playerOutlineCollider;
 
-    [SerializeField] bool isFacingRight;
 
+    private void Awake()
+    {
+        if(player2Animation == null) { player2Animation = this; }
+    }
     private void Update()
     {
         playerOutlineCollider.transform.position = transform.position;

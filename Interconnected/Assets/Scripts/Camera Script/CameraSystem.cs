@@ -31,6 +31,7 @@ public class CameraSystem : MonoBehaviour
     private void Start()
     {
         distanceBetween2Player = cameraMinZoom;
+        cameraZoomLimiter = cameraMinZoom * 2;
         if (LevelStatus.levelStatus.levelID == 4) 
         {
             transform.position = new Vector3(camPosX[0], transform.position.y,-10);

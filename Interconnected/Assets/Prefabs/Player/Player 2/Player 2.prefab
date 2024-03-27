@@ -496,9 +496,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44a3a3392bc6c041abecc5cae7b8c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFacingRight: 0
   player2Movement: {fileID: 74277217981580472}
   playerOutlineCollider: {fileID: 0}
-  isFacingRight: 0
 --- !u!1 &5616377320804999560
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,6 +544,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkRay: {fileID: 0}
-  playerBullet: {fileID: 6718829098404625899, guid: c7170928d839ecc44982ee265e190742, type: 3}
+  playerBullet: {fileID: 6718829098404625899, guid: a66933d14d832774fa83c1f66264ac3e, type: 3}
   shootPoint: {fileID: 5616377320804999560}
-  waitToSpawn: 0.03
+  waitToSpawn: 0.07

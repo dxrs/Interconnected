@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DoorButton : MonoBehaviour
 {
-    public int id;
 
     [SerializeField] bool isPlayer1SetPosToDoor;
     [SerializeField] bool isPlayer2SetPosToDoor;
@@ -17,26 +16,18 @@ public class DoorButton : MonoBehaviour
       
         if (!GlobalVariable.globalVariable.isPlayerDestroyed) 
         {
-            for (int i = 1; i <= GlobalVariable.globalVariable.maxDoor; i++)
+            if (buttonSpriteScale != null)
             {
-                if (id == i)
+                if (isButtonPressed)
                 {
-                    if (buttonSpriteScale != null) 
-                    {
-                        if (isButtonPressed)
-                        {
-                            buttonSpriteScale.localScale = Vector2.MoveTowards(buttonSpriteScale.localScale, new Vector2(0.02f, 0.02f), 4.5f * Time.deltaTime);
-                        }
-                        else
-                        {
-                            buttonSpriteScale.localScale = Vector2.Lerp(buttonSpriteScale.localScale, new Vector2(1.5f, 1.5f), 4.5f * Time.deltaTime);
-                        }
-                    }
-                   
-                  
-                    break;
+                    buttonSpriteScale.localScale = Vector2.MoveTowards(buttonSpriteScale.localScale, new Vector2(0.02f, 0.02f), 4.5f * Time.deltaTime);
+                }
+                else
+                {
+                    buttonSpriteScale.localScale = Vector2.Lerp(buttonSpriteScale.localScale, new Vector2(1.5f, 1.5f), 4.5f * Time.deltaTime);
                 }
             }
+          
         }
     }
 

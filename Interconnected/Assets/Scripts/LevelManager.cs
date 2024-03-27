@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
 
     public int totalLevel;
     public int totalLevelUnlocked; // dipanggil menggunakan save data
-    public int levelChoosed; // apabila pengen maen level sebelum totalLevelUnlocked;
+    public int indexSceneLevelValue; // apabila pengen maen level sebelum totalLevelUnlocked;
     public int currentTotalLevelSection;
     
     public bool isLevelGame;
@@ -31,10 +31,20 @@ public class LevelManager : MonoBehaviour
         {
             currentTotalLevelSection = 3;
         }
+        compareCurrentIndexLevel();
+       
+    }
 
-        if (levelChoosed == Mathf.Clamp(levelChoosed, 0, 10)) 
+    private void compareCurrentIndexLevel() 
+    {
+        if (indexSceneLevelValue == Mathf.Clamp(indexSceneLevelValue, 1, 12))
         {
             ChapterManager.chapterManager.chapterChoosed = 1;
+        }
+
+        if (indexSceneLevelValue == Mathf.Clamp(indexSceneLevelValue, 13, 21))
+        {
+            ChapterManager.chapterManager.chapterChoosed = 2;
         }
     }
 

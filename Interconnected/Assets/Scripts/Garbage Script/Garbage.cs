@@ -103,7 +103,7 @@ public class Garbage : MonoBehaviour
                 {
                     if (!LinkRay.linkRay.isPlayerLinkedEachOther || GlobalVariable.globalVariable.isPlayerDestroyed)
                     {
-                        
+                       
                         garbageBlast();
                     }
                 }
@@ -111,7 +111,7 @@ public class Garbage : MonoBehaviour
                 {
                     if (Player1Health.player1Health.curPlayer1Health <= 0 || Player2Health.player2Health.curPlayer2Health <= 0)
                     {
-                      
+                        
                         garbageBlast();
                     }
                 }
@@ -122,7 +122,7 @@ public class Garbage : MonoBehaviour
             }
             if (!isGarbageCollected && !isPlayerBringGarbage)
             {
-                
+
                 pc.enabled = true;
                 StartCoroutine(garbageRigidBrake(1f));
             }
@@ -224,6 +224,7 @@ public class Garbage : MonoBehaviour
         randomDestroyTime = Random.Range(.5f, 1f);
     }
 
+   
     private void OnTriggerStay2D(Collider2D collision)
     {
         for(int a = 0; a < garbageBounceCollision.Length; a++) 
@@ -231,7 +232,7 @@ public class Garbage : MonoBehaviour
             if (collision.gameObject.CompareTag(garbageBounceCollision[a])) 
             {
                 Vector2 blastForceVector = (transform.position - collision.transform.position).normalized;
-                rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
+                rb.velocity = blastForceVector * 10; 
             }
         }
         if (collision.gameObject.CompareTag("Player 1 Outline Collider") || collision.gameObject.CompareTag("Player 2 Outline Collider"))
@@ -288,12 +289,13 @@ public class Garbage : MonoBehaviour
             if (collision.gameObject.CompareTag(garbageBounceCollision[a]))
             {
                 Vector2 blastForceVector = (transform.position - collision.transform.position).normalized;
-                rb.AddForce(blastForceVector * 10, ForceMode2D.Impulse);
+                rb.velocity = blastForceVector * 10; 
             }
         }
         
 
     }
+
     
     IEnumerator garbageRigidBrake(float delay)
     {

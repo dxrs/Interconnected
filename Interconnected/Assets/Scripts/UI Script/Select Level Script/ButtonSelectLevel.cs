@@ -66,7 +66,9 @@ public class ButtonSelectLevel : MonoBehaviour
                 
                 textStatusLevel.text = levelButtonNumber.ToString();
             }
+            
         }
+        
        
         
     }

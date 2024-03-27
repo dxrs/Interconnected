@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Player1Animation : MonoBehaviour
 {
+    public static Player1Animation player1Animation;
+
+    public bool isFacingRight;
+
     [SerializeField] Player1Movement player1Movement;
 
     [SerializeField] GameObject playerOutlineCollider;
 
-    [SerializeField] bool isFacingRight;
+    private void Awake()
+    {
+        if (player1Animation == null) { player1Animation = this; }
+    }
 
     private void Update()
     {

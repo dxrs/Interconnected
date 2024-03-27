@@ -649,7 +649,7 @@ MonoBehaviour:
   idLevel: 9
   levelButtonNumber: 9
   isButtonLocked: 1
-  levelType: null
+  levelType: Time Speed
   buttonSelectLevel: {fileID: 219070174}
   textStatusLevel: {fileID: 135508565}
   textLevelType: {fileID: 897366512}
@@ -805,7 +805,7 @@ MonoBehaviour:
   idLevel: 10
   levelButtonNumber: 10
   isButtonLocked: 1
-  levelType: null
+  levelType: Time Speed
   buttonSelectLevel: {fileID: 241870356}
   textStatusLevel: {fileID: 653557137}
   textLevelType: {fileID: 2020124511}
@@ -2529,7 +2529,7 @@ MonoBehaviour:
   idLevel: 4
   levelButtonNumber: 4
   isButtonLocked: 0
-  levelType: null
+  levelType: Time Speed
   buttonSelectLevel: {fileID: 522060292}
   textStatusLevel: {fileID: 314177611}
   textLevelType: {fileID: 1705624201}
@@ -3219,7 +3219,7 @@ MonoBehaviour:
   idLevel: 6
   levelButtonNumber: 6
   isButtonLocked: 1
-  levelType: null
+  levelType: Danger Zone
   buttonSelectLevel: {fileID: 729883002}
   textStatusLevel: {fileID: 660895707}
   textLevelType: {fileID: 468906875}
@@ -3671,7 +3671,7 @@ MonoBehaviour:
   idLevel: 11
   levelButtonNumber: 11
   isButtonLocked: 1
-  levelType: null
+  levelType: Danger Zone
   buttonSelectLevel: {fileID: 913423236}
   textStatusLevel: {fileID: 1908093371}
   textLevelType: {fileID: 418961226}
@@ -4482,7 +4482,7 @@ MonoBehaviour:
   idLevel: 12
   levelButtonNumber: 12
   isButtonLocked: 1
-  levelType: null
+  levelType: Time Speed
   buttonSelectLevel: {fileID: 1336152962}
   textStatusLevel: {fileID: 515897479}
   textLevelType: {fileID: 1243229760}
@@ -4732,7 +4732,7 @@ MonoBehaviour:
   idLevel: 5
   levelButtonNumber: 5
   isButtonLocked: 0
-  levelType: null
+  levelType: Time Speed
   buttonSelectLevel: {fileID: 1347660476}
   textStatusLevel: {fileID: 1801240893}
   textLevelType: {fileID: 1890071039}
@@ -5417,7 +5417,7 @@ MonoBehaviour:
   idLevel: 8
   levelButtonNumber: 8
   isButtonLocked: 1
-  levelType: null
+  levelType: Time Speed
   buttonSelectLevel: {fileID: 1726962085}
   textStatusLevel: {fileID: 338746230}
   textLevelType: {fileID: 1262194698}
@@ -5914,7 +5914,7 @@ MonoBehaviour:
   idLevel: 7
   levelButtonNumber: 7
   isButtonLocked: 1
-  levelType: null
+  levelType: Time Speed
   buttonSelectLevel: {fileID: 1853448600}
   textStatusLevel: {fileID: 136210535}
   textLevelType: {fileID: 405417934}

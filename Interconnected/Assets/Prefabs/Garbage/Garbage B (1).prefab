@@ -164,6 +164,7 @@ MonoBehaviour:
   - Gear
   - Spike
   - Trap
+  - Garbage Bounce Collider
   garbageType: Special Garbage
 --- !u!50 &2772721481137595801
 Rigidbody2D:

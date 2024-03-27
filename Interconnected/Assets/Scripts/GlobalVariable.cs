@@ -15,8 +15,6 @@ public class GlobalVariable : MonoBehaviour
     public bool isCameraBoundariesActive;
     public bool isLevelHasDialogue;
     public bool[] isDoorButtonPressed;
-
-    public int maxDoor;
     
 
     public int curEnemySpawn;
@@ -69,20 +67,7 @@ public class GlobalVariable : MonoBehaviour
         if (isDoorButtonPressed[0] && isDoorButtonPressed[1] && !isAddingCheckpointValue) 
         {
             
-            if (LevelStatus.levelStatus.levelID == 4) 
-            {
-                //Tutorial.tutorial.tutorialProgress++;
-               
-                isAddingCheckpointValue = true;
-            }
-            else 
-            {
-                if (!Timer.timerInstance.isTimerLevel) 
-                {
-                    Checkpoint.checkpoint.curCheckpointValue++;
-                    isAddingCheckpointValue = true;
-                }
-            }
+          
             
         }
         partOfSharingLives();

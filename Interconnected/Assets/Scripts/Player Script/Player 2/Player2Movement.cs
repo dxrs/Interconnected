@@ -155,13 +155,10 @@ public class Player2Movement : MonoBehaviour
             {
                 if (isBraking || player2Collision.isCrashToOtherBoat || player2Collision.isHitDoorButton)
                 {
-                    float lerpSpeed = player2Collision.isHitDoorButton ? 8f : 4f;
+                    float lerpSpeed = player2Collision.isHitDoorButton ? 12f : 4f;
                     rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, lerpSpeed * Time.deltaTime);
                 }
-                else if (player2Collision.isHitDoorButton)
-                {
-                    rb.drag = Mathf.Lerp(rb.drag, playerBrakingPower, 5f * Time.deltaTime);
-                }
+              
                 else
                 {
                    

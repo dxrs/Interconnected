@@ -46,6 +46,7 @@ TagManager:
   - Wall Destroyer
   - Garbage Store Button
   - Share Lives Area
+  - Sine Wall
   layers:
   - Default
   - TransparentFX

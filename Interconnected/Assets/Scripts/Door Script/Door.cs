@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public int id;
+
 
     [SerializeField] GameObject[] doorButton;
     [SerializeField] Transform[] doorButtonScale;
@@ -17,52 +17,46 @@ public class Door : MonoBehaviour
 
     private void Update()
     {
-        for (int j = 1; j <= GlobalVariable.globalVariable.maxDoor; j++)
+       
+        if (isDoorOpen)
         {
-            if (id == j)
+            transform.localPosition = Vector2.MoveTowards(transform.localPosition,
+             doorMoveTarget, doorMoveSpeed * Time.deltaTime);
+            if (doorButton[0] && doorButton[1] != null)
             {
-
-                if (isDoorOpen)
+                for (int k = 0; k < doorButton.Length; k++)
                 {
-                    transform.localPosition = Vector2.MoveTowards(transform.localPosition,
-                     doorMoveTarget, doorMoveSpeed * Time.deltaTime);
-                    if (doorButton[0] && doorButton[1] != null)
-                    {
-                        for (int k = 0; k < doorButton.Length; k++)
-                        {
-                            doorButton[k].SetActive(false);
-                            
-                        }
-                    }
+                    doorButton[k].SetActive(false);
 
-                    if (Mathf.Approximately(transform.localPosition.x, doorMoveTarget.x) && Mathf.Approximately(transform.localPosition.y, doorMoveTarget.y)) 
-                    {
-                        if (doorButton[0] && doorButton[1] != null) 
-                        {
-                            for(int k = 0; k < doorButton.Length; k++) 
-                            {
-                             
-                                doorButton[k].transform.position = transform.position;
-                            }
-                        }
+                }
+            }
 
-                        Destroy(gameObject);
-                        for (int k = 0; k < doorButton.Length; k++)
-                        {
-                            Destroy(doorButton[k], 5);
-                        }
+            if (Mathf.Approximately(transform.localPosition.x, doorMoveTarget.x) && Mathf.Approximately(transform.localPosition.y, doorMoveTarget.y))
+            {
+                if (doorButton[0] && doorButton[1] != null)
+                {
+                    for (int k = 0; k < doorButton.Length; k++)
+                    {
+
+                        doorButton[k].transform.position = transform.position;
                     }
                 }
-                if (doorButton[0] && doorButton[1] != null) 
+
+                Destroy(gameObject);
+                for (int k = 0; k < doorButton.Length; k++)
                 {
-                    if (doorButtonScale[0].localScale.x <= 0.02f && doorButtonScale[1].localScale.x <= 0.02f)
-                    {
-                        isDoorOpen = true;
-                    }
+                    Destroy(doorButton[k], 5);
                 }
-               
             }
         }
+        if (doorButton[0] && doorButton[1] != null)
+        {
+            if (doorButtonScale[0].localScale.x <= 0.02f && doorButtonScale[1].localScale.x <= 0.02f)
+            {
+                isDoorOpen = true;
+            }
+        }
+
     }
     private void OnDestroy()
     {
@@ -70,6 +64,15 @@ public class Door : MonoBehaviour
         {
             Tutorial.tutorial.tutorialProgress++;
         }
-        
+        if(LevelStatus.levelStatus.levelID == 1) 
+        {
+            if (!Timer.timerInstance.isTimerLevel)
+            {
+                Checkpoint.checkpoint.curCheckpointValue++;
+
+            }
+        }
+       
+
     }
 }

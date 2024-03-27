@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBullet : MonoBehaviour
+public class Player1Bullet : MonoBehaviour
 {
 
     [SerializeField] float bulletSpeed;
-    [SerializeField] float colorChangeDistanceThreshold;
 
     GameObject player1, player2;
 
@@ -39,17 +38,25 @@ public class PlayerBullet : MonoBehaviour
                 newColor.a = Mathf.Lerp(1f, 0f, t); // Ubah komponen alpha (transparansi)
                 sr.color = newColor;
             }
-
             transform.position = Vector2.MoveTowards(transform.position, player2.transform.position, bulletSpeed * Time.deltaTime);
+          
+           
         }
         else
         {
             Destroy(gameObject);
         }
 
-        if (GlobalVariable.globalVariable.isRopeVisible) 
+        if (GlobalVariable.globalVariable.isRopeVisible)
         {
-            sr.enabled = true;
+            if (Player2Animation.player2Animation.isFacingRight && Player1Animation.player1Animation.isFacingRight
+                || !Player2Animation.player2Animation.isFacingRight && Player1Animation.player1Animation.isFacingRight
+                || Player2Animation.player2Animation.isFacingRight && !Player1Animation.player1Animation.isFacingRight)
+            {
+                sr.enabled = true;
+            }
+            else { sr.enabled = false; }
+            
         }
         else 
         {
